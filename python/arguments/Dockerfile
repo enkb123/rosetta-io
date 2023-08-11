@@ -5,8 +5,7 @@ FROM python:3.11-alpine
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY stdin.py /app
-COPY stdin.txt /app
+COPY arguments.py /app
 
 ENV DOCKER_HOST="ssh://coffee"
 
@@ -14,6 +13,4 @@ ENV DOCKER_HOST="ssh://coffee"
 #  This is the 'shell' form of CMD and is executed in `/bin/sh -c`
 # See docker docs for more info on how to format CMD:
 # https://docs.docker.com/engine/reference/builder/#cmd:~:text=CMD-,%F0%9F%94%97,-The%20CMD%20instruction
-CMD python stdin.py < stdin.txt
-
-# CMD ["/bin/sh", "-c", "python stdin.py < stdin.txt"] <- this may work too?
+CMD python arguments.py "Argument Number 1"

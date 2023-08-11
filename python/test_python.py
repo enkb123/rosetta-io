@@ -66,5 +66,20 @@ class TestStdIn:
         docker_container.wait()
         assert str(docker_container.logs(), 'UTF-8') == expected
 
+class TestArgs:
+    @pytest.mark.parametrize(
+            'docker_container',
+            [
+               {
+                   'image': 'rosetta-python:arguments',
+                    'path': './python/arguments'
+                } 
+            ],
+            indirect=True,
+    )
+    def test_args(self, docker_container):
+        docker_container.wait()
+        assert docker_container.logs() == b'Argument Number 1\n'
+
 # to run in command line:
 # docker run -it --rm rosetta-python
