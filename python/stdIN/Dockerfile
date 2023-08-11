@@ -5,9 +5,10 @@ FROM python:3.11-alpine
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY null_char.py /app
+COPY stdin.py /app
 
-# Run app.py when the container launches
+ENV DOCKER_HOST="ssh://coffee"
 
-# python null_char.py
-CMD ["python", "null_char.py"]
+# Run script when the container launches
+# `python stdin.py <some input>`
+CMD ["python", "stdin.py", "hi hello how are you?"]
