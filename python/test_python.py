@@ -3,10 +3,11 @@ import pytest
 
 @pytest.fixture
 def docker_container(request):
+    """Fixture creates a docker image based on the given image name
+    and path to the dockerfile directory, returns the created container"""
+    
     client = docker.from_env()
-
     image_name = request.param['image']
-
     build_context = request.param['path']
 
     image, logs = client.images.build(path=build_context, tag=image_name)
@@ -14,8 +15,6 @@ def docker_container(request):
     for log_line in logs:
         print(log_line)
 
-    
-    # Not enough memory to run the container, only to create and stop it
     # If detach=False, container run method will just return the log output, not the 
     # container obj bc container is stopped at this point
     container = client.containers.run(image, detach=True)
@@ -25,7 +24,8 @@ def docker_container(request):
     container.stop()
     container.remove()
 
-class TestPython:
+class TestNullChar:
+
     @pytest.mark.parametrize(
             'docker_container',
             [
@@ -41,7 +41,11 @@ class TestPython:
         docker_container.wait()
         assert docker_container.logs() == b'Hello World \x00\n'
 
-
+class TestStdIn:
+    """Check that input is read from stdin line by line.
+    The script executed in the docker container accepts a text file as input,
+    reads each line, capitalizes it, then prints it out.
+    """
     @pytest.mark.parametrize(
             'docker_container',
             [
@@ -53,17 +57,14 @@ class TestPython:
             indirect=True,
     )
     def test_stdin(self, docker_container):
+        i = 1
+        expected = ""
+        with open('python/stdin/stdin.txt', 'r') as f:
+            for line in f.readlines():
+                expected += f"{i} {line.upper()}"
+                i += 1
         docker_container.wait()
-        assert docker_container.logs() == b'HI HELLO HOW ARE YOU?\n'
+        assert str(docker_container.logs(), 'UTF-8') == expected
 
 # to run in command line:
 # docker run -it --rm rosetta-python
-
-
-
-# input_string = "Hello from STDIN!"
-# container.exec_run("python std")
-# # Run a command to upload the input_string to the container's STDIN
-# result = subprocess.run(['docker', 'exec', container_id, 'python', '-c', 'print(input())'],input=input_string,capture_output=True,text=True)
-# when testing for stdin - make sure to wait to make sure it's not discarding. 
-# have the script print something out 
