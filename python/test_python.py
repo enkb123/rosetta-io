@@ -1,6 +1,5 @@
 import docker
 import pytest
-import os
 
 @pytest.fixture
 def docker_container(request):
