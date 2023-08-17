@@ -2,6 +2,18 @@ import docker
 import pytest
 import json
 
+
+def expected_read_file_output():
+    """Result of reading/capitalizing example input file"""
+    expected = ""
+    i = 1
+    with open('./python/hihello.txt', 'r') as f:
+        for line in f.readlines():
+            expected += f"{i} {line.upper()}"
+            i += 1
+    return expected
+
+
 @pytest.fixture
 def docker_container(request):
     """
@@ -47,18 +59,26 @@ class TestStdIn:
     """
     @pytest.mark.parametrize(
             'docker_container',
-            [["/bin/sh", "-c", "python stdin.py < stdin.txt"]],
+            [["/bin/sh", "-c", "python stdin.py < hihello.txt"]],
             indirect=True,
     )
     def test_stdin(self, docker_container):
-        expected = ""
-        i = 1
-        with open('./python/stdin.txt', 'r') as f:
-            for line in f.readlines():
-                expected += f"{i} {line.upper()}"
-                i += 1
         docker_container.wait()
-        assert str(docker_container.logs(), 'UTF-8') == expected
+        assert str(docker_container.logs(), 'UTF-8') == expected_read_file_output()
+
+
+class TestReadFile:
+    """Check that a file is read line by line, when file path is given
+    as command line argument
+    """
+    @pytest.mark.parametrize(
+        'docker_container',
+        ['python read_file.py hihello.txt'],
+        indirect=True,
+    )
+    def test_read_file(self, docker_container):
+        docker_container.wait()
+        assert str(docker_container.logs(), 'UTF-8') == expected_read_file_output()
 
 
 class TestArgs:
