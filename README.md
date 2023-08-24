@@ -29,12 +29,20 @@ The name `rosetta-io` is an hommage to [Rosetta Code](https://rosettacode.org/wi
 
 ### Setup
 
-1. Put any environment variables you need in a `.env` file, which will be loaded by  `pytest` before it runs the tests.
+1. Put any environment variables specific for your machine in a `.env` file, which will be loaded by `pytest` before it runs the test suite.
 
-    E.g. if you want to run the test suite examples on a different Docker host, set the `DOCKER_HOST` env variable.
+    A few environment variables to consider:
+    - [docker environment variables][env-vars-docker], e.g. `DOCKER_HOST` if you want to run the test suite examples on a different Docker host, or use other Docker settings
+    - [`PYTEST_XDIST_AUTO_NUM_WORKERS`][env-vars-pytest-xdist] can be set to the number of worker processes to run the tests in if `pytest-xdist`'s `auto` setting is not what you want.
+    - [`pytest`][env-vars-pytest] environment variables
 
-3. Make sure you Docker host is running
+2. Make sure you Docker host is running
 
 ### Run the test suite
 
 Run `pytest` from the command line. If you are using VSCode you'll see the tests in the Testing panel.
+
+
+[env-vars-docker]: https://docs.docker.com/engine/reference/commandline/cli/#environment-variables
+[env-vars-pytest-xdist]: https://pytest-xdist.readthedocs.io/en/stable/distribution.html
+[env-vars-pytest]: https://docs.pytest.org/en/7.4.x/reference/reference.html#environment-variables
