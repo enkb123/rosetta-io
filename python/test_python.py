@@ -186,3 +186,17 @@ class TestWriteJsonToStdout:
         # Note: The text in the log is: "hello \n \u0001 world \ud83e\udd78" but Python escapes
         # the escaped characters in the docker container's log so it looks wonky in the test
         assert script_output == "hello \n \u0001 world 🥸"
+
+class TestDecodeBase64:
+    """Test that base64 can be decoded as a string"""
+    def test_decode(self, docker_runner):
+        docker_runner.run('python decode.py SGVsbG8sIHdvcmxkIQ==')
+        docker_runner.container.wait()
+        assert str(docker_runner.container.logs(), 'UTF-8') == 'Hello, world!\n'
+
+class TestEncodeBase64:
+    """Test that a string can be encoded as base64"""
+    def test_encode(self, docker_runner):
+        docker_runner.run('python encode.py "Hello, world!"')
+        docker_runner.container.wait()
+        assert str(docker_runner.container.logs(), 'UTF-8') == 'SGVsbG8sIHdvcmxkIQ==\n'
