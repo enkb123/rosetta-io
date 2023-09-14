@@ -1,6 +1,7 @@
 import docker
 import pytest
 import json
+import subprocess
 from dataclasses import dataclass
 
 from .locking import early_bird_lock
@@ -200,3 +201,22 @@ class TestEncodeBase64:
         docker_runner.run('python encode.py "Hello, world!"')
         docker_runner.container.wait()
         assert str(docker_runner.container.logs(), 'UTF-8') == 'SGVsbG8sIHdvcmxkIQ==\n'
+
+class TestStreamingStdin:
+    """Test that streaming stdin can be read line by line and can write to stdout
+    without waiting for all lines to arrive
+    Note: this test uses Docker CLI instead of the Python Docker SDK (implemented in the
+    `docker_runner` fixture) since SDK doesn't easily allow writing to a container's stdin"""
+    def test_stdin(self, docker_image):
+        # Subprocess constructor that runs the py script in a docker container and waits for input
+        script = subprocess.Popen(
+            ['docker', 'run', '-i', docker_image, 'python', 'streaming_stdin.py'],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            text=True, # treat standard streams as text, not bytes
+            bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
+        )
+        # Give input to the script via stdin, one line at a time, and check result
+        for i in range(1, 10):
+            script.stdin.write(f"line #{i}\n")
+            assert script.stdout.readline() == f"LINE #{i}\n"
