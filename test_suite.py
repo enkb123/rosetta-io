@@ -44,8 +44,15 @@ class Ruby(Language):
         return [self.name, f'{test_name}.rb']
 
 
+class JavaScript(Language):
+    name = 'javascript'
+
+    def script_command_parts(self, test_name):
+        return ['node', f'{test_name}.mjs']
+
+
 # List of language classes with which to parametrize tests
-LANGUAGES = [Python(), Ruby()]
+LANGUAGES = [Python(), Ruby(), JavaScript()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
