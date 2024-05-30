@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "rosetta-io"
+version = "0.1.0"
+description = ""
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+docker = "~7.1.0"
+pytest = "~7.4.0"
+pytest-dotenv = "~0.5.2"
+pytest-xdist = { version = "~3.3.1", extras = ["psutil"]}
+ilock = "~1.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
