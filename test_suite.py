@@ -120,19 +120,16 @@ class DockerRunner:
         return ['docker', 'run', '-i', self.image, *self.build_command(script_name, rest_of_script)]
 
     def run(self, script_name, rest_of_script = ''):
-        # Subprocess constructor runs the script in a docker container and waits for input
-        # Use `script_command_parts` method to format command for Docker CLI as `[...'python', 'script.py']`
         script = subprocess.run(
             self.docker_command(script_name, rest_of_script),
             text=True, # treat standard streams as text, not bytes
             bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
-            capture_output=True
+            capture_output=True # wait for script to complete
         )
         self.output = script.stdout
 
+    # does not wait for script to complete
     def run_interactive(self, script_name, rest_of_script = ''):
-        # Subprocess constructor runs the script in a docker container and waits for input
-        # Use `script_command_parts` method to format command for Docker CLI as `[...'python', 'script.py']`
         script = subprocess.Popen(
             self.docker_command(script_name, rest_of_script),
             stdin=subprocess.PIPE,
@@ -264,9 +261,7 @@ class TestEncodeBase64:
 
 class TestStreamingStdin:
     """Test that streaming stdin can be read line by line and can write to stdout
-    without waiting for all lines to arrive
-    Note: this test uses Docker CLI instead of the Python Docker SDK (implemented in the
-    `docker_runner` fixture) since SDK doesn't easily allow writing to a container's stdin"""
+    without waiting for all lines to arrive"""
     def test_stdin(self, docker_runner):
         docker_runner.run_interactive('streaming_stdin')
         # Give input to the script via stdin, one line at a time, and check result
