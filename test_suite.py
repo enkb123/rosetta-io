@@ -113,12 +113,17 @@ class DockerRunner:
     stdin: IO[str] = None
     stdout: IO[str] = None
 
+    def build_command(self, script_name, rest_of_script):
+        return ['/bin/sh', '-c', f'{self.language.script(script_name)} {rest_of_script}']
+
+    def docker_command(self, script_name, rest_of_script):
+        return ['docker', 'run', '-i', self.image, *self.build_command(script_name, rest_of_script)]
+
     def run(self, script_name, rest_of_script = ''):
         # Subprocess constructor runs the script in a docker container and waits for input
         # Use `script_command_parts` method to format command for Docker CLI as `[...'python', 'script.py']`
-        command = ['/bin/sh', '-c', f'{self.language.script(script_name)} {rest_of_script}']
         script = subprocess.run(
-            ['docker', 'run', '-i', self.image, *command],
+            self.docker_command(script_name, rest_of_script),
             text=True, # treat standard streams as text, not bytes
             bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
             capture_output=True
@@ -128,9 +133,8 @@ class DockerRunner:
     def run_interactive(self, script_name, rest_of_script = ''):
         # Subprocess constructor runs the script in a docker container and waits for input
         # Use `script_command_parts` method to format command for Docker CLI as `[...'python', 'script.py']`
-        command = ['/bin/sh', '-c', f'{self.language.script(script_name)} {rest_of_script}']
         script = subprocess.Popen(
-            ['docker', 'run', '-i', self.image, *command],
+            self.docker_command(script_name, rest_of_script),
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             text=True, # treat standard streams as text, not bytes
