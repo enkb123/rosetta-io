@@ -1,3 +1,4 @@
+from typing import IO
 import docker
 import pytest
 import json
@@ -103,26 +104,44 @@ def docker_image(docker_client: docker.DockerClient, once_per_test_suite_run, la
 
     return image_name
 
-
 @dataclass
 class DockerRunner:
-    client: docker.DockerClient
     image: str
     language: Language
     container: docker.models.containers.Container = None
     output: str = None
+    stdin: IO[str] = None
+    stdout: IO[str] = None
 
     def run(self, script_name, rest_of_script = ''):
+        # Subprocess constructor runs the script in a docker container and waits for input
+        # Use `script_command_parts` method to format command for Docker CLI as `[...'python', 'script.py']`
         command = ['/bin/sh', '-c', f'{self.language.script(script_name)} {rest_of_script}']
+        script = subprocess.run(
+            ['docker', 'run', '-i', self.image, *command],
+            text=True, # treat standard streams as text, not bytes
+            bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
+            capture_output=True
+        )
+        self.output = script.stdout
 
-        self.container = self.client.containers.run(self.image, command=command, detach=True)
-        # Have to wait on container to get the logs
-        self.container.wait()
-        self.output = str(self.container.logs(), 'UTF-8')
+    def run_interactive(self, script_name, rest_of_script = ''):
+        # Subprocess constructor runs the script in a docker container and waits for input
+        # Use `script_command_parts` method to format command for Docker CLI as `[...'python', 'script.py']`
+        command = ['/bin/sh', '-c', f'{self.language.script(script_name)} {rest_of_script}']
+        script = subprocess.Popen(
+            ['docker', 'run', '-i', self.image, *command],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            text=True, # treat standard streams as text, not bytes
+            bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
+        )
+        self.stdin = script.stdin
+        self.stdout = script.stdout
 
 @pytest.fixture
-def docker_runner(docker_client, docker_image, language):
-    runner = DockerRunner(docker_client, docker_image, language)
+def docker_runner(docker_image, language):
+    runner = DockerRunner(docker_image, language)
 
     yield runner
 
@@ -130,9 +149,8 @@ def docker_runner(docker_client, docker_image, language):
         runner.container.stop()
         runner.container.remove()
 
-
 class TestNullChar:
-    def test_null_char(self, docker_runner, language):
+    def test_null_char(self, docker_runner):
         docker_runner.run("null_char")
         assert docker_runner.output == 'Hello World \x00\n'
 
@@ -142,7 +160,7 @@ class TestStdIn:
     The script executed in the docker container accepts a text file as input,
     reads each line, capitalizes it, then prints it out.
     """
-    def test_stdin(self, docker_runner, language):
+    def test_stdin(self, docker_runner):
         docker_runner.run("stdin", "< hihello.txt")
         assert docker_runner.output == expected_read_file_output()
 
@@ -245,17 +263,9 @@ class TestStreamingStdin:
     without waiting for all lines to arrive
     Note: this test uses Docker CLI instead of the Python Docker SDK (implemented in the
     `docker_runner` fixture) since SDK doesn't easily allow writing to a container's stdin"""
-    def test_stdin(self, docker_image, language):
-        # Subprocess constructor runs the script in a docker container and waits for input
-        # Use `script_command_parts` method to format command for Docker CLI as `[...'python', 'script.py']`
-        script = subprocess.Popen(
-            ['docker', 'run', '-i', docker_image, *language.script_command_parts('streaming_stdin')],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True, # treat standard streams as text, not bytes
-            bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
-        )
+    def test_stdin(self, docker_runner):
+        docker_runner.run_interactive('streaming_stdin')
         # Give input to the script via stdin, one line at a time, and check result
         for i in range(1, 10):
-            script.stdin.write(f"line #{i}\n")
-            assert script.stdout.readline() == f"LINE #{i}\n"
+            docker_runner.stdin.write(f"line #{i}\n")
+            assert docker_runner.stdout.readline() == f"LINE #{i}\n"
