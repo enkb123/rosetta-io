@@ -118,6 +118,9 @@ class DockerRunner:
     def run_shell_script(self, shell_script):
         self.run(['/bin/sh', '-c', shell_script])
 
+    def run_script(self, script_name, rest_of_command):
+        self.run(f'{self.language.script(script_name)} {rest_of_command}')
+
 @pytest.fixture
 def docker_runner(docker_client, docker_image, language):
     runner = DockerRunner(docker_client, docker_image, language)
@@ -153,7 +156,7 @@ class TestReadFile:
     as command line argument
     """
     def test_read_file(self, docker_runner, language):
-        docker_runner.run(f'{language.script("read_file")} hihello.txt')
+        docker_runner.run_script("read_file", "hihello.txt")
         docker_runner.container.wait()
         assert str(docker_runner.container.logs(), 'UTF-8') == expected_read_file_output()
 
@@ -161,7 +164,7 @@ class TestReadFile:
 class TestArgs:
     """Test that args can be passed to script"""
     def test_args(self, docker_runner, language):
-        docker_runner.run(f'{language.script("arguments")} "Argument Number 1"')
+        docker_runner.run_script("arguments", '"Argument Number 1"')
         docker_runner.container.wait()
         assert str(docker_runner.container.logs(), 'UTF-8') == 'argument number 1\n'
 
@@ -192,7 +195,7 @@ class TestWriteJsonToStdout:
     def test_json_array(self, docker_runner, language):
         """Test that JSON array is parsed correctly"""
         # Write string args as an array of strings to stdout
-        docker_runner.run(f'{language.script("json_array")} a b c d')
+        docker_runner.run_script("json_array", "a b c d")
         docker_runner.container.wait()
         script_output = json.loads(docker_runner.container.logs())
         assert script_output == ["a", "b", "c", "d"]
@@ -200,7 +203,7 @@ class TestWriteJsonToStdout:
     def test_json_numbers(self, docker_runner, language):
         """Test that JSON list of numbers is parsed correctly"""
         # Write to stdout the length of each string argument
-        docker_runner.run(f'{language.script("json_numbers")} a bc def ghij')
+        docker_runner.run_script("json_numbers", 'a bc def ghij')
         docker_runner.container.wait()
         script_output = json.loads(docker_runner.container.logs())
         assert script_output == [1, 2, 3, 4]
@@ -209,7 +212,7 @@ class TestWriteJsonToStdout:
         """Test that JSON object is parsed correctly"""
         # Write a dict of {arg:length} to stdout
         # include empty string arg to check handling of empty JSON array
-        docker_runner.run(f'{language.script("json_stdout_object")} a bc def ghij')
+        docker_runner.run_script("json_stdout_object", 'a bc def ghij')
         docker_runner.container.wait()
         script_output = json.loads(docker_runner.container.logs())
         assert script_output == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
@@ -218,7 +221,7 @@ class TestWriteJsonToStdout:
         """Test that a JSON object with arrays as values is parsed correctly"""
         # Write a dict of {arg:[list of arg chars]} to stdout
         # include empty string arg to check handling of empty JSON array
-        docker_runner.run(f'{language.script("json_object_with_array_values")} a bc def')
+        docker_runner.run_script("json_object_with_array_values", 'a bc def')
         docker_runner.container.wait()
         script_output = json.loads(docker_runner.container.logs())
         assert script_output == {"a": ["A"], "bc": ["B", "C"], "def": ["D", "E", "F"]}
@@ -226,7 +229,7 @@ class TestWriteJsonToStdout:
     def test_json_object_array(self, docker_runner, language):
         """Test that a JSON array made of objects is parsed correctly"""
         # Write an array of [{arg: length of chars},...] to stdout
-        docker_runner.run(f'{language.script("json_object_array")} a bc def')
+        docker_runner.run_script("json_object_array", 'a bc def')
         docker_runner.container.wait()
         script_output = json.loads(docker_runner.container.logs())
         assert script_output == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
@@ -237,7 +240,7 @@ class TestWriteJsonToStdout:
         pass it as argument in the test string because it will raise "invalid argument" error
         """
         # Pass a single string to the script that includes a control character and emoji
-        docker_runner.run(f'{language.script("json_control_chars")} "hello \n \1 world 🥸"')
+        docker_runner.run_script("json_control_chars", '"hello \n \1 world 🥸"')
         docker_runner.container.wait()
         script_output = json.loads(docker_runner.container.logs())
         assert script_output == "hello \n \u0001 world 🥸"
@@ -246,7 +249,7 @@ class TestWriteJsonToStdout:
 class TestDecodeBase64:
     """Test that base64 can be decoded as a string"""
     def test_decode(self, docker_runner, language):
-        docker_runner.run(f'{language.script("decode")} SGVsbG8sIHdvcmxkIQ==')
+        docker_runner.run_script("decode", 'SGVsbG8sIHdvcmxkIQ==')
         docker_runner.container.wait()
         assert str(docker_runner.container.logs(), 'UTF-8') == 'Hello, world!\n'
 
@@ -254,7 +257,7 @@ class TestDecodeBase64:
 class TestEncodeBase64:
     """Test that a string can be encoded as base64"""
     def test_encode(self, docker_runner, language):
-        docker_runner.run(f'{language.script("encode")} "Hello, world!"')
+        docker_runner.run_script("encode", '"Hello, world!"')
         docker_runner.container.wait()
         assert str(docker_runner.container.logs(), 'UTF-8') == 'SGVsbG8sIHdvcmxkIQ==\n'
 
