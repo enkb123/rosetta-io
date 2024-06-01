@@ -1,3 +1,4 @@
+import sys
 from typing import IO
 import docker
 import pytest
@@ -126,6 +127,7 @@ class DockerRunner:
             bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
             capture_output=True # wait for script to complete
         )
+        print(script.stderr, file = sys.stderr)
         self.output = script.stdout
 
     # does not wait for script to complete
