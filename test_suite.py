@@ -67,6 +67,7 @@ class R(Language):
         return ['Rscript', f'{test_name}.R']
 
 # List of language classes with which to parametrize tests
+LANGUAGES = [JavaScript()]
 LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
@@ -100,57 +101,97 @@ def docker_image(docker_client: docker.DockerClient, once_per_test_suite_run, la
         # should_build will be True if this is the the first worker to get here, otherwise False
         if should_build:
             _, logs = docker_client.images.build(path=build_context, tag=image_name)
-            for log_line in logs:
-                print(log_line)
+            for chunk in logs:
+                if (stdout_chunk := chunk.get('stream')):
+                    print(stdout_chunk, end="")
 
     return image_name
 
 @dataclass
-class DockerRunner:
+class Runner:
     image: str
     language: Language
+    is_local: bool = False
     container: docker.models.containers.Container = None
     output: str = None
     stdin: IO[str] = None
     stdout: IO[str] = None
+    stderr: IO[str] = None
 
     def build_command(self, script_name, rest_of_script):
         return ['/bin/sh', '-c', f'{self.language.script(script_name)} {rest_of_script}']
 
-    def docker_command(self, script_name, rest_of_script):
-        return ['docker', 'run', '-i', self.image, *self.build_command(script_name, rest_of_script)]
-
-    def run(self, script_name, rest_of_script = ''):
-        script = subprocess.run(
-            self.docker_command(script_name, rest_of_script),
+    @property
+    def subprocess_params(self):
+        return dict(
+            cwd=self.cwd,
             text=True, # treat standard streams as text, not bytes
             bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
-            capture_output=True # wait for script to complete
+        )
+
+    def _run(self, command):
+        script = subprocess.run(command,
+            capture_output=True, # wait for script to complete
+            **self.subprocess_params
         )
         print(script.stderr, file = sys.stderr)
-        self.output = script.stdout
+        return script
 
-    # does not wait for script to complete
-    def run_interactive(self, script_name, rest_of_script = ''):
-        script = subprocess.Popen(
-            self.docker_command(script_name, rest_of_script),
+    def _run_interactive(self, command):
+        script = subprocess.Popen( command,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
-            text=True, # treat standard streams as text, not bytes
-            bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
+            **self.subprocess_params
         )
         self.stdin = script.stdin
+        return script
+
+    def run(self, script_name, rest_of_script = '', interactive = False):
+        command = self.build_command(script_name, rest_of_script)
+
+        print("command:", command)
+
+        if interactive:
+            script = self._run_interactive(command)
+        else:
+            script = self._run(command)
+
+        self.output = script.stdout
         self.stdout = script.stdout
+        self.stderr = script.stderr
+
+    @property
+    def cwd(self):
+        return self.language.name if self.is_local else None
+
 
 @pytest.fixture
-def docker_runner(docker_image, language):
-    runner = DockerRunner(docker_image, language)
+def is_local(request):
+    return 'local' in map(lambda m: m.name, request.node.iter_markers())
 
+
+class DockerRunner(Runner):
+    def build_command(self, script_name, rest_of_script):
+        return ['docker', 'run', '-i', self.image, *super(DockerRunner, self).build_command(script_name, rest_of_script)]
+
+    def clean_up(self):
+        if self.container: # i.e. if the test called `docker_runner.run(...)`
+            self.container.stop()
+            self.container.remove()
+
+
+class LocalRunner(Runner):
+    def clean_up(self):
+        pass
+
+
+@pytest.fixture
+def docker_runner(docker_image, language, is_local):
+    RunnerClass = LocalRunner if is_local else DockerRunner
+    runner = RunnerClass(docker_image, language, is_local)
     yield runner
+    runner.clean_up()
 
-    if runner.container: # i.e. if the test called `docker_runner.run(...)`
-        runner.container.stop()
-        runner.container.remove()
 
 class TestNullChar:
     def test_null_char(self, docker_runner):
@@ -265,7 +306,7 @@ class TestStreamingStdin:
     """Test that streaming stdin can be read line by line and can write to stdout
     without waiting for all lines to arrive"""
     def test_stdin(self, docker_runner):
-        docker_runner.run_interactive('streaming_stdin')
+        docker_runner.run('streaming_stdin', interactive = True)
         # Give input to the script via stdin, one line at a time, and check result
         for i in range(1, 10):
             docker_runner.stdin.write(f"line #{i}\n")

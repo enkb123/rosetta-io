@@ -18,3 +18,9 @@ ilock = "~1.0.3"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "-n auto"
+markers = [
+  "local: run tests locally, instead of in docker"
+]
