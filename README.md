@@ -42,6 +42,23 @@ The name `rosetta-io` is an hommage to [Rosetta Code](https://rosettacode.org/wi
 
 Run `pytest` from the command line. If you are using VSCode you'll see the tests in the Testing panel.
 
+Mark a test with `@pytest.mark.local` if you want it to run the tested script locally instead of in docker. E.g.
+
+```python
+# Will run in docker as
+#   docker run -i python-rosetta /bin/sh -c 'python encode.py "Hello World!"'
+def test_encode(self, script):
+    script.run("encode", '"Hello, world!"')
+    assert script.output == 'SGVsbG8sIHdvcmxkIQ==\n'
+
+# Will run on your machine as:
+#   /bin/sh -c 'python encode.py "Hello World!"'
+@pytest.mark.local
+def test_encode(self, script):
+    script.run("encode", '"Hello, world!"')
+    assert script.output == 'SGVsbG8sIHdvcmxkIQ==\n'
+```
+
 
 [env-vars-docker]: https://docs.docker.com/engine/reference/commandline/cli/#environment-variables
 [env-vars-pytest-xdist]: https://pytest-xdist.readthedocs.io/en/stable/distribution.html
