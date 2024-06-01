@@ -28,40 +28,39 @@ class Language(ABC):
 class Python(Language):
     name = 'python'
 
-    def script(self, test_name):
+    def command(self, test_name):
         return f'python {test_name}.py'
 
 
 class Ruby(Language):
     name = 'ruby'
 
-    def script(self, test_name):
+    def command(self, test_name):
         return f'ruby {test_name}.rb'
 
 
 class JavaScript(Language):
     name = 'javascript'
 
-    def script(self, test_name):
+    def command(self, test_name):
         return f'node {test_name}.mjs'
 
 
 class Php(Language):
     name = 'php'
 
-    def script(self, test_name):
+    def command(self, test_name):
         return f'php {test_name}.php'
 
 
 class R(Language):
     name = 'r'
 
-    def script(self, test_name):
+    def command(self, test_name):
         return f'Rscript {test_name}.R'
 
 
 # List of language classes with which to parametrize tests
-LANGUAGES = [JavaScript()]
 LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
@@ -113,7 +112,7 @@ class Runner:
     stderr: IO[str] = None
 
     def build_command(self, script_name, rest_of_script):
-        return ['/bin/sh', '-c', f'{self.language.script(script_name)} {rest_of_script}']
+        return ['/bin/sh', '-c', f'{self.language.command(script_name)} {rest_of_script}']
 
     @property
     def subprocess_params(self):
@@ -169,7 +168,7 @@ class DockerRunner(Runner):
         return ['docker', 'run', '-i', self.image, *super(DockerRunner, self).build_command(script_name, rest_of_script)]
 
     def clean_up(self):
-        if self.container: # i.e. if the test called `docker_runner.run(...)`
+        if self.container: # i.e. if the test called `script.run(...)`
             self.container.stop()
             self.container.remove()
 
@@ -180,7 +179,7 @@ class LocalRunner(Runner):
 
 
 @pytest.fixture
-def docker_runner(docker_image, language, is_local):
+def script(docker_image, language, is_local):
     RunnerClass = LocalRunner if is_local else DockerRunner
     runner = RunnerClass(docker_image, language, is_local)
     yield runner
@@ -188,9 +187,9 @@ def docker_runner(docker_image, language, is_local):
 
 
 class TestNullChar:
-    def test_null_char(self, docker_runner):
-        docker_runner.run("null_char")
-        assert docker_runner.output == 'Hello World \x00\n'
+    def test_null_char(self, script):
+        script.run("null_char")
+        assert script.output == 'Hello World \x00\n'
 
 
 class TestStdIn:
@@ -198,110 +197,110 @@ class TestStdIn:
     The script executed in the docker container accepts a text file as input,
     reads each line, capitalizes it, then prints it out.
     """
-    def test_stdin(self, docker_runner):
-        docker_runner.run("stdin", "< hihello.txt")
-        assert docker_runner.output == expected_read_file_output()
+    def test_stdin(self, script):
+        script.run("stdin", "< hihello.txt")
+        assert script.output == expected_read_file_output()
 
 
 class TestReadFile:
     """Check that a file is read line by line, when file path is given
     as command line argument
     """
-    def test_read_file(self, docker_runner):
-        docker_runner.run("read_file", "hihello.txt")
-        assert docker_runner.output == expected_read_file_output()
+    def test_read_file(self, script):
+        script.run("read_file", "hihello.txt")
+        assert script.output == expected_read_file_output()
 
 
 class TestArgs:
     """Test that args can be passed to script"""
-    def test_args(self, docker_runner):
-        docker_runner.run("arguments", '"Argument Number 1"')
-        assert docker_runner.output == 'argument number 1\n'
+    def test_args(self, script):
+        script.run("arguments", '"Argument Number 1"')
+        assert script.output == 'argument number 1\n'
 
 
 class TestReadJsonFile:
     """Test that a JSON file is read correctly"""
-    def test_read_json_file(self, docker_runner, language):
+    def test_read_json_file(self, script, language):
         # get expected output
         file_path = f"{language.name}/person-records.json"
         with open(file_path, "r") as file:
             people = json.load(file)
         expected = "".join(f"Hello, {person['age']} year old {person['first_name']}\n" for person in people)
 
-        docker_runner.run("read_json_file", 'person-records.json')
-        assert docker_runner.output == expected
+        script.run("read_json_file", 'person-records.json')
+        assert script.output == expected
 
 
 class TestWriteFile:
     """Test that a script, given a path to a file, can write to that file"""
-    def test_write_file(self, docker_runner, language):
-        docker_runner.run("write_file", 'output.txt "Bob Barker"; cat output.txt')
-        assert docker_runner.output == "BOB BARKER" # note no new line char
+    def test_write_file(self, script):
+        script.run("write_file", 'output.txt "Bob Barker"; cat output.txt')
+        assert script.output == "BOB BARKER" # note no new line char
 
 
 class TestWriteJsonToStdout:
-    def test_json_array(self, docker_runner):
+    def test_json_array(self, script):
         """Test that JSON array is parsed correctly"""
         # Write string args as an array of strings to stdout
-        docker_runner.run("json_array", "a b c d")
-        assert json.loads(docker_runner.output) == ["a", "b", "c", "d"]
+        script.run("json_array", "a b c d")
+        assert json.loads(script.output) == ["a", "b", "c", "d"]
 
-    def test_json_numbers(self, docker_runner):
+    def test_json_numbers(self, script):
         """Test that JSON list of numbers is parsed correctly"""
         # Write to stdout the length of each string argument
-        docker_runner.run("json_numbers", 'a bc def ghij')
-        assert json.loads(docker_runner.output) == [1, 2, 3, 4]
+        script.run("json_numbers", 'a bc def ghij')
+        assert json.loads(script.output) == [1, 2, 3, 4]
 
-    def test_json_object(self, docker_runner):
+    def test_json_object(self, script):
         """Test that JSON object is parsed correctly"""
         # Write a dict of {arg:length} to stdout
         # include empty string arg to check handling of empty JSON array
-        docker_runner.run("json_stdout_object", 'a bc def ghij')
-        assert json.loads(docker_runner.output) == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
+        script.run("json_stdout_object", 'a bc def ghij')
+        assert json.loads(script.output) == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
 
-    def test_json_object_with_array_values(self, docker_runner):
+    def test_json_object_with_array_values(self, script):
         """Test that a JSON object with arrays as values is parsed correctly"""
         # Write a dict of {arg:[list of arg chars]} to stdout
         # include empty string arg to check handling of empty JSON array
-        docker_runner.run("json_object_with_array_values", 'a bc def')
-        assert json.loads(docker_runner.output) == {"a": ["A"], "bc": ["B", "C"], "def": ["D", "E", "F"]}
+        script.run("json_object_with_array_values", 'a bc def')
+        assert json.loads(script.output) == {"a": ["A"], "bc": ["B", "C"], "def": ["D", "E", "F"]}
 
-    def test_json_object_array(self, docker_runner):
+    def test_json_object_array(self, script):
         """Test that a JSON array made of objects is parsed correctly"""
         # Write an array of [{arg: length of chars},...] to stdout
-        docker_runner.run("json_object_array", 'a bc def')
-        assert json.loads(docker_runner.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
+        script.run("json_object_array", 'a bc def')
+        assert json.loads(script.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
 
-    def test_json_control_chars(self, docker_runner):
+    def test_json_control_chars(self, script):
         """Test that control characters and emojis are output in valid JSON
         note: control character "\0" is used by C (and Python) to end strings and so we can't
         pass it as argument in the test string because it will raise "invalid argument" error
         """
         # Pass a single string to the script that includes a control character and emoji
-        docker_runner.run("json_control_chars", '"hello \n \1 world 🥸"')
-        assert json.loads(docker_runner.output) == "hello \n \u0001 world 🥸"
+        script.run("json_control_chars", '"hello \n \1 world 🥸"')
+        assert json.loads(script.output) == "hello \n \u0001 world 🥸"
 
 
 class TestDecodeBase64:
     """Test that base64 can be decoded as a string"""
-    def test_decode(self, docker_runner):
-        docker_runner.run("decode", 'SGVsbG8sIHdvcmxkIQ==')
-        assert docker_runner.output == 'Hello, world!\n'
+    def test_decode(self, script):
+        script.run("decode", 'SGVsbG8sIHdvcmxkIQ==')
+        assert script.output == 'Hello, world!\n'
 
 
 class TestEncodeBase64:
     """Test that a string can be encoded as base64"""
-    def test_encode(self, docker_runner):
-        docker_runner.run("encode", '"Hello, world!"')
-        assert docker_runner.output == 'SGVsbG8sIHdvcmxkIQ==\n'
+    def test_encode(self, script):
+        script.run("encode", '"Hello, world!"')
+        assert script.output == 'SGVsbG8sIHdvcmxkIQ==\n'
 
 
 class TestStreamingStdin:
     """Test that streaming stdin can be read line by line and can write to stdout
     without waiting for all lines to arrive"""
-    def test_stdin(self, docker_runner):
-        docker_runner.run('streaming_stdin', interactive = True)
+    def test_stdin(self, script):
+        script.run('streaming_stdin', interactive = True)
         # Give input to the script via stdin, one line at a time, and check result
         for i in range(1, 10):
-            docker_runner.stdin.write(f"line #{i}\n")
-            assert docker_runner.stdout.readline() == f"LINE #{i}\n"
+            script.stdin.write(f"line #{i}\n")
+            assert script.stdout.readline() == f"LINE #{i}\n"
