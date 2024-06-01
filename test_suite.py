@@ -24,47 +24,41 @@ def expected_read_file_output():
 class Language(ABC):
     name: str
 
-    @abstractmethod
-    def script_command_parts(self, test_name):
-        pass
-
-    def script(self, test_name):
-        return " ".join(self.script_command_parts(test_name))
-
 
 class Python(Language):
     name = 'python'
 
-    def script_command_parts(self, test_name):
-        return [self.name, f'{test_name}.py']
+    def script(self, test_name):
+        return f'python {test_name}.py'
 
 
 class Ruby(Language):
     name = 'ruby'
 
-    def script_command_parts(self, test_name):
-        return [self.name, f'{test_name}.rb']
+    def script(self, test_name):
+        return f'ruby {test_name}.rb'
 
 
 class JavaScript(Language):
     name = 'javascript'
 
-    def script_command_parts(self, test_name):
-        return ['node', f'{test_name}.mjs']
+    def script(self, test_name):
+        return f'node {test_name}.mjs'
 
 
 class Php(Language):
     name = 'php'
 
-    def script_command_parts(self, test_name):
-        return [self.name, f'{test_name}.php']
+    def script(self, test_name):
+        return f'php {test_name}.php'
 
 
 class R(Language):
     name = 'r'
 
-    def script_command_parts(self, test_name):
-        return ['Rscript', f'{test_name}.R']
+    def script(self, test_name):
+        return f'Rscript {test_name}.R'
+
 
 # List of language classes with which to parametrize tests
 LANGUAGES = [JavaScript()]
