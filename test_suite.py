@@ -1,4 +1,5 @@
 import sys
+import os.path
 from typing import IO
 import docker
 import pytest
@@ -23,42 +24,51 @@ def expected_read_file_output():
 
 class Language(ABC):
     name: str
+    interpreter: str
+    script_ext: str
+
+    # def local_script_location(self, script_name):
+    #     return os.path.join()
+    def script_file_name(self, script_name):
+        return f'{script_name}{self.script_ext}'
+
+    def command(self, test_name):
+        return f'{self.interpreter} {self.script_file_name(test_name)}'
+
+    @property
+    def directory(self):
+        return self.name
+
+    def script_local_file(self, script_name):
+        return os.path.join(self.directory, self.script_file_name(script_name))
 
 
 class Python(Language):
     name = 'python'
-
-    def command(self, test_name):
-        return f'python {test_name}.py'
-
+    # e.g. call the 'null_char' test via `python null_char.py`
+    interpreter = 'python'
+    script_ext = '.py'
 
 class Ruby(Language):
     name = 'ruby'
-
-    def command(self, test_name):
-        return f'ruby {test_name}.rb'
-
+    interpreter = 'ruby'
+    script_ext = '.rb'
 
 class JavaScript(Language):
     name = 'javascript'
-
-    def command(self, test_name):
-        return f'node {test_name}.mjs'
-
+    # e.g. call the 'null_char' test via `node null_char.mjs`
+    interpreter = 'node'
+    script_ext = '.mjs'
 
 class Php(Language):
     name = 'php'
-
-    def command(self, test_name):
-        return f'php {test_name}.php'
-
+    interpreter = 'php'
+    script_ext = '.php'
 
 class R(Language):
     name = 'r'
-
-    def command(self, test_name):
-        return f'Rscript {test_name}.R'
-
+    interpreter = 'Rscript'
+    script_ext = '.R'
 
 # List of language classes with which to parametrize tests
 LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R()]
@@ -140,6 +150,10 @@ class Runner:
         return script
 
     def run(self, script_name, rest_of_script = '', interactive = False):
+
+        if not os.path.isfile(self.language.script_local_file(script_name)):
+            pytest.skip("Script is not implemented")
+
         command = self.build_command(script_name, rest_of_script)
 
         print("command:", command)
@@ -182,6 +196,7 @@ class LocalRunner(Runner):
 def script(docker_image, language, is_local):
     RunnerClass = LocalRunner if is_local else DockerRunner
     runner = RunnerClass(docker_image, language, is_local)
+
     yield runner
     runner.clean_up()
 
