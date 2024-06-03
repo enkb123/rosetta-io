@@ -52,6 +52,11 @@ class JavaScript(Language):
     def script_command_parts(self, test_name):
         return ['node', f'{test_name}.mjs']
 
+class Perl(Language):
+    name = 'perl'
+
+    def script_command_parts(self, test_name):
+        return ['perl', f'{test_name}.pl']
 
 class Php(Language):
     name = 'php'
@@ -67,7 +72,7 @@ class R(Language):
         return ['Rscript', f'{test_name}.R']
 
 # List of language classes with which to parametrize tests
-LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R()]
+LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
@@ -121,8 +126,10 @@ class DockerRunner:
         return ['docker', 'run', '-i', self.image, *self.build_command(script_name, rest_of_script)]
 
     def run(self, script_name, rest_of_script = ''):
+        command = self.docker_command(script_name, rest_of_script)
+        print (command)
         script = subprocess.run(
-            self.docker_command(script_name, rest_of_script),
+            command,
             text=True, # treat standard streams as text, not bytes
             bufsize=1, # set 1 for line buffering, so buffer is flushed when encountering `\n`
             capture_output=True # wait for script to complete
@@ -179,7 +186,7 @@ class TestReadFile:
 
 class TestArgs:
     """Test that args can be passed to script"""
-    def test_args(self, docker_runner):
+    def test_arguments(self, docker_runner):
         docker_runner.run("arguments", '"Argument Number 1"')
         assert docker_runner.output == 'argument number 1\n'
 
@@ -217,7 +224,7 @@ class TestWriteJsonToStdout:
         docker_runner.run("json_numbers", 'a bc def ghij')
         assert json.loads(docker_runner.output) == [1, 2, 3, 4]
 
-    def test_json_object(self, docker_runner):
+    def test_json_stdout_object(self, docker_runner):
         """Test that JSON object is parsed correctly"""
         # Write a dict of {arg:length} to stdout
         # include empty string arg to check handling of empty JSON array
@@ -264,7 +271,7 @@ class TestEncodeBase64:
 class TestStreamingStdin:
     """Test that streaming stdin can be read line by line and can write to stdout
     without waiting for all lines to arrive"""
-    def test_stdin(self, docker_runner):
+    def test_streaming_stdin(self, docker_runner):
         docker_runner.run_interactive('streaming_stdin')
         # Give input to the script via stdin, one line at a time, and check result
         for i in range(1, 10):
