@@ -75,8 +75,13 @@ class R(Language):
     interpreter = 'Rscript'
     script_ext = '.R'
 
+class Java(Language):
+    name = 'java'
+    interpreter = 'java'
+    script_ext = '.java'
+
 # List of language classes with which to parametrize tests
-LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl()]
+LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
