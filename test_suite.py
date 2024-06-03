@@ -60,6 +60,11 @@ class JavaScript(Language):
     interpreter = 'node'
     script_ext = '.mjs'
 
+class Perl(Language):
+    name = 'perl'
+    interpreter = 'perl'
+    script_ext = '.pl'
+
 class Php(Language):
     name = 'php'
     interpreter = 'php'
@@ -71,7 +76,7 @@ class R(Language):
     script_ext = '.R'
 
 # List of language classes with which to parametrize tests
-LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R()]
+LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
@@ -228,7 +233,7 @@ class TestReadFile:
 
 class TestArgs:
     """Test that args can be passed to script"""
-    def test_args(self, script):
+    def test_arguments(self, script):
         script.run("arguments", '"Argument Number 1"')
         assert script.output == 'argument number 1\n'
 
@@ -266,7 +271,7 @@ class TestWriteJsonToStdout:
         script.run("json_numbers", 'a bc def ghij')
         assert json.loads(script.output) == [1, 2, 3, 4]
 
-    def test_json_object(self, script):
+    def test_json_stdout_object(self, script):
         """Test that JSON object is parsed correctly"""
         # Write a dict of {arg:length} to stdout
         # include empty string arg to check handling of empty JSON array
@@ -313,7 +318,7 @@ class TestEncodeBase64:
 class TestStreamingStdin:
     """Test that streaming stdin can be read line by line and can write to stdout
     without waiting for all lines to arrive"""
-    def test_stdin(self, script):
+    def test_streaming_stdin(self, script):
         script.run('streaming_stdin', interactive = True)
         # Give input to the script via stdin, one line at a time, and check result
         for i in range(1, 10):
