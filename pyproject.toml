@@ -20,7 +20,10 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-addopts = "-n auto"
+# -n auto  ==> let pytest-xdist use as many workers as it thinks you can handle
+# -rs ==> show some info about skipped tests
+addopts = "-n auto -rs"
+
 markers = [
   "local: run tests locally, instead of in docker"
 ]

@@ -157,7 +157,7 @@ class Runner:
     def run(self, script_name, rest_of_script = '', interactive = False):
 
         if not os.path.isfile(self.language.script_local_file(script_name)):
-            pytest.skip("Script is not implemented")
+            pytest.skip(f"Script {repr(script_name)} is not implemented for language {repr(self.language.name)}")
 
         command = self.build_command(script_name, rest_of_script)
 
