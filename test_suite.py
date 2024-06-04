@@ -80,8 +80,13 @@ class Java(Language):
     interpreter = 'java'
     script_ext = '.java'
 
+class Bash3(Language):
+    name = 'bash3'
+    interpreter = 'bash'
+    script_ext = '.sh'
+
 # List of language classes with which to parametrize tests
-LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java()]
+LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java(), Bash3()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
