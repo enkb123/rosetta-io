@@ -87,7 +87,6 @@ class Bash3(Language):
 
 # List of language classes with which to parametrize tests
 LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java(), Bash3()]
-
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
     return request.param
