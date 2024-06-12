@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 
-public class Main {
+public class ReadJsonFile {
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: java Main <json_file>");

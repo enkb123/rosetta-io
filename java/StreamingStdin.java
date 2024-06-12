@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class StreamInputToUpper {
+public class StreamingStdin {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

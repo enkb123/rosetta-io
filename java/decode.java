@@ -1,7 +1,7 @@
 //Script to decode Base64 text
 import java.util.Base64;
 
-public class Base64Decoder {
+public class Decode {
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Usage: java Base64Decoder <encoded_string>");

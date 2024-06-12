@@ -2,7 +2,7 @@
 // print line by line with line numbers
 import java.io.*;
 
-class Main{
+class ReadFile{
   public static void main(String[] args){
       String filePath = args[0];
       try {

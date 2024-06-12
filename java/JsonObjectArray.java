@@ -3,7 +3,7 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class Main {
+public class JsonObjectArray {
     public static void main(String[] args) {
         JSONArray myArray = new JSONArray();
 

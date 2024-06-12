@@ -2,7 +2,7 @@
 // the length of each argument
 import org.json.simple.JSONArray;
 
-public class StringLengthToJson {
+public class JsonNumbers {
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Usage: java StringLengthToJson <string1> <string2> ...");

@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 
 import java.util.Arrays;
 
-public class StringToDict {
+public class JsonObjectWithArrayValues {
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Usage: java StringToDict <string1> <string2> ...");

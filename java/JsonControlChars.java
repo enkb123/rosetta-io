@@ -2,7 +2,7 @@
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-public class ControlCharactersToJson {
+public class JsonControlChars {
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Usage: java ControlCharactersToJson <test_string>");

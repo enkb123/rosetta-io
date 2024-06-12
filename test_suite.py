@@ -1,3 +1,4 @@
+from re import sub
 import sys
 import os.path
 from typing import IO
@@ -79,6 +80,14 @@ class Java(Language):
     name = 'java'
     interpreter = 'java'
     script_ext = '.java'
+
+    def script_file_name(self, script_name):
+        return f'{self.camel_case(script_name)}{self.script_ext}'
+
+    def camel_case(self, s):
+        # Use regular expression substitution to replace underscores and hyphens with spaces,
+        # then title case the string (capitalize the first letter of each word), and remove spaces
+        return sub(r"(_|-)+", " ", s).title().replace(" ", "")
 
 # List of language classes with which to parametrize tests
 LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java()]

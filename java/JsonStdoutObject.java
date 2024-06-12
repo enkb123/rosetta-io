@@ -3,7 +3,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class StringToDict {
+public class JsonStdoutObject {
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Usage: java StringToDict <string1> <string2> ...");
