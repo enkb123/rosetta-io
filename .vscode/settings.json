@@ -3,5 +3,11 @@
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "java.project.sourcePaths": [
+    "java"
+  ],
+  "java.project.referencedLibraries": [
+    "java/org.json.simple-0.4.jar"
+  ]
 }
