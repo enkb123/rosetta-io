@@ -5,7 +5,7 @@ import java.util.Base64;
 public class Encode {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Usage: java Base64Encoder <test_string>");
+            System.out.println("Usage: java Encode.java <test_string>");
             System.exit(1);
         }
 

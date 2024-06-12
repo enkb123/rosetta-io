@@ -4,7 +4,7 @@ import java.util.Base64;
 public class Decode {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Usage: java Base64Decoder <encoded_string>");
+            System.out.println("Usage: java Decode.java <encoded_string>");
             System.exit(1);
         }
 

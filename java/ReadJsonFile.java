@@ -7,7 +7,7 @@ import java.io.FileReader;
 public class ReadJsonFile {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("Usage: java Main <json_file>");
+            System.out.println("Usage: java ReadJsonFile.java <json_file>");
             return;
         }
 

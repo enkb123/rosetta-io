@@ -6,11 +6,11 @@ import java.util.Map;
 public class JsonStdoutObject {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Usage: java StringToDict <string1> <string2> ...");
+            System.out.println("Usage: java JsonStdoutObject.java <string1> <string2> ...");
             System.exit(1);
         }
 
-        Map<String, Integer> stringLengthDict = new HashMap<>();
+        var stringLengthDict = new HashMap<String, Integer>();
 
         for (String string : args) {
             stringLengthDict.put(string, string.length());

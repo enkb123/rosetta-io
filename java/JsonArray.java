@@ -5,7 +5,7 @@ import org.json.simple.JSONArray;
 public class JsonArray {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Usage: java StringToJsonArray <string1> <string2> ...");
+            System.out.println("Usage: java JsonArray.java <string1> <string2> ...");
             System.exit(1);
         }
 

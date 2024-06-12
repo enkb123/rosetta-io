@@ -8,7 +8,7 @@ import java.io.IOException;
 public class WriteFile {
     public static void main(String[] args) {
         if (args.length != 2) {
-            System.err.println("Usage: java WriteFile <output_file>.txt 'some text'");
+            System.err.println("Usage: java WriteFile.java <output_file>.txt 'some text'");
             System.exit(1);
         }
 
