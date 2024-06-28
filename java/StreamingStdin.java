@@ -10,5 +10,6 @@ public class StreamingStdin {
               .takeWhile(line -> !line.isEmpty()) // or other termination condition
               .map(String::toUpperCase)
               .forEach(System.out::println);
+        scanner.close();
     }
 }

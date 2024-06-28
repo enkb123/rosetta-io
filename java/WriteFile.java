@@ -1,8 +1,6 @@
 //Script to write text to a new file
 //Run script as `java write_file.java <output_file>.txt 'some text'`
 
-
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -18,7 +16,5 @@ public class WriteFile {
         String outFile = args[0];
         String text = args[1].toUpperCase();
         Files.write(Paths.get(outFile), text.getBytes(StandardCharsets.UTF_8));
-
-
     }
 }
