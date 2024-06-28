@@ -80,8 +80,13 @@ class Java(Language):
     interpreter = 'java'
     script_ext = '.java'
 
+class PowerShell(Language):
+    name = 'powershell'
+    interpreter = 'pwsh'
+    script_ext = '.ps1'
+
 # List of language classes with which to parametrize tests
-LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java()]
+LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java(), PowerShell()]
 
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
