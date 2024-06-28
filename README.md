@@ -42,6 +42,21 @@ The name `rosetta-io` is an hommage to [Rosetta Code](https://rosettacode.org/wi
 
 Run `pytest` from the command line. If you are using VSCode you'll see the tests in the Testing panel.
 
+#### Running individual tests
+
+Use pytest's `-k` to narrow down wich tests to run. Examples:
+
+| command                            | narrows down to                       |
+| ---------------------------------- | ------------------------------------- |
+| `pytest -k ruby`                   | Ruby tests                            |
+| `pytest -k 'ruby and null_char'`   | Only Ruby's null_char test            |
+| `pytest -k 'ruby and json'`        | Ruby's JSON tests                     |
+| `pytest -k java`                   | java **and** **java**script tests     |
+| `pytest -k '[java]'`               | only java tests, not javascript tests |
+| `pytest -k '[java] and null_char'` | only java tests, not javascript tests |
+
+#### Running locally
+
 Mark a test with `@pytest.mark.local` if you want it to run the tested script locally instead of in docker. E.g.
 
 ```python
