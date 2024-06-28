@@ -1,19 +1,24 @@
 //Script takes args and turns into JSON array
 
-import org.json.simple.JSONArray;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class JsonArray {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Usage: java JsonArray.java <string1> <string2> ...");
+            System.out.println("Usage: java JsonArray <string1> <string2> ...");
             System.exit(1);
         }
 
-        JSONArray jsonArray = new JSONArray();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayNode arrayNode = objectMapper.createArrayNode();
+
         for (String arg : args) {
-            jsonArray.add(arg);
+            arrayNode.add(arg);
         }
 
-        System.out.println(jsonArray.toJSONString());
+        String jsonArrayString = arrayNode.toString();
+
+        System.out.println(jsonArrayString);
     }
 }

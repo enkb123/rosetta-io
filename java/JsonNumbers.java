@@ -1,19 +1,23 @@
 // Script takes string arguments and outputs a JSON array of numbers representing
 // the length of each argument
-import org.json.simple.JSONArray;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class JsonNumbers {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         if (args.length == 0) {
-            System.out.println("Usage: java JsonNumbers.java <string1> <string2> ...");
+            System.out.println("Usage: java JsonNumbers <string1> <string2> ...");
             System.exit(1);
         }
 
-        JSONArray jsonArray = new JSONArray();
+        ArrayNode arrayNode = new ObjectMapper().createArrayNode();
+
         for (String str : args) {
-            jsonArray.add(str.length());
+            arrayNode.add(str.length());
         }
 
-        System.out.println(jsonArray.toJSONString());
+        String jsonArrayString = new ObjectMapper().writeValueAsString(arrayNode);
+        System.out.println(jsonArrayString);
     }
 }
+

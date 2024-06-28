@@ -10,10 +10,9 @@ public class Encode {
         }
 
         String testString = args[0];
-        byte[] encodedBytes = Base64.getEncoder().encode(testString.getBytes());
+        String encodedString = Base64.getEncoder().encodeToString(testString.getBytes());
 
-        // Create a string from the encoded bytes
-        String encodedString = new String(encodedBytes);
+
 
         // Print the encoded string
         System.out.println(encodedString);

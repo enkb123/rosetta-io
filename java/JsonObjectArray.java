@@ -1,18 +1,26 @@
 // Script outputs arrays of objects as JSON
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonObjectArray {
-    public static void main(String[] args) {
-        JSONArray myArray = new JSONArray();
-
-        for (String string : args) {
-            JSONObject obj = new JSONObject();
-            obj.put(string.toUpperCase(), string.length());
-            myArray.add(obj);
+    public static void main(String[] args) throws Exception{
+        if (args.length == 0) {
+            System.out.println("Usage: java JsonObjectArray <string1> <string2> ...");
+            System.exit(1);
         }
 
-        System.out.println(myArray.toJSONString());
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayNode arrayNode = objectMapper.createArrayNode();
+
+        for (String string : args) {
+            ObjectNode obj = objectMapper.createObjectNode();
+            obj.put(string.toUpperCase(), string.length());
+            arrayNode.add(obj);
+        }
+
+        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);
+        System.out.println(jsonArrayString);
     }
 }

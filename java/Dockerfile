@@ -6,6 +6,10 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY ./ /app
 
-# downloaded from https://search.maven.org/remotecontent?filepath=org/json/json/20240303/json-20240303.jar
+# downloaded from
+# "" https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.17.1
+# "" https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+# "" https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations/2.17.1
 # some documentation: https://www.pexus.com/perflog/javadocs/index.html?overview-summary.html
-ENV CLASSPATH=org.json.simple-0.4.jar
+# when editing classpath change java.project.referencedLibraries in settings.json
+ENV CLASSPATH=jackson-annotations-2.17.1.jar:jackson-core-2.17.1.jar:jackson-databind-2.17.1.jar

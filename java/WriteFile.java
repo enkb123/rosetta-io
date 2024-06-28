@@ -4,9 +4,12 @@
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class WriteFile {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         if (args.length != 2) {
             System.err.println("Usage: java WriteFile.java <output_file>.txt 'some text'");
             System.exit(1);
@@ -14,14 +17,8 @@ public class WriteFile {
 
         String outFile = args[0];
         String text = args[1].toUpperCase();
+        Files.write(Paths.get(outFile), text.getBytes(StandardCharsets.UTF_8));
 
-        try {
-            FileWriter writer = new FileWriter(outFile);
-            writer.write(text);
-            writer.close();
-        } catch (IOException e) {
-            System.err.println("An error occurred while writing to the file.");
-            e.printStackTrace();
-        }
+
     }
 }
