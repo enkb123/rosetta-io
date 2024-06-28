@@ -19,13 +19,8 @@ public class JsonStdoutObject {
 
         Map<String, Integer> stringLengthDict = new HashMap<>();
         for (String string : args) {
-            stringLengthDict.put(string, string.length());
+            jsonObject.put(string, string.length());
         }
-
-        stringLengthDict.forEach((key, value) -> {
-            jsonObject.put(key, value);
-        });
-
         String jsonString = objectMapper.writeValueAsString(jsonObject);
         System.out.println(jsonString);
     }

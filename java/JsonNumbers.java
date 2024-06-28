@@ -9,14 +9,14 @@ public class JsonNumbers {
             System.out.println("Usage: java JsonNumbers <string1> <string2> ...");
             System.exit(1);
         }
-
-        ArrayNode arrayNode = new ObjectMapper().createArrayNode();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayNode arrayNode = objectMapper.createArrayNode();
 
         for (String str : args) {
             arrayNode.add(str.length());
         }
 
-        String jsonArrayString = new ObjectMapper().writeValueAsString(arrayNode);
+        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);
         System.out.println(jsonArrayString);
     }
 }
