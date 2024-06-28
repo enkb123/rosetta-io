@@ -1,12 +1,11 @@
-# Test script to get input, transform, and write to stdout
 #!/bin/bash
+
+# Test script to get input, transform, and write to stdout
 #!/bin/bash
 
 i=1
 
 while IFS= read -r user_input; do
-  echo "$i $(echo "$user_input" | tr '[:lower:]' '[:upper:]')"
-  ((i++))
+  echo "$((i++)) $(tr '[:lower:]' '[:upper:]' <<< "$user_input")"
 done
-
 

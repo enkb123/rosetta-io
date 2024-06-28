@@ -1,6 +1,7 @@
+#!/bin/bash
+
 # Script to write text to a new file
 # Run script as `bash3 write_file.sh <output_file>.txt 'some text'`
-#!/bin/bash
 
 outfile="$1"
 text="$2"

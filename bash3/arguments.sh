@@ -1,7 +1,6 @@
-# Script to read an argument and print as lowercase in stdout
-
 #!/bin/bash
 
+# Script to read an argument and print as lowercase in stdout
 file_path="$1"
 
 if [ -z "$file_path" ]; then
@@ -9,4 +8,4 @@ if [ -z "$file_path" ]; then
   exit 1
 fi
 
-echo "$file_path" | tr '[:upper:]' '[:lower:]'
+tr '[:upper:]' '[:lower:]' <<< "$file_path"
