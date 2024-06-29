@@ -105,15 +105,11 @@ def test_null_char(script: ScriptRunner):
     assert script.output == "Hello World \x00\n"
 
 
-def expected_read_file_output():
+def number_lines_and_capitalize(filename):
     """Result of reading/capitalizing example input file"""
-    expected = ""
-    i = 1
-    with open("./python/hihello.txt", "r", encoding="utf-8") as f:
-        for line in f.readlines():
-            expected += f"{i} {line.upper()}"
-            i += 1
-    return expected
+
+    with open(f"./python/{filename}", "r", encoding="utf-8") as f:
+        return "".join(f"{i+1} {line}".upper() for i, line in enumerate(f))
 
 
 def test_stdin(script: ScriptRunner):
@@ -122,7 +118,7 @@ def test_stdin(script: ScriptRunner):
     reads each line, capitalizes it, then prints it out.
     """
     script.run("stdin", "< hihello.txt")
-    assert script.output == expected_read_file_output()
+    assert script.output == number_lines_and_capitalize("hihello.txt")
 
 
 def test_read_file(script: ScriptRunner):
@@ -130,7 +126,7 @@ def test_read_file(script: ScriptRunner):
     as command line argument
     """
     script.run("read_file", "hihello.txt")
-    assert script.output == expected_read_file_output()
+    assert script.output == number_lines_and_capitalize("hihello.txt")
 
 
 def test_arguments(script: ScriptRunner):
