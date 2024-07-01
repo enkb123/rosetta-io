@@ -30,9 +30,15 @@ class Ruby(Language):
     script_ext = ".rb"
 
 
-class JavaScript(Language):
-    name = "javascript"
+class Nodejs(Language):
+    name = "nodejs"
     interpreter = "node"
+    script_ext = ".mjs"
+
+
+class Deno(Nodejs):
+    name = "deno"
+    interpreter = "deno run --allow-read"
     script_ext = ".mjs"
 
 
@@ -77,7 +83,8 @@ class Bash3(Language):
 LANGUAGES = [
     Python(),
     Ruby(),
-    JavaScript(),
+    Nodejs(),
+    Deno(),
     Php(),
     R(),
     Perl(),
