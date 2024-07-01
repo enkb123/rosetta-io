@@ -11,8 +11,7 @@ if [ ! -f "$file_path" ]; then
 fi
 
 i=1
+
 while IFS= read -r line; do
-  uppercase_line=$(echo "$line" | tr '[:lower:]' '[:upper:]')
-  echo "$i $uppercase_line"
-  ((i++))
+  echo "$((i++)) $(tr '[:lower:]' '[:upper:]' <<< "$line")"
 done < "$file_path"
