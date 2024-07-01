@@ -80,7 +80,7 @@ class Java(Language):
     name = 'java'
     interpreter = 'java'
     script_ext = '.java'
-
+    
     def script_file_name(self, script_name):
         return f'{self.camel_case(script_name)}{self.script_ext}'
 
@@ -89,9 +89,13 @@ class Java(Language):
         # then title case the string (capitalize the first letter of each word), and remove spaces
         return sub(r"(_|-)+", " ", s).title().replace(" ", "")
 
-# List of language classes with which to parametrize tests
-LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java()]
+class Bash3(Language):
+    name = 'bash3'
+    interpreter = 'bash'
+    script_ext = '.sh'
 
+# List of language classes with which to parametrize tests
+LANGUAGES = [Python(), Ruby(), JavaScript(), Php(), R(), Perl(), Java(), Bash3()]
 @pytest.fixture(params=LANGUAGES, ids=[x.name for x in LANGUAGES])
 def language(request):
     return request.param
