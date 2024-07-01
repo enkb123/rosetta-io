@@ -17,6 +17,19 @@ from locking import EarlyBirdLock, early_bird_lock
 type EarlyBirdLocker = Callable[[list[str]], EarlyBirdLock]
 
 
+def print_command(title: str, command: str) -> None:
+    """Prints the given command in a way to make it easier to pick out of pytest output"""
+    longest_line_length = max(
+        min(max(map(len, command.split("\n"))), 80), len(title) + 2
+    )
+    print("┌" + "─" * (len(title)) + "┐")
+    print(f"│{title}│")
+    print("┷" + "━" * (longest_line_length - 1))
+    print(command.strip())
+    print("━" * (longest_line_length))
+    print()
+
+
 def dedent(text: str) -> str:
     """Dedents the given text"""
     return textwrap.dedent(text).lstrip()
@@ -96,7 +109,7 @@ class ScriptRunner(ABC):
     stdout: IO[str] = None
     stderr: IO[str] = None
 
-    def build_command(self, script_name, rest_of_script):
+    def build_command(self, script_name, rest_of_script) -> list[str]:
         """
         Constructs the shell command to execute the script with the given arguments.
 
@@ -107,19 +120,25 @@ class ScriptRunner(ABC):
         Returns:
             list: The constructed shell command as a list of strings.
         """
-        return [
-            "/bin/sh",
-            "-c",
-            "; ".join(
-                [
-                    *(
-                        f"printf %s {shlex.quote(file_contents)} > {file_name}"
-                        for file_name, file_contents in self.files.items()
-                    ),
-                    f"{self.language.command(script_name)} {rest_of_script}",
-                ]
-            ),
+        commands_to_create_files = [
+            f">{file_name} printf %s {shlex.quote(file_contents)}"
+            for file_name, file_contents in self.files.items()
         ]
+        command_to_run_script = (
+            f"{self.language.command(script_name)} {rest_of_script}".strip()
+        )
+
+        if len(commands_to_create_files) == 0:
+            command = command_to_run_script
+        else:
+            command = (
+                "\n\n".join(["", *commands_to_create_files, command_to_run_script])
+                + "\n"
+            )
+
+        print_command("run in local shell", command)
+
+        return ["/bin/sh", "-c", command]
 
     @property
     def subprocess_params(self):
@@ -175,7 +194,7 @@ class ScriptRunner(ABC):
 
         command = self.build_command(script_name, rest_of_script)
 
-        print("command:", " ".join(map(shlex.quote, command)))
+        print_command("run in docker", " ".join(map(shlex.quote, command)))
 
         if interactive:
             script_process = self._run_interactive(command)
@@ -206,20 +225,14 @@ class DockerRunner(ScriptRunner):
 
     def build_command(self, *command_args):
         """Build the command to run the script in docker"""
-        return [
-            "docker",
-            "run",
-            "--rm",
-            "-i",
-            self.image,
-            *super().build_command(*command_args),
-        ]
+        shell_command = super().build_command(*command_args)
+
+        return ["docker", "run", "--rm", "-i", self.image, *shell_command]
 
     @property
     def cwd(self) -> str | None:
         """Docker doesn't need this"""
         return None
-
 
 
 class LocalRunner(ScriptRunner):
