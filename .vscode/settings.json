@@ -3,5 +3,13 @@
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "java.project.sourcePaths": [
+    "java"
+  ],
+  "java.project.referencedLibraries": [
+    "java/jackson-annotations-2.17.1.jar",
+    "java/jackson-core-2.17.1.jar",
+    "java/jackson-databind-2.17.1.jar"
+  ]
 }
