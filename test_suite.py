@@ -74,6 +74,12 @@ class Bash3(Language):
     script_ext = '.sh'
 
 
+class Lua(Language):
+    name = 'lua'
+    interpreter = 'lua'
+    script_ext = '.lua'
+
+
 LANGUAGES = [
     Python(),
     Ruby(),
@@ -83,6 +89,7 @@ LANGUAGES = [
     Perl(),
     Java(),
     Bash3(),
+    Lua(),
 ]
 
 
