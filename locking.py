@@ -1,11 +1,15 @@
-import pathlib
-from contextlib import contextmanager
+from contextlib import _GeneratorContextManager, contextmanager
+from pathlib import Path
+from typing import Generator, List
 
 from ilock import ILock
 
+type EarlyBirdLock = _GeneratorContextManager[bool]
 
 @contextmanager
-def early_bird_lock(tmp_dir: pathlib.Path, *lock_keys: [str], worker_id = 'worker'):
+def early_bird_lock(
+    tmp_dir: Path, *lock_keys: List[str], worker_id="worker"
+) -> Generator[bool, None, None]:
     """
     A context manager that either:
     - yields True if you are the "early bird" (the first worker to call this function
@@ -34,7 +38,6 @@ def early_bird_lock(tmp_dir: pathlib.Path, *lock_keys: [str], worker_id = 'worke
 
     # use a file-based lock to ensure only one worker process is the early bird
     with ILock(lock_id):
-
         # if this file doesn't exist, that means the caller is the early bird
         is_early_bird = not lock_file.is_file()
 

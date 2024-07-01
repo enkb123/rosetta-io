@@ -1,5 +1,5 @@
 # Use an official php runtime as the base image
-FROM php:8-alpine
+FROM php:8
 
 # Set the working directory inside the container
 WORKDIR /app
