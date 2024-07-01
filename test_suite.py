@@ -6,6 +6,7 @@ import pytest
 
 # pylint: disable-next=unused-import
 from test_helpers import (
+    dedent,
     EarlyBirdLocker,
     Language,
     ScriptRunner,
@@ -89,14 +90,16 @@ def docker_builder(once_per_test_suite_run: EarlyBirdLocker) -> DockerBuilder:  
 
 
 @pytest.fixture
-def script(
-    docker_builder: DockerBuilder, language: Language, is_local: bool
-) -> ScriptRunner:
+def script(docker_builder: DockerBuilder, language: Language, is_local: bool):
     """Fixture that provides a ScriptRunner instance"""
     if is_local:
-        return LocalRunner(language)
+        runner = LocalRunner(language)
+    else:
+        runner = DockerRunner(language, docker_builder.docker_image(language.name))
 
-    return DockerRunner(language, docker_builder.docker_image(language.name))
+    yield runner
+
+    runner.cleanup()
 
 
 def test_null_char(script: ScriptRunner):
@@ -105,28 +108,44 @@ def test_null_char(script: ScriptRunner):
     assert script.output == "Hello World \x00\n"
 
 
-def number_lines_and_capitalize(filename):
-    """Result of reading/capitalizing example input file"""
-
-    with open(f"./python/{filename}", "r", encoding="utf-8") as f:
-        return "".join(f"{i+1} {line}".upper() for i, line in enumerate(f))
-
-
 def test_stdin(script: ScriptRunner):
     """Check that input is read from stdin, line by line.
     The script executed in the docker container accepts a text file as input,
     reads each line, capitalizes it, then prints it out.
     """
-    script.run("stdin", "< hihello.txt")
-    assert script.output == number_lines_and_capitalize("hihello.txt")
+
+    script.files["hihello-stdin.txt"] = dedent("""
+        hi
+        hello
+        how are you
+    """)
+
+    script.run("stdin", "< hihello-stdin.txt")
+
+    assert script.output == dedent("""
+        1 HI
+        2 HELLO
+        3 HOW ARE YOU
+    """)
 
 
 def test_read_file(script: ScriptRunner):
     """Check that a file is read line by line, when file path is given
     as command line argument
     """
-    script.run("read_file", "hihello.txt")
-    assert script.output == number_lines_and_capitalize("hihello.txt")
+    script.files["hihello-read-file.txt"] = dedent("""
+        hi
+        hello
+        how are you
+    """)
+
+    script.run("read_file", "hihello-read-file.txt")
+
+    assert script.output == dedent("""
+        1 HI
+        2 HELLO
+        3 HOW ARE YOU
+    """)
 
 
 def test_arguments(script: ScriptRunner):
@@ -135,18 +154,24 @@ def test_arguments(script: ScriptRunner):
     assert script.output == "argument number 1\n"
 
 
-def test_read_json_file(script: ScriptRunner, language: Language):
+def test_read_json_file(script: ScriptRunner):
     """Test that a JSON file is read correctly"""
-    # get expected output
-    with open(f"{language.name}/person-records.json", "r", encoding="utf-8") as file:
-        people = json.load(file)
 
-    expected = "".join(
-        f"Hello, {person['age']} year old {person['first_name']}\n" for person in people
+    script.files["people-read-json-file.json"] = json.dumps(
+        [
+            {"first_name": "Bob", "last_name": "Barker", "age": 84},
+            {"first_name": "Tina", "last_name": "Turner", "age": 67},
+            {"first_name": "Steven", "last_name": "Sagal", "age": 98},
+        ]
     )
 
-    script.run("read_json_file", "person-records.json")
-    assert script.output == expected
+    script.run("read_json_file", "people-read-json-file.json")
+
+    assert script.output == dedent("""
+        Hello, 84 year old Bob
+        Hello, 67 year old Tina
+        Hello, 98 year old Steven
+    """)
 
 
 def test_write_file(script: ScriptRunner):

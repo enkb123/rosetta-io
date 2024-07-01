@@ -1,9 +1,12 @@
-from collections.abc import Callable
 import os.path
+from pathlib import Path
+import shlex
 import subprocess
 import sys
+import textwrap
 from abc import ABC
-from dataclasses import dataclass
+from collections.abc import Callable
+from dataclasses import dataclass, field
 from typing import IO
 
 import docker
@@ -12,6 +15,11 @@ import pytest
 from locking import EarlyBirdLock, early_bird_lock
 
 type EarlyBirdLocker = Callable[[list[str]], EarlyBirdLock]
+
+
+def dedent(text: str) -> str:
+    """Dedents the given text"""
+    return textwrap.dedent(text).lstrip()
 
 
 @pytest.fixture
@@ -80,8 +88,9 @@ class ScriptRunner(ABC):
     """Class that handles script execution"""
 
     language: Language
-    # container: docker.models.containers.Container = None
-    cwd: str | None = None
+
+    files: dict[str, str] = field(default_factory=dict)
+
     output: str = None
     stdin: IO[str] = None
     stdout: IO[str] = None
@@ -101,7 +110,15 @@ class ScriptRunner(ABC):
         return [
             "/bin/sh",
             "-c",
-            f"{self.language.command(script_name)} {rest_of_script}",
+            "; ".join(
+                [
+                    *(
+                        f"printf %s {shlex.quote(file_contents)} > {file_name}"
+                        for file_name, file_contents in self.files.items()
+                    ),
+                    f"{self.language.command(script_name)} {rest_of_script}",
+                ]
+            ),
         ]
 
     @property
@@ -122,7 +139,7 @@ class ScriptRunner(ABC):
         completed_process = subprocess.run(
             command,
             capture_output=True,  # wait for script to complete
-            check=True,  # explicitly define the value for 'check'
+            check=False,  # explicitly define the value for 'check'
             **self.subprocess_params,
         )
         print(completed_process.stderr, file=sys.stderr)
@@ -158,7 +175,7 @@ class ScriptRunner(ABC):
 
         command = self.build_command(script_name, rest_of_script)
 
-        print("command:", command)
+        print("command:", " ".join(map(shlex.quote, command)))
 
         if interactive:
             script_process = self._run_interactive(command)
@@ -168,6 +185,14 @@ class ScriptRunner(ABC):
         self.output = script_process.stdout
         self.stdout = script_process.stdout
         self.stderr = script_process.stderr
+
+    def cleanup(self):
+        """Cleanup any files created by the script"""
+
+    @property
+    def cwd(self) -> str | None:
+        """Docker doesn't need this"""
+        raise NotImplementedError
 
 
 class DockerRunner(ScriptRunner):
@@ -184,10 +209,17 @@ class DockerRunner(ScriptRunner):
         return [
             "docker",
             "run",
+            "--rm",
             "-i",
             self.image,
             *super().build_command(*command_args),
         ]
+
+    @property
+    def cwd(self) -> str | None:
+        """Docker doesn't need this"""
+        return None
+
 
 
 class LocalRunner(ScriptRunner):
@@ -198,6 +230,10 @@ class LocalRunner(ScriptRunner):
     def cwd(self):
         """Use the directory with named after the language"""
         return self.language.name
+
+    def cleanup(self):
+        for file_name in self.files:
+            Path(Path(self.cwd, file_name)).unlink(missing_ok=True)
 
 
 class DockerBuilder:
