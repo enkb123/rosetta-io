@@ -1,18 +1,19 @@
 # pylint: disable=redefined-outer-name, missing-class-docstring
 
 import json
+from re import sub
 
 import pytest
 
 # pylint: disable-next=unused-import
 from test_helpers import (
-    dedent,
+    DockerBuilder,
+    DockerRunner,
     EarlyBirdLocker,
     Language,
-    ScriptRunner,
-    DockerRunner,
     LocalRunner,
-    DockerBuilder,
+    ScriptRunner,
+    dedent,
     once_per_test_suite_run,  # noqa: F401
 )
 
@@ -54,9 +55,23 @@ class R(Language):
 
 
 class Java(Language):
-    name = "java"
-    interpreter = "java"
-    script_ext = ".java"
+    name = 'java'
+    interpreter = 'java'
+    script_ext = '.java'
+
+    def script_file_name(self, script_name):
+        return f'{self.camel_case(script_name)}{self.script_ext}'
+
+    def camel_case(self, s):
+        # Use regular expression substitution to replace underscores and hyphens with spaces,
+        # then title case the string (capitalize the first letter of each word), and remove spaces
+        return sub(r"(_|-)+", " ", s).title().replace(" ", "")
+
+
+class Bash3(Language):
+    name = 'bash3'
+    interpreter = 'bash'
+    script_ext = '.sh'
 
 
 LANGUAGES = [
@@ -67,6 +82,7 @@ LANGUAGES = [
     R(),
     Perl(),
     Java(),
+    Bash3(),
 ]
 
 
