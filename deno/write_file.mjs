@@ -1,6 +1,8 @@
 // Script to write text to a new file
-import fs from 'fs/promises'
 
-const [outfile, text] = Deno.args // Get command-line arguments
+const [filename, ...textParts] = Deno.args;
+const text = textParts.join(' ');
 
-await fs.writeFile(outfile, text.toUpperCase())
+await Deno.writeTextFile(filename, text);
+console.log(`Successfully wrote to ${filename}`);
+

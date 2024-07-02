@@ -1,18 +1,26 @@
-// Read a file (file path given as a command line argument),
-// and write to stdout
-import * as readline from 'node:readline/promises'
-import fs  from 'fs'
+// Read a file (file path given as a command line argument) and write to stdout
 
+const filePath = Deno.args[0];
+const file = await Deno.open(filePath);
+const decoder = new TextDecoder();
 
-// Get the file path from the command-line argument
-const file_path = Deno.args[0]
+let i = 1;
+let partialLine = '';
 
-const rl = readline.createInterface({
-  input: fs.createReadStream(file_path),
-})
+for await (const chunk of Deno.iter(file)) {
+    const chunkStr = decoder.decode(chunk, { stream: true });
+    const lines = (partialLine + chunkStr).split('\n');
 
-let i = 1
-for await (const line of rl) {
-  console.log(i + " " + line.toUpperCase())
-  i++
+    for (const line of lines.slice(0, -1)) {
+        console.log(`${i++} ${line.toUpperCase()}`);
+    }
+
+    partialLine = lines[lines.length - 1];
 }
+
+if (partialLine) {
+    console.log(`${i} ${partialLine.toUpperCase()}`);
+}
+
+file.close();
+
