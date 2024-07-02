@@ -1,4 +1,4 @@
-FROM perl:5.38
+FROM perl:5-slim
 
 # Set the working directory inside the container
 WORKDIR /app
