@@ -74,6 +74,10 @@ class Bash3(Language):
     script_ext = '.sh'
 
 
+class Bash5(Bash3):
+    name = 'bash5'
+
+
 LANGUAGES = [
     Python(),
     Ruby(),
@@ -83,6 +87,7 @@ LANGUAGES = [
     Perl(),
     Java(),
     Bash3(),
+    Bash5(),
 ]
 
 

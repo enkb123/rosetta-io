@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Test script to get input, transform, and write to stdout
-#!/bin/bash
 
 i=1
 
