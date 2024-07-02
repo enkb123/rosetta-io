@@ -1,10 +1,6 @@
 FROM perl:5-slim
 
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the current directory contents into the container at /app
-COPY ./ /app
-
 RUN cpanm JSON
 
+WORKDIR /app
+COPY ./ /app
