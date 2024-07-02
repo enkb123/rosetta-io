@@ -89,7 +89,7 @@ LANGUAGES = [
     Perl(),
     Java(),
     Bash3(),
-    Lua(),
+    Lua()
 ]
 
 
