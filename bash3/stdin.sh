@@ -5,6 +5,5 @@
 i=1
 
 while IFS= read -r user_input; do
-  echo "$((i++)) $(tr '[:lower:]' '[:upper:]' <<< "$user_input")"
-done
-
+  echo "$((i++)) $user_input"
+done | tr '[:lower:]' '[:upper:]'
