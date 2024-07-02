@@ -267,14 +267,18 @@ class DockerBuilder:
         print(f"Building docker image {image_name} from {build_context}\n")
         logs = []
         try:
-            _, logs = self.docker_client.images.build(path=build_context, tag=image_name)
+            _, logs = self.docker_client.images.build(
+                path=build_context,
+                tag=image_name,
+                rm=True,
+            )
             print("Build succeeded:\n")
             self.print_build_logs(logs)
         except docker.errors.BuildError as e:
             print("Build failed:\n")
             print(e.msg)
             self.print_build_logs(e.build_log)
-            raise(e)
+            raise e
 
     def docker_image(self, language_name: str) -> str:
         """Fixture that returns the image name to use for running the script under test, but first
