@@ -1,11 +1,11 @@
 -- Lua script to transform string arguments into a Lua table and output as JSON
 
-local cjson = require("cjson")
+local cjson = require("dkjson")
 
 local dict = {}
 
 for i = 1, #arg do
-    dict[arg[i]] = string.len(arg[i])
+    dict[arg[i]] = arg[i]:len()
 end
 
 print(cjson.encode(dict))

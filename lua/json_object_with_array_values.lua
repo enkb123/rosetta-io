@@ -1,6 +1,6 @@
 -- Lua script to transform string arguments into a Lua table of arrays and output as JSON
 
-local cjson = require("cjson")
+local cjson = require("dkjson")
 
 local string_letters_dict = {}
 

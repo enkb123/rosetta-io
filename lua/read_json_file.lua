@@ -1,6 +1,6 @@
 -- Lua script to read JSON file, parse, and print to stdout
 
-local cjson = require("cjson")
+local cjson = require("dkjson")
 
 local file_path = arg[1]
 local fh = io.open(file_path, "r")

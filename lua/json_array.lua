@@ -1,6 +1,6 @@
 -- Lua script to convert command-line arguments to JSON array
 
-local cjson = require("cjson")
+local cjson = require("dkjson")
 
 local args = {}
 for i = 1, #arg do

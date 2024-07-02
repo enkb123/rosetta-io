@@ -1,16 +1,16 @@
-FROM mileschou/lua:5.4
+FROM nickblah/lua:5.4-luarocks
 
 # Set the working directory inside the container
 WORKDIR /app
 
+# Install Lua and luarocks
+RUN luarocks install dkjson
+RUN luarocks install base64
+
 # Copy the current directory contents into the container at /app
 COPY ./ /app
 
-# Install Lua and luarocks
-RUN apt-get update && \
-    apt-get install -y lua5.1 luarocks
-RUN luarocks install lua-cjson
-RUN luarocks install base64
+
 
 
 
