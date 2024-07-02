@@ -258,7 +258,11 @@ class DockerBuilder:
 
     def build(self, build_context: str, image_name: str):
         """Builds the docker image, given the build context and image name"""
-        _, logs = self.docker_client.images.build(path=build_context, tag=image_name)
+        _, logs = self.docker_client.images.build(
+            path=build_context,
+            tag=image_name,
+            rm=True,
+        )
         for chunk in logs:
             if stdout_chunk := chunk.get("stream"):
                 print(stdout_chunk, end="")
