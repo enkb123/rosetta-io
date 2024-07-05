@@ -74,6 +74,11 @@ class Bash3(Language):
     script_ext = '.sh'
 
 
+class Swift(Language):
+    name = 'swift'
+    interpreter = 'swift'
+    script_ext = '.swift'
+
 LANGUAGES = [
     Python(),
     Ruby(),
@@ -83,6 +88,7 @@ LANGUAGES = [
     Perl(),
     Java(),
     Bash3(),
+    Swift(),
 ]
 
 
