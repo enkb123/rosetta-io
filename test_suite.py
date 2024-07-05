@@ -36,6 +36,12 @@ class Nodejs(Language):
     script_ext = ".mjs"
 
 
+class Deno(Nodejs):
+    name = "deno"
+    interpreter = "deno run --allow-read --allow-write"
+    script_ext = ".mjs"
+
+
 class Perl(Language):
     name = "perl"
     interpreter = "perl"
@@ -74,15 +80,28 @@ class Bash3(Language):
     script_ext = '.sh'
 
 
+class Bash5(Bash3):
+    name = 'bash5'
+
+    
+class Lua(Language):
+    name = 'lua'
+    interpreter = 'lua'
+    script_ext = '.lua'
+
+
 LANGUAGES = [
     Python(),
     Ruby(),
     Nodejs(),
+    Deno(),
     Php(),
     R(),
     Perl(),
     Java(),
     Bash3(),
+    Bash5(),
+    Lua()
 ]
 
 
