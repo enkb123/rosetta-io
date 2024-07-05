@@ -4,25 +4,9 @@
 use strict;
 use warnings;
 
-my $file_path = $ARGV[0];
+my $file_path = shift;
 
-eval {
-    open(my $fh, '<', $file_path) or die "Cannot open file: $!";
-    my $i = 1;
-    while (my $line = <$fh>) {
-        print "$i " . uc($line);
-        $i++;
-    }
-    close($fh);
-};
+open my $fh, '<', $file_path or die "Cannot open file: $file_path\n";
 
-if ($@) {
-    if ($@ =~ /No such file or directory/) {
-        print "File not found: $file_path\n";
-        exit(1);
-    } else {
-        die $@;
-    }
-}
-
-
+my $i = 1;
+print $i++ . " " . uc while <$fh>;
