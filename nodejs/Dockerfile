@@ -1,4 +1,4 @@
-FROM php:8-cli-alpine
+FROM node:20.7.0-alpine
 
 WORKDIR /app
 COPY ./ /app
