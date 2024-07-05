@@ -1,5 +1,6 @@
 import os.path
 from pathlib import Path
+from re import sub
 import shlex
 import subprocess
 import sys
@@ -33,6 +34,12 @@ def print_command(title: str, command: str) -> None:
 def dedent(text: str) -> str:
     """Dedents the given text"""
     return textwrap.dedent(text).lstrip()
+
+
+def camel_case(s):
+    # Use regular expression substitution to replace underscores and hyphens with spaces,
+    # then title case the string (capitalize the first letter of each word), and remove spaces
+    return sub(r"(_|-)+", " ", s).title().replace(" ", "")
 
 
 @pytest.fixture

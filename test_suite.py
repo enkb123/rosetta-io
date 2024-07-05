@@ -14,6 +14,7 @@ from test_helpers import (
     LocalRunner,
     ScriptRunner,
     dedent,
+    camel_case,
     once_per_test_suite_run,  # noqa: F401
 )
 
@@ -66,12 +67,7 @@ class Java(Language):
     script_ext = '.java'
 
     def script_file_name(self, script_name):
-        return f'{self.camel_case(script_name)}{self.script_ext}'
-
-    def camel_case(self, s):
-        # Use regular expression substitution to replace underscores and hyphens with spaces,
-        # then title case the string (capitalize the first letter of each word), and remove spaces
-        return sub(r"(_|-)+", " ", s).title().replace(" ", "")
+        return f'{camel_case(script_name)}{self.script_ext}'
 
 
 class Bash3(Language):
@@ -92,11 +88,13 @@ class Lua(Language):
 
 class CSharp(Language):
     name = 'csharp'
-    interpreter = 'dotnet script'
-    script_ext = '.csx'
+    script_ext = '.cs'
 
     def command(self, test_name):
-        return super().command(test_name) + ' -- '
+        return f"dotnet run -- {test_name}"
+
+    def script_file_name(self, script_name):
+        return f'{camel_case(script_name)}{self.script_ext}'
 
 
 LANGUAGES = [
