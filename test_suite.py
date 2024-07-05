@@ -1,7 +1,6 @@
 # pylint: disable=redefined-outer-name, missing-class-docstring
 
 import json
-from re import sub
 
 import pytest
 
