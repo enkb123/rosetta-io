@@ -80,6 +80,10 @@ class Bash3(Language):
     script_ext = '.sh'
 
 
+class Bash5(Bash3):
+    name = 'bash5'
+
+    
 class Lua(Language):
     name = 'lua'
     interpreter = 'lua'
@@ -96,6 +100,7 @@ LANGUAGES = [
     Perl(),
     Java(),
     Bash3(),
+    Bash5(),
     Lua()
 ]
 
