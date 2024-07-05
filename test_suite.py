@@ -30,8 +30,8 @@ class Ruby(Language):
     script_ext = ".rb"
 
 
-class JavaScript(Language):
-    name = "javascript"
+class Nodejs(Language):
+    name = "nodejs"
     interpreter = "node"
     script_ext = ".mjs"
 
@@ -77,7 +77,7 @@ class Bash3(Language):
 LANGUAGES = [
     Python(),
     Ruby(),
-    JavaScript(),
+    Nodejs(),
     Php(),
     R(),
     Perl(),
