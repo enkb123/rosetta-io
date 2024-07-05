@@ -91,7 +91,7 @@ class CSharp(Language):
     script_ext = '.cs'
 
     def command(self, test_name):
-        return f"dotnet run -- {test_name}"
+        return f"dotnet run {test_name}"
 
     def script_file_name(self, script_name):
         return f'{camel_case(script_name)}{self.script_ext}'
