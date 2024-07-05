@@ -38,7 +38,7 @@ class Nodejs(Language):
 
 class Deno(Nodejs):
     name = "deno"
-    interpreter = "deno run --allow-read"
+    interpreter = "deno run --allow-read --allow-write"
     script_ext = ".mjs"
 
 
