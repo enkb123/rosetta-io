@@ -83,11 +83,20 @@ class Bash3(Language):
 class Bash5(Bash3):
     name = 'bash5'
 
-    
+
 class Lua(Language):
     name = 'lua'
     interpreter = 'lua'
     script_ext = '.lua'
+
+
+class CSharp(Language):
+    name = 'csharp'
+    interpreter = 'dotnet script'
+    script_ext = '.csx'
+
+    def command(self, test_name):
+        return super().command(test_name) + ' -- '
 
 
 LANGUAGES = [
@@ -101,7 +110,8 @@ LANGUAGES = [
     Java(),
     Bash3(),
     Bash5(),
-    Lua()
+    Lua(),
+    CSharp()
 ]
 
 
