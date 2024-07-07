@@ -1,21 +1,18 @@
 import os.path
-from pathlib import Path
-from re import sub
 import shlex
 import subprocess
 import sys
 import textwrap
 from abc import ABC
-from collections.abc import Callable
 from dataclasses import dataclass, field
+from pathlib import Path
+from re import sub
 from typing import IO
 
 import docker
 import pytest
 
-from locking import EarlyBirdLock, early_bird_lock
-
-type EarlyBirdLocker = Callable[[list[str]], EarlyBirdLock]
+from locking import EarlyBirdLocker
 
 
 def print_command(title: str, command: str) -> None:
@@ -37,6 +34,7 @@ def dedent(text: str) -> str:
 
 
 def camel_case(s):
+    """Converts a string to camel case"""
     # Use regular expression substitution to replace underscores and hyphens with spaces,
     # then title case the string (capitalize the first letter of each word), and remove spaces
     return sub(r"(_|-)+", " ", s).title().replace(" ", "")
@@ -49,10 +47,9 @@ def once_per_test_suite_run(
     """Fixture that provides a context manager for a lock that is only allowed
     to be acquired once per test suite run"""
 
-    return lambda lock_keys: early_bird_lock(
-        tmp_path_factory.getbasetemp().parent,
+    return EarlyBirdLocker(
         testrun_uid,
-        *lock_keys,
+        tmp_dir=tmp_path_factory.getbasetemp().parent,
         worker_id=worker_id,
     )
 
@@ -300,9 +297,19 @@ class DockerBuilder:
 
         # Only allow the first pytest-xdist worker that gets here to build the
         # image. Otherwise, they will all try to build it and clobber each other.
-        with self.early_bird_locker(["build-image", image_name]) as should_build:
-            # should_build will be True if this is the the first worker to get here, otherwise False
-            if should_build:
-                self.build(build_context, image_name)
+        result = self.early_bird_locker.acquire(
+            image_name, do_work=lambda: self.build(build_context, image_name)
+        )
 
-        return image_name
+        match result:
+            case ("success", _):
+                return image_name
+            case ("exception", e):
+                raise e
+            case ("early-bird-failed", e_name, e_str, e_args):
+                pytest.xfail(
+                    f"Building docker image {image_name} failed in:\n"
+                    + f"{e_name}: {e_str} {e_args}",
+                )
+            case _:
+                raise RuntimeError(f"Unexpected result from early bird lock: {result}")
