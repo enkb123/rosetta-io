@@ -211,7 +211,7 @@ def test_read_json_file(script: ScriptRunner):
 
 def test_write_file(script: ScriptRunner):
     """Test that a script, given a path to a file, can write to that file"""
-    script.run("write_file", 'output.txt "Bob Barker"; cat output.txt')
+    script.run("write_file", 'output.txt "Bob Barker"', after="cat output.txt")
     assert script.output == "BOB BARKER"  # note no new line char
 
 
@@ -291,11 +291,37 @@ def test_streaming_stdin(script: ScriptRunner):
 def test_streaming_pipe_in(script: ScriptRunner):
     """Test that named pipe can be read line by line and can write to stdout"""
 
-    script.setup(
-        prepare="rm -f my-named-pipe && mkfifo my-named-pipe",
-        cleanup="rm my-named-pipe",
+    script.add_named_pipe("input-pipe")
+    script.run(
+        "streaming_pipe_in", "input-pipe &", after="cat > input-pipe", interactive=True
     )
-    script.run("streaming_pipe_in", "my-named-pipe & cat > my-named-pipe", interactive=True)
+
+    for i in range(1, 10):
+        script.stdin.write(f"line #{i}\n")
+        assert script.stdout.readline() == f"LINE #{i}\n"
+
+
+# Re-uses the language's write_file script, which works for writing to named pipes
+def test_write_to_named_pipe(script: ScriptRunner):
+    """Test that a script, given a path to a named pipe, can write to that named pipe"""
+    script.add_named_pipe("output-pipe")
+    script.run("write_file", 'output-pipe "Bob Barker" &', after="cat output-pipe")
+    assert script.output == "BOB BARKER"  # note no new line char
+
+
+def test_streaming_pipe_in_and_out(script: ScriptRunner):
+    """Test that named pipe can be read line by line and can write to output pipe
+    without waiting for all lines to arrive"""
+    script.add_named_pipe("pipe-in", "pipe-out")
+
+    script.run(
+        "streaming_pipe_in_and_out", "pipe-in pipe-out >&2 &",
+        after="""
+            cat pipe-out &
+            cat > pipe-in
+        """,
+        interactive=True,
+    )
 
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")

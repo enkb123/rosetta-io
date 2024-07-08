@@ -153,7 +153,23 @@ class ScriptRunner(ABC):
         """Returns a list of the all the cleanup commands"""
         return [pair.cleanup for pair in self.all_setup_pairs if pair.cleanup]
 
-    def build_command(self, script_name, rest_of_script) -> list[str]:
+    def add_named_pipe(self, *pipe_names: list[str]):
+        """Adds a named pipe to the list of files to create and clean up"""
+
+        quoted_pipe_names = " ".join(map(shlex.quote, pipe_names))
+
+        self.setup(f"""
+            rm -f {quoted_pipe_names}
+            mkfifo {quoted_pipe_names}
+            cleanup_named_pipes() {{
+                rm -f {quoted_pipe_names}
+            }}
+            trap cleanup_named_pipes EXIT
+        """)
+
+    def build_command(
+        self, script_name: str, rest_of_script: str | None, after_script: str | None
+    ) -> list[str]:
         """
         Constructs the shell command to execute the script with the given arguments.
 
@@ -169,15 +185,18 @@ class ScriptRunner(ABC):
             f"{self.language.command(script_name)} {rest_of_script}".strip()
         )
 
-        if len(self.all_setup_pairs) == 0:
+        if len(self.all_setup_pairs) == 0 and after_script is None:
             command = command_to_run_script
         else:
+            after_commands = [dedent(after_script)] if after_script else []
+
             command = (
                 "\n\n".join(
                     [
                         "",
                         *self.prepare_commands,
                         command_to_run_script,
+                        *after_commands,
                         *self.cleanup_commands,
                     ]
                 )
@@ -222,7 +241,7 @@ class ScriptRunner(ABC):
         self.stdin = running_process.stdin
         return running_process
 
-    def run(self, script_name, rest_of_script="", interactive=False):
+    def run(self, script_name: str, rest_of_script="", *, after=None, interactive=False):
         """
         Execute the given script.
 
@@ -240,7 +259,7 @@ class ScriptRunner(ABC):
                 f" for language {repr(self.language.name)}"
             )
 
-        command = self.build_command(script_name, rest_of_script)
+        command = self.build_command(script_name, rest_of_script, after)
 
         print_command("run in docker", " ".join(map(shlex.quote, command)))
 
