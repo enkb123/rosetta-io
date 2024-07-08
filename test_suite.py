@@ -116,7 +116,7 @@ LANGUAGES = [
     Bash3(),
     Bash5(),
     Lua(),
-    CSharp()
+    CSharp(),
 ]
 
 
