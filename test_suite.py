@@ -86,6 +86,10 @@ class Lua(Language):
 
 
 class CSharp(Language):
+    """C# language
+    Compiles *all* the scripts in the csharp directory, so if one of them fails
+    to compile, none of the others will compile.
+    """
     name = 'csharp'
     script_ext = '.cs'
 
