@@ -2,9 +2,9 @@
 
 STDOUT.sync = true
 
-fifo_name = ARGV.fetch(0)
+pipe_in = ARGV.fetch(0)
 
-File.open(fifo_name, 'r') do |pipe|
+File.open(pipe_in, 'r') do |pipe|
   pipe.each_line do |line|
     puts line.upcase
   end
