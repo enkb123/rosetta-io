@@ -83,7 +83,7 @@ class Bash3(Language):
 class Bash5(Bash3):
     name = 'bash5'
 
-    
+
 class Lua(Language):
     name = 'lua'
     interpreter = 'lua'
@@ -283,6 +283,20 @@ def test_streaming_stdin(script: ScriptRunner):
     without waiting for all lines to arrive"""
     script.run("streaming_stdin", interactive=True)
     # Give input to the script via stdin, one line at a time, and check result
+    for i in range(1, 10):
+        script.stdin.write(f"line #{i}\n")
+        assert script.stdout.readline() == f"LINE #{i}\n"
+
+
+def test_streaming_pipe_in(script: ScriptRunner):
+    """Test that named pipe can be read line by line and can write to stdout"""
+
+    script.setup(
+        prepare="rm -f my-named-pipe && mkfifo my-named-pipe",
+        cleanup="rm my-named-pipe",
+    )
+    script.run("streaming_pipe_in", "my-named-pipe & cat > my-named-pipe", interactive=True)
+
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")
         assert script.stdout.readline() == f"LINE #{i}\n"
