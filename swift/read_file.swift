@@ -1,6 +1,5 @@
-/*Read a file (file path given as a command line argument),
-and write to stdout
-*/
+//Read a file (file path given as a command line argument) and write to stdout
+
 
 import Foundation
 
@@ -10,7 +9,6 @@ guard CommandLine.arguments.count > 1 else {
 }
 
 let fileURL = URL(fileURLWithPath: CommandLine.arguments[1])
-
 let fileContents = try String(contentsOf: fileURL)
 var i = 1
 fileContents.enumerateLines { line, _ in
