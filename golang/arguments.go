@@ -1,7 +1,13 @@
+// Script to read an argument and print as lowercase in stdout
+
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strings"
+)
 
 func main() {
-	fmt.Println("Arguments!")
+	fmt.Println(strings.ToLower(os.Args[1]))
 }
