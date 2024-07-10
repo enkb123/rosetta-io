@@ -2,7 +2,7 @@
 using System;
 using System.Text.Json;
 
-public class JsonControlChars{
+class JsonControlChars{
     public static void Main(string[] args){
         string testString = args[0];
         string jsonString = JsonSerializer.Serialize(testString);

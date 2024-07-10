@@ -10,9 +10,8 @@ class ReadFile
     public static void Main (string[] args)
     {
         string filePath = args[0];
-        int lineNumber = 1;
         var lines = File.ReadAllLines(filePath);
-        lines.Select(line => $"{lineNumber++} {line.ToUpper()}")
+        lines.Select((line, index) => $"{index + 1} {line.ToUpper()}")
                 .ToList()
                 .ForEach(Console.WriteLine);
     }

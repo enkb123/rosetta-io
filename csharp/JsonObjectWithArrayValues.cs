@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-public class JsonObjectWithArrayValues{
+class JsonObjectWithArrayValues{
     public static void Main(string[] args){
         Dictionary<string, List<string>> jsonObject = new Dictionary<string, List<string>>();
 

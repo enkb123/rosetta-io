@@ -10,12 +10,9 @@ public class Stdin
     {
         List<string> lines = new List<string>();
         string line;
-        while ((line = Console.ReadLine()) != null && line != "")
-        {
-            lines.Add(line);
-        }
-
         int counter = 1;
-        lines.ForEach(l => Console.WriteLine($"{counter++} {l.ToUpper()}"));
+        while (!string.IsNullOrEmpty(line = Console.ReadLine())){
+                Console.WriteLine($"{counter++} {line.ToUpper()}");
+            }
     }
 }

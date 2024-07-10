@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-public class JsonStdoutObject
+class JsonStdoutObject
 {
     public static void Main(string[] args)
     {

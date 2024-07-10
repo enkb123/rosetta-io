@@ -3,7 +3,7 @@
 using System;
 using System.Text;
 
-public class JsonArray{
+class JsonArray{
     public static void Main(string[] args){
         StringBuilder sb = new StringBuilder("[");
 

@@ -1,7 +1,7 @@
 //Script to decode Base64 text
 using System;
 
-public class Decode{
+class Decode{
     public static void Main(string[] args){
         string encodedString = args[0];
 

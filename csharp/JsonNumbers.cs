@@ -3,7 +3,7 @@
 using System;
 using System.Text;
 
-public class JsonNumbers
+class JsonNumbers
 {
     public static void Main(string[] args)
     {
