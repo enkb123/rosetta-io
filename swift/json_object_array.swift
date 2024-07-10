@@ -6,16 +6,12 @@ guard CommandLine.arguments.count > 1 else {
     exit(1)
 }
 
-let args = Array(CommandLine.arguments.dropFirst())
+let args = CommandLine.arguments.dropFirst()
 
-let myArray = args.map { arg -> [String: Any] in
-    return [arg.uppercased(): arg.count]
-}
+let myArray = args.map { [$0.uppercased(): $0.count] }
 
-let jsonData = try JSONSerialization.data(withJSONObject: myArray, options: .prettyPrinted)
+let jsonData = try JSONSerialization.data(withJSONObject: myArray)
+print(String(data: jsonData, encoding: .utf8) as! String)
 
-if let jsonString = String(data: jsonData, encoding: .utf8) {
-    print(jsonString)
-}
 
 

@@ -7,11 +7,5 @@ guard CommandLine.arguments.count == 2 else {
     exit(1)
 }
 
-let testString = CommandLine.arguments[1]
-
-guard let data = testString.data(using: .utf8) else {
-    print("Error encoding string to data")
-    exit(1)
-}
-
+let data = CommandLine.arguments[1].data(using: .utf8)!
 print(data.base64EncodedString())

@@ -107,7 +107,7 @@ LANGUAGES = [
     Java(),
     Bash3(),
     Bash5(),
-    Lua()
+    Lua(),
     Swift(),
 ]
 

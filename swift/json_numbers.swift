@@ -10,10 +10,8 @@ let myStrings = Array(CommandLine.arguments.dropFirst())
 
 let stringLengths = myStrings.map { $0.count }
 
-let jsonData = try JSONSerialization.data(withJSONObject: stringLengths, options: .prettyPrinted)
+let jsonData = try JSONSerialization.data(withJSONObject: stringLengths)
+print(String(data: jsonData, encoding: .utf8) as! String)
 
-if let jsonString = String(data: jsonData, encoding: .utf8) {
-    print(jsonString)
-}
 
 

@@ -6,12 +6,10 @@ guard CommandLine.arguments.count > 1 else {
     exit(1)
 }
 
-let myStrings = Array(CommandLine.arguments.dropFirst())
+let myStrings = CommandLine.arguments.dropFirst()
 let stringLengthDict = Dictionary(uniqueKeysWithValues: myStrings.map { ($0, $0.count) })
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLengthDict, options: .prettyPrinted)
+print(String(data: jsonData, encoding: .utf8) as! String)
 
-if let jsonString = String(data: jsonData, encoding: .utf8) {
-    print(jsonString)
-}
 

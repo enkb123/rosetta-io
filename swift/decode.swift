@@ -8,11 +8,6 @@ guard CommandLine.arguments.count > 1 else {
 }
 
 let encodedString = CommandLine.arguments[1]
+let data = Data(base64Encoded: encodedString)
+print(String(data: data!, encoding: .utf8) as! String)
 
-if let data = Data(base64Encoded: encodedString),
-   let decodedString = String(data: data, encoding: .utf8) {
-    print(decodedString)
-} else {
-    print("Invalid Base64 string")
-    exit(1)
-}

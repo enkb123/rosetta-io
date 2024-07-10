@@ -9,8 +9,6 @@ guard CommandLine.arguments.count == 2 else {
 let testString = CommandLine.arguments[1]
 
 let jsonData = try JSONEncoder().encode(testString)
+print(String(data: jsonData, encoding: .utf8)  as! String)
 
-if let jsonString = String(data: jsonData, encoding: .utf8) {
-    print(jsonString)
-}
 

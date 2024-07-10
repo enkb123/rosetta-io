@@ -1,6 +1,5 @@
 //Read a file (file path given as a command line argument) and write to stdout
 
-
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -8,8 +7,7 @@ guard CommandLine.arguments.count > 1 else {
     exit(1)
 }
 
-let fileURL = URL(fileURLWithPath: CommandLine.arguments[1])
-let fileContents = try String(contentsOf: fileURL)
+let fileContents = try String(contentsOfFile: CommandLine.arguments[1])
 var i = 1
 fileContents.enumerateLines { line, _ in
     print("\(i) \(line.uppercased())")
