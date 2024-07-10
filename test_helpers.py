@@ -252,16 +252,33 @@ class LocalRunner(ScriptRunner):
 class DockerBuilder:
     """Builds docker images"""
 
+    def print_build_logs(self, logs):
+        """Prints the build logs"""
+        for chunk in logs:
+            if stdout_chunk := chunk.get("stream"):
+                print(stdout_chunk, end="")
+
     def __init__(self, early_bird_locker: EarlyBirdLocker):
         self.docker_client = docker.from_env()
         self.early_bird_locker = early_bird_locker
 
     def build(self, build_context: str, image_name: str):
         """Builds the docker image, given the build context and image name"""
-        _, logs = self.docker_client.images.build(path=build_context, tag=image_name)
-        for chunk in logs:
-            if stdout_chunk := chunk.get("stream"):
-                print(stdout_chunk, end="")
+        print(f"Building docker image {image_name} from {build_context}\n")
+        logs = []
+        try:
+            _, logs = self.docker_client.images.build(
+                path=build_context,
+                tag=image_name,
+                rm=True,
+            )
+            print("Build succeeded:\n")
+            self.print_build_logs(logs)
+        except docker.errors.BuildError as e:
+            print("Build failed:\n")
+            print(e.msg)
+            self.print_build_logs(e.build_log)
+            raise e
 
     def docker_image(self, language_name: str) -> str:
         """Fixture that returns the image name to use for running the script under test, but first

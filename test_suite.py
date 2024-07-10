@@ -1,6 +1,7 @@
 # pylint: disable=redefined-outer-name, missing-class-docstring
 
 import json
+import os
 from re import sub
 
 import pytest
@@ -30,9 +31,15 @@ class Ruby(Language):
     script_ext = ".rb"
 
 
-class JavaScript(Language):
-    name = "javascript"
+class Nodejs(Language):
+    name = "nodejs"
     interpreter = "node"
+    script_ext = ".mjs"
+
+
+class Deno(Nodejs):
+    name = "deno"
+    interpreter = "deno run --allow-read --allow-write"
     script_ext = ".mjs"
 
 
@@ -74,6 +81,16 @@ class Bash3(Language):
     script_ext = '.sh'
 
 
+class Bash5(Bash3):
+    name = 'bash5'
+
+
+class Lua(Language):
+    name = 'lua'
+    interpreter = 'lua'
+    script_ext = '.lua'
+
+
 class Swift(Language):
     name = 'swift'
     interpreter = 'swift'
@@ -82,12 +99,15 @@ class Swift(Language):
 LANGUAGES = [
     Python(),
     Ruby(),
-    JavaScript(),
+    Nodejs(),
+    Deno(),
     Php(),
     R(),
     Perl(),
     Java(),
     Bash3(),
+    Bash5(),
+    Lua()
     Swift(),
 ]
 
@@ -101,6 +121,8 @@ def language(request: pytest.FixtureRequest):
 @pytest.fixture
 def is_local(request: pytest.FixtureRequest):
     """Fixture that returns True if the test is marked as local, False otherwise"""
+    if os.environ.get("TEST_LOCAL", "false").lower() in ("true", "1", "yes"):
+        return True
     markers_names = map(lambda m: m.name, request.node.iter_markers())
     return "local" in markers_names
 

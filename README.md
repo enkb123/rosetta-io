@@ -74,6 +74,14 @@ def test_encode(self, script):
     assert script.output == 'SGVsbG8sIHdvcmxkIQ==\n'
 ```
 
+Alternatively, you can set the `TEST_LOCAL` environment variable to `true` or `1` to run all tests locally without having to mark them with `@pytest.mark.local`.
+
+E.g. run all Swift tests locally:
+
+```bash
+TEST_LOCAL=1 pytest -k swift
+```
+
 
 [env-vars-docker]: https://docs.docker.com/engine/reference/commandline/cli/#environment-variables
 [env-vars-pytest-xdist]: https://pytest-xdist.readthedocs.io/en/stable/distribution.html

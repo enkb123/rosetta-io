@@ -2,4 +2,5 @@
 use strict;
 use warnings;
 use JSON;
-print encode_json({map {$_ => length($_)} @ARGV});
+
+print encode_json({ map { $_ => length } @ARGV });
