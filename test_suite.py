@@ -1,6 +1,7 @@
 # pylint: disable=redefined-outer-name, missing-class-docstring
 
 import json
+import os
 from re import sub
 
 import pytest
@@ -83,7 +84,7 @@ class Bash3(Language):
 class Bash5(Bash3):
     name = 'bash5'
 
-    
+
 class Lua(Language):
     name = 'lua'
     interpreter = 'lua'
@@ -114,6 +115,8 @@ def language(request: pytest.FixtureRequest):
 @pytest.fixture
 def is_local(request: pytest.FixtureRequest):
     """Fixture that returns True if the test is marked as local, False otherwise"""
+    if os.environ.get("TEST_LOCAL", "false").lower() in ("true", "1", "yes"):
+        return True
     markers_names = map(lambda m: m.name, request.node.iter_markers())
     return "local" in markers_names
 
