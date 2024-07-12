@@ -4,7 +4,7 @@
 using System;
 using System.IO;
 
-public class WriteFile
+class WriteFile
 {
     public static void Main(string[] args)
     {

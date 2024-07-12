@@ -1,28 +1,23 @@
 // Script takes string arguments and outputs a JSON array of numbers representing
 // the length of each argument
 using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 class JsonNumbers
 {
     public static void Main(string[] args)
     {
-
-        StringBuilder sb = new StringBuilder("[");
+        int[] numbers = new int[args.Length];
 
         for (int i = 0; i < args.Length; i++)
         {
-            if (i > 0)
-            {
-                sb.Append(", ");
-            }
-            sb.Append(args[i].Length);
+            numbers[i] = args[i].Length;
         }
 
-        sb.Append("]");
-
-        string jsonArrayString = sb.ToString();
-
+        string jsonArrayString = JsonSerializer.Serialize(numbers);
         Console.WriteLine(jsonArrayString);
     }
 }
+

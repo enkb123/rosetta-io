@@ -1,21 +1,15 @@
 //Script takes args and turns into JSON array
 
 using System;
-using System.Text;
+using System.Text.Json;
 
 class JsonArray{
     public static void Main(string[] args){
-        StringBuilder sb = new StringBuilder("[");
+        string[] inputArray = args;
 
-        for (int i = 0; i < args.Length; i++){
-            if (i > 0){
-                sb.Append(", ");
-            }
-            sb.Append('"').Append(args[i]).Append('"');
-        }
+        string jsonString = JsonSerializer.Serialize(inputArray);
 
-        sb.Append("]");
-
-        Console.WriteLine(sb.ToString());
+        Console.WriteLine(jsonString);
     }
 }
+

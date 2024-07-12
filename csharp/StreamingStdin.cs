@@ -2,7 +2,7 @@
 
 using System;
 
-public class StreamingStdin{
+class StreamingStdin{
     public static void Main(string[] args){
         string line;
 

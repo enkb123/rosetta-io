@@ -1,9 +1,9 @@
-// Script takes arguments and transforms them into dict with arrays as dict values
-// and returns as JSON
+// Script takes arguments and transforms them into dict with arrays as dict values and returns as JSON
 
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 class JsonObjectWithArrayValues{
     public static void Main(string[] args){
@@ -17,22 +17,7 @@ class JsonObjectWithArrayValues{
             jsonObject[str] = lettersArray;
         }
 
-        StringBuilder sb = new StringBuilder("{");
-
-        int count = 0;
-        foreach (var kvp in jsonObject){
-            if (count > 0){
-                sb.Append(", ");
-            }
-            sb.Append($"\"{kvp.Key}\": [\"{string.Join("\", \"", kvp.Value)}\"]");
-            count++;
-        }
-
-        sb.Append("}");
-
-        string jsonString = sb.ToString();
-
+        string jsonString = JsonSerializer.Serialize(jsonObject);
         Console.WriteLine(jsonString);
     }
 }
-

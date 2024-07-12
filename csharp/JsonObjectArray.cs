@@ -1,27 +1,21 @@
 // Script outputs arrays of objects as JSON
-
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
-class JsonObjectArray{
+class JsonObjectArray
+{
     public static void Main(string[] args){
-        StringBuilder sb = new StringBuilder("[");
-        int count = 0;
+        List<object> jsonObjects = new List<object>();
 
         foreach (string str in args){
-            if (count > 0){
-                sb.Append(", ");
-            }
-
-            sb.Append($"{{ \"{str.ToUpper()}\": {str.Length} }}");
-            count++;
+            var jsonObject = new Dictionary<string, object>{
+                { str.ToUpper(), str.Length }
+            };
+            jsonObjects.Add(jsonObject);
         }
-
-        sb.Append("]");
-
-        string jsonArrayString = sb.ToString();
-
+        string jsonArrayString = JsonSerializer.Serialize(jsonObjects);
         Console.WriteLine(jsonArrayString);
     }
 }

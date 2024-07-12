@@ -3,35 +3,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
-class JsonStdoutObject
-{
-    public static void Main(string[] args)
-    {
+class JsonStdoutObject{
+    public static void Main(string[] args){
         Dictionary<string, int> stringLengthDict = new Dictionary<string, int>();
 
-        foreach (string str in args)
-        {
+        foreach (string str in args){
             stringLengthDict[str] = str.Length;
         }
 
-        StringBuilder sb = new StringBuilder("{");
-
-        int count = 0;
-        foreach (var kvp in stringLengthDict)
-        {
-            if (count > 0)
-            {
-                sb.Append(", ");
-            }
-            sb.Append($"\"{kvp.Key}\": {kvp.Value}");
-            count++;
-        }
-
-        sb.Append("}");
-
-        string jsonString = sb.ToString();
-
+        string jsonString = JsonSerializer.Serialize(stringLengthDict);
         Console.WriteLine(jsonString);
     }
 }
