@@ -9,7 +9,7 @@ guard CommandLine.arguments.count > 1 else {
 let myStrings = CommandLine.arguments.dropFirst()
 let stringLengthDict = Dictionary(uniqueKeysWithValues: myStrings.map { ($0, $0.count) })
 
-let jsonData = try JSONSerialization.data(withJSONObject: stringLengthDict, options: .prettyPrinted)
-print(String(data: jsonData, encoding: .utf8) as! String)
+let jsonData = try JSONSerialization.data(withJSONObject: stringLengthDict)
+print(String(data: jsonData, encoding: .utf8)!)
 
 
