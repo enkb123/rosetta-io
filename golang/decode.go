@@ -1,4 +1,4 @@
-//Script to decode Base64 text
+// Script to decode Base64 text
 package main
 
 import (
@@ -8,8 +8,7 @@ import (
 )
 
 func main() {
-    decodedBytes, _ := base64.StdEncoding.DecodeString(os.Args[1])
+	decodedBytes, _ := base64.StdEncoding.DecodeString(os.Args[1])
 
 	fmt.Println(string(decodedBytes))
 }
-

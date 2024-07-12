@@ -13,13 +13,6 @@ func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
-		line := scanner.Text()
-
-		if line == "" {
-			break
-		}
-
-		fmt.Println(strings.ToUpper(line))
+		fmt.Println(strings.ToUpper(scanner.Text()))
 	}
 }
-

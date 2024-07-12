@@ -21,5 +21,3 @@ func main() {
 
 	fmt.Println(string(jsonArrayBytes))
 }
-
-

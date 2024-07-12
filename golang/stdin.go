@@ -10,14 +10,7 @@ import (
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	counter := 1
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		if line == "" {
-			break
-		}
-		fmt.Printf("%d %s\n", counter, strings.ToUpper(line))
-		counter++
+	for lineNumber := 1; scanner.Scan(); lineNumber++ {
+		fmt.Printf("%d %s\n", lineNumber, strings.ToUpper(scanner.Text()))
 	}
 }
