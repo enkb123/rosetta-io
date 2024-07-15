@@ -4,6 +4,7 @@ import json
 import os
 from re import sub
 
+
 import pytest
 
 # pylint: disable-next=unused-import
@@ -112,6 +113,12 @@ class Golang(Language):
     script_ext = '.go'
 
 
+class Swift(Language):
+    name = 'swift'
+    interpreter = 'swift'
+    script_ext = '.swift'
+
+
 LANGUAGES = [
     Python(),
     Ruby(),
@@ -126,6 +133,7 @@ LANGUAGES = [
     Lua(),
     CSharp(),
     Golang(),
+    Swift(),
 ]
 
 

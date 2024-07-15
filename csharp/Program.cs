@@ -22,6 +22,19 @@ Action<string[]> script = scriptName switch
 {
     "arguments" => Arguments.Main,
     "null_char" => NullChar.Main,
+    "stdin" => Stdin.Main,
+    "read_file" => ReadFile.Main,
+    "read_json_file" => ReadJsonFile.Main,
+    "write_file" => WriteFile.Main,
+    "json_array" => JsonArray.Main,
+    "json_numbers" => JsonNumbers.Main,
+    "json_stdout_object" => JsonStdoutObject.Main,
+    "json_object_with_array_values" => JsonObjectWithArrayValues.Main,
+    "json_object_array" => JsonObjectArray.Main,
+    "json_control_chars" => JsonControlChars.Main,
+    "decode" => Decode.Main,
+    "encode" => Encode.Main,
+    "streaming_stdin" => StreamingStdin.Main,
     _ => _ => Console.WriteLine("Unknown command " + scriptName)
 };
 
