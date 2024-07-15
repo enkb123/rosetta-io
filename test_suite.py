@@ -4,6 +4,7 @@ import json
 import os
 from re import sub
 
+
 import pytest
 
 # pylint: disable-next=unused-import
@@ -15,6 +16,7 @@ from test_helpers import (
     LocalRunner,
     ScriptRunner,
     dedent,
+    camel_case,
     once_per_test_suite_run,  # noqa: F401
 )
 
@@ -67,12 +69,7 @@ class Java(Language):
     script_ext = '.java'
 
     def script_file_name(self, script_name):
-        return f'{self.camel_case(script_name)}{self.script_ext}'
-
-    def camel_case(self, s):
-        # Use regular expression substitution to replace underscores and hyphens with spaces,
-        # then title case the string (capitalize the first letter of each word), and remove spaces
-        return sub(r"(_|-)+", " ", s).title().replace(" ", "")
+        return f'{camel_case(script_name)}{self.script_ext}'
 
 
 class Bash3(Language):
@@ -89,6 +86,25 @@ class Lua(Language):
     name = 'lua'
     interpreter = 'lua'
     script_ext = '.lua'
+
+
+class CSharp(Language):
+    """C# language
+    Compiles *all* the scripts in the csharp directory, so if one of them fails
+    to compile, none of the others will compile.
+
+    Also, because .NET doesn't make it easy to build a single executable per script,
+    the Program.cs file is compiled into a single executable, and then each script is run by passing
+    the script name as the first argument. See Program.cs for details.
+    """
+    name = 'csharp'
+    script_ext = '.cs'
+
+    def command(self, test_name):
+        return f"dotnet run {test_name}"
+
+    def script_file_name(self, script_name):
+        return f'{camel_case(script_name)}{self.script_ext}'
 
 
 class Swift(Language):
@@ -108,6 +124,7 @@ LANGUAGES = [
     Bash3(),
     Bash5(),
     Lua(),
+    CSharp(),
     Swift(),
 ]
 
