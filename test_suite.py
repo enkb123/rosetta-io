@@ -107,10 +107,17 @@ class CSharp(Language):
         return f'{camel_case(script_name)}{self.script_ext}'
 
 
+class Golang(Language):
+    name = 'golang'
+    interpreter = 'go run'
+    script_ext = '.go'
+
+
 class Swift(Language):
     name = 'swift'
     interpreter = 'swift'
     script_ext = '.swift'
+
 
 LANGUAGES = [
     Python(),
@@ -125,6 +132,7 @@ LANGUAGES = [
     Bash5(),
     Lua(),
     CSharp(),
+    Golang(),
     Swift(),
 ]
 
