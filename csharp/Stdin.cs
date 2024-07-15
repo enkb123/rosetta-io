@@ -8,11 +8,11 @@ class Stdin
 {
     public static void Main(string[] args)
     {
-        List<string> lines = new List<string>();
         string line;
         int counter = 1;
-        while (!string.IsNullOrEmpty(line = Console.ReadLine())){
-                Console.WriteLine($"{counter++} {line.ToUpper()}");
-            }
+        while ((line = Console.ReadLine()) != null)
+        {
+            Console.WriteLine($"{counter++} {line.ToUpper()}");
+        }
     }
 }

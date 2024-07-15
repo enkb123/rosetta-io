@@ -9,12 +9,7 @@ class JsonNumbers
 {
     public static void Main(string[] args)
     {
-        int[] numbers = new int[args.Length];
-
-        for (int i = 0; i < args.Length; i++)
-        {
-            numbers[i] = args[i].Length;
-        }
+        var numbers = args.Select(arg => arg.Length).ToArray();
 
         string jsonArrayString = JsonSerializer.Serialize(numbers);
         Console.WriteLine(jsonArrayString);
