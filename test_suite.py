@@ -91,6 +91,11 @@ class Lua(Language):
     script_ext = '.lua'
 
 
+class Swift(Language):
+    name = 'swift'
+    interpreter = 'swift'
+    script_ext = '.swift'
+
 LANGUAGES = [
     Python(),
     Ruby(),
@@ -102,7 +107,8 @@ LANGUAGES = [
     Java(),
     Bash3(),
     Bash5(),
-    Lua()
+    Lua(),
+    Swift(),
 ]
 
 
