@@ -1,18 +1,25 @@
 // Script reads text from a named pipe and writes it another named pipe, capitalized
+import * as fs from 'fs';
 
-import { createReadStream, createWriteStream } from 'fs';
+const pipeIn = process.argv[2];
+const pipeOut = process.argv[3];
 
-const [pipe_in, pipe_out] = process.argv.slice(2);
+const input = fs.createReadStream(pipeIn);
+const output = fs.createWriteStream(pipeOut);
 
-const inputPipe = createReadStream(pipe_in);
-const outputPipe = createWriteStream(pipe_out);
+let remainingData = '';
 
-inputPipe.setEncoding('utf8');
+input.on('data', (chunk) => {
+  remainingData += chunk;
+  const lines = remainingData.split('\n');
 
-inputPipe.on('data', (chunk) => {
-  outputPipe.write(chunk.toUpperCase());
+  for (let i = 0; i < lines.length - 1; i++) {
+    output.write(lines[i].toUpperCase() + '\n');
+  }
+
+  remainingData = lines[lines.length - 1];
 });
 
-inputPipe.on('end', () => {
-  outputPipe.end();
+input.on('end', () => {
+  output.end(); // Close the output stream
 });

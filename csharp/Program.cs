@@ -35,6 +35,8 @@ Action<string[]> script = scriptName switch
     "decode" => Decode.Main,
     "encode" => Encode.Main,
     "streaming_stdin" => StreamingStdin.Main,
+    "streaming_pipe_in_and_out" => StreamingPipeInAndOut.Main,
+    "streaming_pipe_in" => StreamingPipeIn.Main,
     _ => _ => Console.WriteLine("Unknown command " + scriptName)
 };
 

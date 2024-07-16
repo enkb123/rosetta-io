@@ -1,22 +1,20 @@
 //Script reads text from a named pipe and writes it another named pipe, capitalized
 
-const [pipe_in, pipe_out] = Deno.args.slice(0, 2);
+import { readLines } from 'https://deno.land/std/io/mod.ts';
 
-const inputPipe = await Deno.open(pipe_in);
-const outputPipe = await Deno.open(pipe_out, { write: true, create: true });
+const pipeInPath = Deno.args[0];
+const pipeOutPath = Deno.args[1];
 
-const decoder = new TextDecoder("utf-8");
-const encoder = new TextEncoder();
+const input = await Deno.open(pipeInPath, { read: true });
+const output = await Deno.open(pipeOutPath, { write: true });
 
+const rl = readLines(input);
 
-const buf = new Uint8Array(1024); // Buffer size for reading
-
-while (true) {
-  const n = await inputPipe.read(buf);
-  if (n === null) break;
-  const chunk = decoder.decode(buf.subarray(0, n));
-  await outputPipe.write(encoder.encode(chunk.toUpperCase()));
+for await (const line of rl) {
+  const uppercaseLine = line.toUpperCase() + '\n';
+  const bytes = new TextEncoder().encode(uppercaseLine);
+  await Deno.write(output.rid, bytes);
 }
 
-  inputPipe.close();
-  outputPipe.close();
+input.close();
+output.close();

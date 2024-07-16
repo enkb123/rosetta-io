@@ -9,11 +9,7 @@ input <- file(pipe_in, "r")
 
 output <- file(pipe_out, "w")
 
-while (TRUE) {
-  line <- readLines(input, n = 1)
-  if (length(line) == 0) {
-    break
-  }
+while (length(line <- readLines(input, n = 1)) > 0) {
   writeLines(toupper(line), output)
   flush(output)
 }

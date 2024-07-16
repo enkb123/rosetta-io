@@ -2,7 +2,6 @@
 import java.io.*;
 
 public class StreamingPipeInAndOut {
-    @SuppressWarnings("resource")
     public static void main (String[] args) throws IOException{
         String pipe_in = args[0];
         String pipe_out = args[1];
@@ -17,6 +16,7 @@ public class StreamingPipeInAndOut {
             output.flush();  // Flush to ensure immediate write
         }
 
-
+        input.close();
+        output.close();
     }
 }

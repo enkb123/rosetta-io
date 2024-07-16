@@ -4,4 +4,4 @@
 pipe_in="$1"
 pipe_out="$2"
 
-cat "$pipe_in" | tr '[:lower:]' '[:upper:]' > "$pipe_out"
+tr '[:lower:]' '[:upper:]' < "$pipe_in" > "$pipe_out"

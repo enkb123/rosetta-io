@@ -9,11 +9,7 @@ pipe_in <- args[1]
 input <- file(pipe_in, "r")
 
 # Read each line from input pipe, convert to uppercase, and print to stdout
-while (TRUE) {
-  line <- readLines(input, n = 1)
-  if (length(line) == 0) {
-    break  # Exit loop when there's no more data to read
-  }
+while (length(line <- readLines(input, n = 1)) > 0) {
   cat(paste(toupper(line), "\n", sep = ""))    # Print capitalized line to stdout
 }
 
