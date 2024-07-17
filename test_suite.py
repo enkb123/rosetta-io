@@ -342,8 +342,19 @@ def test_streaming_pipe_in(script: ScriptRunner):
 def test_write_to_named_pipe(script: ScriptRunner):
     """Test that a script, given a path to a named pipe, can write to that named pipe"""
     script.add_named_pipe("output-pipe")
-    script.run("write_file", 'output-pipe "Bob Barker" &', after="cat output-pipe")
-    assert script.output == "BOB BARKER"  # note no new line char
+    script.setup("""
+    """)
+    script.run(
+        "write_file",
+        'output-pipe "Bob Barker" || echo ERROR &',
+        after="""
+            script_pid=$!
+            cat output-pipe &
+            wait $script_pid
+        """,
+        interactive=True,
+    )
+    assert script.stdout.readline() == "BOB BARKER"
 
 
 def test_streaming_pipe_in_and_out(script: ScriptRunner):
