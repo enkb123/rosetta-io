@@ -1,18 +1,44 @@
+import Foundation
+
 #if os(macOS) || os(iOS)
-import Darwin
+  import Darwin
 #elseif os(Linux)
-import Glibc
+  import Glibc
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-import Foundation
-
 let arguments = CommandLine.arguments
-
 let pipe_in = arguments[1]
 
-let fileHandle = FileHandle(forReadingAtPath: pipe_in)!
+public class FileLines: Sequence, IteratorProtocol {
+  private let file: UnsafeMutablePointer<FILE>
 
-for try await line in fileHandle.bytes.lines {
-    print(line.uppercased())
+  init?(path: String) {
+    guard let file = fopen(path, "r") else { return nil }
+    self.file = file
+  }
+
+  public func next() -> String? {
+    var line: UnsafeMutablePointer<CChar>? = nil
+    var linecap: Int = 0
+    defer { free(line) }
+    return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil
+  }
+
+  deinit {
+    fclose(file)
+  }
+
+  public func makeIterator() -> FileLines {
+    return self
+  }
+}
+
+// in new versions of Swift, this can be replaced with `if let lines = FileHandle(forReadingAtPath: pipe_in).bytes.lines`
+if let lines = FileLines(path: pipe_in) {
+  for line in lines {
+    print(line.uppercased(), terminator: "")
+  }
+} else {
+  print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }
