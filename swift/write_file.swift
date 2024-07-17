@@ -11,5 +11,6 @@ guard CommandLine.arguments.count == 3 else {
 
 let outfile = CommandLine.arguments[1]
 let text = CommandLine.arguments[2]
-try text.uppercased().write(toFile: outfile, atomically: true, encoding: .utf8)
 
+// atomically must be false when writing to named pipe
+try text.uppercased().write(toFile: outfile, atomically: false, encoding: .utf8)
