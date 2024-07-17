@@ -327,7 +327,10 @@ def test_streaming_pipe_in(script: ScriptRunner):
 
     script.add_named_pipe("input-pipe")
     script.run(
-        "streaming_pipe_in", "input-pipe &", after="cat > input-pipe", interactive=True
+        "streaming_pipe_in",
+        "input-pipe || echo ERROR &",
+        after="cat > input-pipe",
+        interactive=True,
     )
 
     for i in range(1, 10):
@@ -349,7 +352,7 @@ def test_streaming_pipe_in_and_out(script: ScriptRunner):
     script.add_named_pipe("pipe-in", "pipe-out")
 
     script.run(
-        "streaming_pipe_in_and_out", "pipe-in pipe-out >&2 &",
+        "streaming_pipe_in_and_out", "pipe-in pipe-out >&2 || echo ERROR &",
         after="""
             cat pipe-out &
             cat > pipe-in
