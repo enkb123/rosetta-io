@@ -3,4 +3,4 @@
 # Script reads text from a named pipe and writes it to stdout, capitalized
 pipe_in="$1"
 
-cat "$pipe_in" | tr '[:lower:]' '[:upper:]'
+tr '[:lower:]' '[:upper:]' < "$pipe_in"

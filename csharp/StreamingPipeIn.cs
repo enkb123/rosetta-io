@@ -10,13 +10,12 @@ class StreamingPipeIn
     {
         string pipe_in = args[0];
 
-        using (StreamReader reader = new StreamReader(pipe_in))
+        using var reader = new StreamReader(args[0]);
+
+        string line;
+        while ((line = reader.ReadLine()) != null)
         {
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                Console.WriteLine(line.ToUpper());
-            }
+            Console.WriteLine(line.ToUpper());
         }
     }
 }

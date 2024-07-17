@@ -20,10 +20,7 @@ func main() {
 
 	scanner := bufio.NewScanner(fileIn)
 	for scanner.Scan() {
-		line := scanner.Text()
-		capitalizedLine := strings.ToUpper(line) + "\n"
-		_, err := fileOut.WriteString(capitalizedLine)
-		if err != nil {
+		if _, err := fileOut.WriteString(strings.ToUpper(scanner.Text()) + "\n"); err != nil {
 			fmt.Println("Error writing to output pipe:", err)
 			os.Exit(1)
 		}

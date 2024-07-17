@@ -2,18 +2,15 @@
 
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
-const pipeInPath = Deno.args[0];
-const pipeOutPath = Deno.args[1];
+const [pipeInPath, pipeOutPath] = Deno.args;
 
 const input = await Deno.open(pipeInPath, { read: true });
 const output = await Deno.open(pipeOutPath, { write: true });
 
 const rl = readLines(input);
 
-for await (const line of rl) {
-  const uppercaseLine = line.toUpperCase() + '\n';
-  const bytes = new TextEncoder().encode(uppercaseLine);
-  await Deno.write(output.rid, bytes);
+for await (const line of readLines(input)) {
+  await output.write(new TextEncoder().encode(line.toUpperCase() + '\n'));
 }
 
 input.close();

@@ -2,14 +2,10 @@
 
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
-const pipePath = Deno.args[0];
-
-
+const [pipePath] = Deno.args;
 const file = await Deno.open(pipePath, { read: true });
 
-const rl = readLines(file);
-
-for await (const line of rl) {
+for await (const line of readLines(file)) {
   console.log(line.toUpperCase());
 }
 

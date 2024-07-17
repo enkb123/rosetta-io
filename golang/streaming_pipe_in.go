@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-
 	pipeIn := os.Args[1]
 
 	file, _ := os.Open(pipeIn)
