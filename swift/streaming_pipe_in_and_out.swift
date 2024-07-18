@@ -1,27 +1,49 @@
 //Script reads text from a named pipe and writes it another named pipe, capitalized
+
 import Foundation
 
-    let arguments = CommandLine.arguments
+#if os(macOS) || os(iOS)
+  import Darwin
+#elseif os(Linux)
+  import Glibc
+#endif
+setvbuf(stdout, nil, _IONBF, 0)
 
-    let pipe_in = arguments[1]
-    let pipe_out = arguments[2]
+let arguments = CommandLine.arguments
+let pipe_in = arguments[1]
 
-    let inputStream = InputStream(fileAtPath: pipe_in)
-    inputStream?.open()
+let pipe_out = arguments[2]
+let fileDescriptor = open(pipe_out, O_WRONLY)
 
-    let outputStream = OutputStream(toFileAtPath: pipe_out, append: false)
-    outputStream?.open()
+public class FileLines: Sequence, IteratorProtocol {
+  private let file: UnsafeMutablePointer<FILE>
 
-    let bufferSize = 1024
-    let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+  init?(path: String) {
+    guard let file = fopen(path, "r") else { return nil }
+    self.file = file
+  }
 
-    while inputStream!.hasBytesAvailable {
-        let bytesRead = inputStream!.read(buffer, maxLength: bufferSize)
-        let inputString = String(bytesNoCopy: buffer, length: bytesRead, encoding: .utf8, freeWhenDone: false)
-        if let uppercaseString = inputString?.uppercased() {
-            outputStream!.write(uppercaseString, maxLength: uppercaseString.utf8.count)
-        }
-    }
+  public func next() -> String? {
+    var line: UnsafeMutablePointer<CChar>? = nil
+    var linecap: Int = 0
+    defer { free(line) }
+    return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil
+  }
 
-    inputStream?.close()
-    outputStream?.close()
+  deinit {
+    fclose(file)
+  }
+
+  public func makeIterator() -> FileLines {
+    return self
+  }
+}
+
+// in new versions of Swift, this can be replaced with `if let lines = FileHandle(forReadingAtPath: pipe_in).bytes.lines`
+if let lines = FileLines(path: pipe_in) {
+  for line in lines {
+    write(fileDescriptor, line.uppercased(), line.uppercased().utf8.count)
+  }
+} else {
+  print("Error reading from pipe: Could not open file at path \(pipe_in)")
+}
