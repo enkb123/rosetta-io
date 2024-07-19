@@ -118,6 +118,11 @@ class Swift(Language):
     interpreter = 'swift'
     script_ext = '.swift'
 
+class Raku(Language):
+    name = 'raku'
+    interpreter = 'raku'
+    script_ext = '.raku'
+
 
 LANGUAGES = [
     Python(),
@@ -134,6 +139,7 @@ LANGUAGES = [
     CSharp(),
     Golang(),
     Swift(),
+    Raku(),
 ]
 
 
