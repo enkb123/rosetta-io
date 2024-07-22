@@ -101,6 +101,13 @@ class Language(ABC):
 
 
 @dataclass
+class SetupPair:
+    """Prepare and cleanup commands for a script"""
+    prepare: str | None
+    cleanup: str | None
+
+
+@dataclass
 class ScriptRunner(ABC):
     """Class that handles script execution"""
 
@@ -108,12 +115,65 @@ class ScriptRunner(ABC):
 
     files: dict[str, str] = field(default_factory=dict)
 
+    setup_pairs: list[SetupPair] = field(default_factory=list)
+
     output: str = None
     stdin: IO[str] = None
     stdout: IO[str] = None
     stderr: IO[str] = None
 
-    def build_command(self, script_name, rest_of_script) -> list[str]:
+    def setup(self, prepare: str = None, cleanup: str = None):
+        """Adds a setup step to the script runner"""
+        self.setup_pairs.append(
+            SetupPair(
+                prepare and dedent(prepare),
+                cleanup and dedent(cleanup),
+            )
+        )
+
+    @property
+    def file_setup_pairs(self) -> list[SetupPair]:
+        """Returns a list of SetupPairs to create and clean up the files in self.files"""
+        return [
+            SetupPair(
+                f"> {file_name} printf %s {shlex.quote(file_contents)}",
+                f"rm {file_name}",
+            )
+            for file_name, file_contents in self.files.items()
+        ]
+
+    @property
+    def all_setup_pairs(self) -> list[SetupPair]:
+        """Returns a list of all the setup pairs, including the file setup pairs"""
+        return self.setup_pairs + self.file_setup_pairs
+
+    @property
+    def prepare_commands(self) -> list[str]:
+        """Returns a list of the all the prepare commands"""
+        return [pair.prepare for pair in self.all_setup_pairs if pair.prepare]
+
+    @property
+    def cleanup_commands(self) -> list[str]:
+        """Returns a list of the all the cleanup commands"""
+        return [pair.cleanup for pair in self.all_setup_pairs if pair.cleanup]
+
+    def add_named_pipe(self, *pipe_names: list[str]):
+        """Adds a named pipe to the list of files to create and clean up"""
+
+        quoted_pipe_names = " ".join(map(shlex.quote, pipe_names))
+
+        self.setup(f"""
+            rm -f {quoted_pipe_names}
+            mkfifo {quoted_pipe_names}
+            cleanup_named_pipes() {{
+                rm -f {quoted_pipe_names}
+            }}
+            trap cleanup_named_pipes EXIT
+        """)
+
+    def build_command(
+        self, script_name: str, rest_of_script: str | None, after_script: str | None
+    ) -> list[str]:
         """
         Constructs the shell command to execute the script with the given arguments.
 
@@ -124,19 +184,26 @@ class ScriptRunner(ABC):
         Returns:
             list: The constructed shell command as a list of strings.
         """
-        commands_to_create_files = [
-            f">{file_name} printf %s {shlex.quote(file_contents)}"
-            for file_name, file_contents in self.files.items()
-        ]
+
         command_to_run_script = (
             f"{self.language.command(script_name)} {rest_of_script}".strip()
         )
 
-        if len(commands_to_create_files) == 0:
+        if len(self.all_setup_pairs) == 0 and after_script is None:
             command = command_to_run_script
         else:
+            after_commands = [dedent(after_script)] if after_script else []
+
             command = (
-                "\n\n".join(["", *commands_to_create_files, command_to_run_script])
+                "\n\n".join(
+                    [
+                        "",
+                        *self.prepare_commands,
+                        command_to_run_script,
+                        *after_commands,
+                        *self.cleanup_commands,
+                    ]
+                )
                 + "\n"
             )
 
@@ -178,7 +245,7 @@ class ScriptRunner(ABC):
         self.stdin = running_process.stdin
         return running_process
 
-    def run(self, script_name, rest_of_script="", interactive=False):
+    def run(self, script_name: str, rest_of_script="", *, after=None, interactive=False):
         """
         Execute the given script.
 
@@ -196,7 +263,7 @@ class ScriptRunner(ABC):
                 f" for language {repr(self.language.name)}"
             )
 
-        command = self.build_command(script_name, rest_of_script)
+        command = self.build_command(script_name, rest_of_script, after)
 
         print_command("run in docker", " ".join(map(shlex.quote, command)))
 
