@@ -123,6 +123,11 @@ class Raku(Language):
     interpreter = 'raku'
     script_ext = '.raku'
 
+class Rust(Language):
+    name = 'rust'
+    interpreter = 'cargo run'
+    script_ext = '.rs'
+
 
 LANGUAGES = [
     Python(),
@@ -140,6 +145,7 @@ LANGUAGES = [
     Golang(),
     Swift(),
     Raku(),
+    Rust(),
 ]
 
 
