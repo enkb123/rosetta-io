@@ -1,27 +1,19 @@
-// Script reads string args and transforms into python dict
+//cargo-deps: json="0.12.4"
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+// Script reads string args and transforms into dict
 
-import java.util.HashMap;
-import java.util.Map;
+use std::env;
+use json::JsonValue;
 
-public class JsonStdoutObject {
-    public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonStdoutObject <string1> <string2> ...");
-            System.exit(1);
-        }
+extern crate json;
+fn main() {
+    let args: Vec<String> = env::args().collect();
 
-        ObjectMapper objectMapper = new ObjectMapper();
+    let mut json_object = JsonValue::new_object();
 
-        ObjectNode jsonObject = objectMapper.createObjectNode();
-
-        Map<String, Integer> stringLengthDict = new HashMap<>();
-        for (String string : args) {
-            jsonObject.put(string, string.length());
-        }
-        String jsonString = objectMapper.writeValueAsString(jsonObject);
-        System.out.println(jsonString);
+    for arg in &args[1..] {
+        json_object[arg] = JsonValue::Number((arg.len() as i64).into());
     }
+
+    println!("{}", json_object.dump());
 }

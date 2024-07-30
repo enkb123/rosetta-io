@@ -1,22 +1,29 @@
 // Script reads text from a named pipe and writes it another named pipe, capitalized
-import java.io.*;
+use std::env;
+use std::fs::File;
+use std::io::{self, BufRead, BufWriter, Write};
 
-public class StreamingPipeInAndOut {
-    public static void main (String[] args) throws IOException{
-        String pipe_in = args[0];
-        String pipe_out = args[1];
+fn main() -> io::Result<()> {
+    let args: Vec<String> = env::args().collect();
 
-        BufferedReader input = new BufferedReader(new FileReader(pipe_in));
-        BufferedWriter output = new BufferedWriter(new FileWriter(pipe_out));
+    let pipe_in = &args[1];
+    let pipe_out = &args[2];
 
-        String line;
-        while ((line = input.readLine()) != null) {
-            output.write(line.toUpperCase());
-            output.newLine();  // Ensure newline after each line
-            output.flush();  // Flush to ensure immediate write
+    let input_file = File::open(pipe_in)?;
+    let output_file = File::create(pipe_out)?;
+
+    let reader = io::BufReader::new(input_file);
+    let mut writer = BufWriter::new(output_file);
+
+    for line in reader.lines() {
+        match line {
+            Ok(line) => {
+                let _ = writeln!(writer, "{}", line.to_uppercase());
+                let _ = writer.flush();
+            }
+            Err(_) => todo!(),
         }
-
-        input.close();
-        output.close();
     }
+
+    Ok(())
 }

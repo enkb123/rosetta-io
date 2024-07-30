@@ -5,20 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "JsonStdoutObject",
+            "request": "launch",
+            "mainClass": "JsonStdoutObject",
+            "projectName": "rosetta-io_648b1aad"
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": true
         },
         {
             "name": "Python: Tests in current file",
-            "purpose": ["debug-test"],
+            "purpose": [
+                "debug-test"
+            ],
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "args": ["--color=yes"],
+            "args": [
+                "--color=yes"
+            ],
             "console": "integratedTerminal",
             "justMyCode": false
         }

@@ -1,20 +1,17 @@
+//cargo-deps: json="0.12.4"
+
 //Script takes control characters and outputs valid JSON
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+use json::JsonValue;
+use std::env;
 
-public class JsonControlChars {
-    public static void main(String[] args) throws JsonProcessingException{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonControlChars <test_string>");
-            System.exit(1);
-        }
+extern crate json;
 
-        String testString = args[0];
-        ObjectMapper objectMapper = new ObjectMapper();
+fn main() {
+    let args: Vec<String> = env::args().collect();
 
-        // Convert testString to JSON string
-        String jsonString = objectMapper.writeValueAsString(testString);
-        System.out.println(jsonString);
+    let test_string = &args[1];
 
-    }
+    let json_value = JsonValue::String(test_string.clone());
+
+    println!("{}", json_value.dump());
 }

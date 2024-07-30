@@ -1,8 +1,11 @@
 // Script to read an argument and print as lowercase in stdout
 
-class Main{
-    public static void main(String[] args){
-        String user = args[0];
-        System.out.println(user.toLowerCase());
-    }
+use std::env;
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    let user = &args[1];
+
+    println!("{}", user.to_lowercase());
 }

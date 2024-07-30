@@ -125,7 +125,7 @@ class Raku(Language):
 
 class Rust(Language):
     name = 'rust'
-    interpreter = 'cargo run'
+    interpreter = 'cargo script'
     script_ext = '.rs'
 
 
@@ -273,6 +273,7 @@ def test_json_numbers(script: ScriptRunner):
     # Write to stdout the length of each string argument
     script.run("json_numbers", "a bc def ghij")
     assert json.loads(script.output) == [1, 2, 3, 4]
+
 
 
 def test_json_stdout_object(script: ScriptRunner):

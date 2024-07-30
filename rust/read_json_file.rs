@@ -1,17 +1,46 @@
-// Read JSON file, transform and print to stdout
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
+//cargo-deps: json="0.12.4"
 
-public class ReadJsonFile {
-    public static void main(String[] args) throws IOException{
-        if (args.length < 1) {
-            System.out.println("Usage: java ReadJsonFile <json_file>");
-            return;
+use std::fs::File;
+use std::io::Read;
+use std::env;
+use json::{parse, JsonValue};
+
+
+extern crate json;
+
+#[derive(Debug)]
+struct Person {
+    age: u32,
+    first_name: String,
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let args: Vec<String> = env::args().collect();
+
+    let filename = &args[1];
+
+    let mut file = File::open(filename)?;
+    let mut json_string = String::new();
+    file.read_to_string(&mut json_string)?;
+
+    let parsed_json = parse(&json_string)?;
+
+    let mut people = Vec::new();
+    if let JsonValue::Array(items) = parsed_json {
+        for item in items {
+            let age = item["age"].as_u32().unwrap_or(0);
+            let first_name = item["first_name"].as_str().unwrap_or("");
+            let person = Person {
+                age,
+                first_name: first_name.to_string(),
+            };
+            people.push(person);
         }
-        JsonNode people = new ObjectMapper().readTree(new File(args[0]));
-        people.forEach(person -> System.out.println("Hello, " + person.get("age").asLong() + " year old " + person.get("first_name").asText()));
-
     }
+
+    for person in people {
+        println!("Hello, {} year old {}", person.age, person.first_name);
+    }
+
+    Ok(())
 }

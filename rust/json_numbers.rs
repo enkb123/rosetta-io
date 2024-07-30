@@ -1,23 +1,19 @@
+//cargo-deps: json="0.12.4"
+
 // Script takes string arguments and outputs a JSON array of numbers representing
 // the length of each argument
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+use std::env;
+use json::JsonValue;
 
-public class JsonNumbers {
-    public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonNumbers <string1> <string2> ...");
-            System.exit(1);
-        }
-        ObjectMapper objectMapper = new ObjectMapper();
-        ArrayNode arrayNode = objectMapper.createArrayNode();
+extern crate json;
+fn main() {
+    let args: Vec<String> = env::args().collect();
 
-        for (String str : args) {
-            arrayNode.add(str.length());
-        }
+    let mut json_array = JsonValue::new_array();
 
-        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);
-        System.out.println(jsonArrayString);
+    for arg in args.iter().skip(1) {
+        json_array.push(arg.len()).expect("Failed to push length to JSON array");
     }
-}
 
+    println!("{}", json_array.pretty(2));
+}

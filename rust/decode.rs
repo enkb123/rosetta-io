@@ -1,17 +1,22 @@
+//cargo-deps: base64="0.13"
+
 //Script to decode Base64 text
-import java.util.Base64;
+extern crate base64;
+use std::env;
+use base64::decode;
 
-public class Decode {
-    public static void main(String[] args) {
-        if (args.length == 0) {
-            System.out.println("Usage: java Decode.java <encoded_string>");
-            System.exit(1);
+fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    let encoded_string = &args[1];
+
+    match decode(encoded_string) {
+        Ok(decoded_bytes) => {
+            match String::from_utf8(decoded_bytes) {
+                Ok(decoded_string) => println!("{}", decoded_string),
+                Err(_) => todo!(),
+            }
         }
-
-        String encodedString = args[0];
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-        String decodedString = new String(decodedBytes);
-
-        System.out.println(decodedString);
+        Err(_) => todo!(),
     }
 }

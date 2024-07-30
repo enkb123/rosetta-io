@@ -1,26 +1,34 @@
+//cargo-deps: json="0.12.4"
+
 // Script outputs arrays of objects as JSON
+use std::env;
+use json::JsonValue;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+extern crate json;
+fn main() {
+    let args: Vec<String> = env::args().skip(1).collect();
 
-public class JsonObjectArray {
-    public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonObjectArray <string1> <string2> ...");
-            System.exit(1);
-        }
+    let input_string = args.join(" ");
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        ArrayNode arrayNode = objectMapper.createArrayNode();
+    let substrings: Vec<&str> = input_string.split_whitespace().collect();
 
-        for (String string : args) {
-            ObjectNode obj = objectMapper.createObjectNode();
-            obj.put(string.toUpperCase(), string.length());
-            arrayNode.add(obj);
-        }
+    let mut json_array = JsonValue::new_array();
 
-        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);
-        System.out.println(jsonArrayString);
+    for substring in substrings {
+        let key = substring.to_uppercase();
+        let value = substring.len();
+
+        let mut json_object = JsonValue::new_object();
+        json_object[key] = JsonValue::Number(value.into());
+
+        json_array.push(json_object).unwrap();
     }
+
+    let json_string = json_array.dump();
+
+    let formatted_json_string = json_string
+        .replace(",", ", ")
+        .replace(":", ": ");
+
+    println!("{}", formatted_json_string);
 }

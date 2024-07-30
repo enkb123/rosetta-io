@@ -1,8 +1,9 @@
 FROM rust:1.79
 
-#Conditional Compilation
 
 WORKDIR /app
-COPY ./Cargo.toml .
+RUN cargo install cargo-script
+COPY Cargo.toml Cargo.lock ./
+COPY ./streaming_pipe_in_and_out.rs .
+RUN cargo build
 COPY ./ /app
-RUN cargo build --release

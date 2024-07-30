@@ -1,18 +1,26 @@
 //Script reads text from a named pipe and writes it to stdout, capitalized
 
-import java.io.*;
+use std::env;
+use std::fs::File;
+use std::io::{self, BufRead, BufReader};
 
-public class StreamingPipeIn {
-    public static void main(String[] args) throws IOException {
-        String pipe_in = args[0];
+fn main() -> io::Result<()> {
+    let args: Vec<String> = env::args().collect();
 
-        BufferedReader input = new BufferedReader(new FileReader(pipe_in));
+    let pipe_in = &args[1];
 
-        String line;
-        while ((line = input.readLine()) != null) {
-            System.out.println(line.toUpperCase());
+    let file = File::open(pipe_in)?;
+    let reader = BufReader::new(file);
+
+    for line in reader.lines() {
+        match line {
+            Ok(line) => {
+                println!("{}", line.to_uppercase());
+            }
+            Err(_) => todo!(),
+
         }
-
-        input.close();
     }
+
+    Ok(())
 }

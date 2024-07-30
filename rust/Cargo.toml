@@ -4,15 +4,75 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+json = "0.12.4"
+base64 = "0.13"
+indexmap = "1.9.1"
 
-# [[bin]]
-# name = "null_char"
-# path = "null_char.rs"
 
-# [[bin]]
-# name = "stdin"
-# path = "stdin.rs"
+#[[bin]]
+#name = "null_char"
+#path = "null_char.rs"
 
-[[bin]]
-name = "read_file"
-path = "read_file.rs"
+#[[bin]]
+#name = "stdin"
+#path = "stdin.rs"
+
+#[[bin]]
+#name = "read_file"
+#path = "read_file.rs"
+
+#[[bin]]
+#name = "arguments"
+#path = "arguments.rs"
+
+#[[bin]]
+#name = "read_json_file"
+#path = "read_json_file.rs"
+
+#[[bin]]
+#name = "write_file"
+#path = "write_file.rs"
+
+#[[bin]]
+#name = "json_array"
+#path = "json_array.rs"
+
+#[[bin]]
+#name = "json_numbers"
+#path = "json_numbers.rs"
+
+#[[bin]]
+#name = "json_stdout_object"
+#path = "json_stdout_object.rs"
+
+#[[bin]]
+#name = "json_object_with_array_values"
+#path = "json_object_with_array_values.rs"
+
+#[[bin]]
+#name = "json_object_array"
+#path = "json_object_array.rs"
+
+#[[bin]]
+#name = "json_control_chars"
+#path = "json_control_chars.rs"
+
+#[[bin]]
+#name = "encode"
+#path = "encode.rs"
+
+#[[bin]]
+#name = "decode"
+#path = "decode.rs"
+
+#[[bin]]
+#name = "streaming_stdin"
+#path = "streaming_stdin.rs"
+
+#[[bin]]
+#name = "streaming_pipe_in_and_out"
+#path = "streaming_pipe_in_and_out.rs"
+
+#[[bin]]
+#name = "streaming_pipe_in"
+#path = "streaming_pipe_in.rs"

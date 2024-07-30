@@ -1,30 +1,27 @@
+//cargo-deps: json="0.12.4"
+
 // Script takes arguments and transforms them into dict with arrays as dict values
 // and returns as JSON
+use std::env;
+use json::JsonValue;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+extern crate json;
+fn main() {
+    let args: Vec<String> = env::args().skip(1).collect();
 
-import java.util.Arrays;
+    let input_string = args.join(" ");
+    let substrings: Vec<&str> = input_string.split_whitespace().collect();
 
-public class JsonObjectWithArrayValues {
-    public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonFromStrings <string1> <string2> ...");
-            System.exit(1);
-        }
+    let mut json_object = JsonValue::new_object();
 
-        ObjectMapper objectMapper = new ObjectMapper();
+    for substring in substrings {
+        let letters_array: Vec<JsonValue> = substring.to_uppercase()
+            .chars()
+            .map(|c| JsonValue::String(c.to_string()))
+            .collect();
 
-        ObjectNode jsonObject = objectMapper.createObjectNode();
-
-        Arrays.stream(args).forEach(str -> {
-            ArrayNode lettersArray = objectMapper.createArrayNode();
-            str.toUpperCase().chars().forEach(c -> lettersArray.add(String.valueOf((char) c)));
-            jsonObject.set(str, lettersArray);
-        });
-
-        String jsonString = objectMapper.writeValueAsString(jsonObject);
-        System.out.println(jsonString);
+        json_object[substring] = JsonValue::Array(letters_array);
     }
+
+    println!("{}", json_object.pretty(2));
 }

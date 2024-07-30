@@ -1,28 +1,18 @@
 use std::env;
 use std::fs::File;
-use std::io::{self, BufRead};
+use std::io::{BufReader, BufRead};
 
-fn main() -> Result<(), io::Error> {
-    // Read command-line arguments
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = env::args().collect();
+    let file_path = &args[1];
 
-    // Check if filename argument is provided
-    if args.len() < 2 {
-        eprintln!("Usage: {} <filename>", args[0]);
-        std::process::exit(1);
-    }
-    let filename = &args[1];
+    let file = File::open(file_path)?;
+    let reader = BufReader::new(file);
 
-    // Open the file
-    let file = File::open(filename)?;
-    let reader = io::BufReader::new(file);
-
-    // Initialize line number counter
     let mut line_number = 1;
 
-    // Read and print each line capitalized and numbered
-    for line in reader.lines() {
-        let line = line?;
+    for line_result in reader.lines() {
+        let line = line_result?;
         println!("{} {}", line_number, line.to_uppercase());
         line_number += 1;
     }
