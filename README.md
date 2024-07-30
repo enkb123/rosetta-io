@@ -17,6 +17,17 @@ The name `rosetta-io` is an hommage to [Rosetta Code](https://rosettacode.org/wi
 | Javascript, Node.js | ✅          |
 | PHP                 | ✅          |
 | R                   | ✅          |
+| Deno                | ✅          |
+| Perl                | ✅          |
+| Java                | ✅          |
+| Bash 3              | ✅          |
+| Bash 5              | ✅          |
+| Lua                 | ✅          |
+| C#                  | ✅          |
+| Golang              | ✅          |
+| Swift               | ✅          |
+| Raku                | ✅          |
+| Rust                | ✅          |
 | …                   |             |
 
 ## Running the test suite
