@@ -3,20 +3,11 @@
 use std::io::{self, BufRead, Write};
 
 fn main() {
-    let stdout = io::stdout();
-    let mut stdout_handle = stdout.lock();
-
-    let stdin = io::stdin();
-    let stdin_handle = stdin.lock();
+    let mut stdout_handle = io::stdout().lock();
+    let stdin_handle = io::stdin().lock();
 
     for line in stdin_handle.lines() {
-        match line {
-            Ok(line) => {
-                writeln!(stdout_handle, "{}", line.to_uppercase()).unwrap();
-                stdout_handle.flush().unwrap();
-            }
-            Err(_) => todo!(),
-
-        }
+        writeln!(stdout_handle, "{}", line.unwrap().to_uppercase()).unwrap();
+        stdout_handle.flush().unwrap();
     }
 }

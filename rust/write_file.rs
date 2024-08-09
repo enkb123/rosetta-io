@@ -10,5 +10,5 @@ fn main() {
     let out_file = &args[1];
     let text = &args[2].to_uppercase();
 
-    let _ = write(out_file, text);
+    write(out_file, text).unwrap();
 }

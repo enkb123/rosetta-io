@@ -6,7 +6,6 @@ edition = "2021"
 [dependencies]
 json = "0.12.4"
 base64 = "0.13"
-indexmap = "1.9.1"
 
 [[bin]]
 name = "main"

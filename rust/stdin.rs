@@ -3,10 +3,8 @@ use std::io::{self, BufRead};
 
 fn main() {
     let stdin = io::stdin();
-    let lines = stdin.lock().lines().map(|line| line.unwrap());
-
-    for (counter, line) in lines.enumerate() {
-        let line = line.trim();
+    for (counter, line) in stdin.lock().lines().enumerate() {
+        let line = line.unwrap().trim().to_string();
         if line.is_empty() {
             break;
         }

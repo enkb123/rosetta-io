@@ -12,8 +12,8 @@ fn main() {
     let mut json_object = JsonValue::new_object();
 
     for arg in &args[1..] {
-        json_object[arg] = JsonValue::Number((arg.len() as i64).into());
+        json_object[arg] = arg.len().into();
     }
 
-    println!("{}", json_object.dump());
+    println!("{}", json_object);
 }

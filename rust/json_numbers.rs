@@ -2,18 +2,18 @@
 
 // Script takes string arguments and outputs a JSON array of numbers representing
 // the length of each argument
-use std::env;
 use json::JsonValue;
+use std::env;
 
 extern crate json;
+
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args = env::args().skip(1);
 
-    let mut json_array = JsonValue::new_array();
+    let json_array: JsonValue = args
+        .map(|arg| arg.len().into())
+        .collect::<Vec<JsonValue>>()
+        .into();
 
-    for arg in args.iter().skip(1) {
-        json_array.push(arg.len()).expect("Failed to push length to JSON array");
-    }
-
-    println!("{}", json_array.pretty(2));
+    println!("{}", json_array.to_string());
 }

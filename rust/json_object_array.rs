@@ -3,32 +3,24 @@
 // Script outputs arrays of objects as JSON
 use std::env;
 use json::JsonValue;
+use json::object;
 
 extern crate json;
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
 
-    let input_string = args.join(" ");
-
-    let substrings: Vec<&str> = input_string.split_whitespace().collect();
-
     let mut json_array = JsonValue::new_array();
 
-    for substring in substrings {
-        let key = substring.to_uppercase();
-        let value = substring.len();
+    for arg in args {
+        let key = arg.to_uppercase();
+        let value = arg.len();
 
-        let mut json_object = JsonValue::new_object();
-        json_object[key] = JsonValue::Number(value.into());
+        let json_object = object! {
+            key.as_str() => value as usize
+          };
 
         json_array.push(json_object).unwrap();
     }
 
-    let json_string = json_array.dump();
-
-    let formatted_json_string = json_string
-        .replace(",", ", ")
-        .replace(":", ": ");
-
-    println!("{}", formatted_json_string);
+    println!("{}", json_array);
 }

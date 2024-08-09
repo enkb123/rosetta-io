@@ -3,27 +3,18 @@ use std::env;
 use std::fs::File;
 use std::io::{self, BufRead, BufWriter, Write};
 
-fn main() -> io::Result<()> {
+fn main(){
     let args: Vec<String> = env::args().collect();
 
     let pipe_in = &args[1];
     let pipe_out = &args[2];
 
-    let input_file = File::open(pipe_in)?;
-    let output_file = File::create(pipe_out)?;
-
-    let reader = io::BufReader::new(input_file);
-    let mut writer = BufWriter::new(output_file);
+    let reader = io::BufReader::new(File::open(pipe_in).unwrap());
+    let mut writer = BufWriter::new(File::create(pipe_out).unwrap());
 
     for line in reader.lines() {
-        match line {
-            Ok(line) => {
-                let _ = writeln!(writer, "{}", line.to_uppercase());
-                let _ = writer.flush();
-            }
-            Err(_) => todo!(),
-        }
+        writeln!(writer, "{}", line.unwrap().to_uppercase()).unwrap();
+        writer.flush().unwrap();
     }
 
-    Ok(())
 }

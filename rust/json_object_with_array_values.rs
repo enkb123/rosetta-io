@@ -9,19 +9,17 @@ extern crate json;
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
 
-    let input_string = args.join(" ");
-    let substrings: Vec<&str> = input_string.split_whitespace().collect();
-
     let mut json_object = JsonValue::new_object();
 
-    for substring in substrings {
-        let letters_array: Vec<JsonValue> = substring.to_uppercase()
-            .chars()
-            .map(|c| JsonValue::String(c.to_string()))
-            .collect();
+    for arg in args {
+        let letters_array: JsonValue = arg.to_uppercase()
+        .chars()
+        .map(|c| c.to_string().into())
+        .collect::<Vec<JsonValue>>()
+        .into();
 
-        json_object[substring] = JsonValue::Array(letters_array);
+    json_object[arg] = letters_array;
     }
 
-    println!("{}", json_object.pretty(2));
+    println!("{}", json_object);
 }

@@ -4,10 +4,7 @@ use std::env;
 extern crate base64;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let test_string = &args[1];
-
+    let test_string = env::args().nth(1).expect("Expected one argument");
     let encoded_string = base64::encode(test_string);
 
     println!("{}", encoded_string);
