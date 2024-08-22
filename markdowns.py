@@ -10,7 +10,7 @@ TEST_CASES = [
     "json_array",
     "json_control_chars",
     "json_numbers",
-    "json_object_array"
+    "json_object_array",
     "json_object_with_array_values",
     "json_stdout_object",
     "null_char",
@@ -34,10 +34,7 @@ for case in TEST_CASES:
     for language in LANGUAGES:
         opening_path = language.name + "/" + language.script_file_name(case)
         if(os.path.isfile(opening_path)): #checks that this case is implemented for the specific language
-            if hasattr(language, "human_name"):
-                f.write("## " + language.human_name + "\n\n")
-            else:
-                f.write("## " + language.name + "\n\n")
+            f.write("## " + language.human_name + "\n\n")
 
             f.write("`" + language.script_file_name(case)+ "`\n\n")
 
