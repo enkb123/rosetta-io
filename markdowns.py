@@ -1,5 +1,6 @@
 #Creates markdown files for each test an lists the languages
 
+import shutil
 from test_suite import LANGUAGES
 import os
 from pathlib import Path
@@ -24,11 +25,14 @@ TEST_CASES = [
     "write_file"
 ]
 
-mypath = Path('./docs/')
-os.makedirs(mypath, exist_ok=True)
+
+
+docs_path = Path('./docs/')
+shutil.rmtree(docs_path, ignore_errors=True) #deletes the directory so it can be remade
+os.makedirs(docs_path)
 
 for test_case in TEST_CASES:
-    with open(mypath / f"{test_case}.md", "w") as f:
+    with open(docs_path / f"{test_case}.md", "w") as f:
         f.write ("# " + test_case + "\n\n")
 
         for language in LANGUAGES:
