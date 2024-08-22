@@ -22,51 +22,66 @@ from test_helpers import (
 
 
 class Python(Language):
-    name = "python"
-    interpreter = "python"
-    script_ext = ".py"
+    name = 'python'
+    human_name = 'Python'
+    interpreter = 'python'
+    script_ext = '.py'
+    syntax_highlighting = 'python'
 
 
 class Ruby(Language):
-    name = "ruby"
-    interpreter = "ruby"
-    script_ext = ".rb"
-
+    name = 'ruby'
+    human_name = 'Ruby'
+    interpreter = 'ruby'
+    script_ext = '.rb'
+    syntax_highlighting = 'ruby'
 
 class Nodejs(Language):
-    name = "nodejs"
-    interpreter = "node"
-    script_ext = ".mjs"
+    name = 'nodejs'
+    human_name = 'Nodejs'
+    interpreter = 'node'
+    script_ext = '.mjs'
+    syntax_highlighting = 'javascript'
 
 
 class Deno(Nodejs):
-    name = "deno"
-    interpreter = "deno run --allow-read --allow-write"
-    script_ext = ".mjs"
+    name = 'deno'
+    human_name = 'Deno'
+    interpreter = 'deno run --allow-read --allow-write'
+    script_ext = '.mjs'
+    syntax_highlighting = 'javascript'
 
 
 class Perl(Language):
-    name = "perl"
-    interpreter = "perl"
-    script_ext = ".pl"
+    name = 'perl'
+    human_name = 'Perl'
+    interpreter = 'perl'
+    script_ext = '.pl'
+    syntax_highlighting = 'perl'
 
 
 class Php(Language):
-    name = "php"
-    interpreter = "php"
-    script_ext = ".php"
+    name = 'php'
+    human_name = 'Php'
+    interpreter = 'php'
+    script_ext = '.php'
+    syntax_highlighting = 'php'
 
 
 class R(Language):
-    name = "r"
-    interpreter = "Rscript"
-    script_ext = ".R"
+    name = 'r'
+    human_name = 'R'
+    interpreter = 'Rscript'
+    script_ext = '.R'
+    syntax_highlighting = 'r'
 
 
 class Java(Language):
     name = 'java'
+    human_name = 'Java'
     interpreter = 'java'
     script_ext = '.java'
+    syntax_highlighting = 'java'
 
     def script_file_name(self, script_name):
         return f'{camel_case(script_name)}{self.script_ext}'
@@ -74,18 +89,23 @@ class Java(Language):
 
 class Bash3(Language):
     name = 'bash3'
+    human_name = 'Bash 3'
     interpreter = 'bash'
     script_ext = '.sh'
+    syntax_highlighting = 'bash'
 
 
 class Bash5(Bash3):
     name = 'bash5'
+    human_name = 'Bash 5'
 
 
 class Lua(Language):
     name = 'lua'
+    human_name = 'Lua'
     interpreter = 'lua'
     script_ext = '.lua'
+    syntax_highlighting = 'lua'
 
 
 class CSharp(Language):
@@ -99,6 +119,8 @@ class CSharp(Language):
     """
     name = 'csharp'
     script_ext = '.cs'
+    human_name = 'C#'
+    syntax_highlighting = 'csharp'
 
     def command(self, test_name):
         return f"dotnet run {test_name}"
@@ -109,19 +131,26 @@ class CSharp(Language):
 
 class Golang(Language):
     name = 'golang'
+    human_name  = 'Go'
     interpreter = 'go run'
     script_ext = '.go'
+    syntax_highlighting = 'go'
 
 
 class Swift(Language):
     name = 'swift'
+    human_name = 'Swift'
     interpreter = 'swift'
     script_ext = '.swift'
+    syntax_highlighting = 'swift'
+
 
 class Raku(Language):
     name = 'raku'
+    human_name = 'Raku'
     interpreter = 'raku'
     script_ext = '.raku'
+    syntax_highlighting = 'raku'
 
 
 LANGUAGES = [

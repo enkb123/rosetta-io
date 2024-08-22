@@ -68,6 +68,12 @@ class Language(ABC):
     script_ext: str
     """The file extension of the script, e.g. ".py" or ".R" or ".java"."""
 
+    human_name: str
+    """The human name of the language e.g. "C#" vs "Csharp"."""
+
+    syntax_highlighting: str
+    """Syntax_highlighting for langueage, e.g. "javascript" for deno."""
+
     def script_file_name(self, script_name):
         """Given a name of a script, return the file name of the script to run.
 
