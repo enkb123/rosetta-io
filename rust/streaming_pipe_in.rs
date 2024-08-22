@@ -2,12 +2,10 @@
 
 use std::env;
 use std::fs::File;
-use std::io::{self, BufRead, BufReader};
+use std::io::{BufRead, BufReader};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let pipe_in = &args[1];
+    let pipe_in = env::args().nth(1).unwrap();
 
     let file = File::open(pipe_in).unwrap();
     let reader = BufReader::new(file);
@@ -15,5 +13,4 @@ fn main() {
     for line in reader.lines() {
         println!("{}", line.unwrap().to_uppercase());
     }
-
 }

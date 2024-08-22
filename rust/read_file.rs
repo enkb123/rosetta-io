@@ -1,18 +1,15 @@
 use std::env;
 use std::fs::File;
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let file_path = &args[1];
+    let file_path = env::args().nth(1).unwrap();
 
     let file = File::open(file_path).unwrap();
     let reader = BufReader::new(file);
 
-    for (mut line_number, line_result) in reader.lines().enumerate() {
-        line_number += 1;
+    for (line_number, line_result) in reader.lines().enumerate() {
         let line = line_result.unwrap();
-        println!("{} {}", line_number, line.to_uppercase());
+        println!("{} {}", line_number + 1, line.to_uppercase());
     }
-
 }

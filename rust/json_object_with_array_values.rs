@@ -2,8 +2,8 @@
 
 // Script takes arguments and transforms them into dict with arrays as dict values
 // and returns as JSON
-use std::env;
 use json::JsonValue;
+use std::env;
 
 extern crate json;
 fn main() {
@@ -12,13 +12,14 @@ fn main() {
     let mut json_object = JsonValue::new_object();
 
     for arg in args {
-        let letters_array: JsonValue = arg.to_uppercase()
-        .chars()
-        .map(|c| c.to_string().into())
-        .collect::<Vec<JsonValue>>()
-        .into();
+        let letters_array: JsonValue = arg
+            .to_uppercase()
+            .chars()
+            .map(|c| c.to_string().into())
+            .collect::<Vec<JsonValue>>()
+            .into();
 
-    json_object[arg] = letters_array;
+        json_object[arg] = letters_array;
     }
 
     println!("{}", json_object);
