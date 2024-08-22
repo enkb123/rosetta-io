@@ -15,5 +15,5 @@ fn main() {
         json_object[arg] = arg.len().into();
     }
 
-    println!("{}", json_object);
+    println!("{}", json_object.dump());
 }

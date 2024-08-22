@@ -22,5 +22,5 @@ fn main() {
         json_object[arg] = letters_array;
     }
 
-    println!("{}", json_object);
+    println!("{}", json_object.dump());
 }

@@ -7,5 +7,5 @@ extern crate json;
 fn main() {
     let substrings: Vec<String> = env::args().skip(1).collect();
     let json_array: JsonValue = substrings.into();
-    println!("{}", json_array);
+    println!("{}", json_array.dump());
 }

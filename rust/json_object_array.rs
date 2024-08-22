@@ -18,5 +18,5 @@ fn main() {
             .collect(),
     );
 
-    println!("{}", json_array);
+    println!("{}", json_array.dump());
 }

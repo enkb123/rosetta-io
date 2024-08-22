@@ -15,5 +15,5 @@ fn main() {
         .collect::<Vec<JsonValue>>()
         .into();
 
-    println!("{}", json_array.to_string());
+    println!("{}", json_array.dump());
 }
