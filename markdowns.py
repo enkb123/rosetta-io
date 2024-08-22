@@ -2,6 +2,7 @@
 
 from test_suite import LANGUAGES
 import os
+from pathlib import Path
 
 TEST_CASES = [
     "arguments",
@@ -23,19 +24,19 @@ TEST_CASES = [
     "write_file"
 ]
 
-mypath = './docs/'
+mypath = Path('./docs/')
 os.makedirs(mypath, exist_ok=True)
 
-for case in TEST_CASES:
-    with open(mypath + case + '.md', "a") as f:
-        f.write ("# " + case + "\n\n")
+for test_case in TEST_CASES:
+    with open(mypath / f"{test_case}.md", "w") as f:
+        f.write ("# " + test_case + "\n\n")
 
         for language in LANGUAGES:
-            opening_path = language.name + "/" + language.script_file_name(case)
-            if language.script_local_file_exists(case): #checks that this case is implemented for the specific language
+            opening_path = Path(language.name) / language.script_file_name(test_case)
+            if language.script_local_file_exists(test_case): #checks that this case is implemented for the specific language
                 f.write("## " + language.human_name + "\n\n")
 
-                f.write("`" + language.script_file_name(case)+ "`\n\n")
+                f.write("`" + language.script_file_name(test_case)+ "`\n\n")
 
                 e = open(opening_path, "r")
                 code = e.read()
