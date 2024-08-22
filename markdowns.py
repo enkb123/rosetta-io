@@ -24,20 +24,20 @@ TEST_CASES = [
 ]
 
 mypath = './docs/'
-if not os.path.isdir(mypath):
-    os.makedirs(mypath)
+os.makedirs(mypath, exist_ok=True)
 
 for case in TEST_CASES:
-    f = open(mypath + case + '.md', "a")
-    f.write ("# " + case + "\n\n")
+    with open(mypath + case + '.md', "a") as f:
+        f.write ("# " + case + "\n\n")
 
-    for language in LANGUAGES:
-        opening_path = language.name + "/" + language.script_file_name(case)
-        if(os.path.isfile(opening_path)): #checks that this case is implemented for the specific language
-            f.write("## " + language.human_name + "\n\n")
+        for language in LANGUAGES:
+            opening_path = language.name + "/" + language.script_file_name(case)
+            if language.script_local_file_exists(case): #checks that this case is implemented for the specific language
+                f.write("## " + language.human_name + "\n\n")
 
-            f.write("`" + language.script_file_name(case)+ "`\n\n")
+                f.write("`" + language.script_file_name(case)+ "`\n\n")
 
-            e = open(opening_path, "r")
-            text = language.syntax_highlighting +  "\n" + e.read() + "\n"
-            f.write("```" + text + "```\n\n")
+                e = open(opening_path, "r")
+                code = e.read()
+                text = language.syntax_highlighting +  "\n" + code + "\n"
+                f.write("```" + text + "```\n\n")

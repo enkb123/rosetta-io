@@ -105,6 +105,9 @@ class Language(ABC):
         """
         return os.path.join(self.directory, self.script_file_name(script_name))
 
+    def script_local_file_exists(self, script_name):
+        return os.path.isfile(self.script_local_file(script_name))
+
 
 @dataclass
 class SetupPair:
@@ -263,7 +266,8 @@ class ScriptRunner(ABC):
 
             interactive (bool): Whether to run the script interactively or wait until it completes.
         """
-        if not os.path.isfile(self.language.script_local_file(script_name)):
+        #if not os.path.isfile(self.language.script_local_file(script_name)):
+        if not self.language.script_local_file_exists(script_name):
             pytest.skip(
                 f"Script {repr(script_name)} is not implemented"
                 f" for language {repr(self.language.name)}"
