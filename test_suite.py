@@ -199,7 +199,7 @@ def script(docker_builder: DockerBuilder, language: Language, is_local: bool):
     if is_local:
         runner = LocalRunner(language)
     else:
-        runner = DockerRunner(language, docker_builder.docker_image(language.name))
+        runner = DockerRunner(language, docker_builder.docker_image(language))
 
     yield runner
 

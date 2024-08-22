@@ -80,7 +80,7 @@ class Language(ABC):
         e.g. for Python, if `script_name` is "null_char", then this returns "null_char.py"
         Subclasses can override this, e.g. for Java, we'd want this to return "NullChar.java"
         """
-        return f"{script_name}{self.script_ext}"
+        return Path(f"{script_name}{self.script_ext}")
 
     def command(self, test_name):
         """Return the shell command that executes the script
@@ -96,17 +96,14 @@ class Language(ABC):
 
         e.g. for Python, this is 'python'
         """
-        return self.name
+        return Path(self.name)
 
     def script_local_file(self, script_name):
         """Given a name of a script, return the local file path of the script to run.
 
         E.g. for Python, if `script_name` is "null_char", then this returns "python/null_char.py"
         """
-        return os.path.join(self.directory, self.script_file_name(script_name))
-
-    def script_local_file_exists(self, script_name):
-        return os.path.isfile(self.script_local_file(script_name))
+        return self.directory / self.script_file_name(script_name)
 
 
 @dataclass
@@ -266,8 +263,7 @@ class ScriptRunner(ABC):
 
             interactive (bool): Whether to run the script interactively or wait until it completes.
         """
-        #if not os.path.isfile(self.language.script_local_file(script_name)):
-        if not self.language.script_local_file_exists(script_name):
+        if not self.language.script_local_file(script_name).exists():
             pytest.skip(
                 f"Script {repr(script_name)} is not implemented"
                 f" for language {repr(self.language.name)}"
@@ -343,13 +339,13 @@ class DockerBuilder:
         self.docker_client = docker.from_env()
         self.early_bird_locker = early_bird_locker
 
-    def build(self, build_context: str, image_name: str):
+    def build(self, build_context: Path, image_name: str):
         """Builds the docker image, given the build context and image name"""
         print(f"Building docker image {image_name} from {build_context}\n")
         logs = []
         try:
             _, logs = self.docker_client.images.build(
-                path=build_context,
+                path=str(build_context),
                 tag=image_name,
                 rm=True,
             )
@@ -361,7 +357,7 @@ class DockerBuilder:
             self.print_build_logs(e.build_log)
             raise e
 
-    def docker_image(self, language_name: str) -> str:
+    def docker_image(self, language: Language) -> str:
         """Fixture that returns the image name to use for running the script under test, but first
         ensures that the image is built if it is not already.
 
@@ -369,8 +365,8 @@ class DockerBuilder:
         built once per test suite run, even for multiple workers.
         """
 
-        image_name = f"{language_name}-rosetta"
-        build_context = f"./{language_name}/"
+        image_name = f"{language.name}-rosetta"
+        build_context = language.directory
 
         # Only allow the first pytest-xdist worker that gets here to build the
         # image. Otherwise, they will all try to build it and clobber each other.

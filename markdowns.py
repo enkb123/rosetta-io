@@ -32,11 +32,11 @@ for test_case in TEST_CASES:
         f.write ("# " + test_case + "\n\n")
 
         for language in LANGUAGES:
-            opening_path = Path(language.name) / language.script_file_name(test_case)
-            if language.script_local_file_exists(test_case): #checks that this case is implemented for the specific language
+            opening_path = language.script_local_file(test_case)
+            if language.script_local_file(test_case).exists(): #checks that this case is implemented for the specific language
                 f.write("## " + language.human_name + "\n\n")
 
-                f.write("`" + language.script_file_name(test_case)+ "`\n\n")
+                f.write(f"`{language.script_file_name(test_case)}`\n\n")
 
                 e = open(opening_path, "r")
                 code = e.read()
