@@ -11,7 +11,10 @@ docs_path = Path('./docs/')
 shutil.rmtree(docs_path, ignore_errors=True) #deletes the directory so it can be remade
 os.makedirs(docs_path)
 
-for pytest_case in collect_pytest_cases():
+pytest_cases_by_script_name = { script_name_of_test_case(pytest_case): pytest_case
+                                for pytest_case in collect_pytest_cases() }
+
+for script_name, pytest_case in pytest_cases_by_script_name.items():
     script_name = script_name_of_test_case(pytest_case)
     doc_str = dedent(pytest_case.function.__doc__)
 
