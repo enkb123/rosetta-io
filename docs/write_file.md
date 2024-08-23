@@ -1,5 +1,7 @@
 # write_file
 
+Test that a script, given a path to a named pipe, can write to that named pipe
+
 ## Python
 
 `write_file.py`
@@ -16,7 +18,6 @@ text = sys.argv[2]
 
 with open(outfile, 'w') as f:
     f.write(text.upper())
-
 ```
 
 ## Ruby
@@ -56,9 +57,6 @@ const [filename, ...textParts] = Deno.args;
 const text = textParts.join(' ');
 
 await Deno.writeTextFile(filename, text.toUpperCase());
-
-
-
 ```
 
 ## Php
@@ -78,7 +76,6 @@ $uppercaseText = strtoupper($text);
 
 // Write the uppercase text to the specified file
 file_put_contents($outfile, $uppercaseText);
-
 ```
 
 ## R
@@ -95,7 +92,6 @@ text <- args[2]
 
 # Open the output file and write text in uppercase
 writeLines(toupper(text), outfile, sep="")
-
 ```
 
 ## Perl
@@ -113,7 +109,6 @@ my ($outfile, $text) = @ARGV;
 open my $fh, '>', $outfile or die "Cannot open $ARGV[0]: $!";
 
 print $fh uc $text;
-
 ```
 
 ## Java
@@ -141,7 +136,6 @@ public class WriteFile {
         Files.write(Paths.get(outFile), text.getBytes(StandardCharsets.UTF_8));
     }
 }
-
 ```
 
 ## Bash 3
@@ -163,7 +157,6 @@ if [ -z "$outfile" ] || [ -z "$text" ]; then
 fi
 
 echo -n "$text" | tr -d '\n' | tr '[:lower:]' '[:upper:]' > "$outfile"
-
 ```
 
 ## Bash 5
@@ -185,7 +178,6 @@ if [ -z "$outfile" ] || [ -z "$text" ]; then
 fi
 
 echo -n "${text^^}" > "$outfile"
-
 ```
 
 ## Lua
@@ -204,7 +196,6 @@ local fh = io.open(outfile, "w")
 fh:write(text:upper())
 
 fh:close()
-
 ```
 
 ## C#
@@ -228,7 +219,6 @@ class WriteFile
         File.WriteAllText(outFile, text);
     }
 }
-
 ```
 
 ## Go
@@ -254,7 +244,6 @@ func main() {
 	_ = os.WriteFile(outFile, []byte(text), 0644)
 
 }
-
 ```
 
 ## Swift
@@ -278,7 +267,6 @@ let text = CommandLine.arguments[2]
 
 // atomically must be false when writing to named pipe
 try text.uppercased().write(toFile: outfile, atomically: false, encoding: .utf8)
-
 ```
 
 ## Raku
@@ -296,6 +284,5 @@ my $fh = open $outfile, :w;
 
 $fh.print: $text.uc;
 $fh.close;
-
 ```
 

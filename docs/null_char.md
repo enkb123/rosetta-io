@@ -1,12 +1,13 @@
 # null_char
 
+Test outputing a null character
+
 ## Python
 
 `null_char.py`
 
 ```python
 print("Hello World \0")
-
 ```
 
 ## Ruby
@@ -15,7 +16,6 @@ print("Hello World \0")
 
 ```ruby
 puts "Hello World \0"
-
 ```
 
 ## Nodejs
@@ -47,7 +47,6 @@ console.log("Hello World \0")
 // echo function does not add a new line so adding it here manually
 // for consistency with other langauges
 echo "Hello World \0\n";
-
 ```
 
 ## R
@@ -72,7 +71,6 @@ system("cat temp_binary_file.bin", intern = FALSE)
 
 # Delete the temp file
 unlink("temp_binary_file.bin")
-
 ```
 
 ## Perl
@@ -84,7 +82,6 @@ use strict;
 use warnings;
 
 print "Hello World \0\n"
-
 ```
 
 ## Java
@@ -97,7 +94,6 @@ public class NullChar {
     System.out.println("Hello World \0");
   }
 }
-
 ```
 
 ## Bash 3
@@ -106,8 +102,6 @@ public class NullChar {
 
 ```bash
 printf "Hello World \0\n"
-
-
 ```
 
 ## Bash 5
@@ -116,8 +110,6 @@ printf "Hello World \0\n"
 
 ```bash
 printf "Hello World \0\n"
-
-
 ```
 
 ## Lua
@@ -126,8 +118,6 @@ printf "Hello World \0\n"
 
 ```lua
 print("Hello World \0")
-
-
 ```
 
 ## C#
@@ -140,7 +130,6 @@ class NullChar {
     Console.WriteLine("Hello World \0");
   }
 }
-
 ```
 
 ## Go
@@ -155,7 +144,6 @@ import "fmt"
 func main() {
 	fmt.Println("Hello World \x00")
 }
-
 ```
 
 ## Swift
@@ -164,8 +152,6 @@ func main() {
 
 ```swift
 print("Hello World \0")
-
-
 ```
 
 ## Raku
@@ -176,6 +162,5 @@ print("Hello World \0")
 use v6;
 
 print "Hello World \0\n";
-
 ```
 

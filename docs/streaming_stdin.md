@@ -1,5 +1,8 @@
 # streaming_stdin
 
+Test that streaming stdin can be read line by line and can write to stdout
+without waiting for all lines to arrive
+
 ## Python
 
 `streaming_stdin.py`
@@ -58,7 +61,6 @@ const rl = readLines(Deno.stdin);
 for await (const line of rl) {
   console.log(line.toUpperCase());
 }
-
 ```
 
 ## Php
@@ -72,7 +74,6 @@ for await (const line of rl) {
 while ($user_input = fgets(STDIN)) {
     echo strtoupper($user_input);
 }
-
 ```
 
 ## R
@@ -85,7 +86,6 @@ while ($user_input = fgets(STDIN)) {
 while(length(line <- readLines("stdin", n = 1L)) > 0) {
   cat(toupper(line), fill = TRUE)
 }
-
 ```
 
 ## Perl
@@ -99,7 +99,6 @@ use warnings;
 $| = 1;  # Turn off output buffering
 
 print uc while <STDIN>;
-
 ```
 
 ## Java
@@ -122,7 +121,6 @@ public class StreamingStdin {
         scanner.close();
     }
 }
-
 ```
 
 ## Bash 3
@@ -135,7 +133,6 @@ public class StreamingStdin {
 # Script reads streaming input text and then prints capitalized string to stdout
 
 tr '[:lower:]' '[:upper:]'
-
 ```
 
 ## Bash 5
@@ -148,7 +145,6 @@ tr '[:lower:]' '[:upper:]'
 # Script reads streaming input text and then prints capitalized string to stdout
 
 tr '[:lower:]' '[:upper:]'
-
 ```
 
 ## Lua
@@ -162,7 +158,6 @@ tr '[:lower:]' '[:upper:]'
 for line in io.lines() do
     print(line:upper())
 end
-
 ```
 
 ## C#
@@ -183,7 +178,6 @@ class StreamingStdin{
         }
     }
 }
-
 ```
 
 ## Go
@@ -209,7 +203,6 @@ func main() {
 		fmt.Println(strings.ToUpper(scanner.Text()))
 	}
 }
-
 ```
 
 ## Swift
@@ -232,12 +225,6 @@ import Foundation
 while let line = readLine(), !line.isEmpty {
     print(line.uppercased())
 }
-
-
-
-
-
-
 ```
 
 ## Raku
@@ -252,6 +239,5 @@ for lines() {
     say .uc;
     $*OUT.flush;
 }
-
 ```
 

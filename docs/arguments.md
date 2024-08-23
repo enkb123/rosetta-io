@@ -1,5 +1,7 @@
 # arguments
 
+Test that args can be passed to script
+
 ## Python
 
 `arguments.py`
@@ -9,7 +11,6 @@
 import sys
 
 print(sys.argv[1].lower())
-
 ```
 
 ## Ruby
@@ -20,7 +21,6 @@ print(sys.argv[1].lower())
 # Script to read an argument and print as lowercase in stdout
 
 puts ARGV[0].downcase
-
 ```
 
 ## Nodejs
@@ -41,7 +41,6 @@ console.log(process.argv[2].toLowerCase())
 // Script to read command line argument and write to stdout
 
 console.log(Deno.args[0].toLowerCase())
-
 ```
 
 ## Php
@@ -52,7 +51,6 @@ console.log(Deno.args[0].toLowerCase())
 <?php
 // Read command line arguments and write to stdout
 echo strtolower($argv[1]) . "\n";
-
 ```
 
 ## R
@@ -63,7 +61,6 @@ echo strtolower($argv[1]) . "\n";
 #' Script reads command line arguments and writes to stdout in lowercase
 
 cat(tolower(commandArgs(trailingOnly = TRUE)), fill = TRUE)
-
 ```
 
 ## Perl
@@ -75,7 +72,6 @@ cat(tolower(commandArgs(trailingOnly = TRUE)), fill = TRUE)
 use strict;
 use warnings;
 print lc($ARGV[0]), "\n";
-
 ```
 
 ## Java
@@ -91,7 +87,6 @@ class Main{
         System.out.println(user.toLowerCase());
     }
 }
-
 ```
 
 ## Bash 3
@@ -110,7 +105,6 @@ if [ -z "$file_path" ]; then
 fi
 
 tr '[:upper:]' '[:lower:]' <<< "$file_path"
-
 ```
 
 ## Bash 5
@@ -129,7 +123,6 @@ if [ -z "$file_path" ]; then
 fi
 
 echo "${file_path,,}"
-
 ```
 
 ## Lua
@@ -140,7 +133,6 @@ echo "${file_path,,}"
 --Script to read an argument and print as lowercase in stdout
 
 print(arg[1]:lower())
-
 ```
 
 ## C#
@@ -155,7 +147,6 @@ class Arguments
     Console.WriteLine(args[0].ToLower());
   }
 }
-
 ```
 
 ## Go
@@ -176,7 +167,6 @@ import (
 func main() {
 	fmt.Println(strings.ToLower(os.Args[1]))
 }
-
 ```
 
 ## Swift
@@ -196,7 +186,6 @@ guard args.count > 1 else {
 }
 
 print(args[1].lowercased())
-
 ```
 
 ## Raku
@@ -209,6 +198,5 @@ use v6;
 
 my $arg = @*ARGS[0];
 say $arg.lc;
-
 ```
 

@@ -1,5 +1,7 @@
 # decode
 
+Test that base64 can be decoded as a string
+
 ## Python
 
 `decode.py`
@@ -59,7 +61,6 @@ const encodedString = Deno.args[0] // Get the Base64-encoded string from command
 const decodedString = atob(encodedString)
 
 console.log(decodedString)
-
 ```
 
 ## Php
@@ -76,7 +77,6 @@ $encodedString = $argv[1];
 $decodedString = base64_decode($encodedString);
 
 echo $decodedString . "\n";
-
 ```
 
 ## R
@@ -95,7 +95,6 @@ args <- commandArgs(trailingOnly = TRUE)
 decoded_string <- rawToChar(base64decode(args))
 
 cat(decoded_string, fill = TRUE)
-
 ```
 
 ## Perl
@@ -108,7 +107,6 @@ use warnings;
 use MIME::Base64;
 
 print decode_base64($ARGV[0]), "\n";
-
 ```
 
 ## Java
@@ -133,7 +131,6 @@ public class Decode {
         System.out.println(decodedString);
     }
 }
-
 ```
 
 ## Bash 3
@@ -154,7 +151,6 @@ fi
 
 base64 -d <<< "$encoded_string"
 echo  # tests expect a newline at the end
-
 ```
 
 ## Bash 5
@@ -175,7 +171,6 @@ fi
 
 base64 -d <<< "$encoded_string"
 echo  # tests expect a newline at the end
-
 ```
 
 ## Lua
@@ -187,8 +182,6 @@ echo  # tests expect a newline at the end
 
 local base64 = require("base64")
 print(base64.decode(arg[1]))
-
-
 ```
 
 ## C#
@@ -209,8 +202,6 @@ class Decode{
         Console.WriteLine(decodedString);
     }
 }
-
-
 ```
 
 ## Go
@@ -232,7 +223,6 @@ func main() {
 
 	fmt.Println(string(decodedBytes))
 }
-
 ```
 
 ## Swift
@@ -252,8 +242,6 @@ guard CommandLine.arguments.count > 1 else {
 let encodedString = CommandLine.arguments[1]
 let data = Data(base64Encoded: encodedString)
 print(String(data: data!, encoding: .utf8)!)
-
-
 ```
 
 ## Raku
@@ -265,6 +253,5 @@ use v6;
 use MIME::Base64;
 
 say MIME::Base64.decode-str(@*ARGS[0]);
-
 ```
 

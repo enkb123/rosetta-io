@@ -2,7 +2,6 @@
 
 import json
 import os
-from re import sub
 
 
 import pytest
@@ -17,7 +16,9 @@ from test_helpers import (
     ScriptRunner,
     dedent,
     camel_case,
-    once_per_test_suite_run,  # noqa: F401
+    markers,
+    once_per_test_suite_run, # noqa: F401
+    script_name_of_test_case,
 )
 
 
@@ -183,8 +184,7 @@ def is_local(request: pytest.FixtureRequest):
     """Fixture that returns True if the test is marked as local, False otherwise"""
     if os.environ.get("TEST_LOCAL", "false").lower() in ("true", "1", "yes"):
         return True
-    markers_names = map(lambda m: m.name, request.node.iter_markers())
-    return "local" in markers_names
+    return "local" in markers(request.node)
 
 
 @pytest.fixture
@@ -194,12 +194,15 @@ def docker_builder(once_per_test_suite_run: EarlyBirdLocker) -> DockerBuilder:  
 
 
 @pytest.fixture
-def script(docker_builder: DockerBuilder, language: Language, is_local: bool):
+def script(request: pytest.FixtureRequest, docker_builder: DockerBuilder, language: Language, is_local: bool):
     """Fixture that provides a ScriptRunner instance"""
+
+    script_name = script_name_of_test_case(request.node)
+
     if is_local:
-        runner = LocalRunner(language)
+        runner = LocalRunner(script_name, language)
     else:
-        runner = DockerRunner(language, docker_builder.docker_image(language))
+        runner = DockerRunner(script_name, language, docker_builder.docker_image(language))
 
     yield runner
 
@@ -208,7 +211,7 @@ def script(docker_builder: DockerBuilder, language: Language, is_local: bool):
 
 def test_null_char(script: ScriptRunner):
     """Test outputing a null character"""
-    script.run("null_char")
+    script.run()
     assert script.output == "Hello World \x00\n"
 
 
@@ -224,7 +227,7 @@ def test_stdin(script: ScriptRunner):
         how are you
     """)
 
-    script.run("stdin", "< hihello-stdin.txt")
+    script.run("< hihello-stdin.txt")
 
     assert script.output == dedent("""
         1 HI
@@ -243,7 +246,7 @@ def test_read_file(script: ScriptRunner):
         how are you
     """)
 
-    script.run("read_file", "hihello-read-file.txt")
+    script.run("hihello-read-file.txt")
 
     assert script.output == dedent("""
         1 HI
@@ -254,7 +257,7 @@ def test_read_file(script: ScriptRunner):
 
 def test_arguments(script: ScriptRunner):
     """Test that args can be passed to script"""
-    script.run("arguments", '"Argument Number 1"')
+    script.run('"Argument Number 1"')
     assert script.output == "argument number 1\n"
 
 
@@ -269,7 +272,7 @@ def test_read_json_file(script: ScriptRunner):
         ]
     )
 
-    script.run("read_json_file", "people-read-json-file.json")
+    script.run("people-read-json-file.json")
 
     assert script.output == dedent("""
         Hello, 84 year old Bob
@@ -280,21 +283,21 @@ def test_read_json_file(script: ScriptRunner):
 
 def test_write_file(script: ScriptRunner):
     """Test that a script, given a path to a file, can write to that file"""
-    script.run("write_file", 'output.txt "Bob Barker"', after="cat output.txt")
+    script.run('output.txt "Bob Barker"', after="cat output.txt")
     assert script.output == "BOB BARKER"  # note no new line char
 
 
 def test_json_array(script: ScriptRunner):
     """Test that JSON array is parsed correctly"""
     # Write string args as an array of strings to stdout
-    script.run("json_array", "a b c d")
+    script.run("a b c d")
     assert json.loads(script.output) == ["a", "b", "c", "d"]
 
 
 def test_json_numbers(script: ScriptRunner):
     """Test that JSON list of numbers is parsed correctly"""
     # Write to stdout the length of each string argument
-    script.run("json_numbers", "a bc def ghij")
+    script.run("a bc def ghij")
     assert json.loads(script.output) == [1, 2, 3, 4]
 
 
@@ -302,7 +305,7 @@ def test_json_stdout_object(script: ScriptRunner):
     """Test that JSON object is parsed correctly"""
     # Write a dict of {arg:length} to stdout
     # include empty string arg to check handling of empty JSON array
-    script.run("json_stdout_object", "a bc def ghij")
+    script.run("a bc def ghij")
     assert json.loads(script.output) == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
 
 
@@ -310,7 +313,7 @@ def test_json_object_with_array_values(script: ScriptRunner):
     """Test that a JSON object with arrays as values is parsed correctly"""
     # Write a dict of {arg:[list of arg chars]} to stdout
     # include empty string arg to check handling of empty JSON array
-    script.run("json_object_with_array_values", "a bc def")
+    script.run("a bc def")
     assert json.loads(script.output) == {
         "a": ["A"],
         "bc": ["B", "C"],
@@ -321,36 +324,38 @@ def test_json_object_with_array_values(script: ScriptRunner):
 def test_json_object_array(script: ScriptRunner):
     """Test that a JSON array made of objects is parsed correctly"""
     # Write an array of [{arg: length of chars},...] to stdout
-    script.run("json_object_array", "a bc def")
+    script.run("a bc def")
     assert json.loads(script.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
 
 
 def test_json_control_chars(script: ScriptRunner):
     """Test that control characters and emojis are output in valid JSON
-    note: control character "\0" is used by C (and Python) to end strings and so we can't
+    note: control character "\\0" is used by C (and Python) to end strings and so we can't
     pass it as argument in the test string because it will raise "invalid argument" error
     """
     # Pass a single string to the script that includes a control character and emoji
-    script.run("json_control_chars", '"hello \n \1 world 🥸"')
+    script.run('"hello \n \1 world 🥸"')
     assert json.loads(script.output) == "hello \n \u0001 world 🥸"
 
 
+@pytest.mark.script(script_name="decode")
 def test_base64_decode(script: ScriptRunner):
     """Test that base64 can be decoded as a string"""
-    script.run("decode", "SGVsbG8sIHdvcmxkIQ==")
+    script.run("SGVsbG8sIHdvcmxkIQ==")
     assert script.output == "Hello, world!\n"
 
 
+@pytest.mark.script(script_name="encode")
 def test_base64_encode(script: ScriptRunner):
     """Test that a string can be encoded as base64"""
-    script.run("encode", '"Hello, world!"')
+    script.run('"Hello, world!"')
     assert script.output == "SGVsbG8sIHdvcmxkIQ==\n"
 
 
 def test_streaming_stdin(script: ScriptRunner):
     """Test that streaming stdin can be read line by line and can write to stdout
     without waiting for all lines to arrive"""
-    script.run("streaming_stdin", interactive=True)
+    script.run(interactive=True)
     # Give input to the script via stdin, one line at a time, and check result
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")
@@ -362,7 +367,6 @@ def test_streaming_pipe_in(script: ScriptRunner):
 
     script.add_named_pipe("input-pipe")
     script.run(
-        "streaming_pipe_in",
         "input-pipe || echo ERROR &",
         after="cat > input-pipe",
         interactive=True,
@@ -374,13 +378,12 @@ def test_streaming_pipe_in(script: ScriptRunner):
 
 
 # Re-uses the language's write_file script, which works for writing to named pipes
+@pytest.mark.script(script_name="write_file")
 def test_write_to_named_pipe(script: ScriptRunner):
     """Test that a script, given a path to a named pipe, can write to that named pipe"""
     script.add_named_pipe("output-pipe")
-    script.setup("""
-    """)
+
     script.run(
-        "write_file",
         'output-pipe "Bob Barker" || echo ERROR &',
         after="""
             script_pid=$!
@@ -397,8 +400,7 @@ def test_streaming_pipe_in_and_out(script: ScriptRunner):
     without waiting for all lines to arrive"""
     script.add_named_pipe("pipe-in", "pipe-out")
 
-    script.run(
-        "streaming_pipe_in_and_out", "pipe-in pipe-out >&2 || echo ERROR &",
+    script.run("pipe-in pipe-out >&2 || echo ERROR &",
         after="""
             cat pipe-out &
             cat > pipe-in

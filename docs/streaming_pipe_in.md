@@ -1,5 +1,7 @@
 # streaming_pipe_in
 
+Test that named pipe can be read line by line and can write to stdout
+
 ## Python
 
 `streaming_pipe_in.py`
@@ -13,7 +15,6 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
     for line in input_pipe:
         sys.stdout.write(line.upper())
         sys.stdout.flush()
-
 ```
 
 ## Ruby
@@ -32,7 +33,6 @@ File.open(pipe_in, 'r') do |pipe|
     puts line.upcase
   end
 end
-
 ```
 
 ## Nodejs
@@ -53,7 +53,6 @@ const rl = readline.createInterface({ input })
 for await (const line of rl) {
   console.log(line.toUpperCase())
 }
-
 ```
 
 ## Deno
@@ -73,7 +72,6 @@ for await (const line of readLines(file)) {
 }
 
 file.close();
-
 ```
 
 ## Php
@@ -93,7 +91,6 @@ while (($line = fgets($input_pipe)) !== false) {
 
 fclose($input_pipe);
 ?>
-
 ```
 
 ## R
@@ -118,7 +115,6 @@ while (length(line <- readLines(input, n = 1)) > 0) {
 
 # Close input pipe
 close(input)
-
 ```
 
 ## Perl
@@ -142,7 +138,6 @@ while (my $line = <$input>) {
 }
 
 close $input;
-
 ```
 
 ## Java
@@ -168,7 +163,6 @@ public class StreamingPipeIn {
         input.close();
     }
 }
-
 ```
 
 ## Bash 3
@@ -182,7 +176,6 @@ public class StreamingPipeIn {
 pipe_in="$1"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
-
 ```
 
 ## Bash 5
@@ -196,7 +189,6 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in"
 pipe_in="$1"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
-
 ```
 
 ## Lua
@@ -215,7 +207,6 @@ for line in input_file:lines() do
 end
 
 input_file:close()
-
 ```
 
 ## C#
@@ -244,7 +235,6 @@ class StreamingPipeIn
         }
     }
 }
-
 ```
 
 ## Go
@@ -275,7 +265,6 @@ func main() {
 		fmt.Println(strings.ToUpper(line))
 	}
 }
-
 ```
 
 ## Swift
@@ -327,7 +316,6 @@ if let lines = FileLines(path: pipe_in) {
 } else {
   print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }
-
 ```
 
 ## Raku
@@ -347,6 +335,5 @@ for $input.lines() {
 }
 
 $input.close;
-
 ```
 

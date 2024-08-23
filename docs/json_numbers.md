@@ -1,5 +1,7 @@
 # json_numbers
 
+Test that JSON list of numbers is parsed correctly
+
 ## Python
 
 `json_numbers.py`
@@ -17,7 +19,6 @@ string_lengths = [len(string) for string in my_strings]
 
 # Cast to JSON and print to stdout
 print(json.dumps(string_lengths))
-
 ```
 
 ## Ruby
@@ -68,7 +69,6 @@ const stringLengths = myStrings.map((string) => string.length)
 const jsonString = JSON.stringify(stringLengths)
 
 console.log(jsonString)
-
 ```
 
 ## Php
@@ -87,7 +87,6 @@ $stringLengths = array_map('strlen', $myStrings);
 
 // Encode the array as JSON and print to stdout
 echo json_encode($stringLengths) . "\n";
-
 ```
 
 ## R
@@ -107,7 +106,6 @@ string_lengths <- sapply(args, nchar)
 
 # Convert the array of string lengths to a JSON array and print to stdout
 cat(toJSON(string_lengths))
-
 ```
 
 ## Perl
@@ -122,7 +120,6 @@ use warnings;
 use JSON;
 
 print encode_json([map { length } @ARGV]);
-
 ```
 
 ## Java
@@ -152,8 +149,6 @@ public class JsonNumbers {
         System.out.println(jsonArrayString);
     }
 }
-
-
 ```
 
 ## Lua
@@ -171,7 +166,6 @@ for i = 1, #arg do
 end
 
 print(cjson.encode(lengths))
-
 ```
 
 ## C#
@@ -196,8 +190,6 @@ class JsonNumbers
         Console.WriteLine(jsonArrayString);
     }
 }
-
-
 ```
 
 ## Go
@@ -228,7 +220,6 @@ func main() {
 
 	fmt.Println(string(jsonArrayBytes))
 }
-
 ```
 
 ## Swift
@@ -250,10 +241,6 @@ let stringLengths = myStrings.map { $0.count }
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLengths)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-
-
 ```
 
 ## Raku
@@ -267,6 +254,5 @@ use v6;
 use JSON::Fast;
 
 say to-json(@*ARGS.map(*.chars));
-
 ```
 

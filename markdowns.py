@@ -1,48 +1,52 @@
-#Creates markdown files for each test an lists the languages
+# Creates markdown files for each test an lists the languages
 
-import shutil
-from test_suite import LANGUAGES
-import os
 from pathlib import Path
+import shutil
+import os
 
-TEST_CASES = [
-    "arguments",
-    "decode",
-    "encode",
-    "json_array",
-    "json_control_chars",
-    "json_numbers",
-    "json_object_array",
-    "json_object_with_array_values",
-    "json_stdout_object",
-    "null_char",
-    "read_file",
-    "read_json_file",
-    "stdin",
-    "streaming_pipe_in_and_out",
-    "streaming_pipe_in",
-    "streaming_stdin",
-    "write_file"
-]
-
-
+from test_helpers import collect_pytest_cases, dedent, format_code, script_name_of_test_case
+from test_suite import LANGUAGES
 
 docs_path = Path('./docs/')
 shutil.rmtree(docs_path, ignore_errors=True) #deletes the directory so it can be remade
 os.makedirs(docs_path)
 
-for test_case in TEST_CASES:
-    with open(docs_path / f"{test_case}.md", "w") as f:
-        f.write ("# " + test_case + "\n\n")
+for pytest_case in collect_pytest_cases():
+    script_name = script_name_of_test_case(pytest_case)
+    doc_str = dedent(pytest_case.function.__doc__)
+
+    with open(docs_path / f"{script_name}.md", "w", encoding="utf-8") as f:
+        f.write(format_code(
+            """
+            # {script_name}
+
+            {doc_str}
+
+            """,
+            script_name=script_name,
+            doc_str=doc_str
+        ))
 
         for language in LANGUAGES:
-            opening_path = language.script_local_file(test_case)
-            if language.script_local_file(test_case).exists(): #checks that this case is implemented for the specific language
-                f.write("## " + language.human_name + "\n\n")
+            script_path = language.script_path(script_name)
 
-                f.write(f"`{language.script_file_name(test_case)}`\n\n")
+            # checks that this case is implemented for the specific language
+            if script_path.exists():
+                code = script_path.read_text(encoding="utf-8").strip()
 
-                e = open(opening_path, "r")
-                code = e.read()
-                text = language.syntax_highlighting +  "\n" + code + "\n"
-                f.write("```" + text + "```\n\n")
+                f.write(format_code(
+                    """
+                    ## {language_name}
+
+                    `{file_name}`
+
+                    ```{syntax}
+                    {code}
+                    ```
+
+                    """,
+                    language_name=language.human_name,
+                    file_name=script_path.name,
+                    syntax=language.syntax_highlighting,
+                    code=code
+                ))

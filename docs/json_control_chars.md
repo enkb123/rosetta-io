@@ -1,5 +1,10 @@
 # json_control_chars
 
+Test that control characters and emojis are output in valid JSON
+note: control character "\0" is used by C (and Python) to end strings and so we can't
+pass it as argument in the test string because it will raise "invalid argument" error
+
+
 ## Python
 
 `json_control_chars.py`
@@ -13,7 +18,6 @@ test_string = sys.argv[1]
 
 # Cast to JSON and print to stdout
 print(json.dumps(test_string))
-
 ```
 
 ## Ruby
@@ -28,7 +32,6 @@ test_string = ARGV[0]
 
 # Cast to JSON and print to stdout
 puts JSON.generate(test_string)
-
 ```
 
 ## Nodejs
@@ -53,7 +56,6 @@ console.log(JSON.stringify(myString))
 const myString = Deno.args[0]
 
 console.log(JSON.stringify(myString))
-
 ```
 
 ## Php
@@ -69,7 +71,6 @@ $testString = $argv[1];
 
 // Cast the string to JSON and print to stdout
 echo json_encode($testString) . "\n";
-
 ```
 
 ## R
@@ -85,7 +86,6 @@ library(jsonlite)
 args <- commandArgs(trailingOnly = TRUE)
 
 cat(toJSON(args, auto_unbox = TRUE))
-
 ```
 
 ## Perl
@@ -99,7 +99,6 @@ use warnings;
 use JSON;
 
 print JSON->new->encode($ARGV[0]);
-
 ```
 
 ## Java
@@ -127,7 +126,6 @@ public class JsonControlChars {
 
     }
 }
-
 ```
 
 ## Lua
@@ -140,7 +138,6 @@ public class JsonControlChars {
 local cjson = require("dkjson")
 
 print(cjson.encode(arg[1]))
-
 ```
 
 ## C#
@@ -160,8 +157,6 @@ class JsonControlChars{
         Console.WriteLine(jsonString);
     }
 }
-
-
 ```
 
 ## Go
@@ -185,7 +180,6 @@ func main() {
 
 	fmt.Println(string(jsonString))
 }
-
 ```
 
 ## Swift
@@ -205,9 +199,6 @@ let testString = CommandLine.arguments[1]
 
 let jsonData = try JSONEncoder().encode(testString)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-
 ```
 
 ## Raku
@@ -221,6 +212,5 @@ use v6;
 use JSON::Fast;
 
 say to-json(@*ARGS[0]);
-
 ```
 

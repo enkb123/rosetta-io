@@ -1,5 +1,7 @@
 # encode
 
+Test that a string can be encoded as base64
+
 ## Python
 
 `encode.py`
@@ -16,7 +18,6 @@ encoded_string = base64.b64encode(test_string.encode()).decode()
 
 # Print as a string, not bytes
 print(encoded_string)
-
 ```
 
 ## Ruby
@@ -63,7 +64,6 @@ const testString = Deno.args[0] // Get the Base64-encoded string from command-li
 const encodedString = btoa(testString)
 
 console.log(encodedString)
-
 ```
 
 ## Php
@@ -80,7 +80,6 @@ $stringToEncode = $argv[1];
 $encodedString = base64_encode($stringToEncode);
 
 echo $encodedString . "\n";
-
 ```
 
 ## R
@@ -99,7 +98,6 @@ args <- commandArgs(trailingOnly = TRUE)
 encoded_string <- base64encode(charToRaw(args))
 
 cat(encoded_string, fill = TRUE)
-
 ```
 
 ## Perl
@@ -112,7 +110,6 @@ use warnings;
 use MIME::Base64;
 
 print encode_base64($ARGV[0], ''), "\n";
-
 ```
 
 ## Java
@@ -140,7 +137,6 @@ public class Encode {
         System.out.println(encodedString);
     }
 }
-
 ```
 
 ## Bash 3
@@ -160,7 +156,6 @@ if [ -z "$test_string" ]; then
 fi
 
 echo -n "$test_string" | base64
-
 ```
 
 ## Bash 5
@@ -180,7 +175,6 @@ if [ -z "$test_string" ]; then
 fi
 
 echo -n "$test_string" | base64
-
 ```
 
 ## Lua
@@ -191,8 +185,6 @@ echo -n "$test_string" | base64
 -- Lua script to encode a string as Base64
 local base64 = require("base64")
 print(base64.encode(arg[1]))
-
-
 ```
 
 ## C#
@@ -211,8 +203,6 @@ class Encode{
         Console.WriteLine(encodedString);
     }
 }
-
-
 ```
 
 ## Go
@@ -233,7 +223,6 @@ import (
 func main() {
 	fmt.Println(base64.StdEncoding.EncodeToString([]byte(os.Args[1])))
 }
-
 ```
 
 ## Swift
@@ -252,7 +241,6 @@ guard CommandLine.arguments.count == 2 else {
 
 let data = CommandLine.arguments[1].data(using: .utf8)!
 print(data.base64EncodedString())
-
 ```
 
 ## Raku
@@ -264,6 +252,5 @@ use v6;
 use MIME::Base64;
 
 say MIME::Base64.encode-str(@*ARGS[0]);
-
 ```
 
