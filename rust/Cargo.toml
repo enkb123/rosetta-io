@@ -1,0 +1,12 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+json = "0.12.4"
+base64 = "0.13"
+
+[[bin]]
+name = "main"
+path = "_main.rs"
