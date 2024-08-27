@@ -7,8 +7,7 @@ use std::env;
 
 extern crate json;
 fn main() {
-    let args: Vec<String> = env::args().skip(1).collect();
-
+    let args = env::args().skip(1);
     let mut json_object = JsonValue::new_object();
 
     for arg in args {
