@@ -1,5 +1,10 @@
 # stdin
 
+Check that input is read from stdin, line by line.
+The script executed in the docker container accepts a text file as input,
+reads each line, capitalizes it, then prints it out.
+
+
 ## Python
 
 `stdin.py`
@@ -15,7 +20,6 @@ while True:
         i += 1
     except EOFError:
         break
-
 ```
 
 ## Ruby
@@ -65,7 +69,6 @@ for await (const line of rl) {
   console.log(i, line.toUpperCase());
   i += 1;
 }
-
 ```
 
 ## Php
@@ -81,7 +84,6 @@ $i = 1;
 while ($user_input = fgets(STDIN)) { // fgets returns false when nothing left to read
     echo $i++ . ' ' . strtoupper($user_input);
 }
-
 ```
 
 ## R
@@ -96,7 +98,6 @@ for (line in readLines("stdin")) {
   cat(i, toupper(line), sep = " ", fill = TRUE) # fill flag adds new line
   i <- i + 1
 }
-
 ```
 
 ## Perl
@@ -110,7 +111,6 @@ use warnings;
 
 my $i = 1;
 print $i++ . " " . uc while <STDIN>;
-
 ```
 
 ## Java
@@ -137,7 +137,6 @@ public class Stdin {
         scanner.close();
     }
 }
-
 ```
 
 ## Bash 3
@@ -154,7 +153,6 @@ i=1
 while IFS= read -r user_input; do
   echo "$((i++)) $user_input"
 done | tr '[:lower:]' '[:upper:]'
-
 ```
 
 ## Bash 5
@@ -169,7 +167,6 @@ i=1
 while IFS= read -r user_input; do
   echo "$((i++)) ${user_input^^}"
 done
-
 ```
 
 ## Lua
@@ -186,9 +183,6 @@ for user_input in io.lines() do
     print(i .. " " .. user_input:upper())
     i = i + 1
 end
-
-
-
 ```
 
 ## C#
@@ -214,7 +208,6 @@ class Stdin
         }
     }
 }
-
 ```
 
 ## Go
@@ -238,7 +231,6 @@ func main() {
 		fmt.Printf("%d %s\n", lineNumber, strings.ToUpper(scanner.Text()))
 	}
 }
-
 ```
 
 ## Swift
@@ -256,7 +248,6 @@ while let user_input = readLine() {
     print("\(i) \(user_input.uppercased())")
     i += 1
 }
-
 ```
 
 ## Raku
@@ -271,6 +262,5 @@ my $i = 1;
 for lines() {
     say $i++ ~ " " ~ .uc;
 }
-
 ```
 

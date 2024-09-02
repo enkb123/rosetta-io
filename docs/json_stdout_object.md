@@ -1,5 +1,7 @@
 # json_stdout_object
 
+Test that JSON object is parsed correctly
+
 ## Python
 
 `json_stdout_object.py`
@@ -17,7 +19,6 @@ string_length_dict = {string: len(string) for string in my_strings}
 
 # Cast to JSON and print to stdout
 print(json.dumps(string_length_dict))
-
 ```
 
 ## Ruby
@@ -73,7 +74,6 @@ for (const string of myStrings) {
 }
 
 console.log(JSON.stringify(stringLengthDict))
-
 ```
 
 ## Php
@@ -92,7 +92,6 @@ $stringLengthDict = array_combine($myStrings, array_map('strlen', $myStrings));
 
 // Encode the dictionary as JSON and print to stdout
 echo json_encode($stringLengthDict) . "\n";
-
 ```
 
 ## R
@@ -117,7 +116,6 @@ for (string in args) {
 # `auto_unbox`flag marks atomic vectors as singletons with 1 element so that the
 # value won't turn into an array when encoded into JSON
 cat(toJSON(string_length, auto_unbox = TRUE))
-
 ```
 
 ## Perl
@@ -131,7 +129,6 @@ use warnings;
 use JSON;
 
 print encode_json({ map { $_ => length } @ARGV });
-
 ```
 
 ## Java
@@ -166,7 +163,6 @@ public class JsonStdoutObject {
         System.out.println(jsonString);
     }
 }
-
 ```
 
 ## Lua
@@ -185,7 +181,6 @@ for i = 1, #arg do
 end
 
 print(cjson.encode(dict))
-
 ```
 
 ## C#
@@ -212,7 +207,6 @@ class JsonStdoutObject{
         Console.WriteLine(jsonString);
     }
 }
-
 ```
 
 ## Go
@@ -242,7 +236,6 @@ func main() {
 	jsonObjectBytes, _ := json.Marshal(stringLengthMap)
 	fmt.Println(string(jsonObjectBytes))
 }
-
 ```
 
 ## Swift
@@ -263,9 +256,6 @@ let stringLengthDict = Dictionary(uniqueKeysWithValues: myStrings.map { ($0, $0.
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLengthDict)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-
 ```
 
 ## Raku
@@ -279,6 +269,5 @@ use JSON::Fast;
 
 my %data = @*ARGS.map: { $_ => .chars };
 say to-json(%data);
-
 ```
 

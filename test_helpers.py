@@ -1,8 +1,7 @@
-import os.path
+import re
 import shlex
 import subprocess
 import sys
-import textwrap
 from abc import ABC
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -29,8 +28,31 @@ def print_command(title: str, command: str) -> None:
 
 
 def dedent(text: str) -> str:
-    """Dedents the given text"""
-    return textwrap.dedent(text).lstrip()
+    """Removes leading whitespace from each line of the given text, as well as leading empty lines"""
+    original_lines = text.split("\n")
+
+    first_lines = []
+
+    if original_lines[0].lstrip() == "":
+        original_lines = original_lines[1:]
+    elif original_lines[0].lstrip() == original_lines[0]:
+        first_lines.append(original_lines[0])
+        original_lines = original_lines[1:]
+
+    lines_with_content = [line for line in original_lines if line.strip() != ""]
+
+    if len(lines_with_content) == 0:
+        lines = lines_with_content
+    else:
+        minimum_indentation = min(len(line) - len(line.lstrip()) for line in lines_with_content)
+        lines = [line[minimum_indentation:] for line in original_lines]
+
+    return "\n".join([*first_lines, *lines])
+
+
+def format_code(_format_string: str, **kwargs: str) -> str:
+    """Formats source code, similar to Python's `format` function, exept all the interpolations are dedented"""
+    return dedent(_format_string).format(**{ k: dedent(v) for k, v in kwargs.items() })
 
 
 def camel_case(s):
@@ -38,6 +60,24 @@ def camel_case(s):
     # Use regular expression substitution to replace underscores and hyphens with spaces,
     # then title case the string (capitalize the first letter of each word), and remove spaces
     return sub(r"(_|-)+", " ", s).title().replace(" ", "")
+
+
+class PytestPluginCaseCollector:
+    """Pytest plugin that just saves test cases"""
+
+    def __init__(self):
+        self.test_cases = []
+
+    def pytest_itemcollected(self, item):
+        """Pytest hook that is called each time a test case is discovered"""
+        self.test_cases.append(item)
+
+
+def collect_pytest_cases():
+    """Uses PytestTestCaseCollector to collect and return the test cases"""
+    collector = PytestPluginCaseCollector()
+    pytest.main(["--collect-only", "-qq", "."], [collector])
+    return collector.test_cases
 
 
 @pytest.fixture
@@ -98,7 +138,7 @@ class Language(ABC):
         """
         return Path(self.name)
 
-    def script_local_file(self, script_name):
+    def script_path(self, script_name):
         """Given a name of a script, return the local file path of the script to run.
 
         E.g. for Python, if `script_name` is "null_char", then this returns "python/null_char.py"
@@ -116,6 +156,7 @@ class SetupPair:
 @dataclass
 class ScriptRunner(ABC):
     """Class that handles script execution"""
+    script_name: str
 
     language: Language
 
@@ -251,25 +292,23 @@ class ScriptRunner(ABC):
         self.stdin = running_process.stdin
         return running_process
 
-    def run(self, script_name: str, rest_of_script="", *, after=None, interactive=False):
+    def run(self, rest_of_script="", *, after=None, interactive=False):
         """
         Execute the given script.
 
         Parameters:
-            script_name (str): The name of the script to execute. e.g. "null_char"
-
             rest_of_script (str): Additional parameters or script contents to run.
                 e.g. "< hihello.txt"
 
             interactive (bool): Whether to run the script interactively or wait until it completes.
         """
-        if not self.language.script_local_file(script_name).exists():
+        if not self.language.script_path(self.script_name).exists():
             pytest.skip(
-                f"Script {repr(script_name)} is not implemented"
+                f"Script {repr(self.script_name)} is not implemented"
                 f" for language {repr(self.language.name)}"
             )
 
-        command = self.build_command(script_name, rest_of_script, after)
+        command = self.build_command(self.script_name, rest_of_script, after)
 
         print_command("run in docker", " ".join(map(shlex.quote, command)))
 
@@ -296,8 +335,8 @@ class DockerRunner(ScriptRunner):
 
     image: str
 
-    def __init__(self, language, image):
-        super().__init__(language)
+    def __init__(self, script_name, language, image):
+        super().__init__(script_name, language)
         self.image = image
 
     def build_command(self, *command_args):
@@ -318,7 +357,7 @@ class LocalRunner(ScriptRunner):
 
     @property
     def cwd(self):
-        """Use the directory with named after the language"""
+        """Use the directory named after the language"""
         return self.language.name
 
     def cleanup(self):
@@ -386,3 +425,21 @@ class DockerBuilder:
                 )
             case _:
                 raise RuntimeError(f"Unexpected result from early bird lock: {result}")
+
+
+def script_name_of_test_case(node: pytest.Function):
+    """Extracts the script name from the given pytest node.
+
+    If the node has a marker specifying the script name, that is use, otherwise it's the function's name is used to determine the script name.
+    Otherwise, the node's originalname is returned.
+    """
+    if (script_marker := markers(node).get("script")):
+        if (script_name := script_marker.kwargs.get("script_name")):
+            return script_name
+
+    return re.sub(r"^test_", "", node.originalname)
+
+
+def markers(node: pytest.Function):
+    """Returns a dict of markers for the given pytest node"""
+    return { m.name: m for m in node.iter_markers() }

@@ -1,5 +1,7 @@
 # json_object_array
 
+Test that a JSON array made of objects is parsed correctly
+
 ## Python
 
 `json_object_array.py`
@@ -17,7 +19,6 @@ my_array = [{arg.upper(): len(arg)} for arg in args]
 
 # Cast to JSON and print to stdout
 print(json.dumps(my_array))
-
 ```
 
 ## Ruby
@@ -65,7 +66,6 @@ const args = Deno.args
 const myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))
 
 console.log(JSON.stringify(myArray))
-
 ```
 
 ## Php
@@ -86,7 +86,6 @@ $myArray = array_map(function($arg) {
 
 // Encode the array as JSON and print to stdout
 echo json_encode($myArray) . "\n";
-
 ```
 
 ## R
@@ -110,7 +109,6 @@ for (arg in args) {
 
 # Convert the array to a JSON array and print to stdout
 cat(toJSON(myArray, auto_unbox=TRUE))
-
 ```
 
 ## Perl
@@ -126,7 +124,6 @@ use JSON;
 print JSON->new
     ->canonical(1)
     ->encode([map { { uc($_) => length($_) } } @ARGV]);
-
 ```
 
 ## Java
@@ -160,7 +157,6 @@ public class JsonObjectArray {
         System.out.println(jsonArrayString);
     }
 }
-
 ```
 
 ## Lua
@@ -182,7 +178,6 @@ for i = 1, #arg do
 end
 
 print(cjson.encode(my_array))
-
 ```
 
 ## C#
@@ -206,7 +201,6 @@ class JsonObjectArray
         Console.WriteLine(jsonArrayString);
     }
 }
-
 ```
 
 ## Go
@@ -240,7 +234,6 @@ func main() {
 
 	fmt.Println(string(jsonArrayBytes))
 }
-
 ```
 
 ## Swift
@@ -262,10 +255,6 @@ let myArray = args.map { [$0.uppercased(): $0.count] }
 
 let jsonData = try JSONSerialization.data(withJSONObject: myArray)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-
-
 ```
 
 ## Raku
@@ -278,6 +267,5 @@ use v6;
 use JSON::Fast;
 
 say to-json(@*ARGS.map: { uc($_) => $_.chars });
-
 ```
 

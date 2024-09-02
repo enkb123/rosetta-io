@@ -1,5 +1,7 @@
 # json_array
 
+Test that JSON array is parsed correctly
+
 ## Python
 
 `json_array.py`
@@ -14,7 +16,6 @@ my_strings = sys.argv[1:]
 
 # Cast to JSON and print to stdout
 print(json.dumps(my_strings))
-
 ```
 
 ## Ruby
@@ -52,7 +53,6 @@ console.log(JSON.stringify(myStrings))
 const myStrings = Deno.args // Get command-line arguments, excluding 'node' and script name
 
 console.log(JSON.stringify(myStrings))
-
 ```
 
 ## Php
@@ -68,7 +68,6 @@ $myStrings = array_slice($argv, 1);
 
 // Encode the array as JSON and print to stdout
 echo json_encode($myStrings) . "\n";
-
 ```
 
 ## R
@@ -84,7 +83,6 @@ args <- commandArgs(trailingOnly = TRUE)
 
 # Convert the strings to a JSON array and print to stdout
 cat(toJSON(args))
-
 ```
 
 ## Perl
@@ -98,7 +96,6 @@ use warnings;
 use JSON;
 
 print encode_json(\@ARGV), "\n";
-
 ```
 
 ## Java
@@ -130,7 +127,6 @@ public class JsonArray {
         System.out.println(jsonArrayString);
     }
 }
-
 ```
 
 ## Lua
@@ -148,8 +144,6 @@ for i = 1, #arg do
 end
 
 print(cjson.encode(args))
-
-
 ```
 
 ## C#
@@ -171,8 +165,6 @@ class JsonArray{
         Console.WriteLine(jsonString);
     }
 }
-
-
 ```
 
 ## Go
@@ -203,7 +195,6 @@ func main() {
 
 	fmt.Println(string(jsonArrayBytes))
 }
-
 ```
 
 ## Swift
@@ -223,8 +214,6 @@ guard CommandLine.arguments.count > 1 else {
 let myStrings = Array(CommandLine.arguments.dropFirst())
 let jsonData = try JSONSerialization.data(withJSONObject: myStrings)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
 ```
 
 ## Raku
@@ -238,6 +227,5 @@ use v6;
 use JSON::Fast;
 
 say to-json(@*ARGS);
-
 ```
 

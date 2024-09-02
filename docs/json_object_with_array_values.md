@@ -1,5 +1,7 @@
 # json_object_with_array_values
 
+Test that a JSON object with arrays as values is parsed correctly
+
 ## Python
 
 `json_object_with_array_values.py`
@@ -17,7 +19,6 @@ string_letters_dict = {string: [s.upper() for s in string] for string in my_stri
 
 # Cast to JSON and print to stdout
 print(json.dumps(string_letters_dict))
-
 ```
 
 ## Ruby
@@ -74,7 +75,6 @@ for (const string of myStrings) {
 }
 
 console.log(JSON.stringify(stringLettersDict))
-
 ```
 
 ## Php
@@ -97,7 +97,6 @@ $stringLettersDict = array_combine(
 
 // Encode the dictionary as JSON and print to stdout
 echo json_encode($stringLettersDict) . "\n";
-
 ```
 
 ## R
@@ -120,7 +119,6 @@ for (string in args) {
 
 # Convert the named list to JSON and print to stdout
 cat(toJSON(string_letters))
-
 ```
 
 ## Perl
@@ -135,7 +133,6 @@ use JSON;
 print JSON->new
     ->canonical(1)
     ->encode({ map { $_ => [split //, uc($_)] } @ARGV });
-
 ```
 
 ## Java
@@ -173,7 +170,6 @@ public class JsonObjectWithArrayValues {
         System.out.println(jsonString);
     }
 }
-
 ```
 
 ## Lua
@@ -198,7 +194,6 @@ for i = 1, #arg do
 end
 
 print(cjson.encode(string_letters_dict))
-
 ```
 
 ## C#
@@ -224,7 +219,6 @@ class JsonObjectWithArrayValues{
         Console.WriteLine(jsonString);
     }
 }
-
 ```
 
 ## Go
@@ -261,7 +255,6 @@ func main() {
 
 	fmt.Println(string(jsonObjectBytes))
 }
-
 ```
 
 ## Swift
@@ -285,10 +278,6 @@ let stringLettersDict = Dictionary(uniqueKeysWithValues: myStrings.map {
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLettersDict)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-
-
 ```
 
 ## Raku
@@ -296,12 +285,10 @@ print(String(data: jsonData, encoding: .utf8)!)
 `json_object_with_array_values.raku`
 
 ```raku
-
 use v6;
 use JSON::Fast;
 
 my %data = @*ARGS.map: { $_ => [ .uc.comb ] };
 say to-json(%data);
-
 ```
 

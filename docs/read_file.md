@@ -1,5 +1,9 @@
 # read_file
 
+Check that a file is read line by line, when file path is given
+as command line argument
+
+
 ## Python
 
 `read_file.py`
@@ -17,7 +21,6 @@ with open(file_path, 'r') as f:
     for line in f.readlines():
         print(i, line.upper(), end='')
         i += 1
-
 ```
 
 ## Ruby
@@ -40,8 +43,6 @@ rescue Errno::ENOENT
   puts "File not found: #{file_path}"
   exit(1)
 end
-
-
 ```
 
 ## Nodejs
@@ -99,8 +100,6 @@ if (partialLine) {
 }
 
 file.close();
-
-
 ```
 
 ## Php
@@ -122,7 +121,6 @@ $file = fopen($file_path, 'r');
 foreach (file($file_path) as $index => $line) {
     echo ($index + 1) . ' ' . strtoupper($line);
 }
-
 ```
 
 ## R
@@ -149,7 +147,6 @@ while (length(line <- readLines(con, n = 1)) > 0) {
 
 # Close the file connection
 close(con)
-
 ```
 
 ## Perl
@@ -169,7 +166,6 @@ open my $fh, '<', $file_path or die "Cannot open file: $file_path\n";
 
 my $i = 1;
 print $i++ . " " . uc while <$fh>;
-
 ```
 
 ## Java
@@ -177,7 +173,6 @@ print $i++ . " " . uc while <$fh>;
 `ReadFile.java`
 
 ```java
-
 // Read a file from file path (given as a command line arg),
 // print line by line with line numbers
 import java.io.*;
@@ -196,8 +191,6 @@ class ReadFile{
                 .forEach(System.out::println);
     }
 }
-
-
 ```
 
 ## Bash 3
@@ -222,7 +215,6 @@ i=1
 while IFS= read -r line; do
   echo "$((i++)) $(tr '[:lower:]' '[:upper:]' <<< "$line")"
 done < "$file_path"
-
 ```
 
 ## Bash 5
@@ -247,8 +239,6 @@ i=1
 while IFS= read -r line; do
   echo "$((i++)) ${line^^}"
 done < "$1"
-
-
 ```
 
 ## Lua
@@ -265,8 +255,6 @@ for line in fh:lines() do
     print(i .. " " .. line:upper())
     i = i + 1
 end
-
-
 ```
 
 ## C#
@@ -274,7 +262,6 @@ end
 `ReadFile.cs`
 
 ```csharp
-
 // Read a file from file path (given as a command line arg),
 // print line by line with line numbers
 using System;
@@ -292,9 +279,6 @@ class ReadFile
                 .ForEach(Console.WriteLine);
     }
 }
-
-
-
 ```
 
 ## Go
@@ -326,7 +310,6 @@ func main() {
 		lineNumber++
 	}
 }
-
 ```
 
 ## Swift
@@ -349,9 +332,6 @@ fileContents.enumerateLines { line, _ in
     print("\(i) \(line.uppercased())")
     i += 1
 }
-
-
-
 ```
 
 ## Raku
@@ -373,6 +353,5 @@ for $fh.lines {
 }
 
 $fh.close;
-
 ```
 

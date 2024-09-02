@@ -1,5 +1,7 @@
 # read_json_file
 
+Test that a JSON file is read correctly
+
 ## Python
 
 `read_json_file.py`
@@ -16,7 +18,6 @@ with open(json_file, "r") as f:
 
 for person in people:
     print(f"Hello, {person['age']} year old {person['first_name']}")
-
 ```
 
 ## Ruby
@@ -34,7 +35,6 @@ people = JSON.load_file(json_file)
 people.each do |person|
   puts "Hello, #{person['age']} year old #{person['first_name']}"
 end
-
 ```
 
 ## Nodejs
@@ -70,8 +70,6 @@ const people = JSON.parse(data);
 for (const person of people) {
     console.log(`Hello, ${person.age} year old ${person.first_name}`);
 }
-
-
 ```
 
 ## Php
@@ -94,7 +92,6 @@ $people = json_decode($jsonData);
 foreach ($people as $person) {
     echo "Hello, {$person->age} year old {$person->first_name}\n";
 }
-
 ```
 
 ## R
@@ -116,7 +113,6 @@ people <- fromJSON(args[1])
 for (i in 1:nrow(people)){
     cat(paste0("Hello, ", people$age[i], " year old ", people$first_name[i], "\n"))
 }
-
 ```
 
 ## Perl
@@ -134,7 +130,6 @@ open my $fh, '<', $ARGV[0] or die "Cannot open file: $ARGV[0]\n";
 my $people = decode_json(do { local $/; <$fh> });
 
 print "Hello, $_->{'age'} year old $_->{'first_name'}\n" for @$people;
-
 ```
 
 ## Java
@@ -159,7 +154,6 @@ public class ReadJsonFile {
 
     }
 }
-
 ```
 
 ## Lua
@@ -181,7 +175,6 @@ local people = cjson.decode(json_content)
 for _, person in ipairs(people) do
     print(string.format("Hello, %d year old %s", person.age, person.first_name))
 end
-
 ```
 
 ## C#
@@ -208,8 +201,6 @@ class ReadJsonFile{
         }
     }
 }
-
-
 ```
 
 ## Go
@@ -242,7 +233,6 @@ func main() {
 		fmt.Printf("Hello, %d year old %s\n", person.Age, person.FirstName)
 	}
 }
-
 ```
 
 ## Swift
@@ -268,7 +258,6 @@ for (_, person) in people.enumerated() {
 
     print("Hello, \(age) year old \(firstName)")
 }
-
 ```
 
 ## Raku
@@ -291,6 +280,5 @@ for @$people -> $person {
 }
 
 $fh.close;
-
 ```
 

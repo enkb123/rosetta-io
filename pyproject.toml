@@ -25,5 +25,6 @@ build-backend = "poetry.core.masonry.api"
 addopts = "-n auto -rs"
 
 markers = [
-  "local: run tests locally, instead of in docker"
+  "local: run tests locally, instead of in docker",
+  "script: override the script details to use for the test"
 ]

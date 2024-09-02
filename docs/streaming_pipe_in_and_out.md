@@ -1,5 +1,8 @@
 # streaming_pipe_in_and_out
 
+Test that named pipe can be read line by line and can write to output pipe
+without waiting for all lines to arrive
+
 ## Python
 
 `streaming_pipe_in_and_out.py`
@@ -16,7 +19,6 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
         for line in input_pipe:
             output_pipe.write(line.upper())
             output_pipe.flush()
-
 ```
 
 ## Ruby
@@ -37,7 +39,6 @@ File.open(pipe_out, 'w') do |output|
     end
   end
 end
-
 ```
 
 ## Nodejs
@@ -61,7 +62,6 @@ const output = fs.createWriteStream(pipeOut);
 for await(const line of rl){
   output.write(line.toUpperCase() + '\n');
 }
-
 ```
 
 ## Deno
@@ -86,7 +86,6 @@ for await (const line of readLines(input)) {
 
 input.close();
 output.close();
-
 ```
 
 ## Php
@@ -110,7 +109,6 @@ while (($line = fgets($input_pipe)) !== false) {
 fclose($input_pipe);
 fclose($output_pipe);
 ?>
-
 ```
 
 ## R
@@ -136,7 +134,6 @@ while (length(line <- readLines(input, n = 1)) > 0) {
 
 close(input)
 close(output)
-
 ```
 
 ## Perl
@@ -161,7 +158,6 @@ while (my $line = <$input>) {
 
 close $input;
 close $output;
-
 ```
 
 ## Java
@@ -191,7 +187,6 @@ public class StreamingPipeInAndOut {
         output.close();
     }
 }
-
 ```
 
 ## Bash 3
@@ -206,7 +201,6 @@ pipe_in="$1"
 pipe_out="$2"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in" > "$pipe_out"
-
 ```
 
 ## Bash 5
@@ -221,7 +215,6 @@ pipe_in="$1"
 pipe_out="$2"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in" > "$pipe_out"
-
 ```
 
 ## Lua
@@ -244,7 +237,6 @@ end
 
 input_file:close()
 output_file:close()
-
 ```
 
 ## C#
@@ -274,7 +266,6 @@ class StreamingPipeInAndOut
         }
     }
 }
-
 ```
 
 ## Go
@@ -311,7 +302,6 @@ func main() {
 	}
 
 }
-
 ```
 
 ## Swift
@@ -368,7 +358,6 @@ if let lines = FileLines(path: pipe_in) {
 } else {
   print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }
-
 ```
 
 ## Raku
@@ -387,6 +376,5 @@ my $input = open($pipe_in, :r);
 for $input.lines {
     $output.print(.uc ~ "\n");
 }
-
 ```
 
