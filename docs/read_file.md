@@ -1,3 +1,8 @@
++++
+title = read_file
+draft = true
++++
+
 # read_file
 
 Check that a file is read line by line, when file path is given
@@ -353,5 +358,27 @@ for $fh.lines {
 }
 
 $fh.close;
+```
+
+## Rust
+
+`read_file.rs`
+
+```rust
+use std::env;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+
+fn main() {
+    let file_path = env::args().nth(1).unwrap();
+
+    let file = File::open(file_path).unwrap();
+    let reader = BufReader::new(file);
+
+    for (line_number, line_result) in reader.lines().enumerate() {
+        let line = line_result.unwrap();
+        println!("{} {}", line_number + 1, line.to_uppercase());
+    }
+}
 ```
 

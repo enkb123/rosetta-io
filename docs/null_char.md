@@ -1,3 +1,8 @@
++++
+title = null_char
+draft = true
++++
+
 # null_char
 
 Test outputing a null character
@@ -162,5 +167,15 @@ print("Hello World \0")
 use v6;
 
 print "Hello World \0\n";
+```
+
+## Rust
+
+`null_char.rs`
+
+```rust
+fn main() {
+    println!("Hello World \0");
+}
 ```
 

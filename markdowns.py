@@ -7,7 +7,7 @@ import os
 from test_helpers import collect_pytest_cases, dedent, format_code, script_name_of_test_case
 from test_suite import LANGUAGES
 
-docs_path = Path('./docs/')
+docs_path = Path('./rosetta-site/content/IO_Operations/')
 shutil.rmtree(docs_path, ignore_errors=True) #deletes the directory so it can be remade
 os.makedirs(docs_path)
 
@@ -21,6 +21,11 @@ for script_name, pytest_case in pytest_cases_by_script_name.items():
     with open(docs_path / f"{script_name}.md", "w", encoding="utf-8") as f:
         f.write(format_code(
             """
+            +++
+            title = ''
+            draft = true
+            +++
+
             # {script_name}
 
             {doc_str}

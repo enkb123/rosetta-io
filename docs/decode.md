@@ -1,3 +1,8 @@
++++
+title = decode
+draft = true
++++
+
 # decode
 
 Test that base64 can be decoded as a string
@@ -253,5 +258,25 @@ use v6;
 use MIME::Base64;
 
 say MIME::Base64.decode-str(@*ARGS[0]);
+```
+
+## Rust
+
+`decode.rs`
+
+```rust
+//cargo-deps: base64="0.13"
+
+//Script to decode Base64 text
+extern crate base64;
+use base64::decode;
+use std::env;
+
+fn main() {
+    let encoded_string = env::args().nth(1).expect("Expected one argument");
+    let decoded_bytes = decode(encoded_string).unwrap();
+    let decoded_string = String::from_utf8(decoded_bytes).unwrap();
+    println!("{}", decoded_string);
+}
 ```
 

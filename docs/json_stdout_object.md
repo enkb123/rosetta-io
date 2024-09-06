@@ -1,3 +1,8 @@
++++
+title = json_stdout_object
+draft = true
++++
+
 # json_stdout_object
 
 Test that JSON object is parsed correctly
@@ -269,5 +274,30 @@ use JSON::Fast;
 
 my %data = @*ARGS.map: { $_ => .chars };
 say to-json(%data);
+```
+
+## Rust
+
+`json_stdout_object.rs`
+
+```rust
+//cargo-deps: json="0.12.4"
+
+// Script reads string args and transforms into dict
+
+use json::JsonValue;
+use std::env;
+
+extern crate json;
+fn main() {
+    let args = env::args().skip(1);
+    let mut json_object = JsonValue::new_object();
+
+    for arg in args {
+        json_object[arg] = arg.len().into();
+    }
+
+    println!("{}", json_object.dump());
+}
 ```
 

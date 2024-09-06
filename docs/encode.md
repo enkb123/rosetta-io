@@ -1,3 +1,8 @@
++++
+title = encode
+draft = true
++++
+
 # encode
 
 Test that a string can be encoded as base64
@@ -252,5 +257,23 @@ use v6;
 use MIME::Base64;
 
 say MIME::Base64.encode-str(@*ARGS[0]);
+```
+
+## Rust
+
+`encode.rs`
+
+```rust
+//cargo-deps: base64="0.13"
+
+use std::env;
+extern crate base64;
+
+fn main() {
+    let test_string = env::args().nth(1).expect("Expected one argument");
+    let encoded_string = base64::encode(test_string);
+
+    println!("{}", encoded_string);
+}
 ```
 
