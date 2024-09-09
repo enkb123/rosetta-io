@@ -1,6 +1,6 @@
 +++
 title = ''
-draft = true
+draft = false
 +++
 
 # streaming_pipe_in_and_out

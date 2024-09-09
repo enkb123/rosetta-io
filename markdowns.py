@@ -23,7 +23,7 @@ for script_name, pytest_case in pytest_cases_by_script_name.items():
             """
             +++
             title = ''
-            draft = true
+            draft = false
             +++
 
             # {script_name}

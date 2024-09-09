@@ -1,6 +1,6 @@
 +++
 title = ''
-draft = true
+draft = false
 +++
 
 # json_stdout_object
