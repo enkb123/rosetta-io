@@ -7,7 +7,7 @@ import os
 from test_helpers import collect_pytest_cases, dedent, format_code, script_name_of_test_case
 from test_suite import LANGUAGES
 
-docs_path = Path('./rosetta-site/content/IO_Operations/')
+docs_path = Path('./rosetta-site/content/IO_Operations/docs/')
 shutil.rmtree(docs_path, ignore_errors=True) #deletes the directory so it can be remade
 os.makedirs(docs_path)
 
