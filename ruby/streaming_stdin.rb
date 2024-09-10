@@ -3,5 +3,5 @@
 STDOUT.sync = true
 
 while input = gets
-  puts input.upcase
+  puts "received #{input}"
 end
