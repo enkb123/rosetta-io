@@ -1,4 +1,3 @@
-//Script to decode Base64 text
 using System;
 
 class Decode{
@@ -11,4 +10,3 @@ class Decode{
         Console.WriteLine(decodedString);
     }
 }
-

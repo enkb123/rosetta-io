@@ -1,5 +1,3 @@
-//Script to encode a string as Base64
-
 package main
 
 import (

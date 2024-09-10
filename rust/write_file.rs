@@ -1,6 +1,3 @@
-//Script to write text to a new file
-//Run script as `cargo write_file.rs <output_file>.txt 'some text'`
-
 use std::env;
 use std::fs::write;
 

@@ -1,5 +1,3 @@
-//Script reads text from a named pipe and writes it to stdout, capitalized
-
 import java.io.*;
 
 public class StreamingPipeIn {

@@ -1,5 +1,3 @@
-// Read a file (file path given as a command line argument) and write to stdout
-
 const filePath = Deno.args[0];
 const file = await Deno.open(filePath);
 const decoder = new TextDecoder();
@@ -23,4 +21,3 @@ if (partialLine) {
 }
 
 file.close();
-

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Script to encode a string as Base64
-
 test_string="$1"
 
 if [ -z "$test_string" ]; then

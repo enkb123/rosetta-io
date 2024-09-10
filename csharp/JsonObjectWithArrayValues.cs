@@ -1,5 +1,3 @@
-// Script takes arguments and transforms them into dict with arrays as dict values and returns as JSON
-
 using System;
 using System.Collections.Generic;
 using System.Text;

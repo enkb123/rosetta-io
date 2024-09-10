@@ -1,6 +1,3 @@
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 file_path = ARGV[0]
 
 begin
@@ -13,4 +10,3 @@ rescue Errno::ENOENT
   puts "File not found: #{file_path}"
   exit(1)
 end
-

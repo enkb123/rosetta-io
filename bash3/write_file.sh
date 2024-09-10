@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Script to write text to a new file
-# Run script as `bash write_file.sh <output_file>.txt 'some text'`
-
 outfile="$1"
 text="$2"
 

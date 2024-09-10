@@ -1,6 +1,3 @@
-"""Script to write text to a new file.
-Run script as `python write_file.py <output_file>.py "some text"`
-"""
 import sys
 import os
 

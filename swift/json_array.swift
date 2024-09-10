@@ -1,5 +1,3 @@
-//Script takes args and turns into JSON array
-
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -10,4 +8,3 @@ guard CommandLine.arguments.count > 1 else {
 let myStrings = Array(CommandLine.arguments.dropFirst())
 let jsonData = try JSONSerialization.data(withJSONObject: myStrings)
 print(String(data: jsonData, encoding: .utf8)!)
-

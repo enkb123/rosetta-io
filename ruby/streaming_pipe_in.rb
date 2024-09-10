@@ -1,5 +1,3 @@
-# Script reads text from a named pipe and writes it to stdout, capitalized
-
 STDOUT.sync = true
 
 pipe_in = ARGV.fetch(0)

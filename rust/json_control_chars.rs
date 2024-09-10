@@ -1,6 +1,5 @@
 //cargo-deps: json="0.12.4"
 
-//Script takes control characters and outputs valid JSON
 use json::JsonValue;
 use std::env;
 

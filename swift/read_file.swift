@@ -1,5 +1,3 @@
-//Read a file (file path given as a command line argument) and write to stdout
-
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -13,5 +11,3 @@ fileContents.enumerateLines { line, _ in
     print("\(i) \(line.uppercased())")
     i += 1
 }
-
-

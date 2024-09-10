@@ -1,4 +1,3 @@
-# Read JSON file, transform and print to stdout
 require 'json'
 
 json_file = ARGV[0]

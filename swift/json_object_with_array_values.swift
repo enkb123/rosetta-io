@@ -1,4 +1,3 @@
-//Script takes args and transforms into python dict with arrays as dict values
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -14,6 +13,3 @@ let stringLettersDict = Dictionary(uniqueKeysWithValues: myStrings.map {
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLettersDict)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-

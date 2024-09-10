@@ -1,4 +1,3 @@
-// Read JSON file, transform and print to stdout
 import fs from 'fs/promises'
 
 const jsonFile = process.argv[2]

@@ -1,4 +1,3 @@
-//Script writes an array of objects to stdout
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -12,6 +11,3 @@ let myArray = args.map { [$0.uppercased(): $0.count] }
 
 let jsonData = try JSONSerialization.data(withJSONObject: myArray)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-

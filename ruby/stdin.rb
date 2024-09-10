@@ -1,5 +1,3 @@
-# Test script to get input, transform, and write to stdout
-
 i = 1
 
 while user_input = gets

@@ -1,4 +1,3 @@
-// Script takes control characters and outputs valid JSON
 package main
 
 import (

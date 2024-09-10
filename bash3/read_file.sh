@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 file_path="$1"
 
 if [ ! -f "$file_path" ]; then

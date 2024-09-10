@@ -1,4 +1,3 @@
-//Script takes args and outputs a list of lengths
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -12,6 +11,3 @@ let stringLengths = myStrings.map { $0.count }
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLengths)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-

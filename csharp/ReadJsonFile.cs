@@ -1,4 +1,3 @@
-// Read JSON file, transform and print to stdout
 using System;
 using System.IO;
 using System.Text.Json;
@@ -17,4 +16,3 @@ class ReadJsonFile{
         }
     }
 }
-

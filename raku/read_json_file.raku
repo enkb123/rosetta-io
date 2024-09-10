@@ -1,4 +1,3 @@
-# Read JSON file, transform and print to stdout
 use v6;
 use JSON::Fast;
 

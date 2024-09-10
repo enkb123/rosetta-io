@@ -1,4 +1,3 @@
-"""Script to decode Base64 text"""
 import base64
 import sys
 

@@ -1,5 +1,3 @@
-// Script reads string args and transforms into python dict
-
 using System;
 using System.Collections.Generic;
 using System.Text;

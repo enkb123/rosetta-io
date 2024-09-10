@@ -1,6 +1,3 @@
-//Script to write text to a new file
-//Run script as `go write_file.go <output_file>.txt 'some text'`
-
 package main
 
 import (

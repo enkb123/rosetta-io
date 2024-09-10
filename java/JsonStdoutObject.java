@@ -1,5 +1,3 @@
-// Script reads string args and transforms into python dict
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 

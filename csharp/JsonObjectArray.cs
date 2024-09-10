@@ -1,4 +1,3 @@
-// Script outputs arrays of objects as JSON
 using System;
 using System.Collections.Generic;
 using System.Text;

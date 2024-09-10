@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Script to decode Base64 text
-
 encoded_string="$1"
 
 if [ -z "$encoded_string" ]; then
@@ -10,4 +8,4 @@ if [ -z "$encoded_string" ]; then
 fi
 
 base64 -d <<< "$encoded_string"
-echo  # tests expect a newline at the end
+echo

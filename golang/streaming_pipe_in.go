@@ -1,5 +1,3 @@
-//Script reads text from a named pipe and writes it to stdout, capitalized
-
 package main
 
 import (

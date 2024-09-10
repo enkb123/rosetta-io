@@ -1,5 +1,3 @@
-# Script takes string arguments and outputs a JSON array of numbers representing
-# the length of each argument
 require 'json'
 
 my_strings = ARGV

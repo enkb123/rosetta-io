@@ -1,6 +1,3 @@
-//Script to write text to a new file
-//Run script as `java write_file.java <output_file>.txt 'some text'`
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

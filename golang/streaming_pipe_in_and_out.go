@@ -1,4 +1,3 @@
-// Script reads text from a named pipe and writes it to another pipe, capitalized
 package main
 
 import (

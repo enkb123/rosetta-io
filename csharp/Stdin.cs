@@ -1,5 +1,3 @@
-// Test script to get input, transform, and write to stdout
-
 using System;
 using System.Collections.Generic;
 using System.Linq;

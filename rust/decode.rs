@@ -1,6 +1,5 @@
 //cargo-deps: base64="0.13"
 
-//Script to decode Base64 text
 extern crate base64;
 use base64::decode;
 use std::env;

@@ -1,5 +1,3 @@
-// Script takes string arguments and outputs a JSON array of numbers representing
-// the length of each argument
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
@@ -20,4 +18,3 @@ public class JsonNumbers {
         System.out.println(jsonArrayString);
     }
 }
-

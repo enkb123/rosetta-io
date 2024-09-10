@@ -1,5 +1,3 @@
-// Script reads text from a named pipe and writes it to stdout, capitalized
-
 using System;
 using System.IO;
 using System.Text;

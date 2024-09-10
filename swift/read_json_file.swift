@@ -1,4 +1,3 @@
-//Read JSON file, transform and print to stdout
 import Foundation
 
 guard let jsonFile = CommandLine.arguments.dropFirst().first else {
