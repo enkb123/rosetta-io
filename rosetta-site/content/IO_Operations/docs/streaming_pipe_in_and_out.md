@@ -5,8 +5,7 @@ draft = false
 
 # streaming_pipe_in_and_out
 
-Test that named pipe can be read line by line and can write to output pipe
-without waiting for all lines to arrive
+Test that named pipe can be read line by line and can write to output pipe without waiting for all lines to arrive
 
 ## Python
 
