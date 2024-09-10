@@ -14,18 +14,32 @@ The name `rosetta-io` is an hommage to [Rosetta Code](https://rosettacode.org/wi
 ## Languages covered
 
  Python 3
+
  Ruby
  Javascript, Node.js
+
  PHP
+
  R
+
  Deno
+
  Perl
+
  Java
+
  Bash 3
+
  Bash 5
+
  Lua
+
  C#
+
  Golang
+
  Swift
+
  Raku
+
  Rust
