@@ -17,4 +17,3 @@ class ReadFile{
                 .forEach(System.out::println);
     }
 }
-

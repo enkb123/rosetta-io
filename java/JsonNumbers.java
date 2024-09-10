@@ -20,4 +20,3 @@ public class JsonNumbers {
         System.out.println(jsonArrayString);
     }
 }
-

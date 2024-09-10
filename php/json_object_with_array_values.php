@@ -12,4 +12,4 @@ $stringLettersDict = array_combine(
 );
 
 // Encode the dictionary as JSON and print to stdout
-echo json_encode($stringLettersDict) . "\n";
+echo json_encode($stringLettersDict);

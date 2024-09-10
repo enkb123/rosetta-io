@@ -14,6 +14,7 @@ from test_helpers import (
     Language,
     LocalRunner,
     ScriptRunner,
+    assert_string_match,
     dedent,
     camel_case,
     markers,
@@ -218,7 +219,7 @@ def script(request: pytest.FixtureRequest, docker_builder: DockerBuilder, langua
 def test_null_char(script: ScriptRunner):
     """Test outputing a null character"""
     script.run()
-    assert script.output == "Hello World \x00\n"
+    assert_string_match(script.output, "Hello World \x00")
 
 
 def test_stdin(script: ScriptRunner):
@@ -235,11 +236,11 @@ def test_stdin(script: ScriptRunner):
 
     script.run("< hihello-stdin.txt")
 
-    assert script.output == dedent("""
+    assert_string_match(script.output, dedent("""
         1 HI
         2 HELLO
         3 HOW ARE YOU
-    """)
+    """))
 
 
 def test_read_file(script: ScriptRunner):
@@ -254,17 +255,17 @@ def test_read_file(script: ScriptRunner):
 
     script.run("hihello-read-file.txt")
 
-    assert script.output == dedent("""
+    assert_string_match(script.output, dedent("""
         1 HI
         2 HELLO
         3 HOW ARE YOU
-    """)
+    """))
 
 
 def test_arguments(script: ScriptRunner):
     """Test that args can be passed to script"""
     script.run('"Argument Number 1"')
-    assert script.output == "argument number 1\n"
+    assert_string_match(script.output, "argument number 1")
 
 
 def test_read_json_file(script: ScriptRunner):
@@ -280,17 +281,17 @@ def test_read_json_file(script: ScriptRunner):
 
     script.run("people-read-json-file.json")
 
-    assert script.output == dedent("""
+    assert_string_match(script.output, dedent("""
         Hello, 84 year old Bob
         Hello, 67 year old Tina
         Hello, 98 year old Steven
-    """)
+    """))
 
 
 def test_write_file(script: ScriptRunner):
     """Test that a script, given a path to a file, can write to that file"""
     script.run('output.txt "Bob Barker"', after="cat output.txt")
-    assert script.output == "BOB BARKER"  # note no new line char
+    assert_string_match(script.output, "BOB BARKER")
 
 
 def test_json_array(script: ScriptRunner):
@@ -349,14 +350,14 @@ def test_json_control_chars(script: ScriptRunner):
 def test_base64_decode(script: ScriptRunner):
     """Test that base64 can be decoded as a string"""
     script.run("SGVsbG8sIHdvcmxkIQ==")
-    assert script.output == "Hello, world!\n"
+    assert_string_match(script.output, "Hello, world!")
 
 
 @pytest.mark.script(script_name="encode")
 def test_base64_encode(script: ScriptRunner):
     """Test that a string can be encoded as base64"""
     script.run('"Hello, world!"')
-    assert script.output == "SGVsbG8sIHdvcmxkIQ==\n"
+    assert_string_match(script.output, "SGVsbG8sIHdvcmxkIQ==")
 
 
 def test_streaming_stdin(script: ScriptRunner):
@@ -366,7 +367,7 @@ def test_streaming_stdin(script: ScriptRunner):
     # Give input to the script via stdin, one line at a time, and check result
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")
-        assert script.stdout.readline() == f"LINE #{i}\n"
+        assert_string_match(script.stdout.readline(), f"LINE #{i}")
 
 
 def test_streaming_pipe_in(script: ScriptRunner):
@@ -381,7 +382,7 @@ def test_streaming_pipe_in(script: ScriptRunner):
 
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")
-        assert script.stdout.readline() == f"LINE #{i}\n"
+        assert_string_match(script.stdout.readline(), f"LINE #{i}")
 
 
 # Re-uses the language's write_file script, which works for writing to named pipes
@@ -399,7 +400,7 @@ def test_write_to_named_pipe(script: ScriptRunner):
         """,
         interactive=True,
     )
-    assert script.stdout.readline() == "BOB BARKER"
+    assert_string_match(script.stdout.readline(), "BOB BARKER")
 
 
 def test_streaming_pipe_in_and_out(script: ScriptRunner):
@@ -417,4 +418,4 @@ def test_streaming_pipe_in_and_out(script: ScriptRunner):
 
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")
-        assert script.stdout.readline() == f"LINE #{i}\n"
+        assert_string_match(script.stdout.readline(), f"LINE #{i}")

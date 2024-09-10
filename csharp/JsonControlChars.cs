@@ -10,4 +10,3 @@ class JsonControlChars{
         Console.WriteLine(jsonString);
     }
 }
-

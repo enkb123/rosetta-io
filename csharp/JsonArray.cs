@@ -12,4 +12,3 @@ class JsonArray{
         Console.WriteLine(jsonString);
     }
 }
-

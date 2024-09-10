@@ -16,5 +16,3 @@ class ReadFile
                 .ForEach(Console.WriteLine);
     }
 }
-
-

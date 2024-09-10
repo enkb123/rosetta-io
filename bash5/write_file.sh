@@ -11,4 +11,4 @@ if [ -z "$outfile" ] || [ -z "$text" ]; then
   exit 1
 fi
 
-echo -n "${text^^}" > "$outfile"
+echo "${text^^}" > "$outfile"

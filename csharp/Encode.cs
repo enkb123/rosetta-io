@@ -9,4 +9,3 @@ class Encode{
         Console.WriteLine(encodedString);
     }
 }
-
