@@ -10,4 +10,3 @@ guard CommandLine.arguments.count > 1 else {
 let myStrings = Array(CommandLine.arguments.dropFirst())
 let jsonData = try JSONSerialization.data(withJSONObject: myStrings)
 print(String(data: jsonData, encoding: .utf8)!)
-

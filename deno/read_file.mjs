@@ -23,4 +23,3 @@ if (partialLine) {
 }
 
 file.close();
-

@@ -8,4 +8,3 @@ for i = 1, #arg do
 end
 
 print(cjson.encode(args))
-

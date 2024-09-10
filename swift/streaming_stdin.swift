@@ -13,8 +13,3 @@ import Foundation
 while let line = readLine(), !line.isEmpty {
     print(line.uppercased())
 }
-
-
-
-
-

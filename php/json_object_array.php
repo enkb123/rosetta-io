@@ -10,4 +10,4 @@ $myArray = array_map(function($arg) {
 }, $args);
 
 // Encode the array as JSON and print to stdout
-echo json_encode($myArray) . "\n";
+echo json_encode($myArray);

@@ -14,6 +14,3 @@ let stringLettersDict = Dictionary(uniqueKeysWithValues: myStrings.map {
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLettersDict)
 print(String(data: jsonData, encoding: .utf8)!)
-
-
-

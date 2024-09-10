@@ -13,5 +13,3 @@ fileContents.enumerateLines { line, _ in
     print("\(i) \(line.uppercased())")
     i += 1
 }
-
-

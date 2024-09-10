@@ -5,4 +5,4 @@
 $myStrings = array_slice($argv, 1);
 
 // Encode the array as JSON and print to stdout
-echo json_encode($myStrings) . "\n";
+echo json_encode($myStrings);

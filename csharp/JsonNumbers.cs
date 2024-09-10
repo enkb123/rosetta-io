@@ -15,4 +15,3 @@ class JsonNumbers
         Console.WriteLine(jsonArrayString);
     }
 }
-

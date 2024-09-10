@@ -10,4 +10,3 @@ guard CommandLine.arguments.count > 1 else {
 let encodedString = CommandLine.arguments[1]
 let data = Data(base64Encoded: encodedString)
 print(String(data: data!, encoding: .utf8)!)
-

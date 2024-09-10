@@ -13,4 +13,3 @@ rescue Errno::ENOENT
   puts "File not found: #{file_path}"
   exit(1)
 end
-

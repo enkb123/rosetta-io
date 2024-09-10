@@ -14,6 +14,11 @@ import pytest
 from locking import EarlyBirdLocker
 
 
+def assert_string_match(actual: str, expected: str):
+    """Assert that two strings match, ignoring trailingwhitespace"""
+    assert actual.rstrip() == expected.rstrip()
+
+
 def print_command(title: str, command: str) -> None:
     """Prints the given command in a way to make it easier to pick out of pytest output"""
     longest_line_length = max(
