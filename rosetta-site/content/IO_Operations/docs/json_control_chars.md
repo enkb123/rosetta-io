@@ -133,6 +133,22 @@ public class JsonControlChars {
 }
 ```
 
+## Bash 3
+
+`json_control_chars.sh`
+
+```bash
+echo -n "$1" | jq -R -s .
+```
+
+## Bash 5
+
+`json_control_chars.sh`
+
+```bash
+echo -n "$1" | jq -R -s .
+```
+
 ## Lua
 
 `json_control_chars.lua`
