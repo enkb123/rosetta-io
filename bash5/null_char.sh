@@ -1,2 +1,1 @@
-printf "Hello World \0\n"
-
+printf "Hello World \0"

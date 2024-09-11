@@ -22,4 +22,4 @@ params:
   navbar:
     displayLogo: true
     logo:
-      path: images/favicon-32x32.png
+      path: logo.svg

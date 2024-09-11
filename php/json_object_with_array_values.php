@@ -7,4 +7,4 @@ $stringLettersDict = array_combine(
     )
 );
 
-echo json_encode($stringLettersDict) . "\n";
+echo json_encode($stringLettersDict);

@@ -2,4 +2,4 @@
 
 $testString = $argv[1];
 
-echo json_encode($testString) . "\n";
+echo json_encode($testString);

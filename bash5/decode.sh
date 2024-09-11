@@ -8,4 +8,3 @@ if [ -z "$encoded_string" ]; then
 fi
 
 base64 -d <<< "$encoded_string"
-echo

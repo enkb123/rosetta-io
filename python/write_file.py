@@ -1,5 +1,4 @@
 import sys
-import os
 
 outfile = sys.argv[1]
 text = sys.argv[2]

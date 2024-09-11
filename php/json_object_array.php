@@ -5,4 +5,4 @@ $myArray = array_map(function($arg) {
     return [strtoupper($arg) => strlen($arg)];
 }, $args);
 
-echo json_encode($myArray) . "\n";
+echo json_encode($myArray);

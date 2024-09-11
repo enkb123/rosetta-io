@@ -6,3 +6,4 @@ __pycache__/
 /vendor
 /rosetta-site/public/**
 .hugo_build.lock
+/rust/target
