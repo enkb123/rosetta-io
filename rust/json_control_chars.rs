@@ -6,7 +6,7 @@ use std::env;
 extern crate json;
 
 fn main() {
-    let test_string = env::args().nth(1).expect("Expected one argument");
+    let test_string = env::args().nth(1).unwrap();
 
     let json_value: JsonValue = test_string.into();
 

@@ -5,7 +5,7 @@ use base64::decode;
 use std::env;
 
 fn main() {
-    let encoded_string = env::args().nth(1).expect("Expected one argument");
+    let encoded_string = env::args().nth(1).unwrap();
     let decoded_bytes = decode(encoded_string).unwrap();
     let decoded_string = String::from_utf8(decoded_bytes).unwrap();
     println!("{}", decoded_string);
