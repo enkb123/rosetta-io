@@ -55,7 +55,7 @@ console.log(Deno.args[0].toLowerCase())
 ```php
 <?php
 // Read command line arguments and write to stdout
-echo strtolower($argv[1]) . "\n";
+echo strtolower($argv[1]);
 ```
 
 ## R
@@ -65,7 +65,7 @@ echo strtolower($argv[1]) . "\n";
 ```r
 #' Script reads command line arguments and writes to stdout in lowercase
 
-cat(tolower(commandArgs(trailingOnly = TRUE)), fill = TRUE)
+cat(tolower(commandArgs(trailingOnly = TRUE)))
 ```
 
 ## Perl
@@ -76,7 +76,7 @@ cat(tolower(commandArgs(trailingOnly = TRUE)), fill = TRUE)
 # Script to read an argument and print as lowercase in stdout
 use strict;
 use warnings;
-print lc($ARGV[0]), "\n";
+print lc($ARGV[0]);
 ```
 
 ## Java

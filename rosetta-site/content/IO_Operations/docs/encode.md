@@ -84,7 +84,7 @@ $stringToEncode = $argv[1];
 // Encode the string as Base64
 $encodedString = base64_encode($stringToEncode);
 
-echo $encodedString . "\n";
+echo $encodedString;
 ```
 
 ## R
@@ -102,7 +102,7 @@ args <- commandArgs(trailingOnly = TRUE)
 # Convert string to raw bytes then encode as base64
 encoded_string <- base64encode(charToRaw(args))
 
-cat(encoded_string, fill = TRUE)
+cat(encoded_string)
 ```
 
 ## Perl
@@ -114,7 +114,7 @@ use strict;
 use warnings;
 use MIME::Base64;
 
-print encode_base64($ARGV[0], ''), "\n";
+print encode_base64($ARGV[0], '');
 ```
 
 ## Java

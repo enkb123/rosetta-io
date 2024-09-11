@@ -75,7 +75,7 @@ console.log(JSON.stringify(myString))
 $testString = $argv[1];
 
 // Cast the string to JSON and print to stdout
-echo json_encode($testString) . "\n";
+echo json_encode($testString);
 ```
 
 ## R

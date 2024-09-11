@@ -72,7 +72,7 @@ console.log(JSON.stringify(myStrings))
 $myStrings = array_slice($argv, 1);
 
 // Encode the array as JSON and print to stdout
-echo json_encode($myStrings) . "\n";
+echo json_encode($myStrings);
 ```
 
 ## R
@@ -100,7 +100,7 @@ use strict;
 use warnings;
 use JSON;
 
-print encode_json(\@ARGV), "\n";
+print encode_json(\@ARGV);
 ```
 
 ## Java

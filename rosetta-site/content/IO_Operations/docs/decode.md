@@ -81,7 +81,7 @@ $encodedString = $argv[1];
 // Decode the Base64 encoded string
 $decodedString = base64_decode($encodedString);
 
-echo $decodedString . "\n";
+echo $decodedString;
 ```
 
 ## R
@@ -99,7 +99,7 @@ args <- commandArgs(trailingOnly = TRUE)
 # Decode from base64 to raw bytes then convert raw bytes to string
 decoded_string <- rawToChar(base64decode(args))
 
-cat(decoded_string, fill = TRUE)
+cat(decoded_string)
 ```
 
 ## Perl
@@ -111,7 +111,7 @@ use strict;
 use warnings;
 use MIME::Base64;
 
-print decode_base64($ARGV[0]), "\n";
+print decode_base64($ARGV[0]);
 ```
 
 ## Java
@@ -155,7 +155,6 @@ if [ -z "$encoded_string" ]; then
 fi
 
 base64 -d <<< "$encoded_string"
-echo  # tests expect a newline at the end
 ```
 
 ## Bash 5
@@ -175,7 +174,6 @@ if [ -z "$encoded_string" ]; then
 fi
 
 base64 -d <<< "$encoded_string"
-echo  # tests expect a newline at the end
 ```
 
 ## Lua

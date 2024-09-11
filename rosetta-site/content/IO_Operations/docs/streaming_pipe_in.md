@@ -95,7 +95,6 @@ while (($line = fgets($input_pipe)) !== false) {
 }
 
 fclose($input_pipe);
-?>
 ```
 
 ## R

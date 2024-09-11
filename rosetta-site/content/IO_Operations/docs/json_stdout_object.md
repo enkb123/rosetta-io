@@ -96,7 +96,7 @@ $myStrings = array_slice($argv, 1);
 $stringLengthDict = array_combine($myStrings, array_map('strlen', $myStrings));
 
 // Encode the dictionary as JSON and print to stdout
-echo json_encode($stringLengthDict) . "\n";
+echo json_encode($stringLengthDict);
 ```
 
 ## R

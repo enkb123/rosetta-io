@@ -112,7 +112,6 @@ while (($line = fgets($input_pipe)) !== false) {
 
 fclose($input_pipe);
 fclose($output_pipe);
-?>
 ```
 
 ## R

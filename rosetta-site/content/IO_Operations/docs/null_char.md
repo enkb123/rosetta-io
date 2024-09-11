@@ -51,7 +51,7 @@ console.log("Hello World \0")
 
 // echo function does not add a new line so adding it here manually
 // for consistency with other langauges
-echo "Hello World \0\n";
+echo "Hello World \0";
 ```
 
 ## R
@@ -86,7 +86,7 @@ unlink("temp_binary_file.bin")
 use strict;
 use warnings;
 
-print "Hello World \0\n"
+print "Hello World \0"
 ```
 
 ## Java
@@ -106,7 +106,7 @@ public class NullChar {
 `null_char.sh`
 
 ```bash
-printf "Hello World \0\n"
+printf "Hello World \0"
 ```
 
 ## Bash 5
@@ -114,7 +114,7 @@ printf "Hello World \0\n"
 `null_char.sh`
 
 ```bash
-printf "Hello World \0\n"
+printf "Hello World \0"
 ```
 
 ## Lua
@@ -166,7 +166,7 @@ print("Hello World \0")
 ```raku
 use v6;
 
-print "Hello World \0\n";
+say "Hello World \0";
 ```
 
 ## Rust

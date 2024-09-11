@@ -16,7 +16,6 @@ Test that a script, given a path to a named pipe, can write to that named pipe
 Run script as `python write_file.py <output_file>.py "some text"`
 """
 import sys
-import os
 
 outfile = sys.argv[1]
 text = sys.argv[2]
@@ -161,7 +160,7 @@ if [ -z "$outfile" ] || [ -z "$text" ]; then
   exit 1
 fi
 
-echo -n "$text" | tr -d '\n' | tr '[:lower:]' '[:upper:]' > "$outfile"
+tr '[:lower:]' '[:upper:]' <<<"$text" >"$outfile"
 ```
 
 ## Bash 5
@@ -182,7 +181,7 @@ if [ -z "$outfile" ] || [ -z "$text" ]; then
   exit 1
 fi
 
-echo -n "${text^^}" > "$outfile"
+echo "${text^^}" > "$outfile"
 ```
 
 ## Lua
