@@ -156,6 +156,38 @@ public class JsonNumbers {
 }
 ```
 
+## Bash 3
+
+`json_numbers.sh`
+
+```bash
+#!/bin/bash
+
+lengths=()
+
+for arg in "$@"; do
+  lengths+=("${#arg}")
+done
+
+jo -a "${lengths[@]}"
+```
+
+## Bash 5
+
+`json_numbers.sh`
+
+```bash
+#!/bin/bash
+
+lengths=()
+
+for arg in "$@"; do
+  lengths+=("${#arg}")
+done
+
+jo -a "${lengths[@]}"
+```
+
 ## Lua
 
 `json_numbers.lua`

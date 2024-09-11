@@ -164,6 +164,36 @@ public class JsonObjectArray {
 }
 ```
 
+## Bash 3
+
+`json_object_array.sh`
+
+```bash
+json_objects=()
+
+for arg in "$@"; do
+    upper_arg=$(tr '[:lower:]' '[:upper:]' <<< "$arg")
+    length=${#arg}
+    json_objects+=("$(jo "$upper_arg"="$length")")
+done
+
+jo -a "${json_objects[@]}"
+```
+
+## Bash 5
+
+`json_object_array.sh`
+
+```bash
+json_objects=()
+
+for arg in "$@"; do
+    json_objects+=("$(jo "${arg^^}"="${#arg}")")
+done
+
+jo -a "${json_objects[@]}"
+```
+
 ## Lua
 
 `json_object_array.lua`

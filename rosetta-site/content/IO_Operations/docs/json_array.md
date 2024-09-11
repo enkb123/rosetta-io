@@ -134,6 +134,26 @@ public class JsonArray {
 }
 ```
 
+## Bash 3
+
+`json_array.sh`
+
+```bash
+#!/bin/bash
+
+jo -a "$@"
+```
+
+## Bash 5
+
+`json_array.sh`
+
+```bash
+#!/bin/bash
+
+jo -a "$@"
+```
+
 ## Lua
 
 `json_array.lua`
