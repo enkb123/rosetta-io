@@ -156,8 +156,10 @@ class Raku(Language):
 
 class Rust(Language):
     name = 'rust'
+    human_name = 'Rust'
     interpreter = 'cargo script'
     script_ext = '.rs'
+    syntax_highlighting = 'rust'
 
 
 LANGUAGES = [
@@ -404,8 +406,7 @@ def test_write_to_named_pipe(script: ScriptRunner):
 
 
 def test_streaming_pipe_in_and_out(script: ScriptRunner):
-    """Test that named pipe can be read line by line and can write to output pipe
-    without waiting for all lines to arrive"""
+    """Test that named pipe can be read line by line and can write to output pipe without waiting for all lines to arrive"""
     script.add_named_pipe("pipe-in", "pipe-out")
 
     script.run("pipe-in pipe-out >&2 || echo ERROR &",

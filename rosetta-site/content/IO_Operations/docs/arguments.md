@@ -1,3 +1,8 @@
++++
+title = ''
+draft = false
++++
+
 # arguments
 
 Test that args can be passed to script
@@ -198,5 +203,20 @@ use v6;
 
 my $arg = @*ARGS[0];
 say $arg.lc;
+```
+
+## Rust
+
+`arguments.rs`
+
+```rust
+// Script to read an argument and print as lowercase in stdout
+
+use std::env;
+
+fn main() {
+    let user = env::args().nth(1).expect("Expected one argument");
+    println!("{}", user.to_lowercase());
+}
 ```
 

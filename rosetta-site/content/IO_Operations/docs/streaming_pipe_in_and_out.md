@@ -1,7 +1,11 @@
++++
+title = ''
+draft = false
++++
+
 # streaming_pipe_in_and_out
 
-Test that named pipe can be read line by line and can write to output pipe
-without waiting for all lines to arrive
+Test that named pipe can be read line by line and can write to output pipe without waiting for all lines to arrive
 
 ## Python
 
@@ -375,6 +379,32 @@ my $input = open($pipe_in, :r);
 
 for $input.lines {
     $output.print(.uc ~ "\n");
+}
+```
+
+## Rust
+
+`streaming_pipe_in_and_out.rs`
+
+```rust
+// Script reads text from a named pipe and writes it another named pipe, capitalized
+use std::env;
+use std::fs::File;
+use std::io::{BufRead, BufReader, BufWriter, Write};
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    let pipe_in = &args[1];
+    let pipe_out = &args[2];
+
+    let reader = BufReader::new(File::open(pipe_in).unwrap());
+    let mut writer = BufWriter::new(File::create(pipe_out).unwrap());
+
+    for line in reader.lines() {
+        writeln!(writer, "{}", line.unwrap().to_uppercase()).unwrap();
+        writer.flush().unwrap();
+    }
 }
 ```
 

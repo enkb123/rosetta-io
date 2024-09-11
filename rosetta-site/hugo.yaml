@@ -1,0 +1,25 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: Rosetta IO
+module:
+  imports:
+    - path: github.com/imfing/hextra
+cascade:
+  type: docs
+menu:
+  main:
+    - name: About
+      pageRef: /
+      weight: 1
+    - name: I/O Operations
+      pageRef: /IO_Operations
+      weight: 2
+    - name: Search
+      weight: 4
+      params:
+        type: search
+params:
+  navbar:
+    displayLogo: true
+    logo:
+      path: logo.svg

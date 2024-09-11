@@ -1,3 +1,8 @@
++++
+title = ''
+draft = false
++++
+
 # json_object_with_array_values
 
 Test that a JSON object with arrays as values is parsed correctly
@@ -290,5 +295,38 @@ use JSON::Fast;
 
 my %data = @*ARGS.map: { $_ => [ .uc.comb ] };
 say to-json(%data);
+```
+
+## Rust
+
+`json_object_with_array_values.rs`
+
+```rust
+//cargo-deps: json="0.12.4"
+
+// Script takes arguments and transforms them into dict with arrays as dict values
+// and returns as JSON
+use json::JsonValue;
+use std::env;
+
+extern crate json;
+fn main() {
+    let args: Vec<String> = env::args().skip(1).collect();
+
+    let mut json_object = JsonValue::new_object();
+
+    for arg in args {
+        let letters_array: JsonValue = arg
+            .to_uppercase()
+            .chars()
+            .map(|c| c.to_string().into())
+            .collect::<Vec<JsonValue>>()
+            .into();
+
+        json_object[arg] = letters_array;
+    }
+
+    println!("{}", json_object.dump());
+}
 ```
 
