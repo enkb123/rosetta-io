@@ -156,8 +156,10 @@ class Raku(Language):
 
 class Rust(Language):
     name = 'rust'
+    human_name = 'Rust'
     interpreter = 'cargo script'
     script_ext = '.rs'
+    syntax_highlighting = 'rust'
 
 
 LANGUAGES = [
