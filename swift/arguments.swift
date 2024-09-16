@@ -7,4 +7,5 @@ guard args.count > 1 else {
     exit(1)
 }
 
-print(args[1].lowercased())
+print("1st argument: \(args[1])")
+print("2nd argument: \(args[2])")
