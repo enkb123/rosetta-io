@@ -1,5 +1,3 @@
-// Read a file from file path (given as a command line arg),
-// print line by line with line numbers
 package main
 
 import (

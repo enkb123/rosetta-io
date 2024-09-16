@@ -1,4 +1,3 @@
-# Read JSON file, transform and print to stdout
 require 'json'
 
 people = JSON.load_file("people.json")

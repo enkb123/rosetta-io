@@ -1,5 +1,3 @@
-//Script reads text from a named pipe and writes it another named pipe, capitalized
-
 import Foundation
 
 #if os(macOS) || os(iOS)

@@ -1,5 +1,3 @@
-//Script takes args and turns into JSON array
-
 using System;
 using System.Text.Json;
 

@@ -1,6 +1,3 @@
-// Script takes arguments and transforms them into dict with arrays as dict values
-// and returns as JSON
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;

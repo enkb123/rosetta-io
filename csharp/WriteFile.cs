@@ -1,6 +1,3 @@
-//Script to write text to a new file
-//Run script as `csharp write_file.cs <output_file>.txt 'some text'`
-
 using System;
 using System.IO;
 

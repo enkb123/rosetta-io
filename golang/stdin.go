@@ -1,4 +1,3 @@
-// Test script to get input, transform, and write to stdout
 package main
 
 import (

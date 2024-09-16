@@ -1,7 +1,3 @@
-#!/bin/bash
-
-# Script to decode Base64 text
-
 encoded_string="$1"
 
 if [ -z "$encoded_string" ]; then

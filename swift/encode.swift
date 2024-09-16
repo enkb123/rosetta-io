@@ -1,5 +1,3 @@
-#!/usr/bin/swift
-//Script to encode a string as Base64
 import Foundation
 
 guard CommandLine.arguments.count == 2 else {

@@ -1,6 +1,3 @@
-"""Read a file (file path given as a command line argument),
-and write to stdout
-"""
 import sys
 
 file_path = sys.argv[1]

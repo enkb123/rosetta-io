@@ -1,5 +1,3 @@
-//Script reads text from a named pipe and writes it another named pipe, capitalized
-
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const [pipeInPath, pipeOutPath] = Deno.args;

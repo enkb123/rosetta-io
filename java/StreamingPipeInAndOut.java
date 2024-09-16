@@ -1,4 +1,3 @@
-// Script reads text from a named pipe and writes it another named pipe, capitalized
 import java.io.*;
 
 public class StreamingPipeInAndOut {
@@ -12,8 +11,8 @@ public class StreamingPipeInAndOut {
         String line;
         while ((line = input.readLine()) != null) {
             output.write(line.toUpperCase());
-            output.newLine();  // Ensure newline after each line
-            output.flush();  // Flush to ensure immediate write
+            output.newLine();
+            output.flush();
         }
 
         input.close();

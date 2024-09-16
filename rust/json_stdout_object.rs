@@ -1,7 +1,5 @@
 //cargo-deps: json="0.12.4"
 
-// Script reads string args and transforms into dict
-
 use json::JsonValue;
 use std::env;
 

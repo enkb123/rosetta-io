@@ -1,4 +1,3 @@
-// Script to read stdin line by line, transform, and write to stdout
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const rl = readLines(Deno.stdin);

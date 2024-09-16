@@ -1,5 +1,3 @@
-# Script reads text from a named pipe and writes it another named pipe, capitalized
-
 File.open 'streaming-out.pipe', 'w' do |output|
   output.sync = true
 

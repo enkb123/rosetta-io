@@ -1,7 +1,5 @@
 //cargo-deps: json="0.12.4"
 
-// Script takes string arguments and outputs a JSON array of numbers representing
-// the length of each argument
 use json::JsonValue;
 use std::env;
 

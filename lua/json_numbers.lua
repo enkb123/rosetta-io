@@ -1,5 +1,3 @@
--- Lua script to calculate lengths of string arguments and output JSON array
-
 local cjson = require("dkjson")
 
 local lengths = {}

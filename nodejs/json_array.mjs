@@ -1,5 +1,3 @@
-// Script takes args and turns into JSON array
-
-const myStrings = process.argv.slice(2) // Get command-line arguments, excluding 'node' and script name
+const myStrings = process.argv.slice(2)
 
 console.log(JSON.stringify(myStrings))

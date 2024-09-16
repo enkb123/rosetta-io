@@ -1,5 +1,3 @@
-// Script to read an argument and print as lowercase in stdout
-
 package main
 
 import (

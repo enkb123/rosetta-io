@@ -1,4 +1,3 @@
-//Script to decode Base64 text
 using System;
 
 class Decode{

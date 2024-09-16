@@ -14,9 +14,6 @@ as command line argument
 `read_file.py`
 
 ```python
-"""Read a file (file path given as a command line argument),
-and write to stdout
-"""
 import sys
 
 file_path = sys.argv[1]
@@ -33,9 +30,6 @@ with open(file_path, 'r') as f:
 `read_file.rb`
 
 ```ruby
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 file_path = ARGV[0]
 
 begin
@@ -55,13 +49,9 @@ end
 `read_file.mjs`
 
 ```javascript
-// Read a file (file path given as a command line argument),
-// and write to stdout
 import * as readline from 'node:readline/promises'
 import fs  from 'fs'
 
-
-// Get the file path from the command-line argument
 const file_path = process.argv[2]
 
 const rl = readline.createInterface({
@@ -80,8 +70,6 @@ for await (const line of rl) {
 `read_file.mjs`
 
 ```javascript
-// Read a file (file path given as a command line argument) and write to stdout
-
 const filePath = Deno.args[0];
 const file = await Deno.open(filePath);
 const decoder = new TextDecoder();
@@ -113,14 +101,9 @@ file.close();
 
 ```php
 <?php
-/* Read a file (file path given as a command line argument),
-and write to stdout
-*/
 
-// Get the file path from command line arguments
 $file_path = $argv[1];
 
-// Open the file for reading
 $file = fopen($file_path, 'r');
 
 foreach (file($file_path) as $index => $line) {
@@ -133,24 +116,16 @@ foreach (file($file_path) as $index => $line) {
 `read_file.R`
 
 ```r
-#' Read a file (file path given as a command line argument),
-#' and write to stdout
-
-
-# Get the file path from the command line argument
 file_path <- commandArgs(trailingOnly = TRUE)[1]
 
-# Open the file for reading
 con <- file(file_path, "r")
 
-# Read and print lines from the file
 i <- 1
 while (length(line <- readLines(con, n = 1)) > 0) {
   cat(i, toupper(line), sep = " ", fill = TRUE)
   i <- i + 1
 }
 
-# Close the file connection
 close(con)
 ```
 
@@ -159,9 +134,6 @@ close(con)
 `read_file.pl`
 
 ```perl
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 use strict;
 use warnings;
 
@@ -178,8 +150,6 @@ print $i++ . " " . uc while <$fh>;
 `ReadFile.java`
 
 ```java
-// Read a file from file path (given as a command line arg),
-// print line by line with line numbers
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -203,11 +173,6 @@ class ReadFile{
 `read_file.sh`
 
 ```bash
-#!/bin/bash
-
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 file_path="$1"
 
 if [ ! -f "$file_path" ]; then
@@ -229,9 +194,6 @@ done < "$file_path"
 ```bash
 #!/bin/bash
 
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 file_path="$1"
 
 if [ ! -f "$file_path" ]; then
@@ -251,7 +213,6 @@ done < "$1"
 `read_file.lua`
 
 ```lua
--- Lua script to read input, transform to uppercase, and print with line numbers
 local file_path = arg[1]
 local fh = io.open(file_path, "r")
 local i = 1
@@ -267,8 +228,6 @@ end
 `ReadFile.cs`
 
 ```csharp
-// Read a file from file path (given as a command line arg),
-// print line by line with line numbers
 using System;
 using System.IO;
 using System.Linq;
@@ -291,8 +250,6 @@ class ReadFile
 `read_file.go`
 
 ```go
-// Read a file from file path (given as a command line arg),
-// print line by line with line numbers
 package main
 
 import (
@@ -322,8 +279,6 @@ func main() {
 `read_file.swift`
 
 ```swift
-//Read a file (file path given as a command line argument) and write to stdout
-
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -344,9 +299,6 @@ fileContents.enumerateLines { line, _ in
 `read_file.raku`
 
 ```raku
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 use v6;
 
 my $file-path = @*ARGS.shift;

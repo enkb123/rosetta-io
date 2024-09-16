@@ -1,4 +1,3 @@
-# Read JSON file, transform and print to stdout
 use strict;
 use warnings;
 use JSON;

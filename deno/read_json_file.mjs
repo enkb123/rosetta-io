@@ -1,4 +1,3 @@
-// Read JSON file, transform and print to stdout
 const jsonFile = Deno.args[0];
 
 const data = await Deno.readTextFile(jsonFile);

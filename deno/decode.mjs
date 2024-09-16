@@ -1,6 +1,4 @@
-// Script to decode Base64 text
-
-const encodedString = Deno.args[0] // Get the Base64-encoded string from command-line arguments
+const encodedString = Deno.args[0]
 
 const decodedString = atob(encodedString)
 
