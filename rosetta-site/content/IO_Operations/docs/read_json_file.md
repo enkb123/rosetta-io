@@ -146,6 +146,36 @@ public class ReadJsonFile {
 }
 ```
 
+## Bash 3
+
+`read_json_file.sh`
+
+```bash
+#!/bin/bash
+
+for person in $(jq -c '.[]' <"$1"); do
+  age="$(jq -r .age <<<"$person")"
+  first_name="$(jq -r .first_name <<<"$person")"
+
+  echo "Hello, $age year old $first_name"
+done
+```
+
+## Bash 5
+
+`read_json_file.sh`
+
+```bash
+#!/bin/bash
+
+for person in $(jq -c '.[]' <"$1"); do
+  age="$(jq -r .age <<<"$person")"
+  first_name="$(jq -r .first_name <<<"$person")"
+
+  echo "Hello, $age year old $first_name"
+done
+```
+
 ## Lua
 
 `read_json_file.lua`

@@ -142,6 +142,40 @@ public class JsonStdoutObject {
 }
 ```
 
+## Bash 3
+
+`json_stdout_object.sh`
+
+```bash
+#!/bin/bash
+
+json_object='{}'
+
+for arg in "$@"; do
+    length=${#arg}
+    json_object=$(<<<"$json_object" jo -f - "$arg=$length")
+done
+
+echo "$json_object"
+```
+
+## Bash 5
+
+`json_stdout_object.sh`
+
+```bash
+#!/bin/bash
+
+json_object='{}'
+
+for arg in "$@"; do
+    length=${#arg}
+    json_object=$(<<<"$json_object" jo -f - "$arg=$length")
+done
+
+echo "$json_object"
+```
+
 ## Lua
 
 `json_stdout_object.lua`

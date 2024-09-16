@@ -153,6 +153,48 @@ public class JsonObjectWithArrayValues {
 }
 ```
 
+## Bash 3
+
+`json_object_with_array_values.sh`
+
+```bash
+#!/bin/bash
+
+json_object='{}'
+
+for arg in "$@"; do
+    upper_chars=$(<<<"$arg" tr '[:lower:]' '[:upper:]' | fold -w1)
+
+    json_array=$(jo -a ${upper_chars[@]})
+
+    # merge this object with the current object
+    json_object="$(<<<"$json_object" jo -f - "$arg"="$json_array")"
+done
+
+echo "$json_object"
+```
+
+## Bash 5
+
+`json_object_with_array_values.sh`
+
+```bash
+#!/bin/bash
+
+json_object='{}'
+
+for arg in "$@"; do
+    upper_chars=$(fold -w1 <<<"${arg^^}")
+
+    json_array=$(jo -a ${upper_chars[@]})
+
+    # merge this object with the current object
+    json_object="$(<<<"$json_object" jo -f - "$arg"="$json_array")"
+done
+
+echo "$json_object"
+```
+
 ## Lua
 
 `json_object_with_array_values.lua`

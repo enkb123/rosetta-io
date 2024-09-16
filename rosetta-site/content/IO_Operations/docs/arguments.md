@@ -56,6 +56,7 @@ echo strtolower($argv[1]);
 `arguments.R`
 
 ```r
+
 cat(tolower(commandArgs(trailingOnly = TRUE)))
 ```
 
