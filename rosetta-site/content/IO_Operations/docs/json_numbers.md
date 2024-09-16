@@ -12,17 +12,14 @@ Test that JSON list of numbers is parsed correctly
 `json_numbers.py`
 
 ```python
-"""Script takes args and outputs a list of lengths"""
 import json
 import sys
 
 
 my_strings = sys.argv[1:]
 
-# Create an array of numbers based on the length of the string args
 string_lengths = [len(string) for string in my_strings]
 
-# Cast to JSON and print to stdout
 print(json.dumps(string_lengths))
 ```
 
@@ -31,8 +28,6 @@ print(json.dumps(string_lengths))
 `json_numbers.rb`
 
 ```ruby
-# Script takes string arguments and outputs a JSON array of numbers representing
-# the length of each argument
 require 'json'
 
 my_strings = ARGV
@@ -47,11 +42,8 @@ puts JSON.generate(string_lengths)
 `json_numbers.mjs`
 
 ```javascript
-// Script takes args and outputs a list of lengths
-
 const myStrings = process.argv.slice(2)
 
-// Create an array of numbers based on the length of the string args
 const stringLengths = myStrings.map((string) => string.length)
 
 const jsonString = JSON.stringify(stringLengths)
@@ -64,11 +56,8 @@ console.log(jsonString)
 `json_numbers.mjs`
 
 ```javascript
-// Script takes args and outputs a list of lengths
-
 const myStrings = Deno.args
 
-// Create an array of numbers based on the length of the string args
 const stringLengths = myStrings.map((string) => string.length)
 
 const jsonString = JSON.stringify(stringLengths)
@@ -82,16 +71,12 @@ console.log(jsonString)
 
 ```php
 <?php
-// Script takes args and outputs a list of lengths
 
-// Get the command-line arguments into an array
 $myStrings = array_slice($argv, 1);
 
-// Create an array of numbers based on the length of the string args
 $stringLengths = array_map('strlen', $myStrings);
 
-// Encode the array as JSON and print to stdout
-echo json_encode($stringLengths) . "\n";
+echo json_encode($stringLengths);
 ```
 
 ## R
@@ -99,17 +84,12 @@ echo json_encode($stringLengths) . "\n";
 `json_numbers.R`
 
 ```r
-#' Script takes command-line arguments and outputs a JSON array
-
 library(jsonlite)
 
-# Get the command-line arguments (strings)
 args <- commandArgs(trailingOnly = TRUE)
 
-# Calculate the lengths of the strings and store them in an array
 string_lengths <- sapply(args, nchar)
 
-# Convert the array of string lengths to a JSON array and print to stdout
 cat(toJSON(string_lengths))
 ```
 
@@ -118,8 +98,6 @@ cat(toJSON(string_lengths))
 `json_numbers.pl`
 
 ```perl
-# Script takes string arguments and outputs a JSON array of numbers representing
-# the length of each argument
 use strict;
 use warnings;
 use JSON;
@@ -132,8 +110,6 @@ print encode_json([map { length } @ARGV]);
 `JsonNumbers.java`
 
 ```java
-// Script takes string arguments and outputs a JSON array of numbers representing
-// the length of each argument
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
@@ -161,8 +137,6 @@ public class JsonNumbers {
 `json_numbers.lua`
 
 ```lua
--- Lua script to calculate lengths of string arguments and output JSON array
-
 local cjson = require("dkjson")
 
 local lengths = {}
@@ -178,8 +152,6 @@ print(cjson.encode(lengths))
 `JsonNumbers.cs`
 
 ```csharp
-// Script takes string arguments and outputs a JSON array of numbers representing
-// the length of each argument
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -202,8 +174,6 @@ class JsonNumbers
 `json_numbers.go`
 
 ```go
-// Script takes string arguments and outputs a JSON array of numbers representing
-// the length of each argument
 package main
 
 import (
@@ -232,7 +202,6 @@ func main() {
 `json_numbers.swift`
 
 ```swift
-//Script takes args and outputs a list of lengths
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -253,7 +222,6 @@ print(String(data: jsonData, encoding: .utf8)!)
 `json_numbers.raku`
 
 ```raku
-# Script takes string arguments and outputs a JSON array of numbers representing the length of each argument
 use v6;
 
 use JSON::Fast;
@@ -268,8 +236,6 @@ say to-json(@*ARGS.map(*.chars));
 ```rust
 //cargo-deps: json="0.12.4"
 
-// Script takes string arguments and outputs a JSON array of numbers representing
-// the length of each argument
 use json::JsonValue;
 use std::env;
 

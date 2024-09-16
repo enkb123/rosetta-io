@@ -1,5 +1,3 @@
-#!/bin/bash
-
 pipe_in="$1"
 pipe_out="$2"
 

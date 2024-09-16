@@ -1,5 +1,3 @@
-#!/bin/bash
-
 outfile="$1"
 text="$2"
 

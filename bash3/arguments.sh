@@ -1,5 +1,3 @@
-#!/bin/bash
-
 file_path="$1"
 
 if [ -z "$file_path" ]; then

@@ -12,17 +12,13 @@ Test that JSON object is parsed correctly
 `json_stdout_object.py`
 
 ```python
-"""Script reads string args and transforms into python dict"""
 import json
 import sys
 
-
 my_strings = sys.argv[1:]
 
-# Make a dict with each string as a key and it's length as the value
 string_length_dict = {string: len(string) for string in my_strings}
 
-# Cast to JSON and print to stdout
 print(json.dumps(string_length_dict))
 ```
 
@@ -31,15 +27,12 @@ print(json.dumps(string_length_dict))
 `json_stdout_object.rb`
 
 ```ruby
-# Script reads string args and transforms into python dict
 require 'json'
 
 my_strings = ARGV
 
-# Make a dict with each string as a key and it's length as the value
 string_length_dict = my_strings.to_h { |string| [string, string.length] }
 
-# Cast to JSON and print to stdout
 puts JSON.generate(string_length_dict)
 ```
 
@@ -48,11 +41,8 @@ puts JSON.generate(string_length_dict)
 `json_stdout_object.mjs`
 
 ```javascript
-// Script reads string args and transforms into python dict
-
 const myStrings = process.argv.slice(2)
 
-// Make a dict with each string as a key and it's length as the value
 const stringLengthDict = {}
 
 for (const string of myStrings) {
@@ -67,11 +57,8 @@ console.log(JSON.stringify(stringLengthDict))
 `json_stdout_object.mjs`
 
 ```javascript
-// Script reads string args and transforms into python dict
-
 const myStrings = Deno.args
 
-// Make a dict with each string as a key and it's length as the value
 const stringLengthDict = {}
 
 for (const string of myStrings) {
@@ -87,16 +74,11 @@ console.log(JSON.stringify(stringLengthDict))
 
 ```php
 <?php
-// Script reads string args and transforms into python dict
-
-// Get the command-line arguments into an array
 $myStrings = array_slice($argv, 1);
 
-// Create an associative array (dictionary) with each string as a key and its length as the value
 $stringLengthDict = array_combine($myStrings, array_map('strlen', $myStrings));
 
-// Encode the dictionary as JSON and print to stdout
-echo json_encode($stringLengthDict) . "\n";
+echo json_encode($stringLengthDict);
 ```
 
 ## R
@@ -104,22 +86,15 @@ echo json_encode($stringLengthDict) . "\n";
 `json_stdout_object.R`
 
 ```r
-#' Script reads string arguments and transforms to JSON object
-
 library(jsonlite)
 
-# Get the command-line arguments (strings)
 args <- commandArgs(trailingOnly = TRUE)
 
-# Create a named list with each string as a key and its length as an atomic vector
 string_length <- list()
 for (string in args) {
   string_length[[string]] <- nchar(string)
 }
 
-# Convert list to JSON and print to stdout
-# `auto_unbox`flag marks atomic vectors as singletons with 1 element so that the
-# value won't turn into an array when encoded into JSON
 cat(toJSON(string_length, auto_unbox = TRUE))
 ```
 
@@ -128,7 +103,6 @@ cat(toJSON(string_length, auto_unbox = TRUE))
 `json_stdout_object.pl`
 
 ```perl
-# Script reads string args and transforms into python dict
 use strict;
 use warnings;
 use JSON;
@@ -141,8 +115,6 @@ print encode_json({ map { $_ => length } @ARGV });
 `JsonStdoutObject.java`
 
 ```java
-// Script reads string args and transforms into python dict
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -175,8 +147,6 @@ public class JsonStdoutObject {
 `json_stdout_object.lua`
 
 ```lua
--- Lua script to transform string arguments into a Lua table and output as JSON
-
 local cjson = require("dkjson")
 
 local dict = {}
@@ -193,8 +163,6 @@ print(cjson.encode(dict))
 `JsonStdoutObject.cs`
 
 ```csharp
-// Script reads string args and transforms into python dict
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -219,8 +187,6 @@ class JsonStdoutObject{
 `json_stdout_object.go`
 
 ```go
-// Script reads string args and transforms into python dict
-
 package main
 
 import (
@@ -248,7 +214,6 @@ func main() {
 `json_stdout_object.swift`
 
 ```swift
-//Script reads string args and transforms into python dict
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -268,7 +233,6 @@ print(String(data: jsonData, encoding: .utf8)!)
 `json_stdout_object.raku`
 
 ```raku
-# Script reads string args and transforms into python dict
 use v6;
 use JSON::Fast;
 
@@ -282,8 +246,6 @@ say to-json(%data);
 
 ```rust
 //cargo-deps: json="0.12.4"
-
-// Script reads string args and transforms into dict
 
 use json::JsonValue;
 use std::env;

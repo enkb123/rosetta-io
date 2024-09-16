@@ -1,5 +1,3 @@
-#!/bin/bash
-
 encoded_string="$1"
 
 if [ -z "$encoded_string" ]; then

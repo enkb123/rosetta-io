@@ -28,7 +28,6 @@ puts "Hello World \0"
 `null_char.mjs`
 
 ```javascript
-// Script to write null character to stdout
 console.log("Hello World \0")
 ```
 
@@ -37,7 +36,6 @@ console.log("Hello World \0")
 `null_char.mjs`
 
 ```javascript
-// Script to write null character to stdout
 console.log("Hello World \0")
 ```
 
@@ -47,11 +45,8 @@ console.log("Hello World \0")
 
 ```php
 <?php
-// Write null character to stdout
 
-// echo function does not add a new line so adding it here manually
-// for consistency with other langauges
-echo "Hello World \0\n";
+echo "Hello World \0";
 ```
 
 ## R
@@ -59,22 +54,15 @@ echo "Hello World \0\n";
 `null_char.R`
 
 ```r
-#' Write the null character to stdout
-
-# R character strings don't support the null character
-# so we convert the strings to raw vectors
 text_raw <- charToRaw("Hello World ")
 null_char_raw <- as.raw(0)
 new_line_raw <- charToRaw("\n")
 raw_vector <- c(text_raw, null_char_raw, new_line_raw)
 
-# Write to a temporary binary file
 writeBin(raw_vector, "temp_binary_file.bin")
 
-# Read file to stdout, intern=FALSE so output is not captured as a character vector
 system("cat temp_binary_file.bin", intern = FALSE)
 
-# Delete the temp file
 unlink("temp_binary_file.bin")
 ```
 
@@ -86,7 +74,7 @@ unlink("temp_binary_file.bin")
 use strict;
 use warnings;
 
-print "Hello World \0\n"
+print "Hello World \0"
 ```
 
 ## Java
@@ -106,7 +94,7 @@ public class NullChar {
 `null_char.sh`
 
 ```bash
-printf "Hello World \0\n"
+printf "Hello World \0"
 ```
 
 ## Bash 5
@@ -114,7 +102,7 @@ printf "Hello World \0\n"
 `null_char.sh`
 
 ```bash
-printf "Hello World \0\n"
+printf "Hello World \0"
 ```
 
 ## Lua
@@ -166,7 +154,7 @@ print("Hello World \0")
 ```raku
 use v6;
 
-print "Hello World \0\n";
+say "Hello World \0";
 ```
 
 ## Rust

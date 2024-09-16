@@ -12,16 +12,13 @@ Test that a string can be encoded as base64
 `encode.py`
 
 ```python
-"""Script to encode a string as Base64"""
 import base64
 import sys
 
 test_string = sys.argv[1]
 
-# Encode string argument as bytes, encode as base64 then decode as string
 encoded_string = base64.b64encode(test_string.encode()).decode()
 
-# Print as a string, not bytes
 print(encoded_string)
 ```
 
@@ -30,14 +27,10 @@ print(encoded_string)
 `encode.rb`
 
 ```ruby
-# Script to encode a string as Base64
-# Note that Line feeds are added to every 60 encoded characters
 require 'base64'
-
 
 test_string = ARGV[0]
 
-# Encode string argument as string
 encoded_string = Base64.encode64(test_string)
 
 puts encoded_string
@@ -48,9 +41,7 @@ puts encoded_string
 `encode.mjs`
 
 ```javascript
-// Script to encode a string as Base64
-
-const testString = process.argv[2] // Get the Base64-encoded string from command-line arguments
+const testString = process.argv[2]
 
 const encodedString = btoa(testString)
 
@@ -62,9 +53,7 @@ console.log(encodedString)
 `encode.mjs`
 
 ```javascript
-// Script to encode a string as Base64
-
-const testString = Deno.args[0] // Get the Base64-encoded string from command-line arguments
+const testString = Deno.args[0]
 
 const encodedString = btoa(testString)
 
@@ -77,14 +66,12 @@ console.log(encodedString)
 
 ```php
 <?php
-// Script to encode a string as Base64
 
 $stringToEncode = $argv[1];
 
-// Encode the string as Base64
 $encodedString = base64_encode($stringToEncode);
 
-echo $encodedString . "\n";
+echo $encodedString;
 ```
 
 ## R
@@ -92,17 +79,13 @@ echo $encodedString . "\n";
 `encode.R`
 
 ```r
-#' Script to encode text as Base64
-
 library(base64enc)
 
-# Get the command-line arguments (strings)
 args <- commandArgs(trailingOnly = TRUE)
 
-# Convert string to raw bytes then encode as base64
 encoded_string <- base64encode(charToRaw(args))
 
-cat(encoded_string, fill = TRUE)
+cat(encoded_string)
 ```
 
 ## Perl
@@ -114,7 +97,7 @@ use strict;
 use warnings;
 use MIME::Base64;
 
-print encode_base64($ARGV[0], ''), "\n";
+print encode_base64($ARGV[0], '');
 ```
 
 ## Java
@@ -122,8 +105,6 @@ print encode_base64($ARGV[0], ''), "\n";
 `Encode.java`
 
 ```java
-//Script to encode a string as Base64
-
 import java.util.Base64;
 
 public class Encode {
@@ -136,9 +117,6 @@ public class Encode {
         String testString = args[0];
         String encodedString = Base64.getEncoder().encodeToString(testString.getBytes());
 
-
-
-        // Print the encoded string
         System.out.println(encodedString);
     }
 }
@@ -149,10 +127,6 @@ public class Encode {
 `encode.sh`
 
 ```bash
-#!/bin/bash
-
-# Script to encode a string as Base64
-
 test_string="$1"
 
 if [ -z "$test_string" ]; then
@@ -168,10 +142,6 @@ echo -n "$test_string" | base64
 `encode.sh`
 
 ```bash
-#!/bin/bash
-
-# Script to encode a string as Base64
-
 test_string="$1"
 
 if [ -z "$test_string" ]; then
@@ -187,7 +157,6 @@ echo -n "$test_string" | base64
 `encode.lua`
 
 ```lua
--- Lua script to encode a string as Base64
 local base64 = require("base64")
 print(base64.encode(arg[1]))
 ```
@@ -197,8 +166,6 @@ print(base64.encode(arg[1]))
 `Encode.cs`
 
 ```csharp
-//Script to encode a string as Base64
-
 using System;
 
 class Encode{
@@ -215,8 +182,6 @@ class Encode{
 `encode.go`
 
 ```go
-//Script to encode a string as Base64
-
 package main
 
 import (
@@ -235,8 +200,6 @@ func main() {
 `encode.swift`
 
 ```swift
-#!/usr/bin/swift
-//Script to encode a string as Base64
 import Foundation
 
 guard CommandLine.arguments.count == 2 else {
@@ -270,7 +233,7 @@ use std::env;
 extern crate base64;
 
 fn main() {
-    let test_string = env::args().nth(1).expect("Expected one argument");
+    let test_string = env::args().nth(1).unwrap();
     let encoded_string = base64::encode(test_string);
 
     println!("{}", encoded_string);

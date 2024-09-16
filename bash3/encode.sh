@@ -1,5 +1,3 @@
-#!/bin/bash
-
 test_string="$1"
 
 if [ -z "$test_string" ]; then

@@ -12,7 +12,6 @@ Test that named pipe can be read line by line and can write to output pipe witho
 `streaming_pipe_in_and_out.py`
 
 ```python
-# Script reads text from a named pipe and writes it another named pipe, capitalized
 import sys
 
 pipe_in = sys.argv[1]
@@ -30,8 +29,6 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
 `streaming_pipe_in_and_out.rb`
 
 ```ruby
-# Script reads text from a named pipe and writes it another named pipe, capitalized
-
 pipe_in, pipe_out = ARGV
 
 File.open(pipe_out, 'w') do |output|
@@ -50,8 +47,6 @@ end
 `streaming_pipe_in_and_out.mjs`
 
 ```javascript
-// Script reads text from a named pipe and writes it another named pipe, capitalized
-
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
@@ -73,8 +68,6 @@ for await(const line of rl){
 `streaming_pipe_in_and_out.mjs`
 
 ```javascript
-//Script reads text from a named pipe and writes it another named pipe, capitalized
-
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const [pipeInPath, pipeOutPath] = Deno.args;
@@ -98,7 +91,7 @@ output.close();
 
 ```php
 <?php
-//Script reads text from a named pipe and writes it another named pipe, capitalized
+
 $pipe_in = $argv[1];
 $pipe_out = $argv[2];
 
@@ -112,7 +105,6 @@ while (($line = fgets($input_pipe)) !== false) {
 
 fclose($input_pipe);
 fclose($output_pipe);
-?>
 ```
 
 ## R
@@ -120,7 +112,6 @@ fclose($output_pipe);
 `streaming_pipe_in_and_out.R`
 
 ```r
-# Script reads text from a named pipe and writes it another named pipe, capitalized
 args <- commandArgs(trailingOnly = TRUE)
 
 pipe_in <- args[1]
@@ -145,7 +136,6 @@ close(output)
 `streaming_pipe_in_and_out.pl`
 
 ```perl
-# Script reads text from a named pipe and writes it another named pipe, capitalized
 use strict;
 use warnings;
 
@@ -169,7 +159,6 @@ close $output;
 `StreamingPipeInAndOut.java`
 
 ```java
-// Script reads text from a named pipe and writes it another named pipe, capitalized
 import java.io.*;
 
 public class StreamingPipeInAndOut {
@@ -183,8 +172,8 @@ public class StreamingPipeInAndOut {
         String line;
         while ((line = input.readLine()) != null) {
             output.write(line.toUpperCase());
-            output.newLine();  // Ensure newline after each line
-            output.flush();  // Flush to ensure immediate write
+            output.newLine();
+            output.flush();
         }
 
         input.close();
@@ -198,9 +187,6 @@ public class StreamingPipeInAndOut {
 `streaming_pipe_in_and_out.sh`
 
 ```bash
-#!/bin/bash
-# Script reads text from a named pipe and writes it another named pipe, capitalized
-
 pipe_in="$1"
 pipe_out="$2"
 
@@ -212,9 +198,6 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in" > "$pipe_out"
 `streaming_pipe_in_and_out.sh`
 
 ```bash
-#!/bin/bash
-# Script reads text from a named pipe and writes it another named pipe, capitalized
-
 pipe_in="$1"
 pipe_out="$2"
 
@@ -226,7 +209,6 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in" > "$pipe_out"
 `streaming_pipe_in_and_out.lua`
 
 ```lua
--- Script reads text from a named pipe and writes it another named pipe, capitalized
 local pipe_in = arg[1]
 local pipe_out = arg[2]
 
@@ -248,7 +230,6 @@ output_file:close()
 `StreamingPipeInAndOut.cs`
 
 ```csharp
-//Script reads text from a named pipe and writes it another named pipe, capitalized
 using System;
 using System.IO;
 using System.IO.Pipes;
@@ -277,7 +258,6 @@ class StreamingPipeInAndOut
 `streaming_pipe_in_and_out.go`
 
 ```go
-// Script reads text from a named pipe and writes it to another pipe, capitalized
 package main
 
 import (
@@ -313,8 +293,6 @@ func main() {
 `streaming_pipe_in_and_out.swift`
 
 ```swift
-//Script reads text from a named pipe and writes it another named pipe, capitalized
-
 import Foundation
 
 #if os(macOS) || os(iOS)
@@ -369,7 +347,6 @@ if let lines = FileLines(path: pipe_in) {
 `streaming_pipe_in_and_out.raku`
 
 ```raku
-# Script reads text from a named pipe and writes it another named pipe, capitalized
 use v6;
 
 my ($pipe_in, $pipe_out) = @*ARGS;
@@ -387,7 +364,6 @@ for $input.lines {
 `streaming_pipe_in_and_out.rs`
 
 ```rust
-// Script reads text from a named pipe and writes it another named pipe, capitalized
 use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Write};

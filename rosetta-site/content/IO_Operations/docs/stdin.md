@@ -15,8 +15,6 @@ reads each line, capitalizes it, then prints it out.
 `stdin.py`
 
 ```python
-"""Script to read stdin line by line, transform, and return it"""
-
 i = 1
 while True:
     try:
@@ -32,8 +30,6 @@ while True:
 `stdin.rb`
 
 ```ruby
-# Test script to get input, transform, and write to stdout
-
 i = 1
 
 while user_input = gets
@@ -47,7 +43,6 @@ end
 `stdin.mjs`
 
 ```javascript
-// Script to read stdin line by line, transform, and write to stdout
 import * as readline from 'node:readline/promises'
 
 const rl = readline.createInterface({ input: process.stdin })
@@ -64,7 +59,6 @@ for await (const line of rl) {
 `stdin.mjs`
 
 ```javascript
-// Script to read stdin line by line, transform, and write to stdout
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const rl = readLines(Deno.stdin);
@@ -82,11 +76,10 @@ for await (const line of rl) {
 
 ```php
 <?php
-// Script to read stdin line by line, transform, and return it
 
 $i = 1;
 
-while ($user_input = fgets(STDIN)) { // fgets returns false when nothing left to read
+while ($user_input = fgets(STDIN)) {
     echo $i++ . ' ' . strtoupper($user_input);
 }
 ```
@@ -96,11 +89,9 @@ while ($user_input = fgets(STDIN)) { // fgets returns false when nothing left to
 `stdin.R`
 
 ```r
-#' Script to read stdin, transform, and return it
-
 i <- 1
 for (line in readLines("stdin")) {
-  cat(i, toupper(line), sep = " ", fill = TRUE) # fill flag adds new line
+  cat(i, toupper(line), sep = " ", fill = TRUE)
   i <- i + 1
 }
 ```
@@ -110,7 +101,6 @@ for (line in readLines("stdin")) {
 `stdin.pl`
 
 ```perl
-# Test script to get input, transform, and write to stdout
 use strict;
 use warnings;
 
@@ -123,8 +113,6 @@ print $i++ . " " . uc while <STDIN>;
 `Stdin.java`
 
 ```java
-// Test script to get input, transform, and write to stdout
-
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -134,9 +122,8 @@ public class Stdin {
         Scanner scanner = new Scanner(System.in);
         AtomicInteger counter = new AtomicInteger(1);
 
-        // Create a stream of lines from Scanner
         Stream.generate(scanner::nextLine)
-              .takeWhile(line -> !line.isEmpty()) // Assuming empty line signals end, adjust as needed
+              .takeWhile(line -> !line.isEmpty())
               .forEach(line -> System.out.println(counter.getAndIncrement() + " " + line.toUpperCase()));
 
         scanner.close();
@@ -149,10 +136,6 @@ public class Stdin {
 `stdin.sh`
 
 ```bash
-#!/bin/bash
-
-# Test script to get input, transform, and write to stdout
-
 i=1
 
 while IFS= read -r user_input; do
@@ -165,8 +148,6 @@ done | tr '[:lower:]' '[:upper:]'
 `stdin.sh`
 
 ```bash
-#!/bin/bash
-
 i=1
 
 while IFS= read -r user_input; do
@@ -179,12 +160,9 @@ done
 `stdin.lua`
 
 ```lua
--- Lua script to read input, transform to uppercase, and print with line numbers
 local i = 1
 
--- Read from stdin until EOF
 for user_input in io.lines() do
-    -- Transform input to uppercase and prepend with line number
     print(i .. " " .. user_input:upper())
     i = i + 1
 end
@@ -195,8 +173,6 @@ end
 `Stdin.cs`
 
 ```csharp
-// Test script to get input, transform, and write to stdout
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -220,7 +196,6 @@ class Stdin
 `stdin.go`
 
 ```go
-// Test script to get input, transform, and write to stdout
 package main
 
 import (
@@ -243,8 +218,6 @@ func main() {
 `stdin.swift`
 
 ```swift
-//Script to read stdin line by line, transform, and return it
-
 import Foundation
 
 var i = 1
@@ -260,7 +233,6 @@ while let user_input = readLine() {
 `stdin.raku`
 
 ```raku
-# Test script to get input, transform, and write to stdout
 use v6;
 
 my $i = 1;
@@ -274,7 +246,6 @@ for lines() {
 `stdin.rs`
 
 ```rust
-// Test script to get input, transform, and write to stdout
 use std::io::{self, BufRead};
 
 fn main() {

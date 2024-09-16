@@ -12,17 +12,14 @@ Test that a JSON array made of objects is parsed correctly
 `json_object_array.py`
 
 ```python
-"""Script writes an array of objects to stdout"""
 import json
 import sys
 
 
 args = sys.argv[1:]
 
-# Make a list of dictionaries from the given args, one dict per arg
 my_array = [{arg.upper(): len(arg)} for arg in args]
 
-# Cast to JSON and print to stdout
 print(json.dumps(my_array))
 ```
 
@@ -31,15 +28,12 @@ print(json.dumps(my_array))
 `json_object_array.rb`
 
 ```ruby
-# Script outputs arrays of objects as JSON
 require 'json'
 
 my_strings = ARGV
 
-# Make a list of dictionaries from the given arguments, one dict per arg
 my_array = my_strings.map { |string| {string.upcase => string.length} }
 
-# Cast to JSON and print to stdout
 puts JSON.generate(my_array)
 ```
 
@@ -48,11 +42,8 @@ puts JSON.generate(my_array)
 `json_object_array.mjs`
 
 ```javascript
-// Script writes an array of objects to stdout
-
 const args = process.argv.slice(2)
 
-// Make a list of dictionaries from the given args, one dict per arg
 const myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))
 
 console.log(JSON.stringify(myArray))
@@ -63,11 +54,8 @@ console.log(JSON.stringify(myArray))
 `json_object_array.mjs`
 
 ```javascript
-// Script writes an array of objects to stdout
-
 const args = Deno.args
 
-// Make a list of dictionaries from the given args, one dict per arg
 const myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))
 
 console.log(JSON.stringify(myArray))
@@ -79,18 +67,13 @@ console.log(JSON.stringify(myArray))
 
 ```php
 <?php
-// Script writes an array of objects to stdout
-
-// Get the command-line arguments into an array
 $args = array_slice($argv, 1);
 
-// Create an array of dictionaries (associative arrays), one per argument
 $myArray = array_map(function($arg) {
     return [strtoupper($arg) => strlen($arg)];
 }, $args);
 
-// Encode the array as JSON and print to stdout
-echo json_encode($myArray) . "\n";
+echo json_encode($myArray);
 ```
 
 ## R
@@ -98,13 +81,10 @@ echo json_encode($myArray) . "\n";
 `json_object_array.R`
 
 ```r
-# Script writes a JSON array of objects to stdout
 library(jsonlite)
 
-# Get the command-line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
-# Create an array of named lists from the given args, one list per arg
 myArray <- list()
 for (arg in args) {
     string_length <- list()
@@ -112,7 +92,6 @@ for (arg in args) {
     myArray[[length(myArray)+1]] <- string_length
 }
 
-# Convert the array to a JSON array and print to stdout
 cat(toJSON(myArray, auto_unbox=TRUE))
 ```
 
@@ -121,7 +100,6 @@ cat(toJSON(myArray, auto_unbox=TRUE))
 `json_object_array.pl`
 
 ```perl
-# Script outputs arrays of objects as JSON
 use strict;
 use warnings;
 use JSON;
@@ -136,8 +114,6 @@ print JSON->new
 `JsonObjectArray.java`
 
 ```java
-// Script outputs arrays of objects as JSON
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -169,8 +145,6 @@ public class JsonObjectArray {
 `json_object_array.lua`
 
 ```lua
--- Lua script to transform string arguments into an array of dictionaries and output as JSON
-
 local cjson = require("dkjson")
 
 local my_array = {}
@@ -190,7 +164,6 @@ print(cjson.encode(my_array))
 `JsonObjectArray.cs`
 
 ```csharp
-// Script outputs arrays of objects as JSON
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -213,8 +186,6 @@ class JsonObjectArray
 `json_object_array.go`
 
 ```go
-// Script outputs arrays of objects as JSON
-
 package main
 
 import (
@@ -246,7 +217,6 @@ func main() {
 `json_object_array.swift`
 
 ```swift
-//Script writes an array of objects to stdout
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -267,7 +237,6 @@ print(String(data: jsonData, encoding: .utf8)!)
 `json_object_array.raku`
 
 ```raku
-# Script outputs arrays of objects as JSON
 use v6;
 use JSON::Fast;
 
@@ -281,7 +250,6 @@ say to-json(@*ARGS.map: { uc($_) => $_.chars });
 ```rust
 //cargo-deps: json="0.12.4"
 
-// Script outputs arrays of objects as JSON
 use json::JsonValue;
 use std::env;
 use json::object;

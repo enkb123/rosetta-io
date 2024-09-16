@@ -12,7 +12,6 @@ Test that base64 can be decoded as a string
 `decode.py`
 
 ```python
-"""Script to decode Base64 text"""
 import base64
 import sys
 
@@ -28,9 +27,6 @@ print(decoded_string)
 `decode.rb`
 
 ```ruby
-# Script to decode Base64 text
-# Note that Base64.decode64 ignores characters outside the base alphabet
-# see Ruby docs: https://ruby-doc.org/3.0.6/stdlibs/base64/Base64.html
 require 'base64'
 
 encoded_string = ARGV[0]
@@ -45,9 +41,7 @@ puts decoded_string
 `decode.mjs`
 
 ```javascript
-// Script to decode Base64 text
-
-const encodedString = process.argv[2] // Get the Base64-encoded string from command-line arguments
+const encodedString = process.argv[2]
 
 const decodedString = atob(encodedString)
 
@@ -59,9 +53,7 @@ console.log(decodedString)
 `decode.mjs`
 
 ```javascript
-// Script to decode Base64 text
-
-const encodedString = Deno.args[0] // Get the Base64-encoded string from command-line arguments
+const encodedString = Deno.args[0]
 
 const decodedString = atob(encodedString)
 
@@ -74,14 +66,12 @@ console.log(decodedString)
 
 ```php
 <?php
-// Script to decode Base64 text
 
 $encodedString = $argv[1];
 
-// Decode the Base64 encoded string
 $decodedString = base64_decode($encodedString);
 
-echo $decodedString . "\n";
+echo $decodedString;
 ```
 
 ## R
@@ -89,17 +79,13 @@ echo $decodedString . "\n";
 `decode.R`
 
 ```r
-#' Script to decode Base64 text
-
 library(base64enc)
 
-# Get the command-line arguments (strings)
 args <- commandArgs(trailingOnly = TRUE)
 
-# Decode from base64 to raw bytes then convert raw bytes to string
 decoded_string <- rawToChar(base64decode(args))
 
-cat(decoded_string, fill = TRUE)
+cat(decoded_string)
 ```
 
 ## Perl
@@ -111,7 +97,7 @@ use strict;
 use warnings;
 use MIME::Base64;
 
-print decode_base64($ARGV[0]), "\n";
+print decode_base64($ARGV[0]);
 ```
 
 ## Java
@@ -119,7 +105,6 @@ print decode_base64($ARGV[0]), "\n";
 `Decode.java`
 
 ```java
-//Script to decode Base64 text
 import java.util.Base64;
 
 public class Decode {
@@ -143,10 +128,6 @@ public class Decode {
 `decode.sh`
 
 ```bash
-#!/bin/bash
-
-# Script to decode Base64 text
-
 encoded_string="$1"
 
 if [ -z "$encoded_string" ]; then
@@ -155,7 +136,6 @@ if [ -z "$encoded_string" ]; then
 fi
 
 base64 -d <<< "$encoded_string"
-echo  # tests expect a newline at the end
 ```
 
 ## Bash 5
@@ -163,10 +143,6 @@ echo  # tests expect a newline at the end
 `decode.sh`
 
 ```bash
-#!/bin/bash
-
-# Script to decode Base64 text
-
 encoded_string="$1"
 
 if [ -z "$encoded_string" ]; then
@@ -175,7 +151,6 @@ if [ -z "$encoded_string" ]; then
 fi
 
 base64 -d <<< "$encoded_string"
-echo  # tests expect a newline at the end
 ```
 
 ## Lua
@@ -183,8 +158,6 @@ echo  # tests expect a newline at the end
 `decode.lua`
 
 ```lua
--- Lua script to decode Base64 encoded string from command-line argument
-
 local base64 = require("base64")
 print(base64.decode(arg[1]))
 ```
@@ -194,7 +167,6 @@ print(base64.decode(arg[1]))
 `Decode.cs`
 
 ```csharp
-//Script to decode Base64 text
 using System;
 
 class Decode{
@@ -214,7 +186,6 @@ class Decode{
 `decode.go`
 
 ```go
-// Script to decode Base64 text
 package main
 
 import (
@@ -235,8 +206,6 @@ func main() {
 `decode.swift`
 
 ```swift
-#!/usr/bin/swift
-
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -267,13 +236,12 @@ say MIME::Base64.decode-str(@*ARGS[0]);
 ```rust
 //cargo-deps: base64="0.13"
 
-//Script to decode Base64 text
 extern crate base64;
 use base64::decode;
 use std::env;
 
 fn main() {
-    let encoded_string = env::args().nth(1).expect("Expected one argument");
+    let encoded_string = env::args().nth(1).unwrap();
     let decoded_bytes = decode(encoded_string).unwrap();
     let decoded_string = String::from_utf8(decoded_bytes).unwrap();
     println!("{}", decoded_string);

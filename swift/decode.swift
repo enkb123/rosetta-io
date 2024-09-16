@@ -1,5 +1,3 @@
-#!/usr/bin/swift
-
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
