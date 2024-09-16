@@ -1,5 +1,3 @@
-//Script takes args and turns into JSON array
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 

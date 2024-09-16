@@ -12,7 +12,6 @@ Test that args can be passed to script
 `arguments.py`
 
 ```python
-"""Script reads command line arguments and writes to stdout"""
 import sys
 
 print(sys.argv[1].lower())
@@ -23,8 +22,6 @@ print(sys.argv[1].lower())
 `arguments.rb`
 
 ```ruby
-# Script to read an argument and print as lowercase in stdout
-
 puts ARGV[0].downcase
 ```
 
@@ -33,8 +30,6 @@ puts ARGV[0].downcase
 `arguments.mjs`
 
 ```javascript
-// Script to read command line argument and write to stdout
-
 console.log(process.argv[2].toLowerCase())
 ```
 
@@ -43,8 +38,6 @@ console.log(process.argv[2].toLowerCase())
 `arguments.mjs`
 
 ```javascript
-// Script to read command line argument and write to stdout
-
 console.log(Deno.args[0].toLowerCase())
 ```
 
@@ -54,7 +47,7 @@ console.log(Deno.args[0].toLowerCase())
 
 ```php
 <?php
-// Read command line arguments and write to stdout
+
 echo strtolower($argv[1]);
 ```
 
@@ -63,8 +56,6 @@ echo strtolower($argv[1]);
 `arguments.R`
 
 ```r
-#' Script reads command line arguments and writes to stdout in lowercase
-
 cat(tolower(commandArgs(trailingOnly = TRUE)))
 ```
 
@@ -73,7 +64,6 @@ cat(tolower(commandArgs(trailingOnly = TRUE)))
 `arguments.pl`
 
 ```perl
-# Script to read an argument and print as lowercase in stdout
 use strict;
 use warnings;
 print lc($ARGV[0]);
@@ -84,8 +74,6 @@ print lc($ARGV[0]);
 `Arguments.java`
 
 ```java
-// Script to read an argument and print as lowercase in stdout
-
 class Main{
     public static void main(String[] args){
         String user = args[0];
@@ -99,9 +87,6 @@ class Main{
 `arguments.sh`
 
 ```bash
-#!/bin/bash
-
-# Script to read an argument and print as lowercase in stdout
 file_path="$1"
 
 if [ -z "$file_path" ]; then
@@ -117,9 +102,6 @@ tr '[:upper:]' '[:lower:]' <<< "$file_path"
 `arguments.sh`
 
 ```bash
-#!/bin/bash
-
-# Script to read an argument and print as lowercase in stdout
 file_path="$1"
 
 if [ -z "$file_path" ]; then
@@ -135,8 +117,6 @@ echo "${file_path,,}"
 `arguments.lua`
 
 ```lua
---Script to read an argument and print as lowercase in stdout
-
 print(arg[1]:lower())
 ```
 
@@ -159,8 +139,6 @@ class Arguments
 `arguments.go`
 
 ```go
-// Script to read an argument and print as lowercase in stdout
-
 package main
 
 import (
@@ -179,8 +157,6 @@ func main() {
 `arguments.swift`
 
 ```swift
-#!/usr/bin/swift
-
 import Foundation
 
 let args = CommandLine.arguments
@@ -198,7 +174,6 @@ print(args[1].lowercased())
 `arguments.raku`
 
 ```raku
-# Script to read an argument and print as lowercase in stdout
 use v6;
 
 my $arg = @*ARGS[0];
@@ -210,12 +185,10 @@ say $arg.lc;
 `arguments.rs`
 
 ```rust
-// Script to read an argument and print as lowercase in stdout
-
 use std::env;
 
 fn main() {
-    let user = env::args().nth(1).expect("Expected one argument");
+    let user = env::args().nth(1).unwrap();
     println!("{}", user.to_lowercase());
 }
 ```

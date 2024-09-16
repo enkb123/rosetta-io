@@ -12,17 +12,13 @@ Test that a JSON object with arrays as values is parsed correctly
 `json_object_with_array_values.py`
 
 ```python
-"""Script takes args and transforms into python dict with arrays as dict values"""
 import json
 import sys
 
-
 my_strings = sys.argv[1:]
 
-# Make dict with the string as key and list of letters as value
 string_letters_dict = {string: [s.upper() for s in string] for string in my_strings}
 
-# Cast to JSON and print to stdout
 print(json.dumps(string_letters_dict))
 ```
 
@@ -31,16 +27,12 @@ print(json.dumps(string_letters_dict))
 `json_object_with_array_values.rb`
 
 ```ruby
-# Script takes arguments and transforms them into dict with arrays as dict values
-# and returns as JSON
 require 'json'
 
 my_strings = ARGV
 
-# Make dict with the string as key and list of letters as value
 string_letters_dict = my_strings.to_h { |string| [string, string.upcase.chars] }
 
-# Cast to JSON and print to stdout
 puts JSON.generate(string_letters_dict)
 ```
 
@@ -49,8 +41,6 @@ puts JSON.generate(string_letters_dict)
 `json_object_with_array_values.mjs`
 
 ```javascript
-// Script takes command line args and transforms into python dict with arrays as dict values
-
 const myStrings = process.argv.slice(2)
 
 const stringLettersDict = {}
@@ -68,8 +58,6 @@ console.log(JSON.stringify(stringLettersDict))
 `json_object_with_array_values.mjs`
 
 ```javascript
-// Script takes command line args and transforms into python dict with arrays as dict values
-
 const myStrings = Deno.args
 
 const stringLettersDict = {}
@@ -88,19 +76,14 @@ console.log(JSON.stringify(stringLettersDict))
 
 ```php
 <?php
-// Script takes args and transforms into python dict with arrays as dict values
-
-// Get the command-line arguments into an array
 $myStrings = array_slice($argv, 1);
 
-// Create an associative array (dictionary) with each string as a key and an array of letters as the value
 $stringLettersDict = array_combine(
     $myStrings, array_map(
         fn($str) => str_split(strtoupper($str)), $myStrings
     )
 );
 
-// Encode the dictionary as JSON and print to stdout
 echo json_encode($stringLettersDict);
 ```
 
@@ -109,20 +92,16 @@ echo json_encode($stringLettersDict);
 `json_object_with_array_values.R`
 
 ```r
-#' Script transforms command-line arguments into JSON object
 library(jsonlite)
 
-# Get the command-line arguments (strings)
 args <- commandArgs(trailingOnly = TRUE)
 
-# Create a named list with the string as the key and a list of uppercase letters as the value
 string_letters <- list()
 for (string in args) {
   letters <- toupper(strsplit(string, split="")[[1]])
   string_letters[[string]] <- letters
 }
 
-# Convert the named list to JSON and print to stdout
 cat(toJSON(string_letters))
 ```
 
@@ -145,9 +124,6 @@ print JSON->new
 `JsonObjectWithArrayValues.java`
 
 ```java
-// Script takes arguments and transforms them into dict with arrays as dict values
-// and returns as JSON
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -224,8 +200,6 @@ echo "$json_object"
 `json_object_with_array_values.lua`
 
 ```lua
--- Lua script to transform string arguments into a Lua table of arrays and output as JSON
-
 local cjson = require("dkjson")
 
 local string_letters_dict = {}
@@ -248,8 +222,6 @@ print(cjson.encode(string_letters_dict))
 `JsonObjectWithArrayValues.cs`
 
 ```csharp
-// Script takes arguments and transforms them into dict with arrays as dict values and returns as JSON
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -273,9 +245,6 @@ class JsonObjectWithArrayValues{
 `json_object_with_array_values.go`
 
 ```go
-// Script takes arguments and transforms them into dict with arrays as dict values
-// and returns as JSON
-
 package main
 
 import (
@@ -309,7 +278,6 @@ func main() {
 `json_object_with_array_values.swift`
 
 ```swift
-//Script takes args and transforms into python dict with arrays as dict values
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -346,8 +314,6 @@ say to-json(%data);
 ```rust
 //cargo-deps: json="0.12.4"
 
-// Script takes arguments and transforms them into dict with arrays as dict values
-// and returns as JSON
 use json::JsonValue;
 use std::env;
 

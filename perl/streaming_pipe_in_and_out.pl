@@ -1,4 +1,3 @@
-# Script reads text from a named pipe and writes it another named pipe, capitalized
 use strict;
 use warnings;
 

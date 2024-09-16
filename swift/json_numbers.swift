@@ -1,4 +1,3 @@
-//Script takes args and outputs a list of lengths
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {

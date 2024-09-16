@@ -1,6 +1,3 @@
-// Script reads streaming input text and then prints capitalized string to stdout
-
-// Turn off buffering for stdout
 #if os(macOS) || os(iOS)
 import Darwin
 #elseif os(Linux)

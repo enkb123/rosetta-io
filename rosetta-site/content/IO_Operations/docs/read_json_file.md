@@ -12,7 +12,6 @@ Test that a JSON file is read correctly
 `read_json_file.py`
 
 ```python
-"""Read JSON file, transform and print to stdout"""
 import json
 import sys
 
@@ -30,7 +29,6 @@ for person in people:
 `read_json_file.rb`
 
 ```ruby
-# Read JSON file, transform and print to stdout
 require 'json'
 
 json_file = ARGV[0]
@@ -47,7 +45,6 @@ end
 `read_json_file.mjs`
 
 ```javascript
-// Read JSON file, transform and print to stdout
 import fs from 'fs/promises'
 
 const jsonFile = process.argv[2]
@@ -65,7 +62,6 @@ for (const person of people) {
 `read_json_file.mjs`
 
 ```javascript
-// Read JSON file, transform and print to stdout
 const jsonFile = Deno.args[0];
 
 const data = await Deno.readTextFile(jsonFile);
@@ -83,15 +79,11 @@ for (const person of people) {
 
 ```php
 <?php
-// Read JSON file, transform, and print to stdout
-
 
 $jsonFile = $argv[1];
 
-// Read JSON data from the file
 $jsonData = file_get_contents($jsonFile);
 
-// Parse JSON data
 $people = json_decode($jsonData);
 
 foreach ($people as $person) {
@@ -104,17 +96,12 @@ foreach ($people as $person) {
 `read_json_file.R`
 
 ```r
-#' Read JSON file, transform and print to stdout
-
 library(jsonlite)
 
-# Get the JSON file path from the command line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
-# Read and parse the JSON file as a list of named lists
 people <- fromJSON(args[1])
 
-# Iterate through the list of people and print the transformed message
 for (i in 1:nrow(people)){
     cat(paste0("Hello, ", people$age[i], " year old ", people$first_name[i], "\n"))
 }
@@ -125,7 +112,6 @@ for (i in 1:nrow(people)){
 `read_json_file.pl`
 
 ```perl
-# Read JSON file, transform and print to stdout
 use strict;
 use warnings;
 use JSON;
@@ -142,7 +128,6 @@ print "Hello, $_->{'age'} year old $_->{'first_name'}\n" for @$people;
 `ReadJsonFile.java`
 
 ```java
-// Read JSON file, transform and print to stdout
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -196,8 +181,6 @@ done
 `read_json_file.lua`
 
 ```lua
--- Lua script to read JSON file, parse, and print to stdout
-
 local cjson = require("dkjson")
 
 local file_path = arg[1]
@@ -217,7 +200,6 @@ end
 `ReadJsonFile.cs`
 
 ```csharp
-// Read JSON file, transform and print to stdout
 using System;
 using System.IO;
 using System.Text.Json;
@@ -275,7 +257,6 @@ func main() {
 `read_json_file.swift`
 
 ```swift
-//Read JSON file, transform and print to stdout
 import Foundation
 
 guard let jsonFile = CommandLine.arguments.dropFirst().first else {
@@ -300,7 +281,6 @@ for (_, person) in people.enumerated() {
 `read_json_file.raku`
 
 ```raku
-# Read JSON file, transform and print to stdout
 use v6;
 use JSON::Fast;
 

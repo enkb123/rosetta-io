@@ -1,4 +1,3 @@
-# Script reads string args and transforms into python dict
 use v6;
 use JSON::Fast;
 

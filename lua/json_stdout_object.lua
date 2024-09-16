@@ -1,5 +1,3 @@
--- Lua script to transform string arguments into a Lua table and output as JSON
-
 local cjson = require("dkjson")
 
 local dict = {}

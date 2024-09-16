@@ -1,4 +1,3 @@
-//Script writes an array of objects to stdout
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {

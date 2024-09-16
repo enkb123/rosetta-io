@@ -1,6 +1,4 @@
-// Script to encode a string as Base64
-
-const testString = Deno.args[0] // Get the Base64-encoded string from command-line arguments
+const testString = Deno.args[0]
 
 const encodedString = btoa(testString)
 

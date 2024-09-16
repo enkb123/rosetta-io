@@ -1,4 +1,3 @@
-# Script reads text from a named pipe and writes it another named pipe, capitalized
 use v6;
 
 my ($pipe_in, $pipe_out) = @*ARGS;

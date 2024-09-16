@@ -27,8 +27,6 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
 `streaming_pipe_in.rb`
 
 ```ruby
-# Script reads text from a named pipe and writes it to stdout, capitalized
-
 STDOUT.sync = true
 
 pipe_in = ARGV.fetch(0)
@@ -45,8 +43,6 @@ end
 `streaming_pipe_in.mjs`
 
 ```javascript
-//Script reads text from a named pipe and writes it to stdout, capitalized
-
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
@@ -65,8 +61,6 @@ for await (const line of rl) {
 `streaming_pipe_in.mjs`
 
 ```javascript
-//Script reads text from a named pipe and writes it to stdout, capitalized
-
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const [pipePath] = Deno.args;
@@ -85,7 +79,7 @@ file.close();
 
 ```php
 <?php
-// Script reads text from a named pipe and writes it to stdout, capitalized
+
 $pipe_in = $argv[1];
 
 $input_pipe = fopen($pipe_in, 'r');
@@ -102,22 +96,16 @@ fclose($input_pipe);
 `streaming_pipe_in.R`
 
 ```r
-# Script reads text from a named pipe and writes it to stdout, capitalized
-# Command-line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
-# Named pipe path (input)
 pipe_in <- args[1]
 
-# Open named pipe for reading
 input <- file(pipe_in, "r")
 
-# Read each line from input pipe, convert to uppercase, and print to stdout
 while (length(line <- readLines(input, n = 1)) > 0) {
-  cat(paste(toupper(line), "\n", sep = ""))    # Print capitalized line to stdout
+  cat(paste(toupper(line), "\n", sep = ""))
 }
 
-# Close input pipe
 close(input)
 ```
 
@@ -126,12 +114,10 @@ close(input)
 `streaming_pipe_in.pl`
 
 ```perl
-# Script reads text from a named pipe and writes it to stdout, capitalized
-
 use strict;
 use warnings;
 
-$| = 1;  # Turn off output buffering
+$| = 1;
 
 my ($pipe_in) = @ARGV;
 
@@ -149,8 +135,6 @@ close $input;
 `StreamingPipeIn.java`
 
 ```java
-//Script reads text from a named pipe and writes it to stdout, capitalized
-
 import java.io.*;
 
 public class StreamingPipeIn {
@@ -174,9 +158,6 @@ public class StreamingPipeIn {
 `streaming_pipe_in.sh`
 
 ```bash
-#!/bin/bash
-
-# Script reads text from a named pipe and writes it to stdout, capitalized
 pipe_in="$1"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
@@ -187,9 +168,6 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in"
 `streaming_pipe_in.sh`
 
 ```bash
-#!/bin/bash
-
-# Script reads text from a named pipe and writes it to stdout, capitalized
 pipe_in="$1"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
@@ -200,7 +178,6 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in"
 `streaming_pipe_in.lua`
 
 ```lua
--- Script reads text from a named pipe and writes it to stdout, capitalized
 local pipe_in = arg[1]
 
 local input_file = assert(io.open(pipe_in, "r"), "Failed to open input pipe: " .. pipe_in)
@@ -218,8 +195,6 @@ input_file:close()
 `StreamingPipeIn.cs`
 
 ```csharp
-// Script reads text from a named pipe and writes it to stdout, capitalized
-
 using System;
 using System.IO;
 using System.Text;
@@ -246,8 +221,6 @@ class StreamingPipeIn
 `streaming_pipe_in.go`
 
 ```go
-//Script reads text from a named pipe and writes it to stdout, capitalized
-
 package main
 
 import (
@@ -346,8 +319,6 @@ $input.close;
 `streaming_pipe_in.rs`
 
 ```rust
-//Script reads text from a named pipe and writes it to stdout, capitalized
-
 use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};

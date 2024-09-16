@@ -1,4 +1,3 @@
-//Script to decode Base64 text
 import java.util.Base64;
 
 public class Decode {

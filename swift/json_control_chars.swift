@@ -1,4 +1,3 @@
-//Script takes control characters and outputs valid JSON
 import Foundation
 
 guard CommandLine.arguments.count == 2 else {

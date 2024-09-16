@@ -1,5 +1,3 @@
-//Script to encode a string as Base64
-
 using System;
 
 class Encode{

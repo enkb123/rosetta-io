@@ -1,4 +1,3 @@
-// Script reads text from a named pipe and writes it another named pipe, capitalized
 use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Write};

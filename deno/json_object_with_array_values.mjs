@@ -1,5 +1,3 @@
-// Script takes command line args and transforms into python dict with arrays as dict values
-
 const myStrings = Deno.args
 
 const stringLettersDict = {}

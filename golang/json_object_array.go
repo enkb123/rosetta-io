@@ -1,5 +1,3 @@
-// Script outputs arrays of objects as JSON
-
 package main
 
 import (

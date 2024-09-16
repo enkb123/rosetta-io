@@ -1,4 +1,3 @@
--- Script reads text from a named pipe and writes it another named pipe, capitalized
 local pipe_in = arg[1]
 local pipe_out = arg[2]
 

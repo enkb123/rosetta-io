@@ -1,5 +1,5 @@
 <?php
-//Script reads text from a named pipe and writes it another named pipe, capitalized
+
 $pipe_in = $argv[1];
 $pipe_out = $argv[2];
 

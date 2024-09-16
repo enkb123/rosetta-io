@@ -1,4 +1,3 @@
-# Script reads text from a named pipe and writes it another named pipe, capitalized
 import sys
 
 pipe_in = sys.argv[1]

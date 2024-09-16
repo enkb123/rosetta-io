@@ -1,7 +1,5 @@
 //cargo-deps: json="0.12.4"
 
-// Script takes arguments and transforms them into dict with arrays as dict values
-// and returns as JSON
 use json::JsonValue;
 use std::env;
 

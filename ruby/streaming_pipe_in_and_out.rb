@@ -1,5 +1,3 @@
-# Script reads text from a named pipe and writes it another named pipe, capitalized
-
 pipe_in, pipe_out = ARGV
 
 File.open(pipe_out, 'w') do |output|

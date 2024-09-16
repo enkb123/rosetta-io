@@ -1,4 +1,3 @@
-//Script reads string args and transforms into python dict
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {

@@ -1,5 +1,3 @@
-//Script takes args and turns into JSON array
-
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {

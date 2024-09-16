@@ -1,6 +1,3 @@
-# Read a file from file path (given as a command line arg),
-# print line by line with line numbers
-
 file_path = ARGV[0]
 
 begin

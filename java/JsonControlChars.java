@@ -1,4 +1,3 @@
-//Script takes control characters and outputs valid JSON
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,7 +11,6 @@ public class JsonControlChars {
         String testString = args[0];
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // Convert testString to JSON string
         String jsonString = objectMapper.writeValueAsString(testString);
         System.out.println(jsonString);
 
