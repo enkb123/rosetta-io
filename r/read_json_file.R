@@ -2,8 +2,8 @@ library(jsonlite)
 
 filename <- "people.json"
 
-people <- fromJSON(filename)
+people <- fromJSON(filename, simplifyVector = FALSE)
 
-for (i in 1:nrow(people)){
-    cat(paste0("Hello, ", people$age[i], " year old ", people$first_name[i], "\n"))
+for (person in people) {
+    cat("Hello,", person$age, "year old", person$first_name, "\n")
 }
