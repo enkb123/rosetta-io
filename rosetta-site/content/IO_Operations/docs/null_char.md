@@ -5,7 +5,10 @@ draft = false
 
 # null_char
 
-Test outputing a null character
+Output a null character
+
+See https://en.wikipedia.org/wiki/Null_character
+
 
 ## Python
 

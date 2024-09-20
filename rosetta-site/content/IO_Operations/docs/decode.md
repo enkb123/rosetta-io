@@ -5,7 +5,7 @@ draft = false
 
 # decode
 
-Test that base64 can be decoded as a string
+Decode a base64 string
 
 ## Python
 

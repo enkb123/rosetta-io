@@ -5,7 +5,7 @@ draft = false
 
 # json_array
 
-Test that JSON array is parsed correctly
+Create and output a JSON array of strings
 
 ## Python
 

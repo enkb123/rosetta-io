@@ -5,7 +5,7 @@ draft = false
 
 # json_stdout_object
 
-Test that JSON object is parsed correctly
+Create and output a JSON object
 
 ## Python
 

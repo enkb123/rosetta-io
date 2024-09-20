@@ -5,7 +5,7 @@ draft = false
 
 # json_object_array
 
-Test that a JSON array made of objects is parsed correctly
+Create and output a JSON array of objects
 
 ## Python
 

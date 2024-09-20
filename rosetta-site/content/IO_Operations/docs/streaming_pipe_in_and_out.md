@@ -5,7 +5,7 @@ draft = false
 
 # streaming_pipe_in_and_out
 
-Test that named pipe can be read line by line and can write to output pipe without waiting for all lines to arrive
+Read line by line from a named pipe and write to another named pipe
 
 ## Python
 
@@ -29,14 +29,12 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
 `streaming_pipe_in_and_out.rb`
 
 ```ruby
-pipe_in, pipe_out = ARGV
-
-File.open(pipe_out, 'w') do |output|
+File.open 'streaming-out.pipe', 'w' do |output|
   output.sync = true
 
-  File.open(pipe_in, 'r') do |input|
+  File.open 'streaming-in.pipe', 'r' do |input|
     input.each_line do |line|
-      output.puts line.upcase
+      output.puts "received #{line}"
     end
   end
 end

@@ -5,7 +5,7 @@ draft = false
 
 # json_object_with_array_values
 
-Test that a JSON object with arrays as values is parsed correctly
+Create and output a JSON object with arrays of strings as values
 
 ## Python
 

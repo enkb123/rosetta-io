@@ -5,9 +5,7 @@ draft = false
 
 # read_file
 
-Check that a file is read line by line, when file path is given
-as command line argument
-
+Read a file line by line
 
 ## Python
 
@@ -30,17 +28,10 @@ with open(file_path, 'r') as f:
 `read_file.rb`
 
 ```ruby
-file_path = ARGV[0]
-
-begin
-  File.open(file_path, 'r') do |f|
-    f.each_line.with_index do |line, i|
-      puts "#{i+1} #{line.upcase}"
-    end
+File.open("./my-text-file.txt", "r") do |f|
+  f.each_line do |line|
+    puts "line: #{line}"
   end
-rescue Errno::ENOENT
-  puts "File not found: #{file_path}"
-  exit(1)
 end
 ```
 

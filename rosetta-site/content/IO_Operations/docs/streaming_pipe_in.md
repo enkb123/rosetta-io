@@ -5,7 +5,7 @@ draft = false
 
 # streaming_pipe_in
 
-Test that named pipe can be read line by line and can write to stdout
+Read from named pipe line by line
 
 ## Python
 
@@ -29,9 +29,7 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
 ```ruby
 STDOUT.sync = true
 
-pipe_in = ARGV.fetch(0)
-
-File.open(pipe_in, 'r') do |pipe|
+File.open 'input.pipe', 'r' do |pipe|
   pipe.each_line do |line|
     puts line.upcase
   end

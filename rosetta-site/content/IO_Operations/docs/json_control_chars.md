@@ -5,10 +5,7 @@ draft = false
 
 # json_control_chars
 
-Test that control characters and emojis are output in valid JSON
-note: control character "\0" is used by C (and Python) to end strings and so we can't
-pass it as argument in the test string because it will raise "invalid argument" error
-
+Test that control characters and emojis are output in valid JSON.
 
 ## Python
 

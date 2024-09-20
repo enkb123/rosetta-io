@@ -5,7 +5,7 @@ draft = false
 
 # arguments
 
-Test that args can be passed to script
+Read command line arguments
 
 ## Python
 
@@ -14,7 +14,8 @@ Test that args can be passed to script
 ```python
 import sys
 
-print(sys.argv[1].lower())
+print("1st argument: " + sys.argv[1])
+print("2nd argument: " + sys.argv[2])
 ```
 
 ## Ruby
@@ -22,7 +23,8 @@ print(sys.argv[1].lower())
 `arguments.rb`
 
 ```ruby
-puts ARGV[0].downcase
+puts "1st argument: #{ARGV[0]}"
+puts "2nd argument: #{ARGV[1]}"
 ```
 
 ## Nodejs
@@ -30,7 +32,8 @@ puts ARGV[0].downcase
 `arguments.mjs`
 
 ```javascript
-console.log(process.argv[2].toLowerCase())
+console.log("1st argument: " + process.argv[2])
+console.log("2nd argument: " + process.argv[3])
 ```
 
 ## Deno
@@ -38,7 +41,8 @@ console.log(process.argv[2].toLowerCase())
 `arguments.mjs`
 
 ```javascript
-console.log(Deno.args[0].toLowerCase())
+console.log("1st argument: " + Deno.args[0])
+console.log("2nd argument: " + Deno.args[1])
 ```
 
 ## Php
@@ -48,7 +52,8 @@ console.log(Deno.args[0].toLowerCase())
 ```php
 <?php
 
-echo strtolower($argv[1]);
+echo ("1st argument: " . $argv[1] . "\n");
+echo ("2nd argument: " . $argv[2] . "\n");
 ```
 
 ## R
@@ -56,7 +61,10 @@ echo strtolower($argv[1]);
 `arguments.R`
 
 ```r
-cat(tolower(commandArgs(trailingOnly = TRUE)))
+args <- commandArgs(trailingOnly = TRUE)
+
+cat(paste0("1st argument: ", args[1],"\n"))
+cat(paste0("2nd argument: ", args[2],"\n"))
 ```
 
 ## Perl
@@ -66,7 +74,8 @@ cat(tolower(commandArgs(trailingOnly = TRUE)))
 ```perl
 use strict;
 use warnings;
-print lc($ARGV[0]);
+print ("1st argument: " . $ARGV[0] . "\n");
+print ("2nd argument: " . $ARGV[1] . "\n");
 ```
 
 ## Java
@@ -76,8 +85,8 @@ print lc($ARGV[0]);
 ```java
 class Main{
     public static void main(String[] args){
-        String user = args[0];
-        System.out.println(user.toLowerCase());
+        System.out.println("1st argument: " + args[0]);
+        System.out.println("2nd argument: " + args[1]);
     }
 }
 ```
@@ -117,7 +126,8 @@ echo "${file_path,,}"
 `arguments.lua`
 
 ```lua
-print(arg[1]:lower())
+print("1st argument: "..arg[1])
+print("2nd argument: "..arg[2])
 ```
 
 ## C#
@@ -129,7 +139,8 @@ class Arguments
 {
   public static void Main(string[] args)
   {
-    Console.WriteLine(args[0].ToLower());
+    Console.WriteLine($"1st argument: {args[0]}");
+    Console.WriteLine($"2nd argument: {args[1]}");
   }
 }
 ```
@@ -144,11 +155,12 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
-	fmt.Println(strings.ToLower(os.Args[1]))
+	fmt.Println("1st argument: " + os.Args[1])
+	fmt.Println("2nd argument: " + os.Args[2])
+
 }
 ```
 
@@ -166,7 +178,8 @@ guard args.count > 1 else {
     exit(1)
 }
 
-print(args[1].lowercased())
+print("1st argument: \(args[1])")
+print("2nd argument: \(args[2])")
 ```
 
 ## Raku
@@ -176,8 +189,8 @@ print(args[1].lowercased())
 ```raku
 use v6;
 
-my $arg = @*ARGS[0];
-say $arg.lc;
+say "1st argument: " ~ @*ARGS[0];
+say "2nd argument: " ~ @*ARGS[1];
 ```
 
 ## Rust
@@ -188,8 +201,10 @@ say $arg.lc;
 use std::env;
 
 fn main() {
-    let user = env::args().nth(1).unwrap();
-    println!("{}", user.to_lowercase());
+    let args: Vec<String> = env::args().collect();
+
+    println!("1st argument: {}", args[1]);
+    println!("2nd argument: {}", args[2]);
 }
 ```
 

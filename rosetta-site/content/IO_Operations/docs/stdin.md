@@ -5,10 +5,7 @@ draft = false
 
 # stdin
 
-Check that input is read from stdin, line by line.
-The script executed in the docker container accepts a text file as input,
-reads each line, capitalizes it, then prints it out.
-
+Read from stdin line by line
 
 ## Python
 
@@ -30,11 +27,8 @@ while True:
 `stdin.rb`
 
 ```ruby
-i = 1
-
 while user_input = gets
-  puts "#{i} #{user_input.upcase}"
-  i += 1
+  puts "line: #{user_input}"
 end
 ```
 

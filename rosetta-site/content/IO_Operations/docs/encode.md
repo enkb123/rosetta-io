@@ -5,7 +5,7 @@ draft = false
 
 # encode
 
-Test that a string can be encoded as base64
+Encode a string as base64
 
 ## Python
 

@@ -5,7 +5,7 @@ draft = false
 
 # json_numbers
 
-Test that JSON list of numbers is parsed correctly
+Create and output a JSON array of numbers
 
 ## Python
 

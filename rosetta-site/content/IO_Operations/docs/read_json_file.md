@@ -5,7 +5,7 @@ draft = false
 
 # read_json_file
 
-Test that a JSON file is read correctly
+Read and parse a JSON file
 
 ## Python
 
@@ -31,9 +31,7 @@ for person in people:
 ```ruby
 require 'json'
 
-json_file = ARGV[0]
-
-people = JSON.load_file(json_file)
+people = JSON.load_file("people.json")
 
 people.each do |person|
   puts "Hello, #{person['age']} year old #{person['first_name']}"

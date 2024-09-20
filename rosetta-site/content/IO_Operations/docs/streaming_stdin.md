@@ -5,8 +5,7 @@ draft = false
 
 # streaming_stdin
 
-Test that streaming stdin can be read line by line and can write to stdout
-without waiting for all lines to arrive
+Read from stdin line by line
 
 ## Python
 
@@ -29,7 +28,7 @@ except EOFError:
 STDOUT.sync = true
 
 while input = gets
-  puts input.upcase
+  puts "received #{input}"
 end
 ```
 
