@@ -1,5 +1,3 @@
-i=1
-
-while IFS= read -r user_input; do
-  echo "$((i++)) ${user_input^^}"
-done
+while IFS= read -r user_input|| [[ -n $user_input ]]; do
+  echo "line: $user_input"
+done | tr '[:upper:]' '[:lower:]'

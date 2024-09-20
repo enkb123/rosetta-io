@@ -2,11 +2,11 @@ use std::io::{self, BufRead};
 
 fn main() {
     let stdin = io::stdin();
-    for (counter, line) in stdin.lock().lines().enumerate() {
+    for line in stdin.lock().lines(){
         let line = line.unwrap().trim().to_string();
         if line.is_empty() {
             break;
         }
-        println!("{} {}", counter + 1, line.to_uppercase());
+        println!("line: {}", line);
     }
 }

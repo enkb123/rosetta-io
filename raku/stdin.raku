@@ -1,6 +1,5 @@
 use v6;
 
-my $i = 1;
-for lines() {
-    say $i++ ~ " " ~ .uc;
+while (my $user_input = $*IN.get) {
+    say "line: " ~ $user_input;
 }
