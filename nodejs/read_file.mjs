@@ -1,10 +1,11 @@
-import fs  from 'fs'
-const path = './my-text-file.txt';
+import { promises as fs } from 'fs';
 
-fs.readFile(path, 'utf8', (_, data) => {
-    data.split('\n').forEach(line => {
-    if (line.trim() !== '') {
-      console.log(`line: ${line}`);
-    }
-  });
-});
+const filePath = './my-text-file.txt'
+
+const fileContent = await fs.readFile(filePath, 'utf8')
+
+for (const line of fileContent.split("\n")) {
+  if (line !== "") {
+    console.log('line:', line);
+  }
+}

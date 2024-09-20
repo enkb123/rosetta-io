@@ -1,18 +1,12 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ReadFile {
-    public static void main(String[] args) throws IOException{
-        String filePath = "./my-text-file.txt";
+    public static void main(String[] args) throws Exception {
+        var filePath = Paths.get("./my-text-file.txt");
 
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        String line;
-        while ((line = br.readLine()) != null) {
-            if (!line.isEmpty()) {
-                System.out.println("line: " + line);
-            }
-
-        }
+        Files.lines(filePath)
+            .filter(line -> !line.isEmpty())
+            .forEach(line -> System.out.println("line: " + line));
     }
 }

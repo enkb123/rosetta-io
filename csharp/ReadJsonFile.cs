@@ -6,7 +6,7 @@ class ReadJsonFile
 {
     public static void Main(string[] args)
     {
-        string filePath = "people.json";
+        var filePath = "people.json";
 
         var json = File.ReadAllText(filePath);
 

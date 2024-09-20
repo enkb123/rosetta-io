@@ -1,17 +1,13 @@
 use std::fs::File;
-use std::io::{self, BufRead};
-use std::path::Path;
+use std::io::{self, BufRead, BufReader};
 
-fn main() -> io::Result<()> {
+fn main() {
     let file_path = "./my-text-file.txt";
-    let file = File::open(file_path)?;
+    let file = File::open(file_path).unwrap();
 
-    let reader = io::BufReader::new(file);
+    let reader = BufReader::new(file);
 
     for line in reader.lines() {
-        let line = line?;
-        println!("line: {}", line);
+        println!("line: {}", line.unwrap());
     }
-
-    Ok(())
 }

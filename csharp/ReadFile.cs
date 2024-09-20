@@ -5,14 +5,11 @@ class ReadFile
 {
     public static void Main(string[] args)
     {
-        string filePath = "./my-text-file.txt";
-        using (StreamReader reader = new StreamReader(filePath))
+        var filePath = "./my-text-file.txt";
+
+        foreach (var line in File.ReadLines(filePath))
         {
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                Console.WriteLine($"line: {line}");
-            }
+            Console.WriteLine($"line: {line}");
         }
     }
 }

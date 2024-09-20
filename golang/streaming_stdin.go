@@ -9,6 +9,6 @@ import (
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		fmt.Println("received " + scanner.Text())
+		fmt.Println("received", scanner.Text())
 	}
 }
