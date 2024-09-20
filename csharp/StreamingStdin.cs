@@ -5,7 +5,7 @@ class StreamingStdin{
         string line;
 
         while (!string.IsNullOrEmpty(line = Console.ReadLine())){
-            Console.WriteLine(line.ToUpper());
+            Console.WriteLine($"received {line}");
         }
     }
 }

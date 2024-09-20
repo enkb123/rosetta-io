@@ -1,6 +1,6 @@
 while True:
     try:
-        x = input()
-        print(x.upper())
+        user_input = input()
+        print("received " + user_input)
     except EOFError:
         break

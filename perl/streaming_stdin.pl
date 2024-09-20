@@ -3,4 +3,7 @@ use warnings;
 
 $| = 1;
 
-print uc while <STDIN>;
+while (my $input = <STDIN>) {
+    chomp($input);
+    print "received " . $input . "\n";
+}

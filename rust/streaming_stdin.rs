@@ -1,11 +1,12 @@
-use std::io::{self, BufRead, Write};
+use std::io::{self, BufRead};
 
 fn main() {
-    let mut stdout_handle = io::stdout().lock();
-    let stdin_handle = io::stdin().lock();
-
-    for line in stdin_handle.lines() {
-        writeln!(stdout_handle, "{}", line.unwrap().to_uppercase()).unwrap();
-        stdout_handle.flush().unwrap();
+    let stdin = io::stdin();
+    for line in stdin.lock().lines(){
+        let line = line.unwrap().trim().to_string();
+        if line.is_empty() {
+            break;
+        }
+        println!("received {}", line);
     }
 }

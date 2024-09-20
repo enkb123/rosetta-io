@@ -1,6 +1,4 @@
-use v6;
-
-for lines() {
-    say .uc;
+while (my $input = $*IN.get) {
+    say "received " ~ $input;
     $*OUT.flush;
 }

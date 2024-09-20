@@ -14,8 +14,8 @@ Read from stdin line by line
 ```python
 while True:
 try:
-    x = input()
-    print(x.upper())
+    user_input = input()
+    print("received " + user_input)
 except EOFError:
     break
 ```
@@ -42,7 +42,7 @@ import * as readline from 'node:readline/promises'
 const rl = readline.createInterface({ input: process.stdin })
 
 for await (const line of rl) {
-  console.log(line.toUpperCase())
+  console.log("received", line)
 }
 ```
 
@@ -56,7 +56,7 @@ import { readLines } from 'https://deno.land/std/io/mod.ts';
 const rl = readLines(Deno.stdin);
 
 for await (const line of rl) {
-  console.log(line.toUpperCase());
+  console.log("received",line);
 }
 ```
 
@@ -68,7 +68,7 @@ for await (const line of rl) {
 <?php
 
 while ($user_input = fgets(STDIN)) {
-    echo strtoupper($user_input);
+    echo "received ", $user_input;
 }
 ```
 
@@ -78,7 +78,7 @@ while ($user_input = fgets(STDIN)) {
 
 ```r
 while(length(line <- readLines("stdin", n = 1L)) > 0) {
-  cat(toupper(line), fill = TRUE)
+  cat("received", line, fill = TRUE)
 }
 ```
 
@@ -92,7 +92,10 @@ use warnings;
 
 $| = 1;
 
-print uc while <STDIN>;
+while (my $input = <STDIN>) {
+    chomp($input);
+    print "received " . $input . "\n";
+}
 ```
 
 ## Java
@@ -101,15 +104,17 @@ print uc while <STDIN>;
 
 ```java
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-public class StreamingStdin {
+public class Stdin {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         Stream.generate(scanner::nextLine)
               .takeWhile(line -> !line.isEmpty())
-              .map(String::toUpperCase)
-              .forEach(System.out::println);
+              .forEach(line -> System.out.println("received " + line));
+
         scanner.close();
     }
 }
@@ -120,7 +125,9 @@ public class StreamingStdin {
 `streaming_stdin.sh`
 
 ```bash
-tr '[:lower:]' '[:upper:]'
+while IFS= read -r user_input|| [[ -n $user_input ]]; do
+  echo "received $user_input"
+done | tr '[:upper:]' '[:lower:]'
 ```
 
 ## Bash 5
@@ -128,7 +135,9 @@ tr '[:lower:]' '[:upper:]'
 `streaming_stdin.sh`
 
 ```bash
-tr '[:lower:]' '[:upper:]'
+while IFS= read -r user_input|| [[ -n $user_input ]]; do
+  echo "received $user_input"
+done | tr '[:upper:]' '[:lower:]'
 ```
 
 ## Lua
@@ -136,8 +145,8 @@ tr '[:lower:]' '[:upper:]'
 `streaming_stdin.lua`
 
 ```lua
-for line in io.lines() do
-    print(line:upper())
+for user_input in io.lines() do
+    print("received " .. user_input)
 end
 ```
 
@@ -153,7 +162,7 @@ class StreamingStdin{
         string line;
 
         while (!string.IsNullOrEmpty(line = Console.ReadLine())){
-            Console.WriteLine(line.ToUpper());
+            Console.WriteLine($"received {line}");
         }
     }
 }
@@ -170,14 +179,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-
 	for scanner.Scan() {
-		fmt.Println(strings.ToUpper(scanner.Text()))
+		fmt.Println("received " + scanner.Text())
 	}
 }
 ```
@@ -196,8 +203,8 @@ setvbuf(stdout, nil, _IONBF, 0)
 
 import Foundation
 
-while let line = readLine(), !line.isEmpty {
-    print(line.uppercased())
+while let user_input = readLine() {
+    print("received \(user_input)")
 }
 ```
 
@@ -206,10 +213,8 @@ while let line = readLine(), !line.isEmpty {
 `streaming_stdin.raku`
 
 ```raku
-use v6;
-
-for lines() {
-    say .uc;
+while (my $input = $*IN.get) {
+    say "received " ~ $input;
     $*OUT.flush;
 }
 ```
@@ -219,15 +224,16 @@ for lines() {
 `streaming_stdin.rs`
 
 ```rust
-use std::io::{self, BufRead, Write};
+use std::io::{self, BufRead};
 
 fn main() {
-    let mut stdout_handle = io::stdout().lock();
-    let stdin_handle = io::stdin().lock();
-
-    for line in stdin_handle.lines() {
-        writeln!(stdout_handle, "{}", line.unwrap().to_uppercase()).unwrap();
-        stdout_handle.flush().unwrap();
+    let stdin = io::stdin();
+    for line in stdin.lock().lines(){
+        let line = line.unwrap().trim().to_string();
+        if line.is_empty() {
+            break;
+        }
+        println!("received {}", line);
     }
 }
 ```
