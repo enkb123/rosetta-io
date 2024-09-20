@@ -1,16 +1,18 @@
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-class ReadFile{
-    public static void main(String[] args) throws IOException {
-        var filePath = Paths.get(args[0]);
-        var lineNumber = new AtomicInteger(1);
+public class ReadFile {
+    public static void main(String[] args) throws IOException{
+        String filePath = "./my-text-file.txt";
 
-        Files.lines(filePath)
-                .map(String::toUpperCase)
-                .map(line -> lineNumber.getAndIncrement() + " " + line)
-                .forEach(System.out::println);
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (!line.isEmpty()) {
+                System.out.println("line: " + line);
+            }
+
+        }
     }
 }

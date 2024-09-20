@@ -1,15 +1,17 @@
-use std::env;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{self, BufRead};
+use std::path::Path;
 
-fn main() {
-    let file_path = env::args().nth(1).unwrap();
+fn main() -> io::Result<()> {
+    let file_path = "./my-text-file.txt";
+    let file = File::open(file_path)?;
 
-    let file = File::open(file_path).unwrap();
-    let reader = BufReader::new(file);
+    let reader = io::BufReader::new(file);
 
-    for (line_number, line_result) in reader.lines().enumerate() {
-        let line = line_result.unwrap();
-        println!("{} {}", line_number + 1, line.to_uppercase());
+    for line in reader.lines() {
+        let line = line?;
+        println!("line: {}", line);
     }
+
+    Ok(())
 }

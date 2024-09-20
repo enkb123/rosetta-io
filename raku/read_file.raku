@@ -1,11 +1,11 @@
 use v6;
 
-my $file-path = @*ARGS.shift;
-my $fh = open $file-path, :r;
+my $file-path = './my-text-file.txt';
+my $file = $file-path.IO;
 
-my $i = 1;
-for $fh.lines {
-    say $i++ ~ " " ~ .uc;
+if $file ~~ :e {
+    for $file.lines {
+        say "line: $_";
+
+    }
 }
-
-$fh.close;

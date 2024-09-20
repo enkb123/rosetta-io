@@ -1,15 +1,18 @@
 using System;
 using System.IO;
-using System.Linq;
 
 class ReadFile
 {
-    public static void Main (string[] args)
+    public static void Main(string[] args)
     {
-        string filePath = args[0];
-        var lines = File.ReadAllLines(filePath);
-        lines.Select((line, index) => $"{index + 1} {line.ToUpper()}")
-                .ToList()
-                .ForEach(Console.WriteLine);
+        string filePath = "./my-text-file.txt";
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.WriteLine($"line: {line}");
+            }
+        }
     }
 }

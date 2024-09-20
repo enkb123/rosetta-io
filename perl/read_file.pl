@@ -1,9 +1,13 @@
 use strict;
 use warnings;
 
-my $file_path = shift;
+my $file_path = './my-text-file.txt';
+open my $fh, '<', $file_path;
 
-open my $fh, '<', $file_path or die "Cannot open file: $file_path\n";
+while (my $line = <$fh>) {
+    chomp $line;
+    print "line: $line\n";
 
-my $i = 1;
-print $i++ . " " . uc while <$fh>;
+}
+
+close $fh;
