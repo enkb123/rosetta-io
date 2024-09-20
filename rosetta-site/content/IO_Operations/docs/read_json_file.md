@@ -13,9 +13,8 @@ Read and parse a JSON file
 
 ```python
 import json
-import sys
 
-json_file = sys.argv[1]
+json_file = "people.json"
 
 with open(json_file, "r") as f:
     people = json.load(f)
@@ -43,16 +42,19 @@ end
 `read_json_file.mjs`
 
 ```javascript
-import fs from 'fs/promises'
+import fs  from 'fs'
 
-const jsonFile = process.argv[2]
+const filePath = './people.json';
 
-const data = await fs.readFile(jsonFile, 'utf8')
-const people = JSON.parse(data)
+fs.readFile(filePath, 'utf8', (_, data) => {
 
-for (const person of people) {
-  console.log(`Hello, ${person.age} year old ${person.first_name}`)
-}
+  const people = JSON.parse(data);
+
+  people.forEach(person => {
+      console.log(`Hello, ${person.age} year old ${person.first_name}`);
+  });
+
+});
 ```
 
 ## Deno
@@ -60,9 +62,9 @@ for (const person of people) {
 `read_json_file.mjs`
 
 ```javascript
-const jsonFile = Deno.args[0];
+const filePath = "./people.json";
 
-const data = await Deno.readTextFile(jsonFile);
+const data = await Deno.readTextFile(filePath);
 
 const people = JSON.parse(data);
 
@@ -78,14 +80,16 @@ for (const person of people) {
 ```php
 <?php
 
-$jsonFile = $argv[1];
+$filePath = 'people.json';
 
-$jsonData = file_get_contents($jsonFile);
+$jsonString = file_get_contents($filePath);
 
-$people = json_decode($jsonData);
+$people = json_decode($jsonString, true);
 
 foreach ($people as $person) {
-    echo "Hello, {$person->age} year old {$person->first_name}\n";
+    $age = $person['age'];
+    $firstName = $person['first_name'];
+    echo "Hello, $age year old $firstName\n";
 }
 ```
 
@@ -96,9 +100,9 @@ foreach ($people as $person) {
 ```r
 library(jsonlite)
 
-args <- commandArgs(trailingOnly = TRUE)
+filename <- "people.json"
 
-people <- fromJSON(args[1])
+people <- fromJSON(filename)
 
 for (i in 1:nrow(people)){
     cat(paste0("Hello, ", people$age[i], " year old ", people$first_name[i], "\n"))
@@ -114,11 +118,23 @@ use strict;
 use warnings;
 use JSON;
 
-open my $fh, '<', $ARGV[0] or die "Cannot open file: $ARGV[0]\n";
+my $file_path = 'people.json';
 
-my $people = decode_json(do { local $/; <$fh> });
+my $json_string;
+{
+    local $/;
+    open my $fh, '<', $file_path;
+    $json_string = <$fh>;
+    close $fh;
+}
 
-print "Hello, $_->{'age'} year old $_->{'first_name'}\n" for @$people;
+my $people = decode_json($json_string);
+
+foreach my $person (@$people) {
+    my $age = $person->{age};
+    my $first_name = $person->{first_name};
+    print "Hello, $age year old $first_name\n";
+}
 ```
 
 ## Java
@@ -128,18 +144,21 @@ print "Hello, $_->{'age'} year old $_->{'first_name'}\n" for @$people;
 ```java
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 import java.io.IOException;
 
 public class ReadJsonFile {
     public static void main(String[] args) throws IOException{
-        if (args.length < 1) {
-            System.out.println("Usage: java ReadJsonFile <json_file>");
-            return;
-        }
-        JsonNode people = new ObjectMapper().readTree(new File(args[0]));
-        people.forEach(person -> System.out.println("Hello, " + person.get("age").asLong() + " year old " + person.get("first_name").asText()));
+        String filePath = "people.json";
+        ObjectMapper objectMapper = new ObjectMapper();
 
+        JsonNode people = objectMapper.readTree(new File(filePath));
+        for (JsonNode person : people) {
+            int age = person.get("age").asInt();
+            String firstName = person.get("first_name").asText();
+            System.out.printf("Hello, %d year old %s%n", age, firstName);
+        }
     }
 }
 ```
@@ -149,13 +168,12 @@ public class ReadJsonFile {
 `read_json_file.sh`
 
 ```bash
-#!/bin/bash
+file_path="people.json"
 
-for person in $(jq -c '.[]' <"$1"); do
-  age="$(jq -r .age <<<"$person")"
-  first_name="$(jq -r .first_name <<<"$person")"
-
-  echo "Hello, $age year old $first_name"
+jq -c '.[]' "$file_path" | while IFS= read -r person; do
+    age=$(echo "$person" | jq -r '.age')
+    first_name=$(echo "$person" | jq -r '.first_name')
+    echo "Hello, $age year old $first_name"
 done
 ```
 
@@ -164,13 +182,12 @@ done
 `read_json_file.sh`
 
 ```bash
-#!/bin/bash
+file_path="people.json"
 
-for person in $(jq -c '.[]' <"$1"); do
-  age="$(jq -r .age <<<"$person")"
-  first_name="$(jq -r .first_name <<<"$person")"
-
-  echo "Hello, $age year old $first_name"
+jq -c '.[]' "$file_path" | while IFS= read -r person; do
+    age=$(echo "$person" | jq -r '.age')
+    first_name=$(echo "$person" | jq -r '.first_name')
+    echo "Hello, $age year old $first_name"
 done
 ```
 
@@ -181,12 +198,17 @@ done
 ```lua
 local cjson = require("dkjson")
 
-local file_path = arg[1]
-local fh = io.open(file_path, "r")
-local json_content = fh:read("*a")
-fh:close()
+local filePath = "people.json"
 
-local people = cjson.decode(json_content)
+local function readFile(filePath)
+    local file = io.open(filePath, "r")
+    local content = file:read("*a")
+    file:close()
+    return content
+end
+
+local jsonString = readFile(filePath)
+local people, pos = cjson.decode(jsonString, 1, nil)
 
 for _, person in ipairs(people) do
     print(string.format("Hello, %d year old %s", person.age, person.first_name))
@@ -202,16 +224,20 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-class ReadJsonFile{
-    public static void Main(string[] args){
-        string jsonFilePath = args[0];
-        string jsonContent = File.ReadAllText(jsonFilePath);
+class ReadJsonFile
+{
+    public static void Main(string[] args)
+    {
+        string filePath = "people.json";
 
-        JsonElement root = JsonDocument.Parse(jsonContent).RootElement;
+        var json = File.ReadAllText(filePath);
 
-        foreach (JsonElement person in root.EnumerateArray()){
-            long age = person.GetProperty("age").GetInt64();
-            string firstName = person.GetProperty("first_name").GetString();
+        var people = JsonSerializer.Deserialize<JsonElement[]>(json);
+
+        foreach (var person in people)
+        {
+            var age = person.GetProperty("age").GetInt32();
+            var firstName = person.GetProperty("first_name").GetString();
             Console.WriteLine($"Hello, {age} year old {firstName}");
         }
     }
@@ -231,21 +257,20 @@ import (
 	"os"
 )
 
-type Person struct {
-	FirstName string `json:"first_name"`
-	Age       int64  `json:"age"`
-}
-
 func main() {
+	filePath := "people.json"
 
-	file := os.Args[1]
-	data, _ := os.ReadFile(file)
+	file, _ := os.Open(filePath)
+	defer file.Close()
 
-	var people []Person
-	json.Unmarshal(data, &people)
+	var people []map[string]interface{}
+	decoder := json.NewDecoder(file)
+	decoder.Decode(&people)
 
 	for _, person := range people {
-		fmt.Printf("Hello, %d year old %s\n", person.Age, person.FirstName)
+		age := person["age"].(float64)
+		firstName := person["first_name"].(string)
+		fmt.Printf("Hello, %.0f year old %s\n", age, firstName)
 	}
 }
 ```
@@ -257,10 +282,7 @@ func main() {
 ```swift
 import Foundation
 
-guard let jsonFile = CommandLine.arguments.dropFirst().first else {
-    print("Usage: swift script.swift <json_file>")
-    exit(1)
-}
+let jsonFile = "people.json"
 
 let fileURL = URL(fileURLWithPath: jsonFile)
 let jsonData = try Data(contentsOf: fileURL)
@@ -282,7 +304,7 @@ for (_, person) in people.enumerated() {
 use v6;
 use JSON::Fast;
 
-my $file-path = @*ARGS[0];
+my $file-path = "people.json";
 
 my $fh = open $file-path, :r;
 
@@ -306,7 +328,7 @@ use std::env;
 use std::fs;
 extern crate json;
 fn main() {
-    let filename = env::args().nth(1).unwrap();
+    let filename = "people.json";
 
     let json_string = fs::read_to_string(filename).unwrap();
     let parsed_json = json::parse(&json_string).unwrap();

@@ -1,8 +1,8 @@
 library(jsonlite)
 
-args <- commandArgs(trailingOnly = TRUE)
+filename <- "people.json"
 
-people <- fromJSON(args[1])
+people <- fromJSON(filename)
 
 for (i in 1:nrow(people)){
     cat(paste0("Hello, ", people$age[i], " year old ", people$first_name[i], "\n"))

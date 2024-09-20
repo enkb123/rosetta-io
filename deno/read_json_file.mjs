@@ -1,6 +1,6 @@
-const jsonFile = Deno.args[0];
+const filePath = "./people.json";
 
-const data = await Deno.readTextFile(jsonFile);
+const data = await Deno.readTextFile(filePath);
 
 const people = JSON.parse(data);
 

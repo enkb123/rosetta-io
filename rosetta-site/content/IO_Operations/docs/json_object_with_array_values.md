@@ -158,8 +158,6 @@ public class JsonObjectWithArrayValues {
 `json_object_with_array_values.sh`
 
 ```bash
-#!/bin/bash
-
 json_object='{}'
 
 for arg in "$@"; do
@@ -179,8 +177,6 @@ echo "$json_object"
 `json_object_with_array_values.sh`
 
 ```bash
-#!/bin/bash
-
 json_object='{}'
 
 for arg in "$@"; do

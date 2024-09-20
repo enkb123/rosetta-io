@@ -2,16 +2,20 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-class ReadJsonFile{
-    public static void Main(string[] args){
-        string jsonFilePath = args[0];
-        string jsonContent = File.ReadAllText(jsonFilePath);
+class ReadJsonFile
+{
+    public static void Main(string[] args)
+    {
+        string filePath = "people.json";
 
-        JsonElement root = JsonDocument.Parse(jsonContent).RootElement;
+        var json = File.ReadAllText(filePath);
 
-        foreach (JsonElement person in root.EnumerateArray()){
-            long age = person.GetProperty("age").GetInt64();
-            string firstName = person.GetProperty("first_name").GetString();
+        var people = JsonSerializer.Deserialize<JsonElement[]>(json);
+
+        foreach (var person in people)
+        {
+            var age = person.GetProperty("age").GetInt32();
+            var firstName = person.GetProperty("first_name").GetString();
             Console.WriteLine($"Hello, {age} year old {firstName}");
         }
     }

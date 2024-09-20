@@ -147,8 +147,6 @@ public class JsonStdoutObject {
 `json_stdout_object.sh`
 
 ```bash
-#!/bin/bash
-
 json_object='{}'
 
 for arg in "$@"; do
@@ -164,8 +162,6 @@ echo "$json_object"
 `json_stdout_object.sh`
 
 ```bash
-#!/bin/bash
-
 json_object='{}'
 
 for arg in "$@"; do

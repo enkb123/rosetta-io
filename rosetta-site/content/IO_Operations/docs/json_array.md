@@ -122,8 +122,6 @@ public class JsonArray {
 `json_array.sh`
 
 ```bash
-#!/bin/bash
-
 jo -a "$@"
 ```
 
@@ -132,8 +130,6 @@ jo -a "$@"
 `json_array.sh`
 
 ```bash
-#!/bin/bash
-
 jo -a "$@"
 ```
 

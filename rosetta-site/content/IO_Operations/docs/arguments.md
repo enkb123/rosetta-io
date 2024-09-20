@@ -32,8 +32,8 @@ puts "2nd argument: #{ARGV[1]}"
 `arguments.mjs`
 
 ```javascript
-console.log("1st argument: " + process.argv[2])
-console.log("2nd argument: " + process.argv[3])
+console.log("1st argument:", process.argv[2])
+console.log("2nd argument:", process.argv[3])
 ```
 
 ## Deno
@@ -41,8 +41,8 @@ console.log("2nd argument: " + process.argv[3])
 `arguments.mjs`
 
 ```javascript
-console.log("1st argument: " + Deno.args[0])
-console.log("2nd argument: " + Deno.args[1])
+console.log("1st argument:", Deno.args[0])
+console.log("2nd argument:", Deno.args[1])
 ```
 
 ## Php
@@ -52,8 +52,8 @@ console.log("2nd argument: " + Deno.args[1])
 ```php
 <?php
 
-echo ("1st argument: " . $argv[1] . "\n");
-echo ("2nd argument: " . $argv[2] . "\n");
+echo "1st argument: ", $argv[1], "\n";
+echo "2nd argument: ", $argv[2], "\n";
 ```
 
 ## R
@@ -63,8 +63,8 @@ echo ("2nd argument: " . $argv[2] . "\n");
 ```r
 args <- commandArgs(trailingOnly = TRUE)
 
-cat(paste0("1st argument: ", args[1],"\n"))
-cat(paste0("2nd argument: ", args[2],"\n"))
+cat("1st argument:", args[1], "\n")
+cat("2nd argument:", args[2], "\n")
 ```
 
 ## Perl
@@ -74,8 +74,8 @@ cat(paste0("2nd argument: ", args[2],"\n"))
 ```perl
 use strict;
 use warnings;
-print ("1st argument: " . $ARGV[0] . "\n");
-print ("2nd argument: " . $ARGV[1] . "\n");
+print "1st argument: ", $ARGV[0], "\n";
+print "2nd argument: ", $ARGV[1], "\n";
 ```
 
 ## Java
@@ -96,14 +96,8 @@ class Main{
 `arguments.sh`
 
 ```bash
-file_path="$1"
-
-if [ -z "$file_path" ]; then
-  echo "Usage: $0 <file_path>"
-  exit 1
-fi
-
-tr '[:upper:]' '[:lower:]' <<< "$file_path"
+echo "1st argument: $1"
+echo "2nd argument: $2"
 ```
 
 ## Bash 5
@@ -111,14 +105,8 @@ tr '[:upper:]' '[:lower:]' <<< "$file_path"
 `arguments.sh`
 
 ```bash
-file_path="$1"
-
-if [ -z "$file_path" ]; then
-  echo "Usage: $0 <file_path>"
-  exit 1
-fi
-
-echo "${file_path,,}"
+echo "1st argument: $1"
+echo "2nd argument: $2"
 ```
 
 ## Lua
@@ -160,7 +148,6 @@ import (
 func main() {
 	fmt.Println("1st argument: " + os.Args[1])
 	fmt.Println("2nd argument: " + os.Args[2])
-
 }
 ```
 

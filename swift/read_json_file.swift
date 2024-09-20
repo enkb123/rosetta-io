@@ -1,9 +1,6 @@
 import Foundation
 
-guard let jsonFile = CommandLine.arguments.dropFirst().first else {
-    print("Usage: swift script.swift <json_file>")
-    exit(1)
-}
+let jsonFile = "people.json"
 
 let fileURL = URL(fileURLWithPath: jsonFile)
 let jsonData = try Data(contentsOf: fileURL)

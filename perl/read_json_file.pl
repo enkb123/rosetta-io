@@ -2,8 +2,20 @@ use strict;
 use warnings;
 use JSON;
 
-open my $fh, '<', $ARGV[0] or die "Cannot open file: $ARGV[0]\n";
+my $file_path = 'people.json';
 
-my $people = decode_json(do { local $/; <$fh> });
+my $json_string;
+{
+    local $/;
+    open my $fh, '<', $file_path;
+    $json_string = <$fh>;
+    close $fh;
+}
 
-print "Hello, $_->{'age'} year old $_->{'first_name'}\n" for @$people;
+my $people = decode_json($json_string);
+
+foreach my $person (@$people) {
+    my $age = $person->{age};
+    my $first_name = $person->{first_name};
+    print "Hello, $age year old $first_name\n";
+}

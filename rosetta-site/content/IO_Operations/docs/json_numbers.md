@@ -137,8 +137,6 @@ public class JsonNumbers {
 `json_numbers.sh`
 
 ```bash
-#!/bin/bash
-
 lengths=()
 
 for arg in "$@"; do
@@ -153,8 +151,6 @@ jo -a "${lengths[@]}"
 `json_numbers.sh`
 
 ```bash
-#!/bin/bash
-
 lengths=()
 
 for arg in "$@"; do

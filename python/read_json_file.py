@@ -1,7 +1,6 @@
 import json
-import sys
 
-json_file = sys.argv[1]
+json_file = "people.json"
 
 with open(json_file, "r") as f:
     people = json.load(f)

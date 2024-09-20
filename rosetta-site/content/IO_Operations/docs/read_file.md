@@ -12,15 +12,12 @@ Read a file line by line
 `read_file.py`
 
 ```python
-import sys
+file_path = './my-text-file.txt'
 
-file_path = sys.argv[1]
-
-with open(file_path, 'r') as f:
-    i = 1
-    for line in f.readlines():
-        print(i, line.upper(), end='')
-        i += 1
+with open(file_path, 'r') as file:
+    for line in file:
+        line = line.strip()
+        print(f"line: {line}")
 ```
 
 ## Ruby
@@ -40,20 +37,16 @@ end
 `read_file.mjs`
 
 ```javascript
-import * as readline from 'node:readline/promises'
 import fs  from 'fs'
+const path = './my-text-file.txt';
 
-const file_path = process.argv[2]
-
-const rl = readline.createInterface({
-  input: fs.createReadStream(file_path),
-})
-
-let i = 1
-for await (const line of rl) {
-  console.log(i + " " + line.toUpperCase())
-  i++
-}
+fs.readFile(path, 'utf8', (_, data) => {
+    data.split('\n').forEach(line => {
+    if (line.trim() !== '') {
+      console.log(`line: ${line}`);
+    }
+  });
+});
 ```
 
 ## Deno
@@ -61,29 +54,14 @@ for await (const line of rl) {
 `read_file.mjs`
 
 ```javascript
-const filePath = Deno.args[0];
-const file = await Deno.open(filePath);
-const decoder = new TextDecoder();
+const filePath = "./my-text-file.txt";
+const fileContent = await Deno.readTextFile(filePath);
 
-let i = 1;
-let partialLine = '';
-
-for await (const chunk of Deno.iter(file)) {
-    const chunkStr = decoder.decode(chunk, { stream: true });
-    const lines = (partialLine + chunkStr).split('\n');
-
-    for (const line of lines.slice(0, -1)) {
-        console.log(`${i++} ${line.toUpperCase()}`);
-    }
-
-    partialLine = lines[lines.length - 1];
+for (const line of fileContent.split("\n")) {
+  if (line.trim() !== "") {
+    console.log(`line: ${line}`);
+  }
 }
-
-if (partialLine) {
-    console.log(`${i} ${partialLine.toUpperCase()}`);
-}
-
-file.close();
 ```
 
 ## Php
@@ -93,13 +71,15 @@ file.close();
 ```php
 <?php
 
-$file_path = $argv[1];
+$filePath = './my-text-file.txt';
+$file = fopen($filePath, 'r');
 
-$file = fopen($file_path, 'r');
-
-foreach (file($file_path) as $index => $line) {
-    echo ($index + 1) . ' ' . strtoupper($line);
+while (($line = fgets($file)) !== false) {
+    $line = trim($line);
+    echo "line: $line\n";
 }
+
+fclose($file);
 ```
 
 ## R
@@ -107,14 +87,12 @@ foreach (file($file_path) as $index => $line) {
 `read_file.R`
 
 ```r
-file_path <- commandArgs(trailingOnly = TRUE)[1]
+file_path <- "./my-text-file.txt"
 
 con <- file(file_path, "r")
 
-i <- 1
-while (length(line <- readLines(con, n = 1)) > 0) {
-  cat(i, toupper(line), sep = " ", fill = TRUE)
-  i <- i + 1
+while (length(line <- readLines(con, n = 1, warn = FALSE)) > 0) {
+  cat("line:", line, "\n")
 }
 
 close(con)
@@ -128,12 +106,16 @@ close(con)
 use strict;
 use warnings;
 
-my $file_path = shift;
+my $file_path = './my-text-file.txt';
+open my $fh, '<', $file_path;
 
-open my $fh, '<', $file_path or die "Cannot open file: $file_path\n";
+while (my $line = <$fh>) {
+    chomp $line;
+    print "line: $line\n";
 
-my $i = 1;
-print $i++ . " " . uc while <$fh>;
+}
+
+close $fh;
 ```
 
 ## Java
@@ -141,20 +123,22 @@ print $i++ . " " . uc while <$fh>;
 `ReadFile.java`
 
 ```java
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-class ReadFile{
-    public static void main(String[] args) throws IOException {
-        var filePath = Paths.get(args[0]);
-        var lineNumber = new AtomicInteger(1);
+public class ReadFile {
+    public static void main(String[] args) throws IOException{
+        String filePath = "./my-text-file.txt";
 
-        Files.lines(filePath)
-                .map(String::toUpperCase)
-                .map(line -> lineNumber.getAndIncrement() + " " + line)
-                .forEach(System.out::println);
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (!line.isEmpty()) {
+                System.out.println("line: " + line);
+            }
+
+        }
     }
 }
 ```
@@ -164,17 +148,11 @@ class ReadFile{
 `read_file.sh`
 
 ```bash
-file_path="$1"
-
-if [ ! -f "$file_path" ]; then
-  echo "File not found: $file_path"
-  exit 1
-fi
-
-i=1
+file_path="./my-text-file.txt"
 
 while IFS= read -r line; do
-  echo "$((i++)) $(tr '[:lower:]' '[:upper:]' <<< "$line")"
+  echo "line: $line"
+
 done < "$file_path"
 ```
 
@@ -183,20 +161,12 @@ done < "$file_path"
 `read_file.sh`
 
 ```bash
-#!/bin/bash
-
-file_path="$1"
-
-if [ ! -f "$file_path" ]; then
-  echo "File not found: $file_path"
-  exit 1
-fi
-
-i=1
+file_path="./my-text-file.txt"
 
 while IFS= read -r line; do
-  echo "$((i++)) ${line^^}"
-done < "$1"
+  echo "line: $line"
+
+done < "$file_path"
 ```
 
 ## Lua
@@ -204,14 +174,14 @@ done < "$1"
 `read_file.lua`
 
 ```lua
-local file_path = arg[1]
-local fh = io.open(file_path, "r")
-local i = 1
+local filePath = "./my-text-file.txt"
 
-for line in fh:lines() do
-    print(i .. " " .. line:upper())
-    i = i + 1
+local file = io.open(filePath, "r")
+
+for line in file:lines() do
+    print("line: " .. line)
 end
+file:close()
 ```
 
 ## C#
@@ -221,17 +191,20 @@ end
 ```csharp
 using System;
 using System.IO;
-using System.Linq;
 
 class ReadFile
 {
-    public static void Main (string[] args)
+    public static void Main(string[] args)
     {
-        string filePath = args[0];
-        var lines = File.ReadAllLines(filePath);
-        lines.Select((line, index) => $"{index + 1} {line.ToUpper()}")
-                .ToList()
-                .ForEach(Console.WriteLine);
+        string filePath = "./my-text-file.txt";
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.WriteLine($"line: {line}");
+            }
+        }
     }
 }
 ```
@@ -244,23 +217,23 @@ class ReadFile
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
-	content, _ := os.ReadFile(os.Args[1])
+	filePath := "./my-text-file.txt"
 
-	lines := strings.Split(string(content), "\n")
-	lineNumber := 1
+	file, _ := os.Open(filePath)
+	defer file.Close()
 
-	for _, line := range lines {
-		if line == "" {
-			continue
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if line != "" {
+			fmt.Println("line:", line)
 		}
-		fmt.Printf("%d %s\n", lineNumber, strings.ToUpper(line))
-		lineNumber++
 	}
 }
 ```
@@ -272,16 +245,15 @@ func main() {
 ```swift
 import Foundation
 
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <file_path>")
-    exit(1)
-}
+let filePath = "./my-text-file.txt"
+let fileURL = URL(fileURLWithPath: filePath)
 
-let fileContents = try String(contentsOfFile: CommandLine.arguments[1])
-var i = 1
-fileContents.enumerateLines { line, _ in
-    print("\(i) \(line.uppercased())")
-    i += 1
+let content = try String(contentsOf: fileURL, encoding: .utf8)
+let lines = content.components(separatedBy: .newlines)
+for line in lines {
+    if !line.isEmpty {
+        print("line: \(line)")
+    }
 }
 ```
 
@@ -292,15 +264,15 @@ fileContents.enumerateLines { line, _ in
 ```raku
 use v6;
 
-my $file-path = @*ARGS.shift;
-my $fh = open $file-path, :r;
+my $file-path = './my-text-file.txt';
+my $file = $file-path.IO;
 
-my $i = 1;
-for $fh.lines {
-    say $i++ ~ " " ~ .uc;
+if $file ~~ :e {
+    for $file.lines {
+        say "line: $_";
+
+    }
 }
-
-$fh.close;
 ```
 
 ## Rust
@@ -308,20 +280,22 @@ $fh.close;
 `read_file.rs`
 
 ```rust
-use std::env;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{self, BufRead};
+use std::path::Path;
 
-fn main() {
-    let file_path = env::args().nth(1).unwrap();
+fn main() -> io::Result<()> {
+    let file_path = "./my-text-file.txt";
+    let file = File::open(file_path)?;
 
-    let file = File::open(file_path).unwrap();
-    let reader = BufReader::new(file);
+    let reader = io::BufReader::new(file);
 
-    for (line_number, line_result) in reader.lines().enumerate() {
-        let line = line_result.unwrap();
-        println!("{} {}", line_number + 1, line.to_uppercase());
+    for line in reader.lines() {
+        let line = line?;
+        println!("line: {}", line);
     }
+
+    Ok(())
 }
 ```
 

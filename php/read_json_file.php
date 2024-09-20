@@ -1,11 +1,13 @@
 <?php
 
-$jsonFile = $argv[1];
+$filePath = 'people.json';
 
-$jsonData = file_get_contents($jsonFile);
+$jsonString = file_get_contents($filePath);
 
-$people = json_decode($jsonData);
+$people = json_decode($jsonString, true);
 
 foreach ($people as $person) {
-    echo "Hello, {$person->age} year old {$person->first_name}\n";
+    $age = $person['age'];
+    $firstName = $person['first_name'];
+    echo "Hello, $age year old $firstName\n";
 }

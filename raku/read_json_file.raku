@@ -1,7 +1,7 @@
 use v6;
 use JSON::Fast;
 
-my $file-path = @*ARGS[0];
+my $file-path = "people.json";
 
 my $fh = open $file-path, :r;
 
