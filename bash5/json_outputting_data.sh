@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # jo can't handle the null character (\0) so we use jq to add it as a workaraound
 object_with_nonascii_string='{ "a string with non-ascii characters": "hello \n \u0000 \u0001 world 🥸" }'
 
