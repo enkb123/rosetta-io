@@ -36,6 +36,6 @@ third_json_object = {
     }
 }
 
-print(json.dumps(first_json_object, ensure_ascii=False))
-print(json.dumps(second_json_object, ensure_ascii=False))
-print(json.dumps(third_json_object, ensure_ascii=False))
+print(json.dumps(first_json_object))
+print(json.dumps(second_json_object))
+print(json.dumps(third_json_object))

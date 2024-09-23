@@ -1,4 +1,4 @@
-while (my $input = $*IN.get) {
-    say "received " ~ $input;
+for lines() {
+    say "received $_";
     $*OUT.flush;
 }

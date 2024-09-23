@@ -3,12 +3,8 @@ use JSON::Fast;
 
 my $file-path = "people.json";
 
-my $fh = open $file-path, :r;
-
-my $people = from-json($fh.slurp-rest);
+my $people = from-json $file-path.IO.slurp;
 
 for @$people -> $person {
     say "Hello, {$person<age>} year old {$person<first_name>}";
 }
-
-$fh.close;

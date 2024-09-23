@@ -1,13 +1,11 @@
-import fs  from 'fs'
+import { promises as fs } from 'fs'
 
-const filePath = './people.json';
+const filePath = './people.json'
 
-fs.readFile(filePath, 'utf8', (_, data) => {
+const data = await fs.readFile(filePath, 'utf8')
 
-  const people = JSON.parse(data);
+const people = JSON.parse(data)
 
-  people.forEach(person => {
-      console.log(`Hello, ${person.age} year old ${person.first_name}`);
-  });
-
-});
+for (const person of people) {
+    console.log(`Hello, ${person.age} year old ${person.first_name}`)
+}

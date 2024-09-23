@@ -39,4 +39,3 @@ $thirdJsonObject = [
 echo json_encode($firstJsonObject, JSON_UNESCAPED_UNICODE) . "\n";
 echo json_encode($secondJsonObject, JSON_UNESCAPED_UNICODE) . "\n";
 echo json_encode($thirdJsonObject, JSON_UNESCAPED_UNICODE) . "\n";
-?>

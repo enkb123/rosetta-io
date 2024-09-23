@@ -1,11 +1,8 @@
 <?php
 
-$filePath = './my-text-file.txt';
-$file = fopen($filePath, 'r');
+$file_path = './my-text-file.txt';
+$file = fopen($file_path, 'r');
 
-while (($line = fgets($file)) !== false) {
-    $line = trim($line);
-    echo "line: $line\n";
+foreach (file($file_path) as $index => $line) {
+    echo "line: $line";
 }
-
-fclose($file);

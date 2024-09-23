@@ -7,6 +7,6 @@ setvbuf(stdout, nil, _IONBF, 0)
 
 import Foundation
 
-while let user_input = readLine() {
-    print("received \(user_input)")
+while let line = readLine() {
+    print("received \(line)")
 }

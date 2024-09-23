@@ -6,7 +6,7 @@ let fileURL = URL(fileURLWithPath: jsonFile)
 let jsonData = try Data(contentsOf: fileURL)
 let people = try JSONSerialization.jsonObject(with: jsonData) as! [[String: Any]]
 
-for (_, person) in people.enumerated() {
+for person in people {
     let age = person["age"] as! Int
     let firstName = person["first_name"] as! String
 

@@ -5,11 +5,8 @@ import java.util.*;
 
 public class JsonOutputtingData {
 
-    public static void main(String[] args) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.disable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT);
-
-        Map<String, Object> firstJsonObject = new LinkedHashMap<>();
+    public static void main(String[] args) throws Exception {
+        var firstJsonObject = new HashMap<>(); // Can't use Map.of() because it doesn't support null values
         firstJsonObject.put("true", true);
         firstJsonObject.put("false", false);
         firstJsonObject.put("zero", 0);
@@ -19,23 +16,39 @@ public class JsonOutputtingData {
         firstJsonObject.put("empty string", "");
         firstJsonObject.put("a string with non-ascii characters", "hello \n \0 \u0001 world 🥸");
 
-        Map<String, Object> secondJsonObject = new LinkedHashMap<>();
-        secondJsonObject.put("array of strings", Arrays.asList("abc", "def", "ghi", "jkl"));
-        secondJsonObject.put("array of numbers", Arrays.asList(13, 42, 9000, -7));
-        secondJsonObject.put("array of nothing", new ArrayList<>());
-        secondJsonObject.put("array of mixed", Arrays.asList(13, "def", null, false, Arrays.asList("a"), Collections.singletonMap("o", 1)));
-        secondJsonObject.put("array of objects", Arrays.asList(
-            new LinkedHashMap<String, Object>() {{ put("name", "Bob Barker"); put("age", 84); }},
-            new LinkedHashMap<String, Object>() {{ put("address1", "123 Main St"); put("address2", "Apt 1"); }}
-        ));
-        secondJsonObject.put("array of arrays", Arrays.asList(
-            Arrays.asList("a", "b", "c"),
-            Arrays.asList("d", "e", "f")
-        ));
+        var secondJsonObject = Map.of(
+            "array of strings", List.of("abc", "def", "ghi", "jkl"),
+            "array of numbers", List.of(13, 42, 9000, -7),
+            "array of nothing", List.of(),
+            "array of mixed", Arrays.asList(13, "def", null, false, List.of("a"), Map.of("o", 1)),
+            "array of objects", List.of(
+                Map.of(
+                    "name", "Bob Barker",
+                    "age", 84
+                ),
+                Map.of(
+                    "address1", "123 Main St",
+                    "address2", "Apt 1"
+                )
+            ),
+            "array of arrays", List.of(
+                List.of("a", "b", "c"),
+                List.of("d", "e", "f")
+            )
+        );
 
-        Map<String, Object> thirdJsonObject = new LinkedHashMap<>();
-        thirdJsonObject.put("objects", Collections.singletonMap("nested", Collections.singletonMap("objects", Collections.singletonMap("are", "supported"))));
+        var thirdJsonObject = Map.of(
+            "objects", Map.of(
+                "nested", Map.of(
+                    "objects", Map.of(
+                        "are", "supported"
+                    )
+                )
+            )
+        );
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT);
         printJson(objectMapper, firstJsonObject);
         printJson(objectMapper, secondJsonObject);
         printJson(objectMapper, thirdJsonObject);
