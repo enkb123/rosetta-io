@@ -54,7 +54,7 @@ import { readLines } from 'https://deno.land/std/io/mod.ts';
 const rl = readLines(Deno.stdin);
 
 for await (const line of rl) {
-  console.log("line:",line);
+  console.log("line:", line);
 }
 ```
 
@@ -76,7 +76,7 @@ while ($user_input = fgets(STDIN)) {
 
 ```r
 for (line in readLines("stdin")) {
-  cat("line:", line, fill = TRUE)
+  cat("line:", line, "\n")
 }
 ```
 
@@ -88,9 +88,7 @@ for (line in readLines("stdin")) {
 use strict;
 use warnings;
 
-while (my $user_input = <STDIN>) {
-    print "line: " . $user_input;
-}
+print "line: $_" while <STDIN>;
 ```
 
 ## Java
@@ -195,8 +193,8 @@ func main() {
 ```swift
 import Foundation
 
-while let user_input = readLine() {
-    print("line: \(user_input)")
+while let line = readLine() {
+    print("line: \(line)")
 }
 ```
 
@@ -207,8 +205,8 @@ while let user_input = readLine() {
 ```raku
 use v6;
 
-while (my $user_input = $*IN.get) {
-    say "line: " ~ $user_input;
+for lines() {
+    say "line: $_";
 }
 ```
 
@@ -221,7 +219,7 @@ use std::io::{self, BufRead};
 
 fn main() {
     let stdin = io::stdin();
-    for line in stdin.lock().lines(){
+    for line in stdin.lock().lines() {
         let line = line.unwrap().trim().to_string();
         if line.is_empty() {
             break;

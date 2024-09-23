@@ -56,7 +56,7 @@ import { readLines } from 'https://deno.land/std/io/mod.ts';
 const rl = readLines(Deno.stdin);
 
 for await (const line of rl) {
-  console.log("received",line);
+  console.log("received", line);
 }
 ```
 
@@ -78,7 +78,7 @@ while ($user_input = fgets(STDIN)) {
 
 ```r
 while(length(line <- readLines("stdin", n = 1L)) > 0) {
-  cat("received", line, fill = TRUE)
+  cat("received", line, "\n")
 }
 ```
 
@@ -91,11 +91,7 @@ use strict;
 use warnings;
 
 $| = 1;
-
-while (my $input = <STDIN>) {
-    chomp($input);
-    print "received " . $input . "\n";
-}
+print "received $_" while <STDIN>;
 ```
 
 ## Java
@@ -183,7 +179,7 @@ import (
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		fmt.Println("received " + scanner.Text())
+		fmt.Println("received", scanner.Text())
 	}
 }
 ```
@@ -202,8 +198,8 @@ setvbuf(stdout, nil, _IONBF, 0)
 
 import Foundation
 
-while let user_input = readLine() {
-    print("received \(user_input)")
+while let line = readLine() {
+    print("received \(line)")
 }
 ```
 
@@ -212,8 +208,8 @@ while let user_input = readLine() {
 `streaming_stdin.raku`
 
 ```raku
-while (my $input = $*IN.get) {
-    say "received " ~ $input;
+for lines() {
+    say "received $_";
     $*OUT.flush;
 }
 ```
@@ -226,9 +222,8 @@ while (my $input = $*IN.get) {
 use std::io::{self, BufRead};
 
 fn main() {
-    let stdin = io::stdin();
-    for line in stdin.lock().lines(){
-        let line = line.unwrap().trim().to_string();
+    for maybe_line in io::stdin().lock().lines() {
+        let line = maybe_line.unwrap().trim().to_string();
         if line.is_empty() {
             break;
         }

@@ -3,7 +3,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
-    let pipe_in = env::args().nth(1).unwrap();
+    let pipe_in = "input.pipe";
 
     let file = File::open(pipe_in).unwrap();
     let reader = BufReader::new(file);

@@ -2,7 +2,7 @@ import java.io.*;
 
 public class StreamingPipeIn {
     public static void main(String[] args) throws IOException {
-        String pipe_in = args[0];
+        String pipe_in = "input.pipe";
 
         BufferedReader input = new BufferedReader(new FileReader(pipe_in));
 

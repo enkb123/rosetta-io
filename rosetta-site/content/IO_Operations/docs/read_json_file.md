@@ -42,19 +42,17 @@ end
 `read_json_file.mjs`
 
 ```javascript
-import fs  from 'fs'
+import { promises as fs } from 'fs'
 
-const filePath = './people.json';
+const filePath = './people.json'
 
-fs.readFile(filePath, 'utf8', (_, data) => {
+const data = await fs.readFile(filePath, 'utf8')
 
-  const people = JSON.parse(data);
+const people = JSON.parse(data)
 
-  people.forEach(person => {
-      console.log(`Hello, ${person.age} year old ${person.first_name}`);
-  });
-
-});
+for (const person of people) {
+    console.log(`Hello, ${person.age} year old ${person.first_name}`)
+}
 ```
 
 ## Deno
@@ -82,14 +80,12 @@ for (const person of people) {
 
 $filePath = 'people.json';
 
-$jsonString = file_get_contents($filePath);
+$jsonData = file_get_contents($filePath);
 
-$people = json_decode($jsonString, true);
+$people = json_decode($jsonData);
 
 foreach ($people as $person) {
-    $age = $person['age'];
-    $firstName = $person['first_name'];
-    echo "Hello, $age year old $firstName\n";
+    echo "Hello, {$person->age} year old {$person->first_name}\n";
 }
 ```
 
@@ -102,10 +98,10 @@ library(jsonlite)
 
 filename <- "people.json"
 
-people <- fromJSON(filename)
+people <- fromJSON(filename, simplifyVector = FALSE)
 
-for (i in 1:nrow(people)){
-    cat(paste0("Hello, ", people$age[i], " year old ", people$first_name[i], "\n"))
+for (person in people) {
+    cat("Hello,", person$age, "year old", person$first_name, "\n")
 }
 ```
 
@@ -118,23 +114,12 @@ use strict;
 use warnings;
 use JSON;
 
-my $file_path = 'people.json';
+my $file_path = './people.json';
+open my $fh, '<', $file_path;
 
-my $json_string;
-{
-    local $/;
-    open my $fh, '<', $file_path;
-    $json_string = <$fh>;
-    close $fh;
-}
+my $people = decode_json(do { local $/; <$fh> });
 
-my $people = decode_json($json_string);
-
-foreach my $person (@$people) {
-    my $age = $person->{age};
-    my $first_name = $person->{first_name};
-    print "Hello, $age year old $first_name\n";
-}
+print "Hello, $_->{'age'} year old $_->{'first_name'}\n" for @$people;
 ```
 
 ## Java
@@ -142,25 +127,25 @@ foreach my $person (@$people) {
 `ReadJsonFile.java`
 
 ```java
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.IOException;
 
 public class ReadJsonFile {
-    public static void main(String[] args) throws IOException{
-        String filePath = "people.json";
-        ObjectMapper objectMapper = new ObjectMapper();
+    public static void main(String[] args) throws Exception {
+        var file = new File("people.json");
 
-        JsonNode people = objectMapper.readTree(new File(filePath));
-        for (JsonNode person : people) {
-            int age = person.get("age").asInt();
-            String firstName = person.get("first_name").asText();
-            System.out.printf("Hello, %d year old %s%n", age, firstName);
+        new ObjectMapper()
+            .readTree(file)
+            .elements()
+            .forEachRemaining(person -> {
+                var age = person.get("age").asInt();
+                var firstName = person.get("first_name").asText();
+
+                System.out.printf("Hello, %d year old %s%n", age, firstName);
+            });
         }
     }
-}
 ```
 
 ## Bash 3
@@ -196,19 +181,15 @@ done
 `read_json_file.lua`
 
 ```lua
-local cjson = require("dkjson")
+local json = require("dkjson")
 
 local filePath = "people.json"
 
-local function readFile(filePath)
-    local file = io.open(filePath, "r")
-    local content = file:read("*a")
-    file:close()
-    return content
-end
+local file = io.open(filePath, "r")
+local jsonString = file:read("*a")
+file:close()
 
-local jsonString = readFile(filePath)
-local people, pos = cjson.decode(jsonString, 1, nil)
+local people, pos = json.decode(jsonString, 1, nil)
 
 for _, person in ipairs(people) do
     print(string.format("Hello, %d year old %s", person.age, person.first_name))
@@ -228,7 +209,7 @@ class ReadJsonFile
 {
     public static void Main(string[] args)
     {
-        string filePath = "people.json";
+        var filePath = "people.json";
 
         var json = File.ReadAllText(filePath);
 
@@ -288,7 +269,7 @@ let fileURL = URL(fileURLWithPath: jsonFile)
 let jsonData = try Data(contentsOf: fileURL)
 let people = try JSONSerialization.jsonObject(with: jsonData) as! [[String: Any]]
 
-for (_, person) in people.enumerated() {
+for person in people {
     let age = person["age"] as! Int
     let firstName = person["first_name"] as! String
 
@@ -306,15 +287,11 @@ use JSON::Fast;
 
 my $file-path = "people.json";
 
-my $fh = open $file-path, :r;
-
-my $people = from-json($fh.slurp-rest);
+my $people = from-json $file-path.IO.slurp;
 
 for @$people -> $person {
     say "Hello, {$person<age>} year old {$person<first_name>}";
 }
-
-$fh.close;
 ```
 
 ## Rust

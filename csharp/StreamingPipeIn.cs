@@ -1,14 +1,12 @@
 using System;
 using System.IO;
-using System.Text;
 
 class StreamingPipeIn
 {
     public static void Main(string[] args)
     {
-        string pipe_in = args[0];
-
-        using var reader = new StreamReader(args[0]);
+        string pipe_in = "input.pipe";
+        using var reader = new StreamReader(pipe_in);
 
         string line;
         while ((line = reader.ReadLine()) != null)

@@ -280,9 +280,9 @@ say to-json(@*ARGS.map: { uc($_) => $_.chars });
 ```rust
 //cargo-deps: json="0.12.4"
 
+use json::object;
 use json::JsonValue;
 use std::env;
-use json::object;
 
 extern crate json;
 fn main() {

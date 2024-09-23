@@ -1,6 +1,4 @@
-args <- commandArgs(trailingOnly = TRUE)
-
-pipe_in <- args[1]
+pipe_in <- "input.pipe"
 
 input <- file(pipe_in, "r")
 

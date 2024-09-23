@@ -57,16 +57,13 @@ echo "Hello World \0";
 `null_char.R`
 
 ```r
-text_raw <- charToRaw("Hello World ")
-null_char_raw <- as.raw(0)
-new_line_raw <- charToRaw("\n")
-raw_vector <- c(text_raw, null_char_raw, new_line_raw)
+temp_file <- tempfile()
 
-writeBin(raw_vector, "temp_binary_file.bin")
+writeBin(c(charToRaw("Hello World "), as.raw(0), charToRaw("\n")), temp_file)
 
-system("cat temp_binary_file.bin", intern = FALSE)
+system(paste("cat", temp_file))
 
-unlink("temp_binary_file.bin")
+unlink(temp_file)
 ```
 
 ## Perl

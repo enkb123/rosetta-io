@@ -1,6 +1,6 @@
 <?php
 
-$pipe_in = $argv[1];
+$pipe_in = "input.pipe";
 
 $input_pipe = fopen($pipe_in, 'r');
 

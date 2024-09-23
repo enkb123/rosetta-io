@@ -37,16 +37,17 @@ end
 `read_file.mjs`
 
 ```javascript
-import fs  from 'fs'
-const path = './my-text-file.txt';
+import { promises as fs } from 'fs';
 
-fs.readFile(path, 'utf8', (_, data) => {
-    data.split('\n').forEach(line => {
-    if (line.trim() !== '') {
-      console.log(`line: ${line}`);
-    }
-  });
-});
+const filePath = './my-text-file.txt'
+
+const fileContent = await fs.readFile(filePath, 'utf8')
+
+for (const line of fileContent.split("\n")) {
+  if (line !== "") {
+    console.log('line:', line);
+  }
+}
 ```
 
 ## Deno
@@ -58,8 +59,8 @@ const filePath = "./my-text-file.txt";
 const fileContent = await Deno.readTextFile(filePath);
 
 for (const line of fileContent.split("\n")) {
-  if (line.trim() !== "") {
-    console.log(`line: ${line}`);
+  if (line !== "") {
+    console.log('line:', line);
   }
 }
 ```
@@ -71,15 +72,12 @@ for (const line of fileContent.split("\n")) {
 ```php
 <?php
 
-$filePath = './my-text-file.txt';
-$file = fopen($filePath, 'r');
+$file_path = './my-text-file.txt';
+$file = fopen($file_path, 'r');
 
-while (($line = fgets($file)) !== false) {
-    $line = trim($line);
-    echo "line: $line\n";
+foreach (file($file_path) as $index => $line) {
+    echo "line: $line";
 }
-
-fclose($file);
 ```
 
 ## R
@@ -89,13 +87,11 @@ fclose($file);
 ```r
 file_path <- "./my-text-file.txt"
 
-con <- file(file_path, "r")
+lines <- readLines(file_path)
 
-while (length(line <- readLines(con, n = 1, warn = FALSE)) > 0) {
+for (line in lines) {
   cat("line:", line, "\n")
 }
-
-close(con)
 ```
 
 ## Perl
@@ -109,13 +105,7 @@ use warnings;
 my $file_path = './my-text-file.txt';
 open my $fh, '<', $file_path;
 
-while (my $line = <$fh>) {
-    chomp $line;
-    print "line: $line\n";
-
-}
-
-close $fh;
+print "line: $_" while <$fh>;
 ```
 
 ## Java
@@ -123,22 +113,16 @@ close $fh;
 `ReadFile.java`
 
 ```java
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ReadFile {
-    public static void main(String[] args) throws IOException{
-        String filePath = "./my-text-file.txt";
+    public static void main(String[] args) throws Exception {
+        var filePath = Paths.get("./my-text-file.txt");
 
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        String line;
-        while ((line = br.readLine()) != null) {
-            if (!line.isEmpty()) {
-                System.out.println("line: " + line);
-            }
-
-        }
+        Files.lines(filePath)
+            .filter(line -> !line.isEmpty())
+            .forEach(line -> System.out.println("line: " + line));
     }
 }
 ```
@@ -196,14 +180,11 @@ class ReadFile
 {
     public static void Main(string[] args)
     {
-        string filePath = "./my-text-file.txt";
-        using (StreamReader reader = new StreamReader(filePath))
+        var filePath = "./my-text-file.txt";
+
+        foreach (var line in File.ReadLines(filePath))
         {
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                Console.WriteLine($"line: {line}");
-            }
+            Console.WriteLine($"line: {line}");
         }
     }
 }
@@ -246,9 +227,8 @@ func main() {
 import Foundation
 
 let filePath = "./my-text-file.txt"
-let fileURL = URL(fileURLWithPath: filePath)
 
-let content = try String(contentsOf: fileURL, encoding: .utf8)
+let content = try String(contentsOfFile: filePath, encoding: .utf8)
 let lines = content.components(separatedBy: .newlines)
 for line in lines {
     if !line.isEmpty {
@@ -265,13 +245,9 @@ for line in lines {
 use v6;
 
 my $file-path = './my-text-file.txt';
-my $file = $file-path.IO;
 
-if $file ~~ :e {
-    for $file.lines {
-        say "line: $_";
-
-    }
+for $file-path.IO.lines {
+    say "line: $_";
 }
 ```
 
@@ -281,21 +257,17 @@ if $file ~~ :e {
 
 ```rust
 use std::fs::File;
-use std::io::{self, BufRead};
-use std::path::Path;
+use std::io::{self, BufRead, BufReader};
 
-fn main() -> io::Result<()> {
+fn main() {
     let file_path = "./my-text-file.txt";
-    let file = File::open(file_path)?;
+    let file = File::open(file_path).unwrap();
 
-    let reader = io::BufReader::new(file);
+    let reader = BufReader::new(file);
 
     for line in reader.lines() {
-        let line = line?;
-        println!("line: {}", line);
+        println!("line: {}", line.unwrap());
     }
-
-    Ok(())
 }
 ```
 

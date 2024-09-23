@@ -12,9 +12,7 @@ Read from named pipe line by line
 `streaming_pipe_in.py`
 
 ```python
-import sys
-
-pipe_in = sys.argv[1]
+pipe_in = "input.pipe"
 
 with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
     for line in input_pipe:
@@ -44,7 +42,7 @@ end
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
-const pipeIn = process.argv[2];
+const pipeIn = "input.pipe";
 
 const input = fs.createReadStream(pipeIn);
 const rl = readline.createInterface({ input })
@@ -61,7 +59,7 @@ for await (const line of rl) {
 ```javascript
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
-const [pipePath] = Deno.args;
+const [pipePath] = input.pipe;
 const file = await Deno.open(pipePath, { read: true });
 
 for await (const line of readLines(file)) {
@@ -78,7 +76,7 @@ file.close();
 ```php
 <?php
 
-$pipe_in = $argv[1];
+$pipe_in = "input.pipe";
 
 $input_pipe = fopen($pipe_in, 'r');
 
@@ -94,9 +92,7 @@ fclose($input_pipe);
 `streaming_pipe_in.R`
 
 ```r
-args <- commandArgs(trailingOnly = TRUE)
-
-pipe_in <- args[1]
+pipe_in <- "input.pipe"
 
 input <- file(pipe_in, "r")
 
@@ -117,7 +113,7 @@ use warnings;
 
 $| = 1;
 
-my ($pipe_in) = @ARGV;
+my ($pipe_in) = "input.pipe";
 
 open my $input, '<', $pipe_in or die "Cannot open input pipe: $!";
 
@@ -137,7 +133,7 @@ import java.io.*;
 
 public class StreamingPipeIn {
     public static void main(String[] args) throws IOException {
-        String pipe_in = args[0];
+        String pipe_in = "input.pipe";
 
         BufferedReader input = new BufferedReader(new FileReader(pipe_in));
 
@@ -156,7 +152,7 @@ public class StreamingPipeIn {
 `streaming_pipe_in.sh`
 
 ```bash
-pipe_in="$1"
+pipe_in="input.pipe"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
 ```
@@ -166,7 +162,7 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in"
 `streaming_pipe_in.sh`
 
 ```bash
-pipe_in="$1"
+pipe_in="input.pipe"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
 ```
@@ -176,7 +172,7 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in"
 `streaming_pipe_in.lua`
 
 ```lua
-local pipe_in = arg[1]
+local pipe_in = "input.pipe"
 
 local input_file = assert(io.open(pipe_in, "r"), "Failed to open input pipe: " .. pipe_in)
 
@@ -195,15 +191,13 @@ input_file:close()
 ```csharp
 using System;
 using System.IO;
-using System.Text;
 
 class StreamingPipeIn
 {
     public static void Main(string[] args)
     {
-        string pipe_in = args[0];
-
-        using var reader = new StreamReader(args[0]);
+        string pipe_in = "input.pipe";
+        using var reader = new StreamReader(pipe_in);
 
         string line;
         while ((line = reader.ReadLine()) != null)
@@ -229,7 +223,7 @@ import (
 )
 
 func main() {
-	pipeIn := os.Args[1]
+	pipeIn := "input.pipe"
 
 	file, _ := os.Open(pipeIn)
 	defer file.Close()
@@ -256,8 +250,7 @@ import Foundation
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-let arguments = CommandLine.arguments
-let pipe_in = arguments[1]
+let pipe_in = "input.pipe"
 
 public class FileLines: Sequence, IteratorProtocol {
   private let file: UnsafeMutablePointer<FILE>
@@ -300,7 +293,7 @@ if let lines = FileLines(path: pipe_in) {
 ```raku
 use v6;
 
-my $pipe_in = @*ARGS[0];
+my $pipe_in = "input.pipe";
 
 my $input = open($pipe_in, :r);
 
@@ -322,7 +315,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
-    let pipe_in = env::args().nth(1).unwrap();
+    let pipe_in = "input.pipe";
 
     let file = File::open(pipe_in).unwrap();
     let reader = BufReader::new(file);

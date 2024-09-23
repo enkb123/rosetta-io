@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	pipeIn := os.Args[1]
+	pipeIn := "input.pipe"
 
 	file, _ := os.Open(pipeIn)
 	defer file.Close()

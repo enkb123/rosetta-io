@@ -1,6 +1,6 @@
 use v6;
 
-my $pipe_in = @*ARGS[0];
+my $pipe_in = "input.pipe";
 
 my $input = open($pipe_in, :r);
 

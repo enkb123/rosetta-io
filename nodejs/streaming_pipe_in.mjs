@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
-const pipeIn = process.argv[2];
+const pipeIn = "input.pipe";
 
 const input = fs.createReadStream(pipeIn);
 const rl = readline.createInterface({ input })
