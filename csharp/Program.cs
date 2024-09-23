@@ -38,6 +38,7 @@ Action<string[]> script = scriptName switch
     "streaming_stdin" => StreamingStdin.Main,
     "streaming_pipe_in_and_out" => StreamingPipeInAndOut.Main,
     "streaming_pipe_in" => StreamingPipeIn.Main,
+    "write_to_named_pipe" => WriteToNamedPipe.Main,
     _ => _ => Console.WriteLine("Unknown command " + scriptName)
 };
 
