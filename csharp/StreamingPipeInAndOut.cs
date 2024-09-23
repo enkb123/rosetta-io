@@ -1,21 +1,22 @@
 using System;
 using System.IO;
-using System.IO.Pipes;
 
 class StreamingPipeInAndOut
 {
     public static void Main(string[] args)
     {
-        string pipe_in = args[0];
-        string pipe_out = args[1];
-
-        using var input = new StreamReader(pipe_in);
-        using var output = new StreamWriter(pipe_out) { AutoFlush = true };
-
-        string line;
-        while ((line = input.ReadLine()) != null)
+        using (FileStream outputStream = new FileStream("streaming-out.pipe", FileMode.Create, FileAccess.Write))
+        using (StreamWriter output = new StreamWriter(outputStream) { AutoFlush = true })
         {
-            output.WriteLine(line.ToUpper());
+            using (FileStream inputStream = new FileStream("streaming-in.pipe", FileMode.Open, FileAccess.Read))
+            using (StreamReader input = new StreamReader(inputStream))
+            {
+                string line;
+                while ((line = input.ReadLine()) != null)
+                {
+                    output.WriteLine($"received {line}");
+                }
+            }
         }
     }
 }

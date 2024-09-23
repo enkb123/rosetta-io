@@ -1,15 +1,17 @@
 use strict;
 use warnings;
 
-my ($pipe_in, $pipe_out) = @ARGV;
+my $input_file = 'streaming-in.pipe';
+my $output_file = 'streaming-out.pipe';
 
-open my $output, '>', $pipe_out or die "Cannot open output pipe: $!";
-open my $input, '<', $pipe_in or die "Cannot open input pipe: $!";
+
+open my $output, '>', $output_file or die "Cannot open output pipe: $!";
+open my $input, '<', $input_file or die "Cannot open input pipe: $!";
 
 $output->autoflush(1);
 
 while (my $line = <$input>) {
-    print $output uc($line);
+    print $output "received $line";
 }
 
 close $input;

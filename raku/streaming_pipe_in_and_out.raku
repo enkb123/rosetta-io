@@ -1,10 +1,15 @@
 use v6;
 
-my ($pipe_in, $pipe_out) = @*ARGS;
+my $input-file = 'streaming-in.pipe';
+my $output-file = 'streaming-out.pipe';
 
-my $output = open($pipe_out, :w);
-my $input = open($pipe_in, :r);
+my $output = open $output-file, :w;
 
-for $input.lines {
-    $output.print(.uc ~ "\n");
+my $input = open $input-file, :r;
+
+for $input.lines -> $line {
+    $output.say("received $line");
 }
+
+$output.close;
+$input.close;

@@ -1,15 +1,13 @@
-args <- commandArgs(trailingOnly = TRUE)
-
-pipe_in <- args[1]
-pipe_out <- args[2]
+input_file <- "streaming-in.pipe"
+output_file <- "streaming-out.pipe"
 
 
-input <- file(pipe_in, "r")
+input <- file(input_file, "r")
 
-output <- file(pipe_out, "w")
+output <- file(output_file, "w")
 
 while (length(line <- readLines(input, n = 1)) > 0) {
-  writeLines(toupper(line), output)
+  writeLines(paste("received", line), con = output)
   flush(output)
 }
 

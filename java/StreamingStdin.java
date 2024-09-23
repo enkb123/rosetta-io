@@ -1,8 +1,7 @@
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-public class Stdin {
+public class StreamingStdin {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
