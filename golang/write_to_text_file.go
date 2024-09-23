@@ -2,13 +2,12 @@ package main
 
 import (
 	"os"
-	"strings"
 )
 
 func main() {
 
-	outFile := os.Args[1]
-	text := strings.ToUpper(os.Args[2])
+	outFile := "output.txt"
+	text := "Hello World!"
 
 	_ = os.WriteFile(outFile, []byte(text), 0644)
 

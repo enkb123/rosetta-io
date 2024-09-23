@@ -3,15 +3,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class WriteFile {
+public class WriteToTextFile {
     public static void main(String[] args) throws IOException{
-        if (args.length != 2) {
-            System.err.println("Usage: java WriteFile.java <output_file>.txt 'some text'");
-            System.exit(1);
-        }
-
-        String outFile = args[0];
-        String text = args[1].toUpperCase();
+        String outFile = "output.txt";
+        String text = "Hello World!";
         Files.write(Paths.get(outFile), text.getBytes(StandardCharsets.UTF_8));
     }
 }

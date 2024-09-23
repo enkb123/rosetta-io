@@ -1,12 +1,12 @@
 using System;
 using System.IO;
 
-class WriteFile
+class WriteToTextFile
 {
     public static void Main(string[] args)
     {
-        string outFile = args[0];
-        string text = args[1].ToUpper();
+        string outFile = "output.txt";
+        string text = "Hello World!";
 
         File.WriteAllText(outFile, text);
     }
