@@ -10,12 +10,10 @@ Write to a text file
 ## Python
 
 ```python {filename="write_to_text_file.py"}
-import sys
-
 outfile = "output.txt"
 text = "Hello World!"
 
-with open(outfile, 'w') as f:
+with open(outfile, 'w', encoding='utf-8') as f:
     f.write(text)
 ```
 
@@ -30,18 +28,13 @@ File.write "output.txt", "Hello World!"
 ```javascript {filename="write_to_text_file.mjs"}
 import fs from 'fs/promises'
 
-const [outfile, text] = ["output.txt", "Hello World!"]
-
-await fs.writeFile(outfile, text)
+await fs.writeFile("output.txt", "Hello World!")
 ```
 
 ## Deno
 
 ```javascript {filename="write_to_text_file.mjs"}
-const filename = "output.txt";
-const text = "Hello World!";
-
-await Deno.writeTextFile(filename, text);
+await Deno.writeTextFile("output.txt", "Hello World!");
 ```
 
 ## Php
@@ -49,20 +42,13 @@ await Deno.writeTextFile(filename, text);
 ```php {filename="write_to_text_file.php"}
 <?php
 
-$outfile = "output.txt";
-$text = "Hello World!";
-
-file_put_contents($outfile, $text);
+file_put_contents("output.txt", "Hello World!");
 ```
 
 ## R
 
 ```r {filename="write_to_text_file.R"}
-args <- commandArgs(trailingOnly = TRUE)
-outfile <- "output.txt"
-text <- "Hello World!"
-
-writeLines(text, outfile, sep="")
+writeLines("Hello World!", "output.txt")
 ```
 
 ## Perl
@@ -71,26 +57,22 @@ writeLines(text, outfile, sep="")
 use strict;
 use warnings;
 
-my ($outfile, $text) = ("output.txt", "Hello World!");
-
-open my $fh, '>', $outfile or die "Cannot open!";
-
-print $fh $text;
+open my $fh, '>', "output.txt";
+print $fh "Hello World!";
+close $fh;
 ```
 
 ## Java
 
 ```java {filename="WriteToTextFile.java"}
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 public class WriteToTextFile {
-    public static void main(String[] args) throws IOException{
-        String outFile = "output.txt";
-        String text = "Hello World!";
-        Files.write(Paths.get(outFile), text.getBytes(StandardCharsets.UTF_8));
+    public static void main(String[] args) throws Exception {
+        var outFile = Paths.get("output.txt");
+        var text = "Hello World!";
+        Files.write(outFile, text.getBytes(StandardCharsets.UTF_8));
     }
 }
 ```
@@ -110,15 +92,9 @@ echo "Hello World!" > output.txt
 ## Lua
 
 ```lua {filename="write_to_text_file.lua"}
-local filename = "output.txt"
-local text = "Hello World!"
-
-local file = io.open(filename, "w")
-
-if file then
-    file:write(text)
-    file:close()
-end
+local file = io.open("output.txt", "w")
+file:write("Hello World!")
+file:close()
 ```
 
 ## C#
@@ -131,10 +107,8 @@ class WriteToTextFile
 {
     public static void Main(string[] args)
     {
-        string outFile = "output.txt";
-        string text = "Hello World!";
 
-        File.WriteAllText(outFile, text);
+        File.WriteAllText("output.txt", "Hello World!");
     }
 }
 ```
@@ -149,12 +123,7 @@ import (
 )
 
 func main() {
-
-	outFile := "output.txt"
-	text := "Hello World!"
-
-	_ = os.WriteFile(outFile, []byte(text), 0644)
-
+	os.WriteFile("output.txt", []byte("Hello World!"), 0)
 }
 ```
 
@@ -163,10 +132,7 @@ func main() {
 ```swift {filename="write_to_text_file.swift"}
 import Foundation
 
-let outfile = "output.txt"
-let text = "Hello World!"
-
-try text.write(toFile: outfile, atomically: false, encoding: .utf8)
+try "Hello World!".write(toFile: "output.txt", atomically: false, encoding: .utf8)
 ```
 
 ## Raku
@@ -174,25 +140,18 @@ try text.write(toFile: outfile, atomically: false, encoding: .utf8)
 ```raku {filename="write_to_text_file.raku"}
 use v6;
 
-my ($outfile, $text) = ("output.txt", "Hello World!");
-
-my $fh = open $outfile, :w;
-
-$fh.print: $text;
+my $fh = open "output.txt", :w;
+$fh.print: "Hello World!";
 $fh.close;
 ```
 
 ## Rust
 
 ```rust {filename="write_to_text_file.rs"}
-use std::env;
 use std::fs::write;
 
 fn main() {
-   let out_file = "output.txt";
-    let text = "Hello World!";
-
-    write(out_file, text).unwrap();
+    write("output.txt", "Hello World!").unwrap();
 }
 ```
 

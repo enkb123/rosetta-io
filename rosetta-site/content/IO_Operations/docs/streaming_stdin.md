@@ -88,10 +88,9 @@ import java.util.stream.Stream;
 
 public class StreamingStdin {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
 
         Stream.generate(scanner::nextLine)
-              .takeWhile(line -> !line.isEmpty())
               .forEach(line -> System.out.println("received " + line));
 
         scanner.close();
@@ -161,17 +160,17 @@ func main() {
 ## Swift
 
 ```swift {filename="streaming_stdin.swift"}
+import Foundation
+
 #if os(macOS) || os(iOS)
-import Darwin
+  import Darwin
 #elseif os(Linux)
-import Glibc
+  import Glibc
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-import Foundation
-
 while let line = readLine() {
-    print("received \(line)")
+  print("received \(line)")
 }
 ```
 
@@ -187,15 +186,11 @@ for lines() {
 ## Rust
 
 ```rust {filename="streaming_stdin.rs"}
-use std::io::{self, BufRead};
+use std::io::{self, stdin, BufRead};
 
 fn main() {
-    for maybe_line in io::stdin().lock().lines() {
-        let line = maybe_line.unwrap().trim().to_string();
-        if line.is_empty() {
-            break;
-        }
-        println!("received {}", line);
+    for line in stdin().lock().lines() {
+        println!("received {}", line.unwrap());
     }
 }
 ```

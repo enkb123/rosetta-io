@@ -27,9 +27,7 @@ require 'base64'
 
 encoded_string = ARGV[0]
 
-decoded_string = Base64.decode64(encoded_string)
-
-puts decoded_string
+puts Base64.decode64(encoded_string)
 ```
 
 ## Nodejs
@@ -59,9 +57,7 @@ console.log(decodedString)
 
 $encodedString = $argv[1];
 
-$decodedString = base64_decode($encodedString);
-
-echo $decodedString;
+echo base64_decode($encodedString);
 ```
 
 ## R
@@ -125,11 +121,6 @@ base64 -d <<< "$encoded_string"
 ```bash {filename="decode.sh"}
 encoded_string="$1"
 
-if [ -z "$encoded_string" ]; then
-  echo "Usage: $0 <encoded_string>"
-  exit 1
-fi
-
 base64 -d <<< "$encoded_string"
 ```
 
@@ -180,11 +171,6 @@ func main() {
 ```swift {filename="decode.swift"}
 import Foundation
 
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: \(CommandLine.arguments[0]) <encoded_string>")
-    exit(1)
-}
-
 let encodedString = CommandLine.arguments[1]
 let data = Data(base64Encoded: encodedString)
 print(String(data: data!, encoding: .utf8)!)
@@ -205,6 +191,7 @@ say MIME::Base64.decode-str(@*ARGS[0]);
 //cargo-deps: base64="0.13"
 
 extern crate base64;
+
 use base64::decode;
 use std::env;
 

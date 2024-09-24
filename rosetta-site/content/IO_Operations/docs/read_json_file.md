@@ -14,7 +14,7 @@ import json
 
 json_file = "people.json"
 
-with open(json_file, "r") as f:
+with open(json_file, "r", encoding='utf-8') as f:
     people = json.load(f)
 
 for person in people:
@@ -68,9 +68,7 @@ for (const person of people) {
 ```php {filename="read_json_file.php"}
 <?php
 
-$filePath = 'people.json';
-
-$jsonData = file_get_contents($filePath);
+$jsonData = file_get_contents('people.json');
 
 $people = json_decode($jsonData);
 
@@ -242,10 +240,10 @@ let jsonData = try Data(contentsOf: fileURL)
 let people = try JSONSerialization.jsonObject(with: jsonData) as! [[String: Any]]
 
 for person in people {
-    let age = person["age"] as! Int
-    let firstName = person["first_name"] as! String
+  let age = person["age"] as! Int
+  let firstName = person["first_name"] as! String
 
-    print("Hello, \(age) year old \(firstName)")
+  print("Hello, \(age) year old \(firstName)")
 }
 ```
 
@@ -268,18 +266,17 @@ for @$people -> $person {
 
 ```rust {filename="read_json_file.rs"}
 //cargo-deps: json="0.12.4"
-
-use std::env;
 use std::fs;
+
 extern crate json;
+
 fn main() {
     let filename = "people.json";
 
     let json_string = fs::read_to_string(filename).unwrap();
     let parsed_json = json::parse(&json_string).unwrap();
 
-    let people = parsed_json.members();
-    for person in people {
+    for person in parsed_json.members() {
         let age = person["age"].as_u32().unwrap();
         let first_name = person["first_name"].as_str().unwrap();
         println!("Hello, {} year old {}", age, first_name);

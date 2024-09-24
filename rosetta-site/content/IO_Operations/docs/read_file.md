@@ -12,7 +12,7 @@ Read a file line by line
 ```python {filename="read_file.py"}
 file_path = './my-text-file.txt'
 
-with open(file_path, 'r') as file:
+with open(file_path, 'r', encoding='utf-8') as file:
     for line in file:
         line = line.strip()
         print(f"line: {line}")
@@ -21,17 +21,15 @@ with open(file_path, 'r') as file:
 ## Ruby
 
 ```ruby {filename="read_file.rb"}
-File.open("./my-text-file.txt", "r") do |f|
-  f.each_line do |line|
-    puts "line: #{line}"
-  end
+File.foreach("./my-text-file.txt") do |line|
+  puts "line: #{line}"
 end
 ```
 
 ## Nodejs
 
 ```javascript {filename="read_file.mjs"}
-import { promises as fs } from 'fs';
+import { promises as fs } from 'fs'
 
 const filePath = './my-text-file.txt'
 
@@ -39,7 +37,7 @@ const fileContent = await fs.readFile(filePath, 'utf8')
 
 for (const line of fileContent.split("\n")) {
   if (line !== "") {
-    console.log('line:', line);
+    console.log('line:', line)
   }
 }
 ```
@@ -63,7 +61,6 @@ for (const line of fileContent.split("\n")) {
 <?php
 
 $file_path = './my-text-file.txt';
-$file = fopen($file_path, 'r');
 
 foreach (file($file_path) as $index => $line) {
     echo "line: $line";
@@ -105,7 +102,6 @@ public class ReadFile {
         var filePath = Paths.get("./my-text-file.txt");
 
         Files.lines(filePath)
-            .filter(line -> !line.isEmpty())
             .forEach(line -> System.out.println("line: " + line));
     }
 }
@@ -203,9 +199,9 @@ let filePath = "./my-text-file.txt"
 let content = try String(contentsOfFile: filePath, encoding: .utf8)
 let lines = content.components(separatedBy: .newlines)
 for line in lines {
-    if !line.isEmpty {
-        print("line: \(line)")
-    }
+  if !line.isEmpty {
+    print("line: \(line)")
+  }
 }
 ```
 
@@ -214,11 +210,7 @@ for line in lines {
 ```raku {filename="read_file.raku"}
 use v6;
 
-my $file-path = './my-text-file.txt';
-
-for $file-path.IO.lines {
-    say "line: $_";
-}
+say "line: $_" for './my-text-file.txt'.IO.lines;
 ```
 
 ## Rust
@@ -228,12 +220,9 @@ use std::fs::File;
 use std::io::{self, BufRead, BufReader};
 
 fn main() {
-    let file_path = "./my-text-file.txt";
-    let file = File::open(file_path).unwrap();
+    let file = File::open("./my-text-file.txt").unwrap();
 
-    let reader = BufReader::new(file);
-
-    for line in reader.lines() {
+    for line in BufReader::new(file).lines() {
         println!("line: {}", line.unwrap());
     }
 }

@@ -60,7 +60,7 @@ unlink(temp_file)
 use strict;
 use warnings;
 
-print "Hello World \0"
+print "Hello World \0";
 ```
 
 ## Java

@@ -25,10 +25,8 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
 ```ruby {filename="streaming_pipe_in.rb"}
 STDOUT.sync = true
 
-File.open 'input.pipe', 'r' do |pipe|
-  pipe.each_line do |line|
-    puts line.upcase
-  end
+File.foreach 'input.pipe' do |line|
+  puts line.upcase
 end
 ```
 
@@ -67,9 +65,7 @@ file.close();
 ```php {filename="streaming_pipe_in.php"}
 <?php
 
-$pipe_in = "input.pipe";
-
-$input_pipe = fopen($pipe_in, 'r');
+$input_pipe = fopen("input.pipe", 'r');
 
 while (($line = fgets($input_pipe)) !== false) {
     echo strtoupper($line);
@@ -81,12 +77,10 @@ fclose($input_pipe);
 ## R
 
 ```r {filename="streaming_pipe_in.R"}
-pipe_in <- "input.pipe"
-
-input <- file(pipe_in, "r")
+input <- file("input.pipe", "r")
 
 while (length(line <- readLines(input, n = 1)) > 0) {
-  cat(paste(toupper(line), "\n", sep = ""))
+  cat(toupper(line), "\n")
 }
 
 close(input)
@@ -99,14 +93,9 @@ use strict;
 use warnings;
 
 $| = 1;
+open my $input, '<', "input.pipe";
 
-my ($pipe_in) = "input.pipe";
-
-open my $input, '<', $pipe_in or die "Cannot open input pipe: $!";
-
-while (my $line = <$input>) {
-    print uc($line);
-}
+print uc($_) while <$input>;
 
 close $input;
 ```
@@ -117,10 +106,10 @@ close $input;
 import java.io.*;
 
 public class StreamingPipeIn {
-    public static void main(String[] args) throws IOException {
-        String pipe_in = "input.pipe";
+    public static void main(String[] args) throws Exception {
+        var pipe_in = "input.pipe";
 
-        BufferedReader input = new BufferedReader(new FileReader(pipe_in));
+        var input = new BufferedReader(new FileReader(pipe_in));
 
         String line;
         while ((line = input.readLine()) != null) {
@@ -135,25 +124,19 @@ public class StreamingPipeIn {
 ## Bash 3
 
 ```bash {filename="streaming_pipe_in.sh"}
-pipe_in="input.pipe"
-
-tr '[:lower:]' '[:upper:]' < "$pipe_in"
+tr '[:lower:]' '[:upper:]' < input.pipe
 ```
 
 ## Bash 5
 
 ```bash {filename="streaming_pipe_in.sh"}
-pipe_in="input.pipe"
-
-tr '[:lower:]' '[:upper:]' < "$pipe_in"
+tr '[:lower:]' '[:upper:]' < input.pipe
 ```
 
 ## Lua
 
 ```lua {filename="streaming_pipe_in.lua"}
-local pipe_in = "input.pipe"
-
-local input_file = assert(io.open(pipe_in, "r"), "Failed to open input pipe: " .. pipe_in)
+local input_file = io.open("input.pipe", "r")
 
 for line in input_file:lines() do
     io.write(line:upper() .. "\n")
@@ -173,8 +156,7 @@ class StreamingPipeIn
 {
     public static void Main(string[] args)
     {
-        string pipe_in = "input.pipe";
-        using var reader = new StreamReader(pipe_in);
+        using var reader = new StreamReader("input.pipe");
 
         string line;
         while ((line = reader.ReadLine()) != null)
@@ -254,8 +236,6 @@ if let lines = FileLines(path: pipe_in) {
   for line in lines {
     print(line.uppercased(), terminator: "")
   }
-} else {
-  print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }
 ```
 
@@ -264,11 +244,9 @@ if let lines = FileLines(path: pipe_in) {
 ```raku {filename="streaming_pipe_in.raku"}
 use v6;
 
-my $pipe_in = "input.pipe";
+my $input = open "input.pipe", :r;
 
-my $input = open($pipe_in, :r);
-
-for $input.lines() {
+for $input.lines {
     say .uc;
     $*OUT.flush;
 }
@@ -279,17 +257,13 @@ $input.close;
 ## Rust
 
 ```rust {filename="streaming_pipe_in.rs"}
-use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
-    let pipe_in = "input.pipe";
+    let file = File::open("input.pipe").unwrap();
 
-    let file = File::open(pipe_in).unwrap();
-    let reader = BufReader::new(file);
-
-    for line in reader.lines() {
+    for line in BufReader::new(file).lines() {
         println!("{}", line.unwrap().to_uppercase());
     }
 }

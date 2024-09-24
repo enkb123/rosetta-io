@@ -221,11 +221,6 @@ func main() {
 ```swift {filename="json_object_array.swift"}
 import Foundation
 
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <arg1> [<arg2> ...]")
-    exit(1)
-}
-
 let args = CommandLine.arguments.dropFirst()
 
 let myArray = args.map { [$0.uppercased(): $0.count] }
@@ -248,11 +243,11 @@ say to-json(@*ARGS.map: { uc($_) => $_.chars });
 ```rust {filename="json_object_array.rs"}
 //cargo-deps: json="0.12.4"
 
-use json::object;
-use json::JsonValue;
+use json::{object, JsonValue};
 use std::env;
 
 extern crate json;
+
 fn main() {
     let args = env::args().skip(1);
     let json_array = JsonValue::Array(

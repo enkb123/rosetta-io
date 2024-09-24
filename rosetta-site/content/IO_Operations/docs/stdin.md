@@ -81,15 +81,13 @@ print "line: $_" while <STDIN>;
 
 ```java {filename="Stdin.java"}
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class Stdin {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
 
         Stream.generate(scanner::nextLine)
-              .takeWhile(line -> !line.isEmpty())
               .forEach(line -> System.out.println("line: " + line));
 
         scanner.close();
@@ -166,7 +164,7 @@ func main() {
 import Foundation
 
 while let line = readLine() {
-    print("line: \(line)")
+  print("line: \(line)")
 }
 ```
 
@@ -175,24 +173,17 @@ while let line = readLine() {
 ```raku {filename="stdin.raku"}
 use v6;
 
-for lines() {
-    say "line: $_";
-}
+say "line: $_" for lines;
 ```
 
 ## Rust
 
 ```rust {filename="stdin.rs"}
-use std::io::{self, BufRead};
+use std::io::{self, stdin, BufRead};
 
 fn main() {
-    let stdin = io::stdin();
-    for line in stdin.lock().lines() {
-        let line = line.unwrap().trim().to_string();
-        if line.is_empty() {
-            break;
-        }
-        println!("line: {}", line);
+    for line in stdin().lock().lines() {
+        println!("line: {}", line.unwrap());
     }
 }
 ```

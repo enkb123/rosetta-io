@@ -60,6 +60,7 @@ cat("2nd argument:", args[2], "\n")
 ```perl {filename="arguments.pl"}
 use strict;
 use warnings;
+
 print "1st argument: ", $ARGV[0], "\n";
 print "2nd argument: ", $ARGV[1], "\n";
 ```
@@ -131,11 +132,6 @@ func main() {
 import Foundation
 
 let args = CommandLine.arguments
-
-guard args.count > 1 else {
-    print("Usage: \(args[0]) <argument>");
-    exit(1)
-}
 
 print("1st argument: \(args[1])")
 print("2nd argument: \(args[2])")

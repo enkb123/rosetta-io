@@ -26,10 +26,8 @@ with open(input_file, 'r', encoding='utf-8') as input_pipe:
 File.open 'streaming-out.pipe', 'w' do |output|
   output.sync = true
 
-  File.open 'streaming-in.pipe', 'r' do |input|
-    input.each_line do |line|
-      output.puts "received #{line}"
-    end
+  File.foreach "streaming-in.pipe" do |line|
+    output.puts "received #{line}"
   end
 end
 ```
@@ -40,13 +38,10 @@ end
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
-
 const inputStream = fs.createReadStream('streaming-in.pipe');
-const outputStream = fs.createWriteStream('streaming-out.pipe', { flags: 'a' });
+const outputStream = fs.createWriteStream('streaming-out.pipe');
 
-const rl = readline.createInterface({
-  input: inputStream,
-});
+const rl = readline.createInterface({ input: inputStream });
 
 for await (const line of rl) {
   outputStream.write(`received ${line}\n`);
@@ -60,16 +55,16 @@ outputStream.end();
 ```javascript {filename="streaming_pipe_in_and_out.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
-const output = await Deno.open('streaming-out.pipe', { write: true, create: true });
-
+const output = await Deno.open('streaming-out.pipe', { write: true });
 const input = await Deno.open('streaming-in.pipe', { read: true });
 
+const textEncoder = new TextEncoder();
+
 for await (const line of readLines(input)) {
-  await output.write(new TextEncoder().encode(`received ${line}\n`));
+  await output.write(textEncoder.encode(`received ${line}\n`));
 }
 
 input.close();
-
 output.close();
 ```
 
@@ -78,11 +73,8 @@ output.close();
 ```php {filename="streaming_pipe_in_and_out.php"}
 <?php
 
-$inputFile = 'streaming-in.pipe';
-$outputFile = 'streaming-out.pipe';
-
-$output_pipe = fopen($outputFile, 'w');
-$input_pipe = fopen($inputFile, 'r');
+$output_pipe = fopen('streaming-out.pipe', 'w');
+$input_pipe = fopen('streaming-in.pipe', 'r');
 
 while (($line = fgets($input_pipe)) !== false) {
     fwrite($output_pipe, "received " . $line);
@@ -95,13 +87,8 @@ fclose($output_pipe);
 ## R
 
 ```r {filename="streaming_pipe_in_and_out.R"}
-input_file <- "streaming-in.pipe"
-output_file <- "streaming-out.pipe"
-
-
-input <- file(input_file, "r")
-
-output <- file(output_file, "w")
+input <- file("streaming-in.pipe", "r")
+output <- file("streaming-out.pipe", "w")
 
 while (length(line <- readLines(input, n = 1)) > 0) {
   writeLines(paste("received", line), con = output)
@@ -118,18 +105,12 @@ close(output)
 use strict;
 use warnings;
 
-my $input_file = 'streaming-in.pipe';
-my $output_file = 'streaming-out.pipe';
-
-
-open my $output, '>', $output_file or die "Cannot open output pipe: $!";
-open my $input, '<', $input_file or die "Cannot open input pipe: $!";
+open my $output, '>', 'streaming-out.pipe';
+open my $input, '<', 'streaming-in.pipe';
 
 $output->autoflush(1);
 
-while (my $line = <$input>) {
-    print $output "received $line";
-}
+print $output "received $_" while <$input>;
 
 close $input;
 close $output;
@@ -142,11 +123,11 @@ import java.io.*;
 
 public class StreamingPipeInAndOut {
     public static void main (String[] args) throws IOException{
-        String inputPath = "streaming-in.pipe";
-        String outputPath = "streaming-out.pipe";
+        var inputPath = "streaming-in.pipe";
+        var outputPath = "streaming-out.pipe";
 
-        BufferedReader input = new BufferedReader(new FileReader(inputPath));
-        BufferedWriter output = new BufferedWriter(new FileWriter(outputPath));
+        var input = new BufferedReader(new FileReader(inputPath));
+        var output = new BufferedWriter(new FileWriter(outputPath));
 
         String line;
         while ((line = input.readLine()) != null) {
@@ -164,42 +145,24 @@ public class StreamingPipeInAndOut {
 ## Bash 3
 
 ```bash {filename="streaming_pipe_in_and_out.sh"}
-input_file="streaming-in.pipe"
-output_file="streaming-out.pipe"
-
-exec 3> "$output_file"
-
 while IFS= read -r line; do
-    echo "received $line" >&3
-done < "$input_file"
-
-exec 3>&-
+    echo "received $line"
+done < streaming-in.pipe > streaming-out.pipe
 ```
 
 ## Bash 5
 
 ```bash {filename="streaming_pipe_in_and_out.sh"}
-input_file="streaming-in.pipe"
-output_file="streaming-out.pipe"
-
-exec 3> "$output_file"
-
 while IFS= read -r line; do
-    echo "received $line" >&3
-done < "$input_file"
-
-exec 3>&-
+    echo "received $line"
+done < streaming-in.pipe > streaming-out.pipe
 ```
 
 ## Lua
 
 ```lua {filename="streaming_pipe_in_and_out.lua"}
-local input_file = "streaming-in.pipe"
-local output_file = "streaming-out.pipe"
-
-local output = io.open(output_file, "w")
-
-local input = io.open(input_file, "r")
+local output = io.open("streaming-out.pipe", "w")
+local input = io.open("streaming-in.pipe", "r")
 
 for line in input:lines() do
     output:write("received " .. line .. "\n")
@@ -220,18 +183,13 @@ class StreamingPipeInAndOut
 {
     public static void Main(string[] args)
     {
-        using (FileStream outputStream = new FileStream("streaming-out.pipe", FileMode.Create, FileAccess.Write))
-        using (StreamWriter output = new StreamWriter(outputStream) { AutoFlush = true })
+        using var input = new StreamReader("streaming-in.pipe");
+        using var output = new StreamWriter("streaming-out.pipe") { AutoFlush = true };
+
+        string line;
+        while ((line = input.ReadLine()) != null)
         {
-            using (FileStream inputStream = new FileStream("streaming-in.pipe", FileMode.Open, FileAccess.Read))
-            using (StreamReader input = new StreamReader(inputStream))
-            {
-                string line;
-                while ((line = input.ReadLine()) != null)
-                {
-                    output.WriteLine($"received {line}");
-                }
-            }
+            output.WriteLine($"received {line}");
         }
     }
 }
@@ -249,13 +207,13 @@ import (
 )
 
 func main() {
-	output, _ := os.OpenFile("streaming-out.pipe", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	input, _ := os.Open("streaming-in.pipe")
+	defer input.Close()
+
+	output, _ := os.OpenFile("streaming-out.pipe", os.O_WRONLY, 0)
 	defer output.Close()
 
 	output.Sync()
-
-	input, _ := os.Open("streaming-in.pipe")
-	defer input.Close()
 
 	scanner := bufio.NewScanner(input)
 
@@ -285,34 +243,34 @@ let pipe_out = "streaming-out.pipe"
 let fileDescriptor = open(pipe_out, O_WRONLY)
 
 public class FileLines: Sequence, IteratorProtocol {
-    private let file: UnsafeMutablePointer<FILE>
+  private let file: UnsafeMutablePointer<FILE>
 
-    init?(path: String) {
-        guard let file = fopen(path, "r") else { return nil }
-        self.file = file
-    }
+  init?(path: String) {
+    guard let file = fopen(path, "r") else { return nil }
+    self.file = file
+  }
 
-    public func next() -> String? {
-        var line: UnsafeMutablePointer<CChar>? = nil
-        var linecap: Int = 0
-        defer { free(line) }
-        return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil
-    }
+  public func next() -> String? {
+    var line: UnsafeMutablePointer<CChar>? = nil
+    var linecap: Int = 0
+    defer { free(line) }
+    return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil
+  }
 
-    deinit {
-        fclose(file)
-    }
+  deinit {
+    fclose(file)
+  }
 
-    public func makeIterator() -> FileLines {
-        return self
-    }
+  public func makeIterator() -> FileLines {
+    return self
+  }
 }
 
 if let lines = FileLines(path: pipe_in) {
-    for line in lines {
-        let outputLine = "received \(line)"
-        write(fileDescriptor, outputLine, outputLine.utf8.count)
-    }
+  for line in lines {
+    let outputLine = "received \(line)"
+    write(fileDescriptor, outputLine, outputLine.utf8.count)
+  }
 }
 ```
 
@@ -321,16 +279,10 @@ if let lines = FileLines(path: pipe_in) {
 ```raku {filename="streaming_pipe_in_and_out.raku"}
 use v6;
 
-my $input-file = 'streaming-in.pipe';
-my $output-file = 'streaming-out.pipe';
+my $output = open 'streaming-out.pipe', :w;
+my $input = open 'streaming-in.pipe', :r;
 
-my $output = open $output-file, :w;
-
-my $input = open $input-file, :r;
-
-for $input.lines -> $line {
-    $output.say("received $line");
-}
+$output.say("received $_") for $input.lines;
 
 $output.close;
 $input.close;
@@ -340,24 +292,15 @@ $input.close;
 
 ```rust {filename="streaming_pipe_in_and_out.rs"}
 use std::fs::File;
-use std::io::{self, BufRead, Write};
-use std::path::Path;
+use std::io::{self, BufRead, BufReader, Write};
 
-fn main() -> io::Result<()> {
-    let input_path = "streaming-in.pipe";
-    let output_path = "streaming-out.pipe";
+fn main() {
+    let mut output = File::create("streaming-out.pipe").unwrap();
+    let input = File::open("streaming-in.pipe").unwrap();
 
-    let mut output = File::create(output_path)?;
-
-    let input = File::open(input_path)?;
-    let reader = io::BufReader::new(input);
-
-    for line in reader.lines() {
-        let line = line?;
-        writeln!(output, "received {}", line)?;
+    for line in BufReader::new(input).lines() {
+        writeln!(output, "received {}", line.unwrap()).unwrap();
     }
-
-    Ok(())
 }
 ```
 

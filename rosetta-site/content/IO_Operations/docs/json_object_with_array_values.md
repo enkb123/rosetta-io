@@ -112,24 +112,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import java.util.Arrays;
-
 public class JsonObjectWithArrayValues {
-    public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonFromStrings <string1> <string2> ...");
-            System.exit(1);
-        }
+    public static void main(String[] args) throws Exception {
+        var objectMapper = new ObjectMapper();
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        var jsonObject = objectMapper.createObjectNode();
 
-        ObjectNode jsonObject = objectMapper.createObjectNode();
-
-        Arrays.stream(args).forEach(str -> {
-            ArrayNode lettersArray = objectMapper.createArrayNode();
+        for (String str : args) {
+            var lettersArray = objectMapper.createArrayNode();
             str.toUpperCase().chars().forEach(c -> lettersArray.add(String.valueOf((char) c)));
             jsonObject.set(str, lettersArray);
-        });
+        }
 
         String jsonString = objectMapper.writeValueAsString(jsonObject);
         System.out.println(jsonString);
@@ -248,16 +241,12 @@ func main() {
 ```swift {filename="json_object_with_array_values.swift"}
 import Foundation
 
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <arg1> [<arg2> ...]")
-    exit(1)
-}
-
 let myStrings = CommandLine.arguments.dropFirst()
 
-let stringLettersDict = Dictionary(uniqueKeysWithValues: myStrings.map {
+let stringLettersDict = Dictionary(
+  uniqueKeysWithValues: myStrings.map {
     ($0, $0.map { String($0).uppercased() })
-})
+  })
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLettersDict)
 print(String(data: jsonData, encoding: .utf8)!)
@@ -282,6 +271,7 @@ use json::JsonValue;
 use std::env;
 
 extern crate json;
+
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
 
