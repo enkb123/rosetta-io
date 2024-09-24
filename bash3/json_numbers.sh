@@ -1,5 +1,3 @@
-#!/bin/bash
-
 lengths=()
 
 for arg in "$@"; do

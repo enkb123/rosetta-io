@@ -1,11 +1,7 @@
-pipe_in, pipe_out = ARGV
-
-File.open(pipe_out, 'w') do |output|
+File.open 'streaming-out.pipe', 'w' do |output|
   output.sync = true
 
-  File.open(pipe_in, 'r') do |input|
-    input.each_line do |line|
-      output.puts line.upcase
-    end
+  File.foreach "streaming-in.pipe" do |line|
+    output.puts "received #{line}"
   end
 end

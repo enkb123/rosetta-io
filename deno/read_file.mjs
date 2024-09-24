@@ -1,23 +1,8 @@
-const filePath = Deno.args[0];
-const file = await Deno.open(filePath);
-const decoder = new TextDecoder();
+const filePath = "./my-text-file.txt";
+const fileContent = await Deno.readTextFile(filePath);
 
-let i = 1;
-let partialLine = '';
-
-for await (const chunk of Deno.iter(file)) {
-    const chunkStr = decoder.decode(chunk, { stream: true });
-    const lines = (partialLine + chunkStr).split('\n');
-
-    for (const line of lines.slice(0, -1)) {
-        console.log(`${i++} ${line.toUpperCase()}`);
-    }
-
-    partialLine = lines[lines.length - 1];
+for (const line of fileContent.split("\n")) {
+  if (line !== "") {
+    console.log('line:', line);
+  }
 }
-
-if (partialLine) {
-    console.log(`${i} ${partialLine.toUpperCase()}`);
-}
-
-file.close();

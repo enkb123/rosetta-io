@@ -25,10 +25,11 @@ Action<string[]> script = scriptName switch
     "stdin" => Stdin.Main,
     "read_file" => ReadFile.Main,
     "read_json_file" => ReadJsonFile.Main,
-    "write_file" => WriteFile.Main,
+    "write_to_text_file" => WriteToTextFile.Main,
     "json_array" => JsonArray.Main,
     "json_numbers" => JsonNumbers.Main,
     "json_stdout_object" => JsonStdoutObject.Main,
+    "json_outputting_data" => JsonOutputtingData.Main,
     "json_object_with_array_values" => JsonObjectWithArrayValues.Main,
     "json_object_array" => JsonObjectArray.Main,
     "json_control_chars" => JsonControlChars.Main,
@@ -37,6 +38,7 @@ Action<string[]> script = scriptName switch
     "streaming_stdin" => StreamingStdin.Main,
     "streaming_pipe_in_and_out" => StreamingPipeInAndOut.Main,
     "streaming_pipe_in" => StreamingPipeIn.Main,
+    "write_to_named_pipe" => WriteToNamedPipe.Main,
     _ => _ => Console.WriteLine("Unknown command " + scriptName)
 };
 

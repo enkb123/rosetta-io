@@ -1,8 +1,6 @@
 <?php
 
-$jsonFile = $argv[1];
-
-$jsonData = file_get_contents($jsonFile);
+$jsonData = file_get_contents('people.json');
 
 $people = json_decode($jsonData);
 

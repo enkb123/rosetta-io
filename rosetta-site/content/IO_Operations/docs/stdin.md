@@ -5,126 +5,90 @@ draft = false
 
 # stdin
 
-Check that input is read from stdin, line by line.
-The script executed in the docker container accepts a text file as input,
-reads each line, capitalizes it, then prints it out.
-
+Read from stdin line by line
 
 ## Python
 
-`stdin.py`
-
-```python
-i = 1
+```python {filename="stdin.py"}
 while True:
-    try:
-        user_input = input()
-        print(i, user_input.upper())
-        i += 1
-    except EOFError:
-        break
+try:
+    user_input = input()
+    print("line: " + user_input)
+except EOFError:
+    break
 ```
 
 ## Ruby
 
-`stdin.rb`
-
-```ruby
-i = 1
-
+```ruby {filename="stdin.rb"}
 while user_input = gets
-  puts "#{i} #{user_input.upcase}"
-  i += 1
+  puts "line: #{user_input}"
 end
 ```
 
 ## Nodejs
 
-`stdin.mjs`
-
-```javascript
+```javascript {filename="stdin.mjs"}
 import * as readline from 'node:readline/promises'
 
 const rl = readline.createInterface({ input: process.stdin })
 
-let i = 1
 for await (const line of rl) {
-  console.log(i, line.toUpperCase())
-  i += 1
+  console.log("line:", line)
 }
 ```
 
 ## Deno
 
-`stdin.mjs`
-
-```javascript
+```javascript {filename="stdin.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const rl = readLines(Deno.stdin);
 
-let i = 1;
 for await (const line of rl) {
-  console.log(i, line.toUpperCase());
-  i += 1;
+  console.log("line:", line);
 }
 ```
 
 ## Php
 
-`stdin.php`
-
-```php
+```php {filename="stdin.php"}
 <?php
 
-$i = 1;
-
 while ($user_input = fgets(STDIN)) {
-    echo $i++ . ' ' . strtoupper($user_input);
+    echo "line: ", $user_input;
 }
 ```
 
 ## R
 
-`stdin.R`
-
-```r
-i <- 1
+```r {filename="stdin.R"}
 for (line in readLines("stdin")) {
-  cat(i, toupper(line), sep = " ", fill = TRUE)
-  i <- i + 1
+  cat("line:", line, "\n")
 }
 ```
 
 ## Perl
 
-`stdin.pl`
-
-```perl
+```perl {filename="stdin.pl"}
 use strict;
 use warnings;
 
-my $i = 1;
-print $i++ . " " . uc while <STDIN>;
+print "line: $_" while <STDIN>;
 ```
 
 ## Java
 
-`Stdin.java`
-
-```java
+```java {filename="Stdin.java"}
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 public class Stdin {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        AtomicInteger counter = new AtomicInteger(1);
+        var scanner = new Scanner(System.in);
 
         Stream.generate(scanner::nextLine)
-              .takeWhile(line -> !line.isEmpty())
-              .forEach(line -> System.out.println(counter.getAndIncrement() + " " + line.toUpperCase()));
+              .forEach(line -> System.out.println("line: " + line));
 
         scanner.close();
     }
@@ -133,46 +97,31 @@ public class Stdin {
 
 ## Bash 3
 
-`stdin.sh`
-
-```bash
-i=1
-
+```bash {filename="stdin.sh"}
 while IFS= read -r user_input; do
-  echo "$((i++)) $user_input"
-done | tr '[:lower:]' '[:upper:]'
+  echo "line: $user_input"
+done
 ```
 
 ## Bash 5
 
-`stdin.sh`
-
-```bash
-i=1
-
+```bash {filename="stdin.sh"}
 while IFS= read -r user_input; do
-  echo "$((i++)) ${user_input^^}"
+  echo "line: $user_input"
 done
 ```
 
 ## Lua
 
-`stdin.lua`
-
-```lua
-local i = 1
-
+```lua {filename="stdin.lua"}
 for user_input in io.lines() do
-    print(i .. " " .. user_input:upper())
-    i = i + 1
+    print("line: " .. user_input)
 end
 ```
 
 ## C#
 
-`Stdin.cs`
-
-```csharp
+```csharp {filename="Stdin.cs"}
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -182,10 +131,9 @@ class Stdin
     public static void Main(string[] args)
     {
         string line;
-        int counter = 1;
         while ((line = Console.ReadLine()) != null)
         {
-            Console.WriteLine($"{counter++} {line.ToUpper()}");
+            Console.WriteLine($"line: {line}");
         }
     }
 }
@@ -193,69 +141,49 @@ class Stdin
 
 ## Go
 
-`stdin.go`
-
-```go
+```go {filename="stdin.go"}
 package main
 
 import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	for lineNumber := 1; scanner.Scan(); lineNumber++ {
-		fmt.Printf("%d %s\n", lineNumber, strings.ToUpper(scanner.Text()))
+	for scanner.Scan() {
+		fmt.Println("line: " + scanner.Text())
 	}
 }
 ```
 
 ## Swift
 
-`stdin.swift`
-
-```swift
+```swift {filename="stdin.swift"}
 import Foundation
 
-var i = 1
-
-while let user_input = readLine() {
-    print("\(i) \(user_input.uppercased())")
-    i += 1
+while let line = readLine() {
+  print("line: \(line)")
 }
 ```
 
 ## Raku
 
-`stdin.raku`
-
-```raku
+```raku {filename="stdin.raku"}
 use v6;
 
-my $i = 1;
-for lines() {
-    say $i++ ~ " " ~ .uc;
-}
+say "line: $_" for lines;
 ```
 
 ## Rust
 
-`stdin.rs`
-
-```rust
-use std::io::{self, BufRead};
+```rust {filename="stdin.rs"}
+use std::io::{self, stdin, BufRead};
 
 fn main() {
-    let stdin = io::stdin();
-    for (counter, line) in stdin.lock().lines().enumerate() {
-        let line = line.unwrap().trim().to_string();
-        if line.is_empty() {
-            break;
-        }
-        println!("{} {}", counter + 1, line.to_uppercase());
+    for line in stdin().lock().lines() {
+        println!("line: {}", line.unwrap());
     }
 }
 ```

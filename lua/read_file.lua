@@ -1,8 +1,8 @@
-local file_path = arg[1]
-local fh = io.open(file_path, "r")
-local i = 1
+local filePath = "./my-text-file.txt"
 
-for line in fh:lines() do
-    print(i .. " " .. line:upper())
-    i = i + 1
+local file = io.open(filePath, "r")
+
+for line in file:lines() do
+    print("line: " .. line)
 end
+file:close()

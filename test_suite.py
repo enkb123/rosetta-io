@@ -219,61 +219,63 @@ def script(request: pytest.FixtureRequest, docker_builder: DockerBuilder, langua
 
 
 def test_null_char(script: ScriptRunner):
-    """Test outputing a null character"""
+    """Output a null character
+
+    See https://en.wikipedia.org/wiki/Null_character
+    """
     script.run()
     assert_string_match(script.output, "Hello World \x00")
 
 
 def test_stdin(script: ScriptRunner):
-    """Check that input is read from stdin, line by line.
-    The script executed in the docker container accepts a text file as input,
-    reads each line, capitalizes it, then prints it out.
-    """
+    """Read from stdin line by line"""
 
-    script.files["hihello-stdin.txt"] = dedent("""
+    script.run(dedent("""<<EOF
         hi
         hello
         how are you
-    """)
-
-    script.run("< hihello-stdin.txt")
+        EOF
+    """))
 
     assert_string_match(script.output, dedent("""
-        1 HI
-        2 HELLO
-        3 HOW ARE YOU
+        line: hi
+        line: hello
+        line: how are you
     """))
 
 
 def test_read_file(script: ScriptRunner):
-    """Check that a file is read line by line, when file path is given
-    as command line argument
-    """
-    script.files["hihello-read-file.txt"] = dedent("""
+    """Read a file line by line"""
+
+    script.files["my-text-file.txt"] = dedent("""
         hi
         hello
         how are you
     """)
 
-    script.run("hihello-read-file.txt")
+    script.run()
 
     assert_string_match(script.output, dedent("""
-        1 HI
-        2 HELLO
-        3 HOW ARE YOU
+        line: hi
+        line: hello
+        line: how are you
     """))
 
 
+
 def test_arguments(script: ScriptRunner):
-    """Test that args can be passed to script"""
-    script.run('"Argument Number 1"')
-    assert_string_match(script.output, "argument number 1")
+    """Read command line arguments"""
+    script.run('"Argument Number 1" "Command line arg 2"')
+    assert_string_match(script.output, dedent("""
+        1st argument: Argument Number 1
+        2nd argument: Command line arg 2
+    """))
 
 
 def test_read_json_file(script: ScriptRunner):
-    """Test that a JSON file is read correctly"""
+    """Read and parse a JSON file"""
 
-    script.files["people-read-json-file.json"] = json.dumps(
+    script.files["people.json"] = json.dumps(
         [
             {"first_name": "Bob", "last_name": "Barker", "age": 84},
             {"first_name": "Tina", "last_name": "Turner", "age": 67},
@@ -281,7 +283,7 @@ def test_read_json_file(script: ScriptRunner):
         ]
     )
 
-    script.run("people-read-json-file.json")
+    script.run()
 
     assert_string_match(script.output, dedent("""
         Hello, 84 year old Bob
@@ -290,40 +292,83 @@ def test_read_json_file(script: ScriptRunner):
     """))
 
 
-def test_write_file(script: ScriptRunner):
-    """Test that a script, given a path to a file, can write to that file"""
-    script.run('output.txt "Bob Barker"', after="cat output.txt")
-    assert_string_match(script.output, "BOB BARKER")
+def test_write_to_text_file(script: ScriptRunner):
+    """Write to a text file"""
+    script.files["output.txt"] = "THIS SHOULD BE OVERWRITTEN"
+
+    script.run(after="cat output.txt && rm output.txt")
+
+    assert_string_match(script.output, "Hello World!")
+
+
+def test_json_outputting_data(script: ScriptRunner):
+    """Create and output JSON"""
+
+    script.run()
+
+    data = [json.loads(line) for line in script.output.strip().split("\n")]
+
+    assert data == [
+        {
+            "true": True,
+            "false": False,
+            "zero": 0,
+            "int": 42,
+            "float": 3.14,
+            "null": None,
+            "empty string": "",
+            "a string with non-ascii characters": "hello \n \0 \u0001 world 🥸",
+        },
+        {
+            "array of strings": ["abc", "def", "ghi", "jkl"],
+            "array of numbers": [13, 42, 9000, -7],
+            "array of nothing": [],
+            "array of mixed": [13, "def", None, False, ["a"], { "o": 1}],
+            "array of objects": [
+                { "name": "Bob Barker", "age": 84 },
+                { "address1": "123 Main St", "address2": "Apt 1" },
+            ],
+            "array of arrays": [
+                ["a", "b", "c"],
+                ["d", "e", "f"],
+            ],
+        },
+        {
+            "objects": { "nested": { "objects": { "are": "supported" } } },
+        }
+    ]
 
 
 def test_json_array(script: ScriptRunner):
-    """Test that JSON array is parsed correctly"""
-    # Write string args as an array of strings to stdout
+    """Create and output a JSON array of strings"""
+
     script.run("a b c d")
     assert json.loads(script.output) == ["a", "b", "c", "d"]
 
 
 def test_json_numbers(script: ScriptRunner):
-    """Test that JSON list of numbers is parsed correctly"""
+    """Create and output a JSON array of numbers"""
+
     # Write to stdout the length of each string argument
     script.run("a bc def ghij")
     assert json.loads(script.output) == [1, 2, 3, 4]
 
 
-
 def test_json_stdout_object(script: ScriptRunner):
-    """Test that JSON object is parsed correctly"""
+    """Create and output a JSON object"""
+
     # Write a dict of {arg:length} to stdout
-    # include empty string arg to check handling of empty JSON array
     script.run("a bc def ghij")
+
     assert json.loads(script.output) == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
 
 
 def test_json_object_with_array_values(script: ScriptRunner):
-    """Test that a JSON object with arrays as values is parsed correctly"""
+    """Create and output a JSON object with arrays of strings as values"""
+
     # Write a dict of {arg:[list of arg chars]} to stdout
-    # include empty string arg to check handling of empty JSON array
     script.run("a bc def")
+
     assert json.loads(script.output) == {
         "a": ["A"],
         "bc": ["B", "C"],
@@ -332,53 +377,70 @@ def test_json_object_with_array_values(script: ScriptRunner):
 
 
 def test_json_object_array(script: ScriptRunner):
-    """Test that a JSON array made of objects is parsed correctly"""
+    """Create and output a JSON array of objects"""
+
     # Write an array of [{arg: length of chars},...] to stdout
     script.run("a bc def")
+
     assert json.loads(script.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
 
 
 def test_json_control_chars(script: ScriptRunner):
-    """Test that control characters and emojis are output in valid JSON
-    note: control character "\\0" is used by C (and Python) to end strings and so we can't
-    pass it as argument in the test string because it will raise "invalid argument" error
-    """
+    """Test that control characters and emojis are output in valid JSON."""
+
+    # Note: control character "\\0" is used by C (and Python) to end strings and so we can't
+    # pass it as argument in the test string because it will raise "invalid argument" error
+
     # Pass a single string to the script that includes a control character and emoji
     script.run('"hello \n \1 world 🥸"')
+
     assert json.loads(script.output) == "hello \n \u0001 world 🥸"
 
 
 @pytest.mark.script(script_name="decode")
 def test_base64_decode(script: ScriptRunner):
-    """Test that base64 can be decoded as a string"""
+    """Decode a base64 string"""
+
     script.run("SGVsbG8sIHdvcmxkIQ==")
+
     assert_string_match(script.output, "Hello, world!")
 
 
 @pytest.mark.script(script_name="encode")
 def test_base64_encode(script: ScriptRunner):
-    """Test that a string can be encoded as base64"""
+    """Encode a string as base64"""
+
     script.run('"Hello, world!"')
+
     assert_string_match(script.output, "SGVsbG8sIHdvcmxkIQ==")
 
 
 def test_streaming_stdin(script: ScriptRunner):
-    """Test that streaming stdin can be read line by line and can write to stdout
-    without waiting for all lines to arrive"""
+    """Read from stdin line by line"""
+
+    # Tests that streaming stdin can be read line by line and can write to
+    # stdout without waiting for all lines to arrive
     script.run(interactive=True)
+
     # Give input to the script via stdin, one line at a time, and check result
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")
-        assert_string_match(script.stdout.readline(), f"LINE #{i}")
+        assert_string_match(script.stdout.readline(), f"received line #{i}")
 
 
-def test_streaming_pipe_in(script: ScriptRunner):
-    """Test that named pipe can be read line by line and can write to stdout"""
+@pytest.mark.script(script_name="streaming_pipe_in")
+def test_streaming_from_pipe_in(script: ScriptRunner):
+    """Read from named pipe line by line"""
 
-    script.add_named_pipe("input-pipe")
-    script.run(
-        "input-pipe || echo ERROR &",
-        after="cat > input-pipe",
+    script.add_named_pipe("input.pipe")
+
+    script.run("|| echo ERROR &",
+        after="""
+            # send input from test runner to the input pipe
+            cat > input.pipe
+
+            wait
+        """,
         interactive=True,
     )
 
@@ -387,36 +449,45 @@ def test_streaming_pipe_in(script: ScriptRunner):
         assert_string_match(script.stdout.readline(), f"LINE #{i}")
 
 
-# Re-uses the language's write_file script, which works for writing to named pipes
-@pytest.mark.script(script_name="write_file")
 def test_write_to_named_pipe(script: ScriptRunner):
-    """Test that a script, given a path to a named pipe, can write to that named pipe"""
-    script.add_named_pipe("output-pipe")
+    """Write text to a named pipe"""
 
-    script.run(
-        'output-pipe "Bob Barker" || echo ERROR &',
+    script.add_named_pipe("output.pipe")
+
+    script.run('|| echo ERROR &',
         after="""
-            script_pid=$!
-            cat output-pipe &
-            wait $script_pid
+            cat output.pipe &
+            wait
         """,
         interactive=True,
     )
-    assert_string_match(script.stdout.readline(), "BOB BARKER")
+    assert_string_match(script.stdout.readline(), "Hello World!")
 
 
 def test_streaming_pipe_in_and_out(script: ScriptRunner):
-    """Test that named pipe can be read line by line and can write to output pipe without waiting for all lines to arrive"""
-    script.add_named_pipe("pipe-in", "pipe-out")
+    """Read line by line from a named pipe and write to another named pipe"""
 
-    script.run("pipe-in pipe-out >&2 || echo ERROR &",
+    # Tests that it can process named pipe input and send output one line at a
+    # time without waiting for all lines to arrive
+    script.add_named_pipe("streaming-in.pipe", "streaming-out.pipe")
+
+    # redirect stdout to stderr so that we can capture it in the test runner if
+    # there is an error
+    script.run(">&2 || echo ERROR &",
         after="""
-            cat pipe-out &
-            cat > pipe-in
+            # read from streaming-out.pipe and write it to stdout, which the
+            # test runner captures
+            cat streaming-out.pipe &
+
+            # takes stdin (input from the test runner) and writes it to
+            # streaming-in.pipe
+            cat > streaming-in.pipe
+
+            wait
         """,
         interactive=True,
     )
 
     for i in range(1, 10):
         script.stdin.write(f"line #{i}\n")
-        assert_string_match(script.stdout.readline(), f"LINE #{i}")
+        assert_string_match(script.stdout.readline(), f"received line #{i}")

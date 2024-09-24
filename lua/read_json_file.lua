@@ -1,11 +1,12 @@
-local cjson = require("dkjson")
+local json = require("dkjson")
 
-local file_path = arg[1]
-local fh = io.open(file_path, "r")
-local json_content = fh:read("*a")
-fh:close()
+local filePath = "people.json"
 
-local people = cjson.decode(json_content)
+local file = io.open(filePath, "r")
+local jsonString = file:read("*a")
+file:close()
+
+local people, pos = json.decode(jsonString, 1, nil)
 
 for _, person in ipairs(people) do
     print(string.format("Hello, %d year old %s", person.age, person.first_name))

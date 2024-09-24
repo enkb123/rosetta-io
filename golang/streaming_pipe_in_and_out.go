@@ -4,25 +4,22 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
-	pipeIn := os.Args[1]
-	pipeOut := os.Args[2]
+	input, _ := os.Open("streaming-in.pipe")
+	defer input.Close()
 
-	fileIn, _ := os.OpenFile(pipeIn, os.O_RDONLY, 0666)
-	defer fileIn.Close()
+	output, _ := os.OpenFile("streaming-out.pipe", os.O_WRONLY, 0)
+	defer output.Close()
 
-	fileOut, _ := os.OpenFile(pipeOut, os.O_WRONLY, 0666)
-	defer fileOut.Close()
+	output.Sync()
 
-	scanner := bufio.NewScanner(fileIn)
+	scanner := bufio.NewScanner(input)
+
 	for scanner.Scan() {
-		if _, err := fileOut.WriteString(strings.ToUpper(scanner.Text()) + "\n"); err != nil {
-			fmt.Println("Error writing to output pipe:", err)
-			os.Exit(1)
-		}
-	}
+		line := scanner.Text()
+		fmt.Fprintf(output, "received %s\n", line)
 
+	}
 }

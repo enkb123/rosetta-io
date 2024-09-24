@@ -5,191 +5,157 @@ draft = false
 
 # arguments
 
-Test that args can be passed to script
+Read command line arguments
 
 ## Python
 
-`arguments.py`
-
-```python
+```python {filename="arguments.py"}
 import sys
 
-print(sys.argv[1].lower())
+print("1st argument: " + sys.argv[1])
+print("2nd argument: " + sys.argv[2])
 ```
 
 ## Ruby
 
-`arguments.rb`
-
-```ruby
-puts ARGV[0].downcase
+```ruby {filename="arguments.rb"}
+puts "1st argument: #{ARGV[0]}"
+puts "2nd argument: #{ARGV[1]}"
 ```
 
 ## Nodejs
 
-`arguments.mjs`
-
-```javascript
-console.log(process.argv[2].toLowerCase())
+```javascript {filename="arguments.mjs"}
+console.log("1st argument:", process.argv[2])
+console.log("2nd argument:", process.argv[3])
 ```
 
 ## Deno
 
-`arguments.mjs`
-
-```javascript
-console.log(Deno.args[0].toLowerCase())
+```javascript {filename="arguments.mjs"}
+console.log("1st argument:", Deno.args[0])
+console.log("2nd argument:", Deno.args[1])
 ```
 
 ## Php
 
-`arguments.php`
-
-```php
+```php {filename="arguments.php"}
 <?php
 
-echo strtolower($argv[1]);
+echo "1st argument: ", $argv[1], "\n";
+echo "2nd argument: ", $argv[2], "\n";
 ```
 
 ## R
 
-`arguments.R`
+```r {filename="arguments.R"}
+args <- commandArgs(trailingOnly = TRUE)
 
-```r
-cat(tolower(commandArgs(trailingOnly = TRUE)))
+cat("1st argument:", args[1], "\n")
+cat("2nd argument:", args[2], "\n")
 ```
 
 ## Perl
 
-`arguments.pl`
-
-```perl
+```perl {filename="arguments.pl"}
 use strict;
 use warnings;
-print lc($ARGV[0]);
+
+print "1st argument: ", $ARGV[0], "\n";
+print "2nd argument: ", $ARGV[1], "\n";
 ```
 
 ## Java
 
-`Arguments.java`
-
-```java
+```java {filename="Arguments.java"}
 class Main{
     public static void main(String[] args){
-        String user = args[0];
-        System.out.println(user.toLowerCase());
+        System.out.println("1st argument: " + args[0]);
+        System.out.println("2nd argument: " + args[1]);
     }
 }
 ```
 
 ## Bash 3
 
-`arguments.sh`
-
-```bash
-file_path="$1"
-
-if [ -z "$file_path" ]; then
-  echo "Usage: $0 <file_path>"
-  exit 1
-fi
-
-tr '[:upper:]' '[:lower:]' <<< "$file_path"
+```bash {filename="arguments.sh"}
+echo "1st argument: $1"
+echo "2nd argument: $2"
 ```
 
 ## Bash 5
 
-`arguments.sh`
-
-```bash
-file_path="$1"
-
-if [ -z "$file_path" ]; then
-  echo "Usage: $0 <file_path>"
-  exit 1
-fi
-
-echo "${file_path,,}"
+```bash {filename="arguments.sh"}
+echo "1st argument: $1"
+echo "2nd argument: $2"
 ```
 
 ## Lua
 
-`arguments.lua`
-
-```lua
-print(arg[1]:lower())
+```lua {filename="arguments.lua"}
+print("1st argument: "..arg[1])
+print("2nd argument: "..arg[2])
 ```
 
 ## C#
 
-`Arguments.cs`
-
-```csharp
+```csharp {filename="Arguments.cs"}
 class Arguments
 {
   public static void Main(string[] args)
   {
-    Console.WriteLine(args[0].ToLower());
+    Console.WriteLine($"1st argument: {args[0]}");
+    Console.WriteLine($"2nd argument: {args[1]}");
   }
 }
 ```
 
 ## Go
 
-`arguments.go`
-
-```go
+```go {filename="arguments.go"}
 package main
 
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
-	fmt.Println(strings.ToLower(os.Args[1]))
+	fmt.Println("1st argument: " + os.Args[1])
+	fmt.Println("2nd argument: " + os.Args[2])
 }
 ```
 
 ## Swift
 
-`arguments.swift`
-
-```swift
+```swift {filename="arguments.swift"}
 import Foundation
 
 let args = CommandLine.arguments
 
-guard args.count > 1 else {
-    print("Usage: \(args[0]) <argument>");
-    exit(1)
-}
-
-print(args[1].lowercased())
+print("1st argument: \(args[1])")
+print("2nd argument: \(args[2])")
 ```
 
 ## Raku
 
-`arguments.raku`
-
-```raku
+```raku {filename="arguments.raku"}
 use v6;
 
-my $arg = @*ARGS[0];
-say $arg.lc;
+say "1st argument: " ~ @*ARGS[0];
+say "2nd argument: " ~ @*ARGS[1];
 ```
 
 ## Rust
 
-`arguments.rs`
-
-```rust
+```rust {filename="arguments.rs"}
 use std::env;
 
 fn main() {
-    let user = env::args().nth(1).unwrap();
-    println!("{}", user.to_lowercase());
+    let args: Vec<String> = env::args().collect();
+
+    println!("1st argument: {}", args[1]);
+    println!("2nd argument: {}", args[2]);
 }
 ```
 

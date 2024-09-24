@@ -1,14 +1,10 @@
-local pipe_in = arg[1]
-local pipe_out = arg[2]
+local output = io.open("streaming-out.pipe", "w")
+local input = io.open("streaming-in.pipe", "r")
 
-local input_file = io.open(pipe_in, "r")
-
-local output_file = io.open(pipe_out, "w")
-
-for line in input_file:lines() do
-    output_file:write(line:upper(), "\n")
-    output_file:flush()
+for line in input:lines() do
+    output:write("received " .. line .. "\n")
+    output:flush()
 end
 
-input_file:close()
-output_file:close()
+input:close()
+output:close()

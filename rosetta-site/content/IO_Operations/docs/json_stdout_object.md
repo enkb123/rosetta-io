@@ -5,13 +5,11 @@ draft = false
 
 # json_stdout_object
 
-Test that JSON object is parsed correctly
+Create and output a JSON object
 
 ## Python
 
-`json_stdout_object.py`
-
-```python
+```python {filename="json_stdout_object.py"}
 import json
 import sys
 
@@ -24,9 +22,7 @@ print(json.dumps(string_length_dict))
 
 ## Ruby
 
-`json_stdout_object.rb`
-
-```ruby
+```ruby {filename="json_stdout_object.rb"}
 require 'json'
 
 my_strings = ARGV
@@ -38,9 +34,7 @@ puts JSON.generate(string_length_dict)
 
 ## Nodejs
 
-`json_stdout_object.mjs`
-
-```javascript
+```javascript {filename="json_stdout_object.mjs"}
 const myStrings = process.argv.slice(2)
 
 const stringLengthDict = {}
@@ -54,9 +48,7 @@ console.log(JSON.stringify(stringLengthDict))
 
 ## Deno
 
-`json_stdout_object.mjs`
-
-```javascript
+```javascript {filename="json_stdout_object.mjs"}
 const myStrings = Deno.args
 
 const stringLengthDict = {}
@@ -70,9 +62,7 @@ console.log(JSON.stringify(stringLengthDict))
 
 ## Php
 
-`json_stdout_object.php`
-
-```php
+```php {filename="json_stdout_object.php"}
 <?php
 $myStrings = array_slice($argv, 1);
 
@@ -83,9 +73,7 @@ echo json_encode($stringLengthDict);
 
 ## R
 
-`json_stdout_object.R`
-
-```r
+```r {filename="json_stdout_object.R"}
 library(jsonlite)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -100,9 +88,7 @@ cat(toJSON(string_length, auto_unbox = TRUE))
 
 ## Perl
 
-`json_stdout_object.pl`
-
-```perl
+```perl {filename="json_stdout_object.pl"}
 use strict;
 use warnings;
 use JSON;
@@ -112,31 +98,21 @@ print encode_json({ map { $_ => length } @ARGV });
 
 ## Java
 
-`JsonStdoutObject.java`
-
-```java
+```java {filename="JsonStdoutObject.java"}
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class JsonStdoutObject {
     public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonStdoutObject <string1> <string2> ...");
-            System.exit(1);
-        }
+        var objectMapper = new ObjectMapper();
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        var jsonObject = objectMapper.createObjectNode();
 
-        ObjectNode jsonObject = objectMapper.createObjectNode();
-
-        Map<String, Integer> stringLengthDict = new HashMap<>();
         for (String string : args) {
             jsonObject.put(string, string.length());
         }
-        String jsonString = objectMapper.writeValueAsString(jsonObject);
+
+        var jsonString = objectMapper.writeValueAsString(jsonObject);
         System.out.println(jsonString);
     }
 }
@@ -144,11 +120,7 @@ public class JsonStdoutObject {
 
 ## Bash 3
 
-`json_stdout_object.sh`
-
-```bash
-#!/bin/bash
-
+```bash {filename="json_stdout_object.sh"}
 json_object='{}'
 
 for arg in "$@"; do
@@ -161,11 +133,7 @@ echo "$json_object"
 
 ## Bash 5
 
-`json_stdout_object.sh`
-
-```bash
-#!/bin/bash
-
+```bash {filename="json_stdout_object.sh"}
 json_object='{}'
 
 for arg in "$@"; do
@@ -178,9 +146,7 @@ echo "$json_object"
 
 ## Lua
 
-`json_stdout_object.lua`
-
-```lua
+```lua {filename="json_stdout_object.lua"}
 local cjson = require("dkjson")
 
 local dict = {}
@@ -194,9 +160,7 @@ print(cjson.encode(dict))
 
 ## C#
 
-`JsonStdoutObject.cs`
-
-```csharp
+```csharp {filename="JsonStdoutObject.cs"}
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -218,9 +182,7 @@ class JsonStdoutObject{
 
 ## Go
 
-`json_stdout_object.go`
-
-```go
+```go {filename="json_stdout_object.go"}
 package main
 
 import (
@@ -245,15 +207,8 @@ func main() {
 
 ## Swift
 
-`json_stdout_object.swift`
-
-```swift
+```swift {filename="json_stdout_object.swift"}
 import Foundation
-
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <arg1> [<arg2> ...]")
-    exit(1)
-}
 
 let myStrings = CommandLine.arguments.dropFirst()
 let stringLengthDict = Dictionary(uniqueKeysWithValues: myStrings.map { ($0, $0.count) })
@@ -264,9 +219,7 @@ print(String(data: jsonData, encoding: .utf8)!)
 
 ## Raku
 
-`json_stdout_object.raku`
-
-```raku
+```raku {filename="json_stdout_object.raku"}
 use v6;
 use JSON::Fast;
 
@@ -276,9 +229,7 @@ say to-json(%data);
 
 ## Rust
 
-`json_stdout_object.rs`
-
-```rust
+```rust {filename="json_stdout_object.rs"}
 //cargo-deps: json="0.12.4"
 
 use json::JsonValue;

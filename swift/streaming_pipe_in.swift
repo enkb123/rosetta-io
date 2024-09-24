@@ -7,8 +7,7 @@ import Foundation
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-let arguments = CommandLine.arguments
-let pipe_in = arguments[1]
+let pipe_in = "input.pipe"
 
 public class FileLines: Sequence, IteratorProtocol {
   private let file: UnsafeMutablePointer<FILE>
@@ -39,6 +38,4 @@ if let lines = FileLines(path: pipe_in) {
   for line in lines {
     print(line.uppercased(), terminator: "")
   }
-} else {
-  print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }

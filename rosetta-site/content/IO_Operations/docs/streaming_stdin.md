@@ -5,112 +5,94 @@ draft = false
 
 # streaming_stdin
 
-Test that streaming stdin can be read line by line and can write to stdout
-without waiting for all lines to arrive
+Read from stdin line by line
 
 ## Python
 
-`streaming_stdin.py`
-
-```python
+```python {filename="streaming_stdin.py"}
 while True:
 try:
-    x = input()
-    print(x.upper())
+    user_input = input()
+    print("received " + user_input)
 except EOFError:
     break
 ```
 
 ## Ruby
 
-`streaming_stdin.rb`
-
-```ruby
+```ruby {filename="streaming_stdin.rb"}
 STDOUT.sync = true
 
 while input = gets
-  puts input.upcase
+  puts "received #{input}"
 end
 ```
 
 ## Nodejs
 
-`streaming_stdin.mjs`
-
-```javascript
+```javascript {filename="streaming_stdin.mjs"}
 import * as readline from 'node:readline/promises'
 
 const rl = readline.createInterface({ input: process.stdin })
 
 for await (const line of rl) {
-  console.log(line.toUpperCase())
+  console.log("received", line)
 }
 ```
 
 ## Deno
 
-`streaming_stdin.mjs`
-
-```javascript
+```javascript {filename="streaming_stdin.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const rl = readLines(Deno.stdin);
 
 for await (const line of rl) {
-  console.log(line.toUpperCase());
+  console.log("received", line);
 }
 ```
 
 ## Php
 
-`streaming_stdin.php`
-
-```php
+```php {filename="streaming_stdin.php"}
 <?php
 
 while ($user_input = fgets(STDIN)) {
-    echo strtoupper($user_input);
+    echo "received ", $user_input;
 }
 ```
 
 ## R
 
-`streaming_stdin.R`
-
-```r
+```r {filename="streaming_stdin.R"}
 while(length(line <- readLines("stdin", n = 1L)) > 0) {
-  cat(toupper(line), fill = TRUE)
+  cat("received", line, "\n")
 }
 ```
 
 ## Perl
 
-`streaming_stdin.pl`
-
-```perl
+```perl {filename="streaming_stdin.pl"}
 use strict;
 use warnings;
 
 $| = 1;
-
-print uc while <STDIN>;
+print "received $_" while <STDIN>;
 ```
 
 ## Java
 
-`StreamingStdin.java`
-
-```java
+```java {filename="StreamingStdin.java"}
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class StreamingStdin {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
+
         Stream.generate(scanner::nextLine)
-              .takeWhile(line -> !line.isEmpty())
-              .map(String::toUpperCase)
-              .forEach(System.out::println);
+              .forEach(line -> System.out.println("received " + line));
+
         scanner.close();
     }
 }
@@ -118,35 +100,31 @@ public class StreamingStdin {
 
 ## Bash 3
 
-`streaming_stdin.sh`
-
-```bash
-tr '[:lower:]' '[:upper:]'
+```bash {filename="streaming_stdin.sh"}
+while IFS= read -r user_input; do
+  echo "received $user_input"
+done
 ```
 
 ## Bash 5
 
-`streaming_stdin.sh`
-
-```bash
-tr '[:lower:]' '[:upper:]'
+```bash {filename="streaming_stdin.sh"}
+while IFS= read -r user_input; do
+  echo "received $user_input"
+done
 ```
 
 ## Lua
 
-`streaming_stdin.lua`
-
-```lua
-for line in io.lines() do
-    print(line:upper())
+```lua {filename="streaming_stdin.lua"}
+for user_input in io.lines() do
+    print("received " .. user_input)
 end
 ```
 
 ## C#
 
-`StreamingStdin.cs`
-
-```csharp
+```csharp {filename="StreamingStdin.cs"}
 using System;
 
 class StreamingStdin{
@@ -154,7 +132,7 @@ class StreamingStdin{
         string line;
 
         while (!string.IsNullOrEmpty(line = Console.ReadLine())){
-            Console.WriteLine(line.ToUpper());
+            Console.WriteLine($"received {line}");
         }
     }
 }
@@ -162,73 +140,57 @@ class StreamingStdin{
 
 ## Go
 
-`streaming_stdin.go`
-
-```go
+```go {filename="streaming_stdin.go"}
 package main
 
 import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-
 	for scanner.Scan() {
-		fmt.Println(strings.ToUpper(scanner.Text()))
+		fmt.Println("received", scanner.Text())
 	}
 }
 ```
 
 ## Swift
 
-`streaming_stdin.swift`
+```swift {filename="streaming_stdin.swift"}
+import Foundation
 
-```swift
 #if os(macOS) || os(iOS)
-import Darwin
+  import Darwin
 #elseif os(Linux)
-import Glibc
+  import Glibc
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-import Foundation
-
-while let line = readLine(), !line.isEmpty {
-    print(line.uppercased())
+while let line = readLine() {
+  print("received \(line)")
 }
 ```
 
 ## Raku
 
-`streaming_stdin.raku`
-
-```raku
-use v6;
-
+```raku {filename="streaming_stdin.raku"}
 for lines() {
-    say .uc;
+    say "received $_";
     $*OUT.flush;
 }
 ```
 
 ## Rust
 
-`streaming_stdin.rs`
-
-```rust
-use std::io::{self, BufRead, Write};
+```rust {filename="streaming_stdin.rs"}
+use std::io::{self, stdin, BufRead};
 
 fn main() {
-    let mut stdout_handle = io::stdout().lock();
-    let stdin_handle = io::stdin().lock();
-
-    for line in stdin_handle.lines() {
-        writeln!(stdout_handle, "{}", line.unwrap().to_uppercase()).unwrap();
-        stdout_handle.flush().unwrap();
+    for line in stdin().lock().lines() {
+        println!("received {}", line.unwrap());
     }
 }
 ```

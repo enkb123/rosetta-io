@@ -1,14 +1,12 @@
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
-const [pipeInPath, pipeOutPath] = Deno.args;
+const output = await Deno.open('streaming-out.pipe', { write: true });
+const input = await Deno.open('streaming-in.pipe', { read: true });
 
-const input = await Deno.open(pipeInPath, { read: true });
-const output = await Deno.open(pipeOutPath, { write: true });
-
-const rl = readLines(input);
+const textEncoder = new TextEncoder();
 
 for await (const line of readLines(input)) {
-  await output.write(new TextEncoder().encode(line.toUpperCase() + '\n'));
+  await output.write(textEncoder.encode(`received ${line}\n`));
 }
 
 input.close();

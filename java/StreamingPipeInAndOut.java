@@ -2,15 +2,15 @@ import java.io.*;
 
 public class StreamingPipeInAndOut {
     public static void main (String[] args) throws IOException{
-        String pipe_in = args[0];
-        String pipe_out = args[1];
+        var inputPath = "streaming-in.pipe";
+        var outputPath = "streaming-out.pipe";
 
-        BufferedReader input = new BufferedReader(new FileReader(pipe_in));
-        BufferedWriter output = new BufferedWriter(new FileWriter(pipe_out));
+        var input = new BufferedReader(new FileReader(inputPath));
+        var output = new BufferedWriter(new FileWriter(outputPath));
 
         String line;
         while ((line = input.readLine()) != null) {
-            output.write(line.toUpperCase());
+            output.write("received " + line);
             output.newLine();
             output.flush();
         }

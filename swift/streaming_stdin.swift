@@ -1,12 +1,12 @@
+import Foundation
+
 #if os(macOS) || os(iOS)
-import Darwin
+  import Darwin
 #elseif os(Linux)
-import Glibc
+  import Glibc
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-import Foundation
-
-while let line = readLine(), !line.isEmpty {
-    print(line.uppercased())
+while let line = readLine() {
+  print("received \(line)")
 }

@@ -1,9 +1,7 @@
 <?php
 
-$file_path = $argv[1];
-
-$file = fopen($file_path, 'r');
+$file_path = './my-text-file.txt';
 
 foreach (file($file_path) as $index => $line) {
-    echo ($index + 1) . ' ' . strtoupper($line);
+    echo "line: $line";
 }

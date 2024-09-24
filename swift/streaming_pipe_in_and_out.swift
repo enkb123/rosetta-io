@@ -7,10 +7,9 @@ import Foundation
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-let arguments = CommandLine.arguments
-let pipe_in = arguments[1]
+let pipe_in = "streaming-in.pipe"
+let pipe_out = "streaming-out.pipe"
 
-let pipe_out = arguments[2]
 let fileDescriptor = open(pipe_out, O_WRONLY)
 
 public class FileLines: Sequence, IteratorProtocol {
@@ -37,11 +36,9 @@ public class FileLines: Sequence, IteratorProtocol {
   }
 }
 
-// in new versions of Swift, this can be replaced with `if let lines = FileHandle(forReadingAtPath: pipe_in).bytes.lines`
 if let lines = FileLines(path: pipe_in) {
   for line in lines {
-    write(fileDescriptor, line.uppercased(), line.uppercased().utf8.count)
+    let outputLine = "received \(line)"
+    write(fileDescriptor, outputLine, outputLine.utf8.count)
   }
-} else {
-  print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }

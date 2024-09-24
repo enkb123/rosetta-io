@@ -2,7 +2,8 @@ use strict;
 use warnings;
 use JSON;
 
-open my $fh, '<', $ARGV[0] or die "Cannot open file: $ARGV[0]\n";
+my $file_path = './people.json';
+open my $fh, '<', $file_path;
 
 my $people = decode_json(do { local $/; <$fh> });
 

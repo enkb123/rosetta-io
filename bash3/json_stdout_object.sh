@@ -1,5 +1,3 @@
-#!/bin/bash
-
 json_object='{}'
 
 for arg in "$@"; do

@@ -6,20 +6,19 @@ import (
 	"os"
 )
 
-type Person struct {
-	FirstName string `json:"first_name"`
-	Age       int64  `json:"age"`
-}
-
 func main() {
+	filePath := "people.json"
 
-	file := os.Args[1]
-	data, _ := os.ReadFile(file)
+	file, _ := os.Open(filePath)
+	defer file.Close()
 
-	var people []Person
-	json.Unmarshal(data, &people)
+	var people []map[string]interface{}
+	decoder := json.NewDecoder(file)
+	decoder.Decode(&people)
 
 	for _, person := range people {
-		fmt.Printf("Hello, %d year old %s\n", person.Age, person.FirstName)
+		age := person["age"].(float64)
+		firstName := person["first_name"].(string)
+		fmt.Printf("Hello, %.0f year old %s\n", age, firstName)
 	}
 }

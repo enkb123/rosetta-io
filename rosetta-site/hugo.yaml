@@ -19,7 +19,15 @@ menu:
       params:
         type: search
 params:
+  theme:
+    default: light
   navbar:
     displayLogo: true
     logo:
       path: logo.svg
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false

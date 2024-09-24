@@ -1,3 +1,3 @@
-for line in io.lines() do
-    print(line:upper())
+for user_input in io.lines() do
+    print("received " .. user_input)
 end

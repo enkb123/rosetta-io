@@ -1,12 +1,7 @@
-use std::io::{self, BufRead};
+use std::io::{self, stdin, BufRead};
 
 fn main() {
-    let stdin = io::stdin();
-    for (counter, line) in stdin.lock().lines().enumerate() {
-        let line = line.unwrap().trim().to_string();
-        if line.is_empty() {
-            break;
-        }
-        println!("{} {}", counter + 1, line.to_uppercase());
+    for line in stdin().lock().lines() {
+        println!("line: {}", line.unwrap());
     }
 }

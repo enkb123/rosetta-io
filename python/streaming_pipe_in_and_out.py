@@ -1,10 +1,8 @@
-import sys
+input_file = 'streaming-in.pipe'
+output_file = 'streaming-out.pipe'
 
-pipe_in = sys.argv[1]
-pipe_out = sys.argv[2]
-
-with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
-    with open(pipe_out, 'w', encoding='utf-8') as output_pipe:
+with open(input_file, 'r', encoding='utf-8') as input_pipe:
+    with open(output_file, 'w', encoding='utf-8') as output_pipe:
         for line in input_pipe:
-            output_pipe.write(line.upper())
+            output_pipe.write(f"received {line.strip()}\n")
             output_pipe.flush()

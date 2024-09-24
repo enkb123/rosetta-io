@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
-	fmt.Println(strings.ToLower(os.Args[1]))
+	fmt.Println("1st argument: " + os.Args[1])
+	fmt.Println("2nd argument: " + os.Args[2])
 }

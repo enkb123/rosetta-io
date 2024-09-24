@@ -1,6 +1,4 @@
-use v6;
-
 for lines() {
-    say .uc;
+    say "received $_";
     $*OUT.flush;
 }

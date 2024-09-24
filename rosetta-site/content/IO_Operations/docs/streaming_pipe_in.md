@@ -5,16 +5,14 @@ draft = false
 
 # streaming_pipe_in
 
-Test that named pipe can be read line by line and can write to stdout
+Read from named pipe line by line
 
 ## Python
 
-`streaming_pipe_in.py`
-
-```python
+```python {filename="streaming_pipe_in.py"}
 import sys
 
-pipe_in = sys.argv[1]
+pipe_in = "input.pipe"
 
 with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
     for line in input_pipe:
@@ -24,29 +22,21 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
 
 ## Ruby
 
-`streaming_pipe_in.rb`
-
-```ruby
+```ruby {filename="streaming_pipe_in.rb"}
 STDOUT.sync = true
 
-pipe_in = ARGV.fetch(0)
-
-File.open(pipe_in, 'r') do |pipe|
-  pipe.each_line do |line|
-    puts line.upcase
-  end
+File.foreach 'input.pipe' do |line|
+  puts line.upcase
 end
 ```
 
 ## Nodejs
 
-`streaming_pipe_in.mjs`
-
-```javascript
+```javascript {filename="streaming_pipe_in.mjs"}
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
-const pipeIn = process.argv[2];
+const pipeIn = "input.pipe";
 
 const input = fs.createReadStream(pipeIn);
 const rl = readline.createInterface({ input })
@@ -58,13 +48,10 @@ for await (const line of rl) {
 
 ## Deno
 
-`streaming_pipe_in.mjs`
-
-```javascript
+```javascript {filename="streaming_pipe_in.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
-const [pipePath] = Deno.args;
-const file = await Deno.open(pipePath, { read: true });
+const file = await Deno.open("input.pipe", { read: true });
 
 for await (const line of readLines(file)) {
   console.log(line.toUpperCase());
@@ -75,14 +62,10 @@ file.close();
 
 ## Php
 
-`streaming_pipe_in.php`
-
-```php
+```php {filename="streaming_pipe_in.php"}
 <?php
 
-$pipe_in = $argv[1];
-
-$input_pipe = fopen($pipe_in, 'r');
+$input_pipe = fopen("input.pipe", 'r');
 
 while (($line = fgets($input_pipe)) !== false) {
     echo strtoupper($line);
@@ -93,17 +76,11 @@ fclose($input_pipe);
 
 ## R
 
-`streaming_pipe_in.R`
-
-```r
-args <- commandArgs(trailingOnly = TRUE)
-
-pipe_in <- args[1]
-
-input <- file(pipe_in, "r")
+```r {filename="streaming_pipe_in.R"}
+input <- file("input.pipe", "r")
 
 while (length(line <- readLines(input, n = 1)) > 0) {
-  cat(paste(toupper(line), "\n", sep = ""))
+  cat(toupper(line), "\n")
 }
 
 close(input)
@@ -111,37 +88,28 @@ close(input)
 
 ## Perl
 
-`streaming_pipe_in.pl`
-
-```perl
+```perl {filename="streaming_pipe_in.pl"}
 use strict;
 use warnings;
 
 $| = 1;
+open my $input, '<', "input.pipe";
 
-my ($pipe_in) = @ARGV;
-
-open my $input, '<', $pipe_in or die "Cannot open input pipe: $!";
-
-while (my $line = <$input>) {
-    print uc($line);
-}
+print uc($_) while <$input>;
 
 close $input;
 ```
 
 ## Java
 
-`StreamingPipeIn.java`
-
-```java
+```java {filename="StreamingPipeIn.java"}
 import java.io.*;
 
 public class StreamingPipeIn {
-    public static void main(String[] args) throws IOException {
-        String pipe_in = args[0];
+    public static void main(String[] args) throws Exception {
+        var pipe_in = "input.pipe";
 
-        BufferedReader input = new BufferedReader(new FileReader(pipe_in));
+        var input = new BufferedReader(new FileReader(pipe_in));
 
         String line;
         while ((line = input.readLine()) != null) {
@@ -155,32 +123,20 @@ public class StreamingPipeIn {
 
 ## Bash 3
 
-`streaming_pipe_in.sh`
-
-```bash
-pipe_in="$1"
-
-tr '[:lower:]' '[:upper:]' < "$pipe_in"
+```bash {filename="streaming_pipe_in.sh"}
+tr '[:lower:]' '[:upper:]' < input.pipe
 ```
 
 ## Bash 5
 
-`streaming_pipe_in.sh`
-
-```bash
-pipe_in="$1"
-
-tr '[:lower:]' '[:upper:]' < "$pipe_in"
+```bash {filename="streaming_pipe_in.sh"}
+tr '[:lower:]' '[:upper:]' < input.pipe
 ```
 
 ## Lua
 
-`streaming_pipe_in.lua`
-
-```lua
-local pipe_in = arg[1]
-
-local input_file = assert(io.open(pipe_in, "r"), "Failed to open input pipe: " .. pipe_in)
+```lua {filename="streaming_pipe_in.lua"}
+local input_file = io.open("input.pipe", "r")
 
 for line in input_file:lines() do
     io.write(line:upper() .. "\n")
@@ -192,20 +148,15 @@ input_file:close()
 
 ## C#
 
-`StreamingPipeIn.cs`
-
-```csharp
+```csharp {filename="StreamingPipeIn.cs"}
 using System;
 using System.IO;
-using System.Text;
 
 class StreamingPipeIn
 {
     public static void Main(string[] args)
     {
-        string pipe_in = args[0];
-
-        using var reader = new StreamReader(args[0]);
+        using var reader = new StreamReader("input.pipe");
 
         string line;
         while ((line = reader.ReadLine()) != null)
@@ -218,9 +169,7 @@ class StreamingPipeIn
 
 ## Go
 
-`streaming_pipe_in.go`
-
-```go
+```go {filename="streaming_pipe_in.go"}
 package main
 
 import (
@@ -231,7 +180,7 @@ import (
 )
 
 func main() {
-	pipeIn := os.Args[1]
+	pipeIn := "input.pipe"
 
 	file, _ := os.Open(pipeIn)
 	defer file.Close()
@@ -246,9 +195,7 @@ func main() {
 
 ## Swift
 
-`streaming_pipe_in.swift`
-
-```swift
+```swift {filename="streaming_pipe_in.swift"}
 import Foundation
 
 #if os(macOS) || os(iOS)
@@ -258,8 +205,7 @@ import Foundation
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-let arguments = CommandLine.arguments
-let pipe_in = arguments[1]
+let pipe_in = "input.pipe"
 
 public class FileLines: Sequence, IteratorProtocol {
   private let file: UnsafeMutablePointer<FILE>
@@ -290,23 +236,17 @@ if let lines = FileLines(path: pipe_in) {
   for line in lines {
     print(line.uppercased(), terminator: "")
   }
-} else {
-  print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }
 ```
 
 ## Raku
 
-`streaming_pipe_in.raku`
-
-```raku
+```raku {filename="streaming_pipe_in.raku"}
 use v6;
 
-my $pipe_in = @*ARGS[0];
+my $input = open "input.pipe", :r;
 
-my $input = open($pipe_in, :r);
-
-for $input.lines() {
+for $input.lines {
     say .uc;
     $*OUT.flush;
 }
@@ -316,20 +256,14 @@ $input.close;
 
 ## Rust
 
-`streaming_pipe_in.rs`
-
-```rust
-use std::env;
+```rust {filename="streaming_pipe_in.rs"}
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
-    let pipe_in = env::args().nth(1).unwrap();
+    let file = File::open("input.pipe").unwrap();
 
-    let file = File::open(pipe_in).unwrap();
-    let reader = BufReader::new(file);
-
-    for line in reader.lines() {
+    for line in BufReader::new(file).lines() {
         println!("{}", line.unwrap().to_uppercase());
     }
 }

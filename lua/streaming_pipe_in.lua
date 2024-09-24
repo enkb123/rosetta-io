@@ -1,6 +1,4 @@
-local pipe_in = arg[1]
-
-local input_file = assert(io.open(pipe_in, "r"), "Failed to open input pipe: " .. pipe_in)
+local input_file = io.open("input.pipe", "r")
 
 for line in input_file:lines() do
     io.write(line:upper() .. "\n")

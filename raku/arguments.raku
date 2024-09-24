@@ -1,4 +1,4 @@
 use v6;
 
-my $arg = @*ARGS[0];
-say $arg.lc;
+say "1st argument: " ~ @*ARGS[0];
+say "2nd argument: " ~ @*ARGS[1];

@@ -1,25 +1,17 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class JsonStdoutObject {
     public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonStdoutObject <string1> <string2> ...");
-            System.exit(1);
-        }
+        var objectMapper = new ObjectMapper();
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        var jsonObject = objectMapper.createObjectNode();
 
-        ObjectNode jsonObject = objectMapper.createObjectNode();
-
-        Map<String, Integer> stringLengthDict = new HashMap<>();
         for (String string : args) {
             jsonObject.put(string, string.length());
         }
-        String jsonString = objectMapper.writeValueAsString(jsonObject);
+
+        var jsonString = objectMapper.writeValueAsString(jsonObject);
         System.out.println(jsonString);
     }
 }

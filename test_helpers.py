@@ -14,9 +14,14 @@ import pytest
 from locking import EarlyBirdLocker
 
 
+def strip_each_line(text: str) -> str:
+    """Removes leading and trailing whitespace from each line of the given text"""
+    return "\n".join(line.strip() for line in text.split("\n")).strip()
+
+
 def assert_string_match(actual: str, expected: str):
     """Assert that two strings match, ignoring trailingwhitespace"""
-    assert actual.rstrip() == expected.rstrip()
+    assert strip_each_line(actual) == strip_each_line(expected)
 
 
 def print_command(title: str, command: str) -> None:

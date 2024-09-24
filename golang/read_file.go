@@ -1,22 +1,22 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
-	content, _ := os.ReadFile(os.Args[1])
+	filePath := "./my-text-file.txt"
 
-	lines := strings.Split(string(content), "\n")
-	lineNumber := 1
+	file, _ := os.Open(filePath)
+	defer file.Close()
 
-	for _, line := range lines {
-		if line == "" {
-			continue
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		if line != "" {
+			fmt.Println("line:", line)
 		}
-		fmt.Printf("%d %s\n", lineNumber, strings.ToUpper(line))
-		lineNumber++
 	}
 }

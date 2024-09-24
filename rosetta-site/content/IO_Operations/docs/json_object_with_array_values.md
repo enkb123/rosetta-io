@@ -5,13 +5,11 @@ draft = false
 
 # json_object_with_array_values
 
-Test that a JSON object with arrays as values is parsed correctly
+Create and output a JSON object with arrays of strings as values
 
 ## Python
 
-`json_object_with_array_values.py`
-
-```python
+```python {filename="json_object_with_array_values.py"}
 import json
 import sys
 
@@ -24,9 +22,7 @@ print(json.dumps(string_letters_dict))
 
 ## Ruby
 
-`json_object_with_array_values.rb`
-
-```ruby
+```ruby {filename="json_object_with_array_values.rb"}
 require 'json'
 
 my_strings = ARGV
@@ -38,9 +34,7 @@ puts JSON.generate(string_letters_dict)
 
 ## Nodejs
 
-`json_object_with_array_values.mjs`
-
-```javascript
+```javascript {filename="json_object_with_array_values.mjs"}
 const myStrings = process.argv.slice(2)
 
 const stringLettersDict = {}
@@ -55,9 +49,7 @@ console.log(JSON.stringify(stringLettersDict))
 
 ## Deno
 
-`json_object_with_array_values.mjs`
-
-```javascript
+```javascript {filename="json_object_with_array_values.mjs"}
 const myStrings = Deno.args
 
 const stringLettersDict = {}
@@ -72,9 +64,7 @@ console.log(JSON.stringify(stringLettersDict))
 
 ## Php
 
-`json_object_with_array_values.php`
-
-```php
+```php {filename="json_object_with_array_values.php"}
 <?php
 $myStrings = array_slice($argv, 1);
 
@@ -89,9 +79,7 @@ echo json_encode($stringLettersDict);
 
 ## R
 
-`json_object_with_array_values.R`
-
-```r
+```r {filename="json_object_with_array_values.R"}
 library(jsonlite)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -107,9 +95,7 @@ cat(toJSON(string_letters))
 
 ## Perl
 
-`json_object_with_array_values.pl`
-
-```perl
+```perl {filename="json_object_with_array_values.pl"}
 use strict;
 use warnings;
 use JSON;
@@ -121,31 +107,22 @@ print JSON->new
 
 ## Java
 
-`JsonObjectWithArrayValues.java`
-
-```java
+```java {filename="JsonObjectWithArrayValues.java"}
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import java.util.Arrays;
-
 public class JsonObjectWithArrayValues {
-    public static void main(String[] args) throws Exception{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonFromStrings <string1> <string2> ...");
-            System.exit(1);
-        }
+    public static void main(String[] args) throws Exception {
+        var objectMapper = new ObjectMapper();
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        var jsonObject = objectMapper.createObjectNode();
 
-        ObjectNode jsonObject = objectMapper.createObjectNode();
-
-        Arrays.stream(args).forEach(str -> {
-            ArrayNode lettersArray = objectMapper.createArrayNode();
+        for (String str : args) {
+            var lettersArray = objectMapper.createArrayNode();
             str.toUpperCase().chars().forEach(c -> lettersArray.add(String.valueOf((char) c)));
             jsonObject.set(str, lettersArray);
-        });
+        }
 
         String jsonString = objectMapper.writeValueAsString(jsonObject);
         System.out.println(jsonString);
@@ -155,11 +132,7 @@ public class JsonObjectWithArrayValues {
 
 ## Bash 3
 
-`json_object_with_array_values.sh`
-
-```bash
-#!/bin/bash
-
+```bash {filename="json_object_with_array_values.sh"}
 json_object='{}'
 
 for arg in "$@"; do
@@ -176,11 +149,7 @@ echo "$json_object"
 
 ## Bash 5
 
-`json_object_with_array_values.sh`
-
-```bash
-#!/bin/bash
-
+```bash {filename="json_object_with_array_values.sh"}
 json_object='{}'
 
 for arg in "$@"; do
@@ -197,9 +166,7 @@ echo "$json_object"
 
 ## Lua
 
-`json_object_with_array_values.lua`
-
-```lua
+```lua {filename="json_object_with_array_values.lua"}
 local cjson = require("dkjson")
 
 local string_letters_dict = {}
@@ -219,9 +186,7 @@ print(cjson.encode(string_letters_dict))
 
 ## C#
 
-`JsonObjectWithArrayValues.cs`
-
-```csharp
+```csharp {filename="JsonObjectWithArrayValues.cs"}
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -242,9 +207,7 @@ class JsonObjectWithArrayValues{
 
 ## Go
 
-`json_object_with_array_values.go`
-
-```go
+```go {filename="json_object_with_array_values.go"}
 package main
 
 import (
@@ -275,21 +238,15 @@ func main() {
 
 ## Swift
 
-`json_object_with_array_values.swift`
-
-```swift
+```swift {filename="json_object_with_array_values.swift"}
 import Foundation
-
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <arg1> [<arg2> ...]")
-    exit(1)
-}
 
 let myStrings = CommandLine.arguments.dropFirst()
 
-let stringLettersDict = Dictionary(uniqueKeysWithValues: myStrings.map {
+let stringLettersDict = Dictionary(
+  uniqueKeysWithValues: myStrings.map {
     ($0, $0.map { String($0).uppercased() })
-})
+  })
 
 let jsonData = try JSONSerialization.data(withJSONObject: stringLettersDict)
 print(String(data: jsonData, encoding: .utf8)!)
@@ -297,9 +254,7 @@ print(String(data: jsonData, encoding: .utf8)!)
 
 ## Raku
 
-`json_object_with_array_values.raku`
-
-```raku
+```raku {filename="json_object_with_array_values.raku"}
 use v6;
 use JSON::Fast;
 
@@ -309,15 +264,14 @@ say to-json(%data);
 
 ## Rust
 
-`json_object_with_array_values.rs`
-
-```rust
+```rust {filename="json_object_with_array_values.rs"}
 //cargo-deps: json="0.12.4"
 
 use json::JsonValue;
 use std::env;
 
 extern crate json;
+
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();
 

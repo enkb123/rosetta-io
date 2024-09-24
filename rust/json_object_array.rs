@@ -1,10 +1,10 @@
 //cargo-deps: json="0.12.4"
 
-use json::JsonValue;
+use json::{object, JsonValue};
 use std::env;
-use json::object;
 
 extern crate json;
+
 fn main() {
     let args = env::args().skip(1);
     let json_array = JsonValue::Array(

@@ -5,13 +5,11 @@ draft = false
 
 # json_object_array
 
-Test that a JSON array made of objects is parsed correctly
+Create and output a JSON array of objects
 
 ## Python
 
-`json_object_array.py`
-
-```python
+```python {filename="json_object_array.py"}
 import json
 import sys
 
@@ -25,9 +23,7 @@ print(json.dumps(my_array))
 
 ## Ruby
 
-`json_object_array.rb`
-
-```ruby
+```ruby {filename="json_object_array.rb"}
 require 'json'
 
 my_strings = ARGV
@@ -39,9 +35,7 @@ puts JSON.generate(my_array)
 
 ## Nodejs
 
-`json_object_array.mjs`
-
-```javascript
+```javascript {filename="json_object_array.mjs"}
 const args = process.argv.slice(2)
 
 const myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))
@@ -51,9 +45,7 @@ console.log(JSON.stringify(myArray))
 
 ## Deno
 
-`json_object_array.mjs`
-
-```javascript
+```javascript {filename="json_object_array.mjs"}
 const args = Deno.args
 
 const myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))
@@ -63,9 +55,7 @@ console.log(JSON.stringify(myArray))
 
 ## Php
 
-`json_object_array.php`
-
-```php
+```php {filename="json_object_array.php"}
 <?php
 $args = array_slice($argv, 1);
 
@@ -78,9 +68,7 @@ echo json_encode($myArray);
 
 ## R
 
-`json_object_array.R`
-
-```r
+```r {filename="json_object_array.R"}
 library(jsonlite)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -97,9 +85,7 @@ cat(toJSON(myArray, auto_unbox=TRUE))
 
 ## Perl
 
-`json_object_array.pl`
-
-```perl
+```perl {filename="json_object_array.pl"}
 use strict;
 use warnings;
 use JSON;
@@ -111,9 +97,7 @@ print JSON->new
 
 ## Java
 
-`JsonObjectArray.java`
-
-```java
+```java {filename="JsonObjectArray.java"}
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -142,9 +126,7 @@ public class JsonObjectArray {
 
 ## Bash 3
 
-`json_object_array.sh`
-
-```bash
+```bash {filename="json_object_array.sh"}
 json_objects=()
 
 for arg in "$@"; do
@@ -158,9 +140,7 @@ jo -a "${json_objects[@]}"
 
 ## Bash 5
 
-`json_object_array.sh`
-
-```bash
+```bash {filename="json_object_array.sh"}
 json_objects=()
 
 for arg in "$@"; do
@@ -172,9 +152,7 @@ jo -a "${json_objects[@]}"
 
 ## Lua
 
-`json_object_array.lua`
-
-```lua
+```lua {filename="json_object_array.lua"}
 local cjson = require("dkjson")
 
 local my_array = {}
@@ -191,9 +169,7 @@ print(cjson.encode(my_array))
 
 ## C#
 
-`JsonObjectArray.cs`
-
-```csharp
+```csharp {filename="JsonObjectArray.cs"}
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -213,9 +189,7 @@ class JsonObjectArray
 
 ## Go
 
-`json_object_array.go`
-
-```go
+```go {filename="json_object_array.go"}
 package main
 
 import (
@@ -244,15 +218,8 @@ func main() {
 
 ## Swift
 
-`json_object_array.swift`
-
-```swift
+```swift {filename="json_object_array.swift"}
 import Foundation
-
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <arg1> [<arg2> ...]")
-    exit(1)
-}
 
 let args = CommandLine.arguments.dropFirst()
 
@@ -264,9 +231,7 @@ print(String(data: jsonData, encoding: .utf8)!)
 
 ## Raku
 
-`json_object_array.raku`
-
-```raku
+```raku {filename="json_object_array.raku"}
 use v6;
 use JSON::Fast;
 
@@ -275,16 +240,14 @@ say to-json(@*ARGS.map: { uc($_) => $_.chars });
 
 ## Rust
 
-`json_object_array.rs`
-
-```rust
+```rust {filename="json_object_array.rs"}
 //cargo-deps: json="0.12.4"
 
-use json::JsonValue;
+use json::{object, JsonValue};
 use std::env;
-use json::object;
 
 extern crate json;
+
 fn main() {
     let args = env::args().skip(1);
     let json_array = JsonValue::Array(

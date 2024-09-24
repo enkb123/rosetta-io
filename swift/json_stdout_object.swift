@@ -1,10 +1,5 @@
 import Foundation
 
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <arg1> [<arg2> ...]")
-    exit(1)
-}
-
 let myStrings = CommandLine.arguments.dropFirst()
 let stringLengthDict = Dictionary(uniqueKeysWithValues: myStrings.map { ($0, $0.count) })
 

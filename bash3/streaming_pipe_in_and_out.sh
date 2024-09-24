@@ -1,4 +1,3 @@
-pipe_in="$1"
-pipe_out="$2"
-
-tr '[:lower:]' '[:upper:]' < "$pipe_in" > "$pipe_out"
+while IFS= read -r line; do
+    echo "received $line"
+done < streaming-in.pipe > streaming-out.pipe

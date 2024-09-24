@@ -1,13 +1,11 @@
 import Foundation
 
-guard CommandLine.arguments.count > 1 else {
-    print("Usage: swift script.swift <file_path>")
-    exit(1)
-}
+let filePath = "./my-text-file.txt"
 
-let fileContents = try String(contentsOfFile: CommandLine.arguments[1])
-var i = 1
-fileContents.enumerateLines { line, _ in
-    print("\(i) \(line.uppercased())")
-    i += 1
+let content = try String(contentsOfFile: filePath, encoding: .utf8)
+let lines = content.components(separatedBy: .newlines)
+for line in lines {
+  if !line.isEmpty {
+    print("line: \(line)")
+  }
 }

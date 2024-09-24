@@ -1,16 +1,11 @@
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicInteger;
 
-class ReadFile{
-    public static void main(String[] args) throws IOException {
-        var filePath = Paths.get(args[0]);
-        var lineNumber = new AtomicInteger(1);
+public class ReadFile {
+    public static void main(String[] args) throws Exception {
+        var filePath = Paths.get("./my-text-file.txt");
 
         Files.lines(filePath)
-                .map(String::toUpperCase)
-                .map(line -> lineNumber.getAndIncrement() + " " + line)
-                .forEach(System.out::println);
+            .forEach(line -> System.out.println("line: " + line));
     }
 }

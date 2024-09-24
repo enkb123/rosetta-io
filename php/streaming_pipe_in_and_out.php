@@ -1,14 +1,10 @@
 <?php
 
-$pipe_in = $argv[1];
-$pipe_out = $argv[2];
-
-$input_pipe = fopen($pipe_in, 'r');
-$output_pipe = fopen($pipe_out, 'w');
+$output_pipe = fopen('streaming-out.pipe', 'w');
+$input_pipe = fopen('streaming-in.pipe', 'r');
 
 while (($line = fgets($input_pipe)) !== false) {
-    fwrite($output_pipe, strtoupper($line));
-    fflush($output_pipe);
+    fwrite($output_pipe, "received " . $line);
 }
 
 fclose($input_pipe);

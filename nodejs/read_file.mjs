@@ -1,14 +1,11 @@
-import * as readline from 'node:readline/promises'
-import fs  from 'fs'
+import { promises as fs } from 'fs'
 
-const file_path = process.argv[2]
+const filePath = './my-text-file.txt'
 
-const rl = readline.createInterface({
-  input: fs.createReadStream(file_path),
-})
+const fileContent = await fs.readFile(filePath, 'utf8')
 
-let i = 1
-for await (const line of rl) {
-  console.log(i + " " + line.toUpperCase())
-  i++
+for (const line of fileContent.split("\n")) {
+  if (line !== "") {
+    console.log('line:', line)
+  }
 }
