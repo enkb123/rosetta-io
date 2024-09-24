@@ -51,7 +51,7 @@ with open(index_path, "w", encoding = "utf-8") as index_page:
             {{{{< card icon="language-{language_icon_id}" title=\"{language_human_name}\" >}}}}
             """,
             language_human_name=language.human_name,
-            language_icon_id=(language.icon_id or language.name),
+            language_icon_id=language.icon_id,
         ) for language in LANGUAGES
         )
     ))
