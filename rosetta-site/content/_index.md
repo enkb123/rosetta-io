@@ -15,7 +15,40 @@ The name `rosetta-io` is an hommage to [Rosetta
 Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
 ## Languages covered
-...
+{{< cards >}}
+{{< card icon="language-python" title="Python" >}}
+
+{{< card icon="language-ruby" title="Ruby" >}}
+
+{{< card icon="language-nodejs" title="Nodejs" >}}
+
+{{< card icon="language-deno" title="Deno" >}}
+
+{{< card icon="language-php" title="Php" >}}
+
+{{< card icon="language-r" title="R" >}}
+
+{{< card icon="language-perl" title="Perl" >}}
+
+{{< card icon="language-java" title="Java" >}}
+
+{{< card icon="language-bash3" title="Bash 3" >}}
+
+{{< card icon="language-bash5" title="Bash 5" >}}
+
+{{< card icon="language-lua" title="Lua" >}}
+
+{{< card icon="language-csharp" title="C#" >}}
+
+{{< card icon="language-golang" title="Go" >}}
+
+{{< card icon="language-swift" title="Swift" >}}
+
+{{< card icon="language-raku" title="Raku" >}}
+
+{{< card icon="language-rust" title="Rust" >}}
+
+{{< /cards >}}
 
 ## Operations
 
