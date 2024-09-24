@@ -22,7 +22,7 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
 {{< card icon="language-nodejs" title="Nodejs" >}}
 
-{{< card icon="language-deno" title="Deno" >}}
+{{< card icon="language-denojs" title="Deno" >}}
 
 {{< card icon="language-php" title="Php" >}}
 
@@ -32,15 +32,15 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
 {{< card icon="language-java" title="Java" >}}
 
-{{< card icon="language-bash3" title="Bash 3" >}}
+{{< card icon="language-bash" title="Bash 3" >}}
 
-{{< card icon="language-bash5" title="Bash 5" >}}
+{{< card icon="language-bash" title="Bash 5" >}}
 
 {{< card icon="language-lua" title="Lua" >}}
 
 {{< card icon="language-csharp" title="C#" >}}
 
-{{< card icon="language-golang" title="Go" >}}
+{{< card icon="language-go" title="Go" >}}
 
 {{< card icon="language-swift" title="Swift" >}}
 

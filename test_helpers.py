@@ -124,6 +124,11 @@ class Language(ABC):
     syntax_highlighting: str
     """Syntax_highlighting for langueage, e.g. "javascript" for deno."""
 
+    @property
+    def icon_id(self):
+        """The id of the icon to use for the language"""
+        return self.name
+
     def script_file_name(self, script_name):
         """Given a name of a script, return the file name of the script to run.
 
