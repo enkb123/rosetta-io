@@ -9,9 +9,7 @@ Read a file line by line
 
 ## Python
 
-`read_file.py`
-
-```python
+```python {filename="read_file.py"}
 file_path = './my-text-file.txt'
 
 with open(file_path, 'r') as file:
@@ -22,9 +20,7 @@ with open(file_path, 'r') as file:
 
 ## Ruby
 
-`read_file.rb`
-
-```ruby
+```ruby {filename="read_file.rb"}
 File.open("./my-text-file.txt", "r") do |f|
   f.each_line do |line|
     puts "line: #{line}"
@@ -34,9 +30,7 @@ end
 
 ## Nodejs
 
-`read_file.mjs`
-
-```javascript
+```javascript {filename="read_file.mjs"}
 import { promises as fs } from 'fs';
 
 const filePath = './my-text-file.txt'
@@ -52,9 +46,7 @@ for (const line of fileContent.split("\n")) {
 
 ## Deno
 
-`read_file.mjs`
-
-```javascript
+```javascript {filename="read_file.mjs"}
 const filePath = "./my-text-file.txt";
 const fileContent = await Deno.readTextFile(filePath);
 
@@ -67,9 +59,7 @@ for (const line of fileContent.split("\n")) {
 
 ## Php
 
-`read_file.php`
-
-```php
+```php {filename="read_file.php"}
 <?php
 
 $file_path = './my-text-file.txt';
@@ -82,9 +72,7 @@ foreach (file($file_path) as $index => $line) {
 
 ## R
 
-`read_file.R`
-
-```r
+```r {filename="read_file.R"}
 file_path <- "./my-text-file.txt"
 
 lines <- readLines(file_path)
@@ -96,9 +84,7 @@ for (line in lines) {
 
 ## Perl
 
-`read_file.pl`
-
-```perl
+```perl {filename="read_file.pl"}
 use strict;
 use warnings;
 
@@ -110,9 +96,7 @@ print "line: $_" while <$fh>;
 
 ## Java
 
-`ReadFile.java`
-
-```java
+```java {filename="ReadFile.java"}
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -129,9 +113,7 @@ public class ReadFile {
 
 ## Bash 3
 
-`read_file.sh`
-
-```bash
+```bash {filename="read_file.sh"}
 file_path="./my-text-file.txt"
 
 while IFS= read -r line; do
@@ -142,9 +124,7 @@ done < "$file_path"
 
 ## Bash 5
 
-`read_file.sh`
-
-```bash
+```bash {filename="read_file.sh"}
 file_path="./my-text-file.txt"
 
 while IFS= read -r line; do
@@ -155,9 +135,7 @@ done < "$file_path"
 
 ## Lua
 
-`read_file.lua`
-
-```lua
+```lua {filename="read_file.lua"}
 local filePath = "./my-text-file.txt"
 
 local file = io.open(filePath, "r")
@@ -170,9 +148,7 @@ file:close()
 
 ## C#
 
-`ReadFile.cs`
-
-```csharp
+```csharp {filename="ReadFile.cs"}
 using System;
 using System.IO;
 
@@ -192,9 +168,7 @@ class ReadFile
 
 ## Go
 
-`read_file.go`
-
-```go
+```go {filename="read_file.go"}
 package main
 
 import (
@@ -221,9 +195,7 @@ func main() {
 
 ## Swift
 
-`read_file.swift`
-
-```swift
+```swift {filename="read_file.swift"}
 import Foundation
 
 let filePath = "./my-text-file.txt"
@@ -239,9 +211,7 @@ for line in lines {
 
 ## Raku
 
-`read_file.raku`
-
-```raku
+```raku {filename="read_file.raku"}
 use v6;
 
 my $file-path = './my-text-file.txt';
@@ -253,9 +223,7 @@ for $file-path.IO.lines {
 
 ## Rust
 
-`read_file.rs`
-
-```rust
+```rust {filename="read_file.rs"}
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
 

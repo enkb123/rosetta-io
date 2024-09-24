@@ -9,9 +9,7 @@ Create and output a JSON array of numbers
 
 ## Python
 
-`json_numbers.py`
-
-```python
+```python {filename="json_numbers.py"}
 import json
 import sys
 
@@ -25,9 +23,7 @@ print(json.dumps(string_lengths))
 
 ## Ruby
 
-`json_numbers.rb`
-
-```ruby
+```ruby {filename="json_numbers.rb"}
 require 'json'
 
 my_strings = ARGV
@@ -39,9 +35,7 @@ puts JSON.generate(string_lengths)
 
 ## Nodejs
 
-`json_numbers.mjs`
-
-```javascript
+```javascript {filename="json_numbers.mjs"}
 const myStrings = process.argv.slice(2)
 
 const stringLengths = myStrings.map((string) => string.length)
@@ -53,9 +47,7 @@ console.log(jsonString)
 
 ## Deno
 
-`json_numbers.mjs`
-
-```javascript
+```javascript {filename="json_numbers.mjs"}
 const myStrings = Deno.args
 
 const stringLengths = myStrings.map((string) => string.length)
@@ -67,9 +59,7 @@ console.log(jsonString)
 
 ## Php
 
-`json_numbers.php`
-
-```php
+```php {filename="json_numbers.php"}
 <?php
 
 $myStrings = array_slice($argv, 1);
@@ -81,9 +71,7 @@ echo json_encode($stringLengths);
 
 ## R
 
-`json_numbers.R`
-
-```r
+```r {filename="json_numbers.R"}
 library(jsonlite)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -95,9 +83,7 @@ cat(toJSON(string_lengths))
 
 ## Perl
 
-`json_numbers.pl`
-
-```perl
+```perl {filename="json_numbers.pl"}
 use strict;
 use warnings;
 use JSON;
@@ -107,9 +93,7 @@ print encode_json([map { length } @ARGV]);
 
 ## Java
 
-`JsonNumbers.java`
-
-```java
+```java {filename="JsonNumbers.java"}
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
@@ -134,9 +118,7 @@ public class JsonNumbers {
 
 ## Bash 3
 
-`json_numbers.sh`
-
-```bash
+```bash {filename="json_numbers.sh"}
 lengths=()
 
 for arg in "$@"; do
@@ -148,9 +130,7 @@ jo -a "${lengths[@]}"
 
 ## Bash 5
 
-`json_numbers.sh`
-
-```bash
+```bash {filename="json_numbers.sh"}
 lengths=()
 
 for arg in "$@"; do
@@ -162,9 +142,7 @@ jo -a "${lengths[@]}"
 
 ## Lua
 
-`json_numbers.lua`
-
-```lua
+```lua {filename="json_numbers.lua"}
 local cjson = require("dkjson")
 
 local lengths = {}
@@ -177,9 +155,7 @@ print(cjson.encode(lengths))
 
 ## C#
 
-`JsonNumbers.cs`
-
-```csharp
+```csharp {filename="JsonNumbers.cs"}
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -199,9 +175,7 @@ class JsonNumbers
 
 ## Go
 
-`json_numbers.go`
-
-```go
+```go {filename="json_numbers.go"}
 package main
 
 import (
@@ -227,9 +201,7 @@ func main() {
 
 ## Swift
 
-`json_numbers.swift`
-
-```swift
+```swift {filename="json_numbers.swift"}
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -247,9 +219,7 @@ print(String(data: jsonData, encoding: .utf8)!)
 
 ## Raku
 
-`json_numbers.raku`
-
-```raku
+```raku {filename="json_numbers.raku"}
 use v6;
 
 use JSON::Fast;
@@ -259,9 +229,7 @@ say to-json(@*ARGS.map(*.chars));
 
 ## Rust
 
-`json_numbers.rs`
-
-```rust
+```rust {filename="json_numbers.rs"}
 //cargo-deps: json="0.12.4"
 
 use json::JsonValue;

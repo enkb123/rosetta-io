@@ -9,9 +9,7 @@ Write text to a named pipe
 
 ## Python
 
-`write_to_named_pipe.py`
-
-```python
+```python {filename="write_to_named_pipe.py"}
 import os
 
 pipe_path = 'output.pipe'
@@ -25,17 +23,13 @@ with open(pipe_path, 'w') as pipe:
 
 ## Ruby
 
-`write_to_named_pipe.rb`
-
-```ruby
+```ruby {filename="write_to_named_pipe.rb"}
 File.write "output.pipe", "Hello World!"
 ```
 
 ## Nodejs
 
-`write_to_named_pipe.mjs`
-
-```javascript
+```javascript {filename="write_to_named_pipe.mjs"}
 import fs from 'fs';
 
 const [pipeName, text] = ["output.pipe", "Hello World!"];
@@ -54,9 +48,7 @@ writeToPipe(pipeName, text)
 
 ## Deno
 
-`write_to_named_pipe.mjs`
-
-```javascript
+```javascript {filename="write_to_named_pipe.mjs"}
 const encoder = new TextEncoder();
 const pipePath = "output.pipe";
 
@@ -67,9 +59,7 @@ await Deno.writeFile(pipePath, encoder.encode("Hello World!"));
 
 ## Php
 
-`write_to_named_pipe.php`
-
-```php
+```php {filename="write_to_named_pipe.php"}
 <?php
 
 $pipePath = 'output.pipe';
@@ -87,9 +77,7 @@ fclose($pipe);
 
 ## R
 
-`write_to_named_pipe.R`
-
-```r
+```r {filename="write_to_named_pipe.R"}
 pipe_path <- "output.pipe"
 
 if (!file.exists(pipe_path)) {
@@ -105,9 +93,7 @@ close(pipe)
 
 ## Perl
 
-`write_to_named_pipe.pl`
-
-```perl
+```perl {filename="write_to_named_pipe.pl"}
 use strict;
 use warnings;
 
@@ -124,9 +110,7 @@ close($pipe);
 
 ## Java
 
-`WriteToNamedPipe.java`
-
-```java
+```java {filename="WriteToNamedPipe.java"}
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -150,9 +134,7 @@ public class WriteToNamedPipe {
 
 ## Bash 3
 
-`write_to_named_pipe.sh`
-
-```bash
+```bash {filename="write_to_named_pipe.sh"}
 pipe_out="output.pipe"
 
 mkfifo "$pipe_out" 2>/dev/null
@@ -162,9 +144,7 @@ echo "Hello World!" > "$pipe_out"
 
 ## Bash 5
 
-`write_to_named_pipe.sh`
-
-```bash
+```bash {filename="write_to_named_pipe.sh"}
 pipe_out="output.pipe"
 
 mkfifo "$pipe_out" 2>/dev/null
@@ -174,9 +154,7 @@ echo "Hello World!" > "$pipe_out"
 
 ## Lua
 
-`write_to_named_pipe.lua`
-
-```lua
+```lua {filename="write_to_named_pipe.lua"}
 local pipePath = "output.pipe"
 
 os.execute("mkfifo " .. pipePath)
@@ -188,9 +166,7 @@ pipe:close()
 
 ## C#
 
-`WriteToNamedPipe.cs`
-
-```csharp
+```csharp {filename="WriteToNamedPipe.cs"}
 using System;
 using System.IO;
 using System.Diagnostics;
@@ -217,9 +193,7 @@ class WriteToNamedPipe
 
 ## Go
 
-`write_to_named_pipe.go`
-
-```go
+```go {filename="write_to_named_pipe.go"}
 package main
 
 import (
@@ -241,9 +215,7 @@ func main() {
 
 ## Swift
 
-`write_to_named_pipe.swift`
-
-```swift
+```swift {filename="write_to_named_pipe.swift"}
 import Foundation
 
 let pipePath = "output.pipe"
@@ -260,9 +232,7 @@ if let pipe = fopen(pipePath, "w") {
 
 ## Raku
 
-`write_to_named_pipe.raku`
-
-```raku
+```raku {filename="write_to_named_pipe.raku"}
 use v6;
 
 my $pipe-path = 'output.pipe';
@@ -281,9 +251,7 @@ $pipe.close;
 
 ## Rust
 
-`write_to_named_pipe.rs`
-
-```rust
+```rust {filename="write_to_named_pipe.rs"}
 use std::fs::OpenOptions;
 use std::io::Write;
 use std::process::Command;

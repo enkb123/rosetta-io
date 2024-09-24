@@ -84,9 +84,7 @@ for script_name, pytest_case in sorted(pytest_cases_by_script_name.items()):
                     """
                     ## {language_name}
 
-                    `{file_name}`
-
-                    ```{syntax}
+                    ```{syntax} {{filename="{file_name}"}}
                     {code}
                     ```
 

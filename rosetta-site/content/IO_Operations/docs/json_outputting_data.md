@@ -9,9 +9,7 @@ Create and output JSON
 
 ## Python
 
-`json_outputting_data.py`
-
-```python
+```python {filename="json_outputting_data.py"}
 import json
 
 first_json_object = {
@@ -57,9 +55,7 @@ print(json.dumps(third_json_object))
 
 ## Ruby
 
-`json_outputting_data.rb`
-
-```ruby
+```ruby {filename="json_outputting_data.rb"}
 require 'json'
 
 puts JSON.generate({
@@ -95,9 +91,7 @@ puts JSON.generate({
 
 ## Nodejs
 
-`json_outputting_data.mjs`
-
-```javascript
+```javascript {filename="json_outputting_data.mjs"}
 const json1 = JSON.stringify({
     "true": true,
     "false": false,
@@ -135,9 +129,7 @@ console.log(json3);
 
 ## Deno
 
-`json_outputting_data.mjs`
-
-```javascript
+```javascript {filename="json_outputting_data.mjs"}
 const json1 = JSON.stringify({
     "true": true,
     "false": false,
@@ -175,9 +167,7 @@ console.log(json3);
 
 ## Php
 
-`json_outputting_data.php`
-
-```php
+```php {filename="json_outputting_data.php"}
 <?php
 
 $firstJsonObject = [
@@ -223,9 +213,7 @@ echo json_encode($thirdJsonObject, JSON_UNESCAPED_UNICODE) . "\n";
 
 ## R
 
-`json_outputting_data.R`
-
-```r
+```r {filename="json_outputting_data.R"}
 library(jsonlite)
 
 first_json_object <- list(
@@ -277,9 +265,7 @@ cat(third_json_string, "\n")
 
 ## Perl
 
-`json_outputting_data.pl`
-
-```perl
+```perl {filename="json_outputting_data.pl"}
 use strict;
 use warnings;
 use JSON;
@@ -325,9 +311,7 @@ print $json->encode($data3) . "\n";
 
 ## Java
 
-`JsonOutputtingData.java`
-
-```java
+```java {filename="JsonOutputtingData.java"}
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -393,9 +377,7 @@ public class JsonOutputtingData {
 
 ## Bash 3
 
-`json_outputting_data.sh`
-
-```bash
+```bash {filename="json_outputting_data.sh"}
 # jo can't handle the null character (\0) so we use jq to add it as a workaraound
 object_with_nonascii_string='{ "a string with non-ascii characters": "hello \n \u0000 \u0001 world 🥸" }'
 
@@ -438,9 +420,7 @@ jo objects="$(
 
 ## Bash 5
 
-`json_outputting_data.sh`
-
-```bash
+```bash {filename="json_outputting_data.sh"}
 # jo can't handle the null character (\0) so we use jq to add it as a workaraound
 object_with_nonascii_string='{ "a string with non-ascii characters": "hello \n \u0000 \u0001 world 🥸" }'
 
@@ -483,9 +463,7 @@ jo objects="$(
 
 ## Lua
 
-`json_outputting_data.lua`
-
-```lua
+```lua {filename="json_outputting_data.lua"}
 local json = require("dkjson")
 
 local firstJsonObject = {
@@ -531,9 +509,7 @@ print(json.encode(thirdJsonObject))
 
 ## C#
 
-`JsonOutputtingData.cs`
-
-```csharp
+```csharp {filename="JsonOutputtingData.cs"}
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -599,9 +575,7 @@ class JsonOutputtingData
 
 ## Go
 
-`json_outputting_data.go`
-
-```go
+```go {filename="json_outputting_data.go"}
 package main
 
 import (
@@ -661,9 +635,7 @@ func printJSON(data interface{}) {
 
 ## Swift
 
-`json_outputting_data.swift`
-
-```swift
+```swift {filename="json_outputting_data.swift"}
 import Foundation
 
 let firstJsonObject: [String: Any] = [
@@ -714,9 +686,7 @@ print(jsonString(from: thirdJsonObject))
 
 ## Raku
 
-`json_outputting_data.raku`
-
-```raku
+```raku {filename="json_outputting_data.raku"}
 use JSON::Fast;
 
 my %first-json-object = {
@@ -762,9 +732,7 @@ say to-json(%third-json-object, :pretty(False));
 
 ## Rust
 
-`json_outputting_data.rs`
-
-```rust
+```rust {filename="json_outputting_data.rs"}
 // cargo-deps: json="0.12.4"
 
 extern crate json;

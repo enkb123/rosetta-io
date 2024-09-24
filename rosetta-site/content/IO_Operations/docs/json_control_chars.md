@@ -9,9 +9,7 @@ Test that control characters and emojis are output in valid JSON.
 
 ## Python
 
-`json_control_chars.py`
-
-```python
+```python {filename="json_control_chars.py"}
 import json
 import sys
 
@@ -22,9 +20,7 @@ print(json.dumps(test_string))
 
 ## Ruby
 
-`json_control_chars.rb`
-
-```ruby
+```ruby {filename="json_control_chars.rb"}
 require 'json'
 
 test_string = ARGV[0]
@@ -34,9 +30,7 @@ puts JSON.generate(test_string)
 
 ## Nodejs
 
-`json_control_chars.mjs`
-
-```javascript
+```javascript {filename="json_control_chars.mjs"}
 const myString = process.argv[2]
 
 console.log(JSON.stringify(myString))
@@ -44,9 +38,7 @@ console.log(JSON.stringify(myString))
 
 ## Deno
 
-`json_control_chars.mjs`
-
-```javascript
+```javascript {filename="json_control_chars.mjs"}
 const myString = Deno.args[0]
 
 console.log(JSON.stringify(myString))
@@ -54,9 +46,7 @@ console.log(JSON.stringify(myString))
 
 ## Php
 
-`json_control_chars.php`
-
-```php
+```php {filename="json_control_chars.php"}
 <?php
 
 $testString = $argv[1];
@@ -66,9 +56,7 @@ echo json_encode($testString);
 
 ## R
 
-`json_control_chars.R`
-
-```r
+```r {filename="json_control_chars.R"}
 library(jsonlite)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -78,9 +66,7 @@ cat(toJSON(args, auto_unbox = TRUE))
 
 ## Perl
 
-`json_control_chars.pl`
-
-```perl
+```perl {filename="json_control_chars.pl"}
 use strict;
 use warnings;
 use JSON;
@@ -90,9 +76,7 @@ print JSON->new->encode($ARGV[0]);
 
 ## Java
 
-`JsonControlChars.java`
-
-```java
+```java {filename="JsonControlChars.java"}
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -115,25 +99,19 @@ public class JsonControlChars {
 
 ## Bash 3
 
-`json_control_chars.sh`
-
-```bash
+```bash {filename="json_control_chars.sh"}
 echo -n "$1" | jq -R -s .
 ```
 
 ## Bash 5
 
-`json_control_chars.sh`
-
-```bash
+```bash {filename="json_control_chars.sh"}
 echo -n "$1" | jq -R -s .
 ```
 
 ## Lua
 
-`json_control_chars.lua`
-
-```lua
+```lua {filename="json_control_chars.lua"}
 local cjson = require("dkjson")
 
 print(cjson.encode(arg[1]))
@@ -141,9 +119,7 @@ print(cjson.encode(arg[1]))
 
 ## C#
 
-`JsonControlChars.cs`
-
-```csharp
+```csharp {filename="JsonControlChars.cs"}
 using System;
 using System.Text.Json;
 
@@ -159,9 +135,7 @@ class JsonControlChars{
 
 ## Go
 
-`json_control_chars.go`
-
-```go
+```go {filename="json_control_chars.go"}
 package main
 
 import (
@@ -181,9 +155,7 @@ func main() {
 
 ## Swift
 
-`json_control_chars.swift`
-
-```swift
+```swift {filename="json_control_chars.swift"}
 import Foundation
 
 guard CommandLine.arguments.count == 2 else {
@@ -199,9 +171,7 @@ print(String(data: jsonData, encoding: .utf8)!)
 
 ## Raku
 
-`json_control_chars.raku`
-
-```raku
+```raku {filename="json_control_chars.raku"}
 use v6;
 
 use JSON::Fast;
@@ -211,9 +181,7 @@ say to-json(@*ARGS[0]);
 
 ## Rust
 
-`json_control_chars.rs`
-
-```rust
+```rust {filename="json_control_chars.rs"}
 //cargo-deps: json="0.12.4"
 
 use json::JsonValue;

@@ -9,9 +9,7 @@ Read from stdin line by line
 
 ## Python
 
-`stdin.py`
-
-```python
+```python {filename="stdin.py"}
 while True:
 try:
     user_input = input()
@@ -22,9 +20,7 @@ except EOFError:
 
 ## Ruby
 
-`stdin.rb`
-
-```ruby
+```ruby {filename="stdin.rb"}
 while user_input = gets
   puts "line: #{user_input}"
 end
@@ -32,9 +28,7 @@ end
 
 ## Nodejs
 
-`stdin.mjs`
-
-```javascript
+```javascript {filename="stdin.mjs"}
 import * as readline from 'node:readline/promises'
 
 const rl = readline.createInterface({ input: process.stdin })
@@ -46,9 +40,7 @@ for await (const line of rl) {
 
 ## Deno
 
-`stdin.mjs`
-
-```javascript
+```javascript {filename="stdin.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const rl = readLines(Deno.stdin);
@@ -60,9 +52,7 @@ for await (const line of rl) {
 
 ## Php
 
-`stdin.php`
-
-```php
+```php {filename="stdin.php"}
 <?php
 
 while ($user_input = fgets(STDIN)) {
@@ -72,9 +62,7 @@ while ($user_input = fgets(STDIN)) {
 
 ## R
 
-`stdin.R`
-
-```r
+```r {filename="stdin.R"}
 for (line in readLines("stdin")) {
   cat("line:", line, "\n")
 }
@@ -82,9 +70,7 @@ for (line in readLines("stdin")) {
 
 ## Perl
 
-`stdin.pl`
-
-```perl
+```perl {filename="stdin.pl"}
 use strict;
 use warnings;
 
@@ -93,9 +79,7 @@ print "line: $_" while <STDIN>;
 
 ## Java
 
-`Stdin.java`
-
-```java
+```java {filename="Stdin.java"}
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -115,9 +99,7 @@ public class Stdin {
 
 ## Bash 3
 
-`stdin.sh`
-
-```bash
+```bash {filename="stdin.sh"}
 while IFS= read -r user_input|| [[ -n $user_input ]]; do
   echo "line: $user_input"
 done | tr '[:upper:]' '[:lower:]'
@@ -125,9 +107,7 @@ done | tr '[:upper:]' '[:lower:]'
 
 ## Bash 5
 
-`stdin.sh`
-
-```bash
+```bash {filename="stdin.sh"}
 while IFS= read -r user_input|| [[ -n $user_input ]]; do
   echo "line: $user_input"
 done | tr '[:upper:]' '[:lower:]'
@@ -135,9 +115,7 @@ done | tr '[:upper:]' '[:lower:]'
 
 ## Lua
 
-`stdin.lua`
-
-```lua
+```lua {filename="stdin.lua"}
 for user_input in io.lines() do
     print("line: " .. user_input)
 end
@@ -145,9 +123,7 @@ end
 
 ## C#
 
-`Stdin.cs`
-
-```csharp
+```csharp {filename="Stdin.cs"}
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -167,9 +143,7 @@ class Stdin
 
 ## Go
 
-`stdin.go`
-
-```go
+```go {filename="stdin.go"}
 package main
 
 import (
@@ -188,9 +162,7 @@ func main() {
 
 ## Swift
 
-`stdin.swift`
-
-```swift
+```swift {filename="stdin.swift"}
 import Foundation
 
 while let line = readLine() {
@@ -200,9 +172,7 @@ while let line = readLine() {
 
 ## Raku
 
-`stdin.raku`
-
-```raku
+```raku {filename="stdin.raku"}
 use v6;
 
 for lines() {
@@ -212,9 +182,7 @@ for lines() {
 
 ## Rust
 
-`stdin.rs`
-
-```rust
+```rust {filename="stdin.rs"}
 use std::io::{self, BufRead};
 
 fn main() {

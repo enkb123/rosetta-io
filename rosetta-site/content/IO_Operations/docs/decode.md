@@ -9,9 +9,7 @@ Decode a base64 string
 
 ## Python
 
-`decode.py`
-
-```python
+```python {filename="decode.py"}
 import base64
 import sys
 
@@ -24,9 +22,7 @@ print(decoded_string)
 
 ## Ruby
 
-`decode.rb`
-
-```ruby
+```ruby {filename="decode.rb"}
 require 'base64'
 
 encoded_string = ARGV[0]
@@ -38,9 +34,7 @@ puts decoded_string
 
 ## Nodejs
 
-`decode.mjs`
-
-```javascript
+```javascript {filename="decode.mjs"}
 const encodedString = process.argv[2]
 
 const decodedString = atob(encodedString)
@@ -50,9 +44,7 @@ console.log(decodedString)
 
 ## Deno
 
-`decode.mjs`
-
-```javascript
+```javascript {filename="decode.mjs"}
 const encodedString = Deno.args[0]
 
 const decodedString = atob(encodedString)
@@ -62,9 +54,7 @@ console.log(decodedString)
 
 ## Php
 
-`decode.php`
-
-```php
+```php {filename="decode.php"}
 <?php
 
 $encodedString = $argv[1];
@@ -76,9 +66,7 @@ echo $decodedString;
 
 ## R
 
-`decode.R`
-
-```r
+```r {filename="decode.R"}
 library(base64enc)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -90,9 +78,7 @@ cat(decoded_string)
 
 ## Perl
 
-`decode.pl`
-
-```perl
+```perl {filename="decode.pl"}
 use strict;
 use warnings;
 use MIME::Base64;
@@ -102,9 +88,7 @@ print decode_base64($ARGV[0]);
 
 ## Java
 
-`Decode.java`
-
-```java
+```java {filename="Decode.java"}
 import java.util.Base64;
 
 public class Decode {
@@ -125,9 +109,7 @@ public class Decode {
 
 ## Bash 3
 
-`decode.sh`
-
-```bash
+```bash {filename="decode.sh"}
 encoded_string="$1"
 
 if [ -z "$encoded_string" ]; then
@@ -140,9 +122,7 @@ base64 -d <<< "$encoded_string"
 
 ## Bash 5
 
-`decode.sh`
-
-```bash
+```bash {filename="decode.sh"}
 encoded_string="$1"
 
 if [ -z "$encoded_string" ]; then
@@ -155,18 +135,14 @@ base64 -d <<< "$encoded_string"
 
 ## Lua
 
-`decode.lua`
-
-```lua
+```lua {filename="decode.lua"}
 local base64 = require("base64")
 print(base64.decode(arg[1]))
 ```
 
 ## C#
 
-`Decode.cs`
-
-```csharp
+```csharp {filename="Decode.cs"}
 using System;
 
 class Decode{
@@ -183,9 +159,7 @@ class Decode{
 
 ## Go
 
-`decode.go`
-
-```go
+```go {filename="decode.go"}
 package main
 
 import (
@@ -203,9 +177,7 @@ func main() {
 
 ## Swift
 
-`decode.swift`
-
-```swift
+```swift {filename="decode.swift"}
 import Foundation
 
 guard CommandLine.arguments.count > 1 else {
@@ -220,9 +192,7 @@ print(String(data: data!, encoding: .utf8)!)
 
 ## Raku
 
-`decode.raku`
-
-```raku
+```raku {filename="decode.raku"}
 use v6;
 use MIME::Base64;
 
@@ -231,9 +201,7 @@ say MIME::Base64.decode-str(@*ARGS[0]);
 
 ## Rust
 
-`decode.rs`
-
-```rust
+```rust {filename="decode.rs"}
 //cargo-deps: base64="0.13"
 
 extern crate base64;

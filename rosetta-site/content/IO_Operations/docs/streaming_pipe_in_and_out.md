@@ -9,9 +9,7 @@ Read line by line from a named pipe and write to another named pipe
 
 ## Python
 
-`streaming_pipe_in_and_out.py`
-
-```python
+```python {filename="streaming_pipe_in_and_out.py"}
 input_file = 'streaming-in.pipe'
 output_file = 'streaming-out.pipe'
 
@@ -24,9 +22,7 @@ with open(input_file, 'r', encoding='utf-8') as input_pipe:
 
 ## Ruby
 
-`streaming_pipe_in_and_out.rb`
-
-```ruby
+```ruby {filename="streaming_pipe_in_and_out.rb"}
 File.open 'streaming-out.pipe', 'w' do |output|
   output.sync = true
 
@@ -40,9 +36,7 @@ end
 
 ## Nodejs
 
-`streaming_pipe_in_and_out.mjs`
-
-```javascript
+```javascript {filename="streaming_pipe_in_and_out.mjs"}
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
@@ -63,9 +57,7 @@ outputStream.end();
 
 ## Deno
 
-`streaming_pipe_in_and_out.mjs`
-
-```javascript
+```javascript {filename="streaming_pipe_in_and_out.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const output = await Deno.open('streaming-out.pipe', { write: true, create: true });
@@ -83,9 +75,7 @@ output.close();
 
 ## Php
 
-`streaming_pipe_in_and_out.php`
-
-```php
+```php {filename="streaming_pipe_in_and_out.php"}
 <?php
 
 $inputFile = 'streaming-in.pipe';
@@ -104,9 +94,7 @@ fclose($output_pipe);
 
 ## R
 
-`streaming_pipe_in_and_out.R`
-
-```r
+```r {filename="streaming_pipe_in_and_out.R"}
 input_file <- "streaming-in.pipe"
 output_file <- "streaming-out.pipe"
 
@@ -126,9 +114,7 @@ close(output)
 
 ## Perl
 
-`streaming_pipe_in_and_out.pl`
-
-```perl
+```perl {filename="streaming_pipe_in_and_out.pl"}
 use strict;
 use warnings;
 
@@ -151,9 +137,7 @@ close $output;
 
 ## Java
 
-`StreamingPipeInAndOut.java`
-
-```java
+```java {filename="StreamingPipeInAndOut.java"}
 import java.io.*;
 
 public class StreamingPipeInAndOut {
@@ -179,9 +163,7 @@ public class StreamingPipeInAndOut {
 
 ## Bash 3
 
-`streaming_pipe_in_and_out.sh`
-
-```bash
+```bash {filename="streaming_pipe_in_and_out.sh"}
 input_file="streaming-in.pipe"
 output_file="streaming-out.pipe"
 
@@ -196,9 +178,7 @@ exec 3>&-
 
 ## Bash 5
 
-`streaming_pipe_in_and_out.sh`
-
-```bash
+```bash {filename="streaming_pipe_in_and_out.sh"}
 input_file="streaming-in.pipe"
 output_file="streaming-out.pipe"
 
@@ -213,9 +193,7 @@ exec 3>&-
 
 ## Lua
 
-`streaming_pipe_in_and_out.lua`
-
-```lua
+```lua {filename="streaming_pipe_in_and_out.lua"}
 local input_file = "streaming-in.pipe"
 local output_file = "streaming-out.pipe"
 
@@ -234,9 +212,7 @@ output:close()
 
 ## C#
 
-`StreamingPipeInAndOut.cs`
-
-```csharp
+```csharp {filename="StreamingPipeInAndOut.cs"}
 using System;
 using System.IO;
 
@@ -263,9 +239,7 @@ class StreamingPipeInAndOut
 
 ## Go
 
-`streaming_pipe_in_and_out.go`
-
-```go
+```go {filename="streaming_pipe_in_and_out.go"}
 package main
 
 import (
@@ -295,9 +269,7 @@ func main() {
 
 ## Swift
 
-`streaming_pipe_in_and_out.swift`
-
-```swift
+```swift {filename="streaming_pipe_in_and_out.swift"}
 import Foundation
 
 #if os(macOS) || os(iOS)
@@ -346,9 +318,7 @@ if let lines = FileLines(path: pipe_in) {
 
 ## Raku
 
-`streaming_pipe_in_and_out.raku`
-
-```raku
+```raku {filename="streaming_pipe_in_and_out.raku"}
 use v6;
 
 my $input-file = 'streaming-in.pipe';
@@ -368,9 +338,7 @@ $input.close;
 
 ## Rust
 
-`streaming_pipe_in_and_out.rs`
-
-```rust
+```rust {filename="streaming_pipe_in_and_out.rs"}
 use std::fs::File;
 use std::io::{self, BufRead, Write};
 use std::path::Path;

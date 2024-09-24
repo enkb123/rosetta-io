@@ -9,9 +9,7 @@ Read from named pipe line by line
 
 ## Python
 
-`streaming_pipe_in.py`
-
-```python
+```python {filename="streaming_pipe_in.py"}
 import sys
 
 pipe_in = "input.pipe"
@@ -24,9 +22,7 @@ with open(pipe_in, 'r', encoding='utf-8') as input_pipe:
 
 ## Ruby
 
-`streaming_pipe_in.rb`
-
-```ruby
+```ruby {filename="streaming_pipe_in.rb"}
 STDOUT.sync = true
 
 File.open 'input.pipe', 'r' do |pipe|
@@ -38,9 +34,7 @@ end
 
 ## Nodejs
 
-`streaming_pipe_in.mjs`
-
-```javascript
+```javascript {filename="streaming_pipe_in.mjs"}
 import * as fs from 'fs';
 import * as readline from 'node:readline/promises';
 
@@ -56,9 +50,7 @@ for await (const line of rl) {
 
 ## Deno
 
-`streaming_pipe_in.mjs`
-
-```javascript
+```javascript {filename="streaming_pipe_in.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const file = await Deno.open("input.pipe", { read: true });
@@ -72,9 +64,7 @@ file.close();
 
 ## Php
 
-`streaming_pipe_in.php`
-
-```php
+```php {filename="streaming_pipe_in.php"}
 <?php
 
 $pipe_in = "input.pipe";
@@ -90,9 +80,7 @@ fclose($input_pipe);
 
 ## R
 
-`streaming_pipe_in.R`
-
-```r
+```r {filename="streaming_pipe_in.R"}
 pipe_in <- "input.pipe"
 
 input <- file(pipe_in, "r")
@@ -106,9 +94,7 @@ close(input)
 
 ## Perl
 
-`streaming_pipe_in.pl`
-
-```perl
+```perl {filename="streaming_pipe_in.pl"}
 use strict;
 use warnings;
 
@@ -127,9 +113,7 @@ close $input;
 
 ## Java
 
-`StreamingPipeIn.java`
-
-```java
+```java {filename="StreamingPipeIn.java"}
 import java.io.*;
 
 public class StreamingPipeIn {
@@ -150,9 +134,7 @@ public class StreamingPipeIn {
 
 ## Bash 3
 
-`streaming_pipe_in.sh`
-
-```bash
+```bash {filename="streaming_pipe_in.sh"}
 pipe_in="input.pipe"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
@@ -160,9 +142,7 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in"
 
 ## Bash 5
 
-`streaming_pipe_in.sh`
-
-```bash
+```bash {filename="streaming_pipe_in.sh"}
 pipe_in="input.pipe"
 
 tr '[:lower:]' '[:upper:]' < "$pipe_in"
@@ -170,9 +150,7 @@ tr '[:lower:]' '[:upper:]' < "$pipe_in"
 
 ## Lua
 
-`streaming_pipe_in.lua`
-
-```lua
+```lua {filename="streaming_pipe_in.lua"}
 local pipe_in = "input.pipe"
 
 local input_file = assert(io.open(pipe_in, "r"), "Failed to open input pipe: " .. pipe_in)
@@ -187,9 +165,7 @@ input_file:close()
 
 ## C#
 
-`StreamingPipeIn.cs`
-
-```csharp
+```csharp {filename="StreamingPipeIn.cs"}
 using System;
 using System.IO;
 
@@ -211,9 +187,7 @@ class StreamingPipeIn
 
 ## Go
 
-`streaming_pipe_in.go`
-
-```go
+```go {filename="streaming_pipe_in.go"}
 package main
 
 import (
@@ -239,9 +213,7 @@ func main() {
 
 ## Swift
 
-`streaming_pipe_in.swift`
-
-```swift
+```swift {filename="streaming_pipe_in.swift"}
 import Foundation
 
 #if os(macOS) || os(iOS)
@@ -289,9 +261,7 @@ if let lines = FileLines(path: pipe_in) {
 
 ## Raku
 
-`streaming_pipe_in.raku`
-
-```raku
+```raku {filename="streaming_pipe_in.raku"}
 use v6;
 
 my $pipe_in = "input.pipe";
@@ -308,9 +278,7 @@ $input.close;
 
 ## Rust
 
-`streaming_pipe_in.rs`
-
-```rust
+```rust {filename="streaming_pipe_in.rs"}
 use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};

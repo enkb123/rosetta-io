@@ -12,41 +12,31 @@ See https://en.wikipedia.org/wiki/Null_character
 
 ## Python
 
-`null_char.py`
-
-```python
+```python {filename="null_char.py"}
 print("Hello World \0")
 ```
 
 ## Ruby
 
-`null_char.rb`
-
-```ruby
+```ruby {filename="null_char.rb"}
 puts "Hello World \0"
 ```
 
 ## Nodejs
 
-`null_char.mjs`
-
-```javascript
+```javascript {filename="null_char.mjs"}
 console.log("Hello World \0")
 ```
 
 ## Deno
 
-`null_char.mjs`
-
-```javascript
+```javascript {filename="null_char.mjs"}
 console.log("Hello World \0")
 ```
 
 ## Php
 
-`null_char.php`
-
-```php
+```php {filename="null_char.php"}
 <?php
 
 echo "Hello World \0";
@@ -54,9 +44,7 @@ echo "Hello World \0";
 
 ## R
 
-`null_char.R`
-
-```r
+```r {filename="null_char.R"}
 temp_file <- tempfile()
 
 writeBin(c(charToRaw("Hello World "), as.raw(0), charToRaw("\n")), temp_file)
@@ -68,9 +56,7 @@ unlink(temp_file)
 
 ## Perl
 
-`null_char.pl`
-
-```perl
+```perl {filename="null_char.pl"}
 use strict;
 use warnings;
 
@@ -79,9 +65,7 @@ print "Hello World \0"
 
 ## Java
 
-`NullChar.java`
-
-```java
+```java {filename="NullChar.java"}
 public class NullChar {
   public static void main(String[] args) {
     System.out.println("Hello World \0");
@@ -91,33 +75,25 @@ public class NullChar {
 
 ## Bash 3
 
-`null_char.sh`
-
-```bash
+```bash {filename="null_char.sh"}
 printf "Hello World \0"
 ```
 
 ## Bash 5
 
-`null_char.sh`
-
-```bash
+```bash {filename="null_char.sh"}
 printf "Hello World \0"
 ```
 
 ## Lua
 
-`null_char.lua`
-
-```lua
+```lua {filename="null_char.lua"}
 print("Hello World \0")
 ```
 
 ## C#
 
-`NullChar.cs`
-
-```csharp
+```csharp {filename="NullChar.cs"}
 class NullChar {
   public static void Main(string[] args) {
     Console.WriteLine("Hello World \0");
@@ -127,9 +103,7 @@ class NullChar {
 
 ## Go
 
-`null_char.go`
-
-```go
+```go {filename="null_char.go"}
 package main
 
 import "fmt"
@@ -141,17 +115,13 @@ func main() {
 
 ## Swift
 
-`null_char.swift`
-
-```swift
+```swift {filename="null_char.swift"}
 print("Hello World \0")
 ```
 
 ## Raku
 
-`null_char.raku`
-
-```raku
+```raku {filename="null_char.raku"}
 use v6;
 
 say "Hello World \0";
@@ -159,9 +129,7 @@ say "Hello World \0";
 
 ## Rust
 
-`null_char.rs`
-
-```rust
+```rust {filename="null_char.rs"}
 fn main() {
     println!("Hello World \0");
 }

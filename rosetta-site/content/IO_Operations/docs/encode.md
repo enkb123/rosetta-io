@@ -9,9 +9,7 @@ Encode a string as base64
 
 ## Python
 
-`encode.py`
-
-```python
+```python {filename="encode.py"}
 import base64
 import sys
 
@@ -24,9 +22,7 @@ print(encoded_string)
 
 ## Ruby
 
-`encode.rb`
-
-```ruby
+```ruby {filename="encode.rb"}
 require 'base64'
 
 test_string = ARGV[0]
@@ -38,9 +34,7 @@ puts encoded_string
 
 ## Nodejs
 
-`encode.mjs`
-
-```javascript
+```javascript {filename="encode.mjs"}
 const testString = process.argv[2]
 
 const encodedString = btoa(testString)
@@ -50,9 +44,7 @@ console.log(encodedString)
 
 ## Deno
 
-`encode.mjs`
-
-```javascript
+```javascript {filename="encode.mjs"}
 const testString = Deno.args[0]
 
 const encodedString = btoa(testString)
@@ -62,9 +54,7 @@ console.log(encodedString)
 
 ## Php
 
-`encode.php`
-
-```php
+```php {filename="encode.php"}
 <?php
 
 $stringToEncode = $argv[1];
@@ -76,9 +66,7 @@ echo $encodedString;
 
 ## R
 
-`encode.R`
-
-```r
+```r {filename="encode.R"}
 library(base64enc)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -90,9 +78,7 @@ cat(encoded_string)
 
 ## Perl
 
-`encode.pl`
-
-```perl
+```perl {filename="encode.pl"}
 use strict;
 use warnings;
 use MIME::Base64;
@@ -102,9 +88,7 @@ print encode_base64($ARGV[0], '');
 
 ## Java
 
-`Encode.java`
-
-```java
+```java {filename="Encode.java"}
 import java.util.Base64;
 
 public class Encode {
@@ -124,9 +108,7 @@ public class Encode {
 
 ## Bash 3
 
-`encode.sh`
-
-```bash
+```bash {filename="encode.sh"}
 test_string="$1"
 
 if [ -z "$test_string" ]; then
@@ -139,9 +121,7 @@ echo -n "$test_string" | base64
 
 ## Bash 5
 
-`encode.sh`
-
-```bash
+```bash {filename="encode.sh"}
 test_string="$1"
 
 if [ -z "$test_string" ]; then
@@ -154,18 +134,14 @@ echo -n "$test_string" | base64
 
 ## Lua
 
-`encode.lua`
-
-```lua
+```lua {filename="encode.lua"}
 local base64 = require("base64")
 print(base64.encode(arg[1]))
 ```
 
 ## C#
 
-`Encode.cs`
-
-```csharp
+```csharp {filename="Encode.cs"}
 using System;
 
 class Encode{
@@ -179,9 +155,7 @@ class Encode{
 
 ## Go
 
-`encode.go`
-
-```go
+```go {filename="encode.go"}
 package main
 
 import (
@@ -197,9 +171,7 @@ func main() {
 
 ## Swift
 
-`encode.swift`
-
-```swift
+```swift {filename="encode.swift"}
 import Foundation
 
 guard CommandLine.arguments.count == 2 else {
@@ -213,9 +185,7 @@ print(data.base64EncodedString())
 
 ## Raku
 
-`encode.raku`
-
-```raku
+```raku {filename="encode.raku"}
 use v6;
 use MIME::Base64;
 
@@ -224,9 +194,7 @@ say MIME::Base64.encode-str(@*ARGS[0]);
 
 ## Rust
 
-`encode.rs`
-
-```rust
+```rust {filename="encode.rs"}
 //cargo-deps: base64="0.13"
 
 use std::env;

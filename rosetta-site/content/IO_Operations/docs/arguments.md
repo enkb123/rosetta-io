@@ -9,9 +9,7 @@ Read command line arguments
 
 ## Python
 
-`arguments.py`
-
-```python
+```python {filename="arguments.py"}
 import sys
 
 print("1st argument: " + sys.argv[1])
@@ -20,36 +18,28 @@ print("2nd argument: " + sys.argv[2])
 
 ## Ruby
 
-`arguments.rb`
-
-```ruby
+```ruby {filename="arguments.rb"}
 puts "1st argument: #{ARGV[0]}"
 puts "2nd argument: #{ARGV[1]}"
 ```
 
 ## Nodejs
 
-`arguments.mjs`
-
-```javascript
+```javascript {filename="arguments.mjs"}
 console.log("1st argument:", process.argv[2])
 console.log("2nd argument:", process.argv[3])
 ```
 
 ## Deno
 
-`arguments.mjs`
-
-```javascript
+```javascript {filename="arguments.mjs"}
 console.log("1st argument:", Deno.args[0])
 console.log("2nd argument:", Deno.args[1])
 ```
 
 ## Php
 
-`arguments.php`
-
-```php
+```php {filename="arguments.php"}
 <?php
 
 echo "1st argument: ", $argv[1], "\n";
@@ -58,9 +48,7 @@ echo "2nd argument: ", $argv[2], "\n";
 
 ## R
 
-`arguments.R`
-
-```r
+```r {filename="arguments.R"}
 args <- commandArgs(trailingOnly = TRUE)
 
 cat("1st argument:", args[1], "\n")
@@ -69,9 +57,7 @@ cat("2nd argument:", args[2], "\n")
 
 ## Perl
 
-`arguments.pl`
-
-```perl
+```perl {filename="arguments.pl"}
 use strict;
 use warnings;
 print "1st argument: ", $ARGV[0], "\n";
@@ -80,9 +66,7 @@ print "2nd argument: ", $ARGV[1], "\n";
 
 ## Java
 
-`Arguments.java`
-
-```java
+```java {filename="Arguments.java"}
 class Main{
     public static void main(String[] args){
         System.out.println("1st argument: " + args[0]);
@@ -93,36 +77,28 @@ class Main{
 
 ## Bash 3
 
-`arguments.sh`
-
-```bash
+```bash {filename="arguments.sh"}
 echo "1st argument: $1"
 echo "2nd argument: $2"
 ```
 
 ## Bash 5
 
-`arguments.sh`
-
-```bash
+```bash {filename="arguments.sh"}
 echo "1st argument: $1"
 echo "2nd argument: $2"
 ```
 
 ## Lua
 
-`arguments.lua`
-
-```lua
+```lua {filename="arguments.lua"}
 print("1st argument: "..arg[1])
 print("2nd argument: "..arg[2])
 ```
 
 ## C#
 
-`Arguments.cs`
-
-```csharp
+```csharp {filename="Arguments.cs"}
 class Arguments
 {
   public static void Main(string[] args)
@@ -135,9 +111,7 @@ class Arguments
 
 ## Go
 
-`arguments.go`
-
-```go
+```go {filename="arguments.go"}
 package main
 
 import (
@@ -153,9 +127,7 @@ func main() {
 
 ## Swift
 
-`arguments.swift`
-
-```swift
+```swift {filename="arguments.swift"}
 import Foundation
 
 let args = CommandLine.arguments
@@ -171,9 +143,7 @@ print("2nd argument: \(args[2])")
 
 ## Raku
 
-`arguments.raku`
-
-```raku
+```raku {filename="arguments.raku"}
 use v6;
 
 say "1st argument: " ~ @*ARGS[0];
@@ -182,9 +152,7 @@ say "2nd argument: " ~ @*ARGS[1];
 
 ## Rust
 
-`arguments.rs`
-
-```rust
+```rust {filename="arguments.rs"}
 use std::env;
 
 fn main() {

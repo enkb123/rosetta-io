@@ -9,9 +9,7 @@ Write to a text file
 
 ## Python
 
-`write_to_text_file.py`
-
-```python
+```python {filename="write_to_text_file.py"}
 import sys
 
 outfile = "output.txt"
@@ -23,17 +21,13 @@ with open(outfile, 'w') as f:
 
 ## Ruby
 
-`write_to_text_file.rb`
-
-```ruby
+```ruby {filename="write_to_text_file.rb"}
 File.write "output.txt", "Hello World!"
 ```
 
 ## Nodejs
 
-`write_to_text_file.mjs`
-
-```javascript
+```javascript {filename="write_to_text_file.mjs"}
 import fs from 'fs/promises'
 
 const [outfile, text] = ["output.txt", "Hello World!"]
@@ -43,9 +37,7 @@ await fs.writeFile(outfile, text)
 
 ## Deno
 
-`write_to_text_file.mjs`
-
-```javascript
+```javascript {filename="write_to_text_file.mjs"}
 const filename = "output.txt";
 const text = "Hello World!";
 
@@ -54,9 +46,7 @@ await Deno.writeTextFile(filename, text);
 
 ## Php
 
-`write_to_text_file.php`
-
-```php
+```php {filename="write_to_text_file.php"}
 <?php
 
 $outfile = "output.txt";
@@ -67,9 +57,7 @@ file_put_contents($outfile, $text);
 
 ## R
 
-`write_to_text_file.R`
-
-```r
+```r {filename="write_to_text_file.R"}
 args <- commandArgs(trailingOnly = TRUE)
 outfile <- "output.txt"
 text <- "Hello World!"
@@ -79,9 +67,7 @@ writeLines(text, outfile, sep="")
 
 ## Perl
 
-`write_to_text_file.pl`
-
-```perl
+```perl {filename="write_to_text_file.pl"}
 use strict;
 use warnings;
 
@@ -94,9 +80,7 @@ print $fh $text;
 
 ## Java
 
-`WriteToTextFile.java`
-
-```java
+```java {filename="WriteToTextFile.java"}
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -113,25 +97,19 @@ public class WriteToTextFile {
 
 ## Bash 3
 
-`write_to_text_file.sh`
-
-```bash
+```bash {filename="write_to_text_file.sh"}
 echo "Hello World!" > output.txt
 ```
 
 ## Bash 5
 
-`write_to_text_file.sh`
-
-```bash
+```bash {filename="write_to_text_file.sh"}
 echo "Hello World!" > output.txt
 ```
 
 ## Lua
 
-`write_to_text_file.lua`
-
-```lua
+```lua {filename="write_to_text_file.lua"}
 local filename = "output.txt"
 local text = "Hello World!"
 
@@ -145,9 +123,7 @@ end
 
 ## C#
 
-`WriteToTextFile.cs`
-
-```csharp
+```csharp {filename="WriteToTextFile.cs"}
 using System;
 using System.IO;
 
@@ -165,9 +141,7 @@ class WriteToTextFile
 
 ## Go
 
-`write_to_text_file.go`
-
-```go
+```go {filename="write_to_text_file.go"}
 package main
 
 import (
@@ -186,9 +160,7 @@ func main() {
 
 ## Swift
 
-`write_to_text_file.swift`
-
-```swift
+```swift {filename="write_to_text_file.swift"}
 import Foundation
 
 let outfile = "output.txt"
@@ -199,9 +171,7 @@ try text.write(toFile: outfile, atomically: false, encoding: .utf8)
 
 ## Raku
 
-`write_to_text_file.raku`
-
-```raku
+```raku {filename="write_to_text_file.raku"}
 use v6;
 
 my ($outfile, $text) = ("output.txt", "Hello World!");
@@ -214,9 +184,7 @@ $fh.close;
 
 ## Rust
 
-`write_to_text_file.rs`
-
-```rust
+```rust {filename="write_to_text_file.rs"}
 use std::env;
 use std::fs::write;
 

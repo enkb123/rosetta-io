@@ -9,9 +9,7 @@ Read from stdin line by line
 
 ## Python
 
-`streaming_stdin.py`
-
-```python
+```python {filename="streaming_stdin.py"}
 while True:
 try:
     user_input = input()
@@ -22,9 +20,7 @@ except EOFError:
 
 ## Ruby
 
-`streaming_stdin.rb`
-
-```ruby
+```ruby {filename="streaming_stdin.rb"}
 STDOUT.sync = true
 
 while input = gets
@@ -34,9 +30,7 @@ end
 
 ## Nodejs
 
-`streaming_stdin.mjs`
-
-```javascript
+```javascript {filename="streaming_stdin.mjs"}
 import * as readline from 'node:readline/promises'
 
 const rl = readline.createInterface({ input: process.stdin })
@@ -48,9 +42,7 @@ for await (const line of rl) {
 
 ## Deno
 
-`streaming_stdin.mjs`
-
-```javascript
+```javascript {filename="streaming_stdin.mjs"}
 import { readLines } from 'https://deno.land/std/io/mod.ts';
 
 const rl = readLines(Deno.stdin);
@@ -62,9 +54,7 @@ for await (const line of rl) {
 
 ## Php
 
-`streaming_stdin.php`
-
-```php
+```php {filename="streaming_stdin.php"}
 <?php
 
 while ($user_input = fgets(STDIN)) {
@@ -74,9 +64,7 @@ while ($user_input = fgets(STDIN)) {
 
 ## R
 
-`streaming_stdin.R`
-
-```r
+```r {filename="streaming_stdin.R"}
 while(length(line <- readLines("stdin", n = 1L)) > 0) {
   cat("received", line, "\n")
 }
@@ -84,9 +72,7 @@ while(length(line <- readLines("stdin", n = 1L)) > 0) {
 
 ## Perl
 
-`streaming_stdin.pl`
-
-```perl
+```perl {filename="streaming_stdin.pl"}
 use strict;
 use warnings;
 
@@ -96,9 +82,7 @@ print "received $_" while <STDIN>;
 
 ## Java
 
-`StreamingStdin.java`
-
-```java
+```java {filename="StreamingStdin.java"}
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -117,9 +101,7 @@ public class StreamingStdin {
 
 ## Bash 3
 
-`streaming_stdin.sh`
-
-```bash
+```bash {filename="streaming_stdin.sh"}
 while IFS= read -r user_input|| [[ -n $user_input ]]; do
   echo "received $user_input"
 done | tr '[:upper:]' '[:lower:]'
@@ -127,9 +109,7 @@ done | tr '[:upper:]' '[:lower:]'
 
 ## Bash 5
 
-`streaming_stdin.sh`
-
-```bash
+```bash {filename="streaming_stdin.sh"}
 while IFS= read -r user_input|| [[ -n $user_input ]]; do
   echo "received $user_input"
 done | tr '[:upper:]' '[:lower:]'
@@ -137,9 +117,7 @@ done | tr '[:upper:]' '[:lower:]'
 
 ## Lua
 
-`streaming_stdin.lua`
-
-```lua
+```lua {filename="streaming_stdin.lua"}
 for user_input in io.lines() do
     print("received " .. user_input)
 end
@@ -147,9 +125,7 @@ end
 
 ## C#
 
-`StreamingStdin.cs`
-
-```csharp
+```csharp {filename="StreamingStdin.cs"}
 using System;
 
 class StreamingStdin{
@@ -165,9 +141,7 @@ class StreamingStdin{
 
 ## Go
 
-`streaming_stdin.go`
-
-```go
+```go {filename="streaming_stdin.go"}
 package main
 
 import (
@@ -186,9 +160,7 @@ func main() {
 
 ## Swift
 
-`streaming_stdin.swift`
-
-```swift
+```swift {filename="streaming_stdin.swift"}
 #if os(macOS) || os(iOS)
 import Darwin
 #elseif os(Linux)
@@ -205,9 +177,7 @@ while let line = readLine() {
 
 ## Raku
 
-`streaming_stdin.raku`
-
-```raku
+```raku {filename="streaming_stdin.raku"}
 for lines() {
     say "received $_";
     $*OUT.flush;
@@ -216,9 +186,7 @@ for lines() {
 
 ## Rust
 
-`streaming_stdin.rs`
-
-```rust
+```rust {filename="streaming_stdin.rs"}
 use std::io::{self, BufRead};
 
 fn main() {

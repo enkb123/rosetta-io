@@ -9,9 +9,7 @@ Read and parse a JSON file
 
 ## Python
 
-`read_json_file.py`
-
-```python
+```python {filename="read_json_file.py"}
 import json
 
 json_file = "people.json"
@@ -25,9 +23,7 @@ for person in people:
 
 ## Ruby
 
-`read_json_file.rb`
-
-```ruby
+```ruby {filename="read_json_file.rb"}
 require 'json'
 
 people = JSON.load_file("people.json")
@@ -39,9 +35,7 @@ end
 
 ## Nodejs
 
-`read_json_file.mjs`
-
-```javascript
+```javascript {filename="read_json_file.mjs"}
 import { promises as fs } from 'fs'
 
 const filePath = './people.json'
@@ -57,9 +51,7 @@ for (const person of people) {
 
 ## Deno
 
-`read_json_file.mjs`
-
-```javascript
+```javascript {filename="read_json_file.mjs"}
 const filePath = "./people.json";
 
 const data = await Deno.readTextFile(filePath);
@@ -73,9 +65,7 @@ for (const person of people) {
 
 ## Php
 
-`read_json_file.php`
-
-```php
+```php {filename="read_json_file.php"}
 <?php
 
 $filePath = 'people.json';
@@ -91,9 +81,7 @@ foreach ($people as $person) {
 
 ## R
 
-`read_json_file.R`
-
-```r
+```r {filename="read_json_file.R"}
 library(jsonlite)
 
 filename <- "people.json"
@@ -107,9 +95,7 @@ for (person in people) {
 
 ## Perl
 
-`read_json_file.pl`
-
-```perl
+```perl {filename="read_json_file.pl"}
 use strict;
 use warnings;
 use JSON;
@@ -124,9 +110,7 @@ print "Hello, $_->{'age'} year old $_->{'first_name'}\n" for @$people;
 
 ## Java
 
-`ReadJsonFile.java`
-
-```java
+```java {filename="ReadJsonFile.java"}
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -150,9 +134,7 @@ public class ReadJsonFile {
 
 ## Bash 3
 
-`read_json_file.sh`
-
-```bash
+```bash {filename="read_json_file.sh"}
 file_path="people.json"
 
 jq -c '.[]' "$file_path" | while IFS= read -r person; do
@@ -164,9 +146,7 @@ done
 
 ## Bash 5
 
-`read_json_file.sh`
-
-```bash
+```bash {filename="read_json_file.sh"}
 file_path="people.json"
 
 jq -c '.[]' "$file_path" | while IFS= read -r person; do
@@ -178,9 +158,7 @@ done
 
 ## Lua
 
-`read_json_file.lua`
-
-```lua
+```lua {filename="read_json_file.lua"}
 local json = require("dkjson")
 
 local filePath = "people.json"
@@ -198,9 +176,7 @@ end
 
 ## C#
 
-`ReadJsonFile.cs`
-
-```csharp
+```csharp {filename="ReadJsonFile.cs"}
 using System;
 using System.IO;
 using System.Text.Json;
@@ -227,9 +203,7 @@ class ReadJsonFile
 
 ## Go
 
-`read_json_file.go`
-
-```go
+```go {filename="read_json_file.go"}
 package main
 
 import (
@@ -258,9 +232,7 @@ func main() {
 
 ## Swift
 
-`read_json_file.swift`
-
-```swift
+```swift {filename="read_json_file.swift"}
 import Foundation
 
 let jsonFile = "people.json"
@@ -279,9 +251,7 @@ for person in people {
 
 ## Raku
 
-`read_json_file.raku`
-
-```raku
+```raku {filename="read_json_file.raku"}
 use v6;
 use JSON::Fast;
 
@@ -296,9 +266,7 @@ for @$people -> $person {
 
 ## Rust
 
-`read_json_file.rs`
-
-```rust
+```rust {filename="read_json_file.rs"}
 //cargo-deps: json="0.12.4"
 
 use std::env;
