@@ -48,10 +48,10 @@ with open(index_path, "w", encoding = "utf-8") as index_page:
         """,
         languages_cards="\n".join(format_code(
             """
-            {{{{< card icon="language-{language_id}" title=\"{language_name}\" >}}}}
+            {{{{< card icon="language-{language_name}" title=\"{language_human_name}\" >}}}}
             """,
-            language_name=language.human_name,
-            language_id=language.name.lower(),
+            language_human_name=language.human_name,
+            language_name=language.name,
         ) for language in LANGUAGES
         )
     ))
