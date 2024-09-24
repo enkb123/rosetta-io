@@ -1,8 +1,6 @@
 use strict;
 use warnings;
 
-my ($outfile, $text) = ("output.txt", "Hello World!");
-
-open my $fh, '>', $outfile or die "Cannot open!";
-
-print $fh $text;
+open my $fh, '>', "output.txt";
+print $fh "Hello World!";
+close $fh;

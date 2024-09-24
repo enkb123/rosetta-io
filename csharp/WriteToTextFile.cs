@@ -5,9 +5,7 @@ class WriteToTextFile
 {
     public static void Main(string[] args)
     {
-        string outFile = "output.txt";
-        string text = "Hello World!";
 
-        File.WriteAllText(outFile, text);
+        File.WriteAllText("output.txt", "Hello World!");
     }
 }

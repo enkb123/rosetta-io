@@ -7,13 +7,13 @@ import (
 )
 
 func main() {
-	output, _ := os.OpenFile("streaming-out.pipe", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	input, _ := os.Open("streaming-in.pipe")
+	defer input.Close()
+
+	output, _ := os.OpenFile("streaming-out.pipe", os.O_WRONLY, 0)
 	defer output.Close()
 
 	output.Sync()
-
-	input, _ := os.Open("streaming-in.pipe")
-	defer input.Close()
 
 	scanner := bufio.NewScanner(input)
 

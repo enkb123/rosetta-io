@@ -1,10 +1,7 @@
 <?php
 
-$inputFile = 'streaming-in.pipe';
-$outputFile = 'streaming-out.pipe';
-
-$output_pipe = fopen($outputFile, 'w');
-$input_pipe = fopen($inputFile, 'r');
+$output_pipe = fopen('streaming-out.pipe', 'w');
+$input_pipe = fopen('streaming-in.pipe', 'r');
 
 while (($line = fgets($input_pipe)) !== false) {
     fwrite($output_pipe, "received " . $line);

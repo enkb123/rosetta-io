@@ -2,11 +2,11 @@ import java.io.*;
 
 public class StreamingPipeInAndOut {
     public static void main (String[] args) throws IOException{
-        String inputPath = "streaming-in.pipe";
-        String outputPath = "streaming-out.pipe";
+        var inputPath = "streaming-in.pipe";
+        var outputPath = "streaming-out.pipe";
 
-        BufferedReader input = new BufferedReader(new FileReader(inputPath));
-        BufferedWriter output = new BufferedWriter(new FileWriter(outputPath));
+        var input = new BufferedReader(new FileReader(inputPath));
+        var output = new BufferedWriter(new FileWriter(outputPath));
 
         String line;
         while ((line = input.readLine()) != null) {

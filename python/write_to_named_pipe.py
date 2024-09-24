@@ -1,9 +1,5 @@
-import os
+outfile = "output.pipe"
+text = "Hello World!"
 
-pipe_path = 'output.pipe'
-
-if not os.path.exists(pipe_path):
-    os.mkfifo(pipe_path)
-
-with open(pipe_path, 'w') as pipe:
-    pipe.write("Hello World!\n")
+with open(outfile, 'w', encoding='utf-8') as f:
+    f.write(text)

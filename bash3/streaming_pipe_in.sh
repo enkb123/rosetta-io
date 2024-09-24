@@ -1,3 +1,1 @@
-pipe_in="input.pipe"
-
-tr '[:lower:]' '[:upper:]' < "$pipe_in"
+tr '[:lower:]' '[:upper:]' < input.pipe

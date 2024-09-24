@@ -1,5 +1,5 @@
 import Foundation
 
 while let line = readLine() {
-    print("line: \(line)")
+  print("line: \(line)")
 }

@@ -1,8 +1,6 @@
 <?php
 
-$pipe_in = "input.pipe";
-
-$input_pipe = fopen($pipe_in, 'r');
+$input_pipe = fopen("input.pipe", 'r');
 
 while (($line = fgets($input_pipe)) !== false) {
     echo strtoupper($line);

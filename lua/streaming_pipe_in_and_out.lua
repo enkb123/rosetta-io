@@ -1,9 +1,5 @@
-local input_file = "streaming-in.pipe"
-local output_file = "streaming-out.pipe"
-
-local output = io.open(output_file, "w")
-
-local input = io.open(input_file, "r")
+local output = io.open("streaming-out.pipe", "w")
+local input = io.open("streaming-in.pipe", "r")
 
 for line in input:lines() do
     output:write("received " .. line .. "\n")

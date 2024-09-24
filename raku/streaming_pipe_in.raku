@@ -1,10 +1,8 @@
 use v6;
 
-my $pipe_in = "input.pipe";
+my $input = open "input.pipe", :r;
 
-my $input = open($pipe_in, :r);
-
-for $input.lines() {
+for $input.lines {
     say .uc;
     $*OUT.flush;
 }

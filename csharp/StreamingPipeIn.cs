@@ -5,8 +5,7 @@ class StreamingPipeIn
 {
     public static void Main(string[] args)
     {
-        string pipe_in = "input.pipe";
-        using var reader = new StreamReader(pipe_in);
+        using var reader = new StreamReader("input.pipe");
 
         string line;
         while ((line = reader.ReadLine()) != null)

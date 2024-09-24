@@ -1,14 +1,3 @@
-import fs from 'fs';
+import fs from 'fs/promises'
 
-const [pipeName, text] = ["output.pipe", "Hello World!"];
-
-const writeToPipe = (pipe, data) => {
-    return new Promise((resolve) => {
-        const writableStream = fs.createWriteStream(pipe);
-        writableStream.on('finish', resolve);
-        writableStream.write(data);
-        writableStream.end();
-    });
-};
-
-writeToPipe(pipeName, text)
+await fs.writeFile("output.pipe", "Hello World!")

@@ -38,6 +38,4 @@ if let lines = FileLines(path: pipe_in) {
   for line in lines {
     print(line.uppercased(), terminator: "")
   }
-} else {
-  print("Error reading from pipe: Could not open file at path \(pipe_in)")
 }

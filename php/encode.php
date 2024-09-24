@@ -2,6 +2,4 @@
 
 $stringToEncode = $argv[1];
 
-$encodedString = base64_encode($stringToEncode);
-
-echo $encodedString;
+echo base64_encode($stringToEncode);

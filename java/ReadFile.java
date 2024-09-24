@@ -6,7 +6,6 @@ public class ReadFile {
         var filePath = Paths.get("./my-text-file.txt");
 
         Files.lines(filePath)
-            .filter(line -> !line.isEmpty())
             .forEach(line -> System.out.println("line: " + line));
     }
 }

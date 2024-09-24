@@ -1,19 +1,10 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 
 public class WriteToNamedPipe {
-    public static void main(String[] args) throws IOException, InterruptedException{
-        String pipePath = "output.pipe";
-
-        Path path = Paths.get(pipePath);
-        if (!Files.exists(path)) {
-            new ProcessBuilder("mkfifo", pipePath).inheritIO().start().waitFor();
-        }
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(pipePath))) {
-            writer.write("Hello World!");
-        }
+    public static void main(String[] args) throws Exception {
+        var outFile = Paths.get("output.pipe");
+        var text = "Hello World!";
+        Files.write(outFile, text.getBytes(StandardCharsets.UTF_8));
     }
 }

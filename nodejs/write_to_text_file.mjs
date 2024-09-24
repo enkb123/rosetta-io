@@ -1,5 +1,3 @@
 import fs from 'fs/promises'
 
-const [outfile, text] = ["output.txt", "Hello World!"]
-
-await fs.writeFile(outfile, text)
+await fs.writeFile("output.txt", "Hello World!")

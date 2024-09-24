@@ -1,6 +1,7 @@
 //cargo-deps: base64="0.13"
 
 use std::env;
+
 extern crate base64;
 
 fn main() {

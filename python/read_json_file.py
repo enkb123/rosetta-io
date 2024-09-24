@@ -2,7 +2,7 @@ import json
 
 json_file = "people.json"
 
-with open(json_file, "r") as f:
+with open(json_file, "r", encoding='utf-8') as f:
     people = json.load(f)
 
 for person in people:

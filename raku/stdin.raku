@@ -1,5 +1,3 @@
 use v6;
 
-for lines() {
-    say "line: $_";
-}
+say "line: $_" for lines;

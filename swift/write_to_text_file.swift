@@ -1,6 +1,3 @@
 import Foundation
 
-let outfile = "output.txt"
-let text = "Hello World!"
-
-try text.write(toFile: outfile, atomically: false, encoding: .utf8)
+try "Hello World!".write(toFile: "output.txt", atomically: false, encoding: .utf8)

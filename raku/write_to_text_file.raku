@@ -1,8 +1,5 @@
 use v6;
 
-my ($outfile, $text) = ("output.txt", "Hello World!");
-
-my $fh = open $outfile, :w;
-
-$fh.print: $text;
+my $fh = open "output.txt", :w;
+$fh.print: "Hello World!";
 $fh.close;

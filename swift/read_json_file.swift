@@ -7,8 +7,8 @@ let jsonData = try Data(contentsOf: fileURL)
 let people = try JSONSerialization.jsonObject(with: jsonData) as! [[String: Any]]
 
 for person in people {
-    let age = person["age"] as! Int
-    let firstName = person["first_name"] as! String
+  let age = person["age"] as! Int
+  let firstName = person["first_name"] as! String
 
-    print("Hello, \(age) year old \(firstName)")
+  print("Hello, \(age) year old \(firstName)")
 }

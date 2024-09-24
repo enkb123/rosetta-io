@@ -1,6 +1,3 @@
 <?php
 
-$outfile = "output.txt";
-$text = "Hello World!";
-
-file_put_contents($outfile, $text);
+file_put_contents("output.txt", "Hello World!");

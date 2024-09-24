@@ -1,12 +1,10 @@
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 public class WriteToTextFile {
-    public static void main(String[] args) throws IOException{
-        String outFile = "output.txt";
-        String text = "Hello World!";
-        Files.write(Paths.get(outFile), text.getBytes(StandardCharsets.UTF_8));
+    public static void main(String[] args) throws Exception {
+        var outFile = Paths.get("output.txt");
+        var text = "Hello World!";
+        Files.write(outFile, text.getBytes(StandardCharsets.UTF_8));
     }
 }

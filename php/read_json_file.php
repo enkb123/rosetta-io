@@ -1,8 +1,6 @@
 <?php
 
-$filePath = 'people.json';
-
-$jsonData = file_get_contents($filePath);
+$jsonData = file_get_contents('people.json');
 
 $people = json_decode($jsonData);
 

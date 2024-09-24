@@ -2,13 +2,8 @@ use strict;
 use warnings;
 
 $| = 1;
+open my $input, '<', "input.pipe";
 
-my ($pipe_in) = "input.pipe";
-
-open my $input, '<', $pipe_in or die "Cannot open input pipe: $!";
-
-while (my $line = <$input>) {
-    print uc($line);
-}
+print uc($_) while <$input>;
 
 close $input;

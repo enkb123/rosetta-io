@@ -1,4 +1,1 @@
-const filename = "output.txt";
-const text = "Hello World!";
-
-await Deno.writeTextFile(filename, text);
+await Deno.writeTextFile("output.txt", "Hello World!");
