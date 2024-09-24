@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import shutil
+import json
 import os
 
 from test_helpers import collect_pytest_cases, dedent, format_code, script_name_of_test_case
@@ -14,17 +15,29 @@ os.makedirs(docs_path)
 pytest_cases_by_script_name = { script_name_of_test_case(pytest_case): pytest_case
                                 for pytest_case in collect_pytest_cases() }
 
-index_path = Path('./rosetta-site/content/IO_Operations/_index.md')
+index_path = Path('./rosetta-site/content/_index.md')
 shutil.rmtree(index_path, ignore_errors=True) #deletes the _index.md file so it can be remade
 with open(index_path, "w", encoding = "utf-8") as h:
     h.write(format_code(
         """
         +++
-        title = 'I/O Operations'
+        title = 'Rosetta I/O'
         draft = false
+        type = 'default'
         +++
 
-        ### I/O operations and serialization format examples
+        ## About
+
+        The purpose of this project is to provide working examples of how popular languages handle basic I/O and common serialization formats. The covered languages are listed below. For each example under IO operations, the language's handling of the operation is shown.
+
+        The name `rosetta-io` is an hommage to [Rosetta Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
+
+        ## Languages covered
+        ...
+
+        ## Operations
+
+        {{{{< cards >}}}}
         """
     ))
 
@@ -36,11 +49,11 @@ for script_name, pytest_case in sorted(pytest_cases_by_script_name.items()):
     with open(index_path, "a", encoding = "utf-8") as h:
         h.write(format_code(
             """
-            [ {script_name} ]({{{{< ref "{script_name}" >}}}}) : {doc_str}
-
+            {{{{< card  link="/IO_Operations/docs/{script_name}" title="{script_name}" subtitle={doc_str_json} >}}}}
             """,
             script_name=script_name,
-            doc_str=doc_str
+            doc_str=doc_str,
+            doc_str_json=json.dumps(doc_str.strip().split('\n')[0])
         ))
 
     with open(docs_path / f"{script_name}.md", "w", encoding="utf-8") as f:
@@ -83,3 +96,10 @@ for script_name, pytest_case in sorted(pytest_cases_by_script_name.items()):
                     syntax=language.syntax_highlighting,
                     code=code
                 ))
+
+with open(index_path, "a", encoding = "utf-8") as h:
+    h.write(format_code(
+        """
+        {{{{< /cards >}}}}
+        """
+    ))
