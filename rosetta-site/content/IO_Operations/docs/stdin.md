@@ -100,17 +100,17 @@ public class Stdin {
 ## Bash 3
 
 ```bash {filename="stdin.sh"}
-while IFS= read -r user_input|| [[ -n $user_input ]]; do
+while IFS= read -r user_input; do
   echo "line: $user_input"
-done | tr '[:upper:]' '[:lower:]'
+done
 ```
 
 ## Bash 5
 
 ```bash {filename="stdin.sh"}
-while IFS= read -r user_input|| [[ -n $user_input ]]; do
+while IFS= read -r user_input; do
   echo "line: $user_input"
-done | tr '[:upper:]' '[:lower:]'
+done
 ```
 
 ## Lua

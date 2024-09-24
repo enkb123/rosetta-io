@@ -234,6 +234,7 @@ def test_stdin(script: ScriptRunner):
         hi
         hello
         how are you
+        EOF
     """))
 
     assert_string_match(script.output, dedent("""
