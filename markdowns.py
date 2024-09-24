@@ -17,8 +17,9 @@ pytest_cases_by_script_name = { script_name_of_test_case(pytest_case): pytest_ca
 
 index_path = Path('./rosetta-site/content/_index.md')
 shutil.rmtree(index_path, ignore_errors=True) #deletes the _index.md file so it can be remade
-with open(index_path, "w", encoding = "utf-8") as h:
-    h.write(format_code(
+
+with open(index_path, "w", encoding = "utf-8") as index_page:
+    index_page.write(format_code(
         """
         +++
         title = 'Rosetta I/O'
@@ -28,9 +29,13 @@ with open(index_path, "w", encoding = "utf-8") as h:
 
         ## About
 
-        The purpose of this project is to provide working examples of how popular languages handle basic I/O and common serialization formats. The covered languages are listed below. For each example under IO operations, the language's handling of the operation is shown.
+        The purpose of this project is to provide working examples of how
+        popular languages handle basic I/O and common serialization formats. The
+        covered languages are listed below. For each example under IO
+        operations, the language's handling of the operation is shown.
 
-        The name `rosetta-io` is an hommage to [Rosetta Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
+        The name `rosetta-io` is an hommage to [Rosetta
+        Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
         ## Languages covered
         ...
@@ -42,61 +47,58 @@ with open(index_path, "w", encoding = "utf-8") as h:
     ))
 
 
-for script_name, pytest_case in sorted(pytest_cases_by_script_name.items()):
-    script_name = script_name_of_test_case(pytest_case)
-    doc_str = dedent(pytest_case.function.__doc__)
+    for _, pytest_case in sorted(pytest_cases_by_script_name.items()):
+        script_name = script_name_of_test_case(pytest_case)
+        doc_str = dedent(pytest_case.function.__doc__)
 
-    with open(index_path, "a", encoding = "utf-8") as h:
-        h.write(format_code(
+        index_page.write(format_code(
             """
             {{{{< card  link="/IO_Operations/docs/{script_name}" title="{script_name}" subtitle={doc_str_json} >}}}}
             """,
             script_name=script_name,
-            doc_str=doc_str,
-            doc_str_json=json.dumps(doc_str.strip().split('\n')[0])
+            doc_str_json=json.dumps(doc_str.strip().split('\n', maxsplit=1)[0])
         ))
 
-    with open(docs_path / f"{script_name}.md", "w", encoding="utf-8") as f:
-        f.write(format_code(
-            """
-            +++
-            title = ''
-            draft = false
-            +++
+        with open(docs_path / f"{script_name}.md", "w", encoding="utf-8") as operation_page:
+            operation_page.write(format_code(
+                """
+                +++
+                title = ''
+                draft = false
+                +++
 
-            # {script_name}
+                # {script_name}
 
-            {doc_str}
+                {doc_str}
 
-            """,
-            script_name=script_name,
-            doc_str=doc_str
-        ))
+                """,
+                script_name=script_name,
+                doc_str=doc_str
+            ))
 
-        for language in LANGUAGES:
-            script_path = language.script_path(script_name)
+            for language in LANGUAGES:
+                script_path = language.script_path(script_name)
 
-            # checks that this case is implemented for the specific language
-            if script_path.exists():
-                code = script_path.read_text(encoding="utf-8").strip()
+                # checks that this case is implemented for the specific language
+                if script_path.exists():
+                    code = script_path.read_text(encoding="utf-8").strip()
 
-                f.write(format_code(
-                    """
-                    ## {language_name}
+                    operation_page.write(format_code(
+                        """
+                        ## {language_name}
 
-                    ```{syntax} {{filename="{file_name}"}}
-                    {code}
-                    ```
+                        ```{syntax} {{filename="{file_name}"}}
+                        {code}
+                        ```
 
-                    """,
-                    language_name=language.human_name,
-                    file_name=script_path.name,
-                    syntax=language.syntax_highlighting,
-                    code=code
-                ))
+                        """,
+                        language_name=language.human_name,
+                        file_name=script_path.name,
+                        syntax=language.syntax_highlighting,
+                        code=code
+                    ))
 
-with open(index_path, "a", encoding = "utf-8") as h:
-    h.write(format_code(
+    index_page.write(format_code(
         """
         {{{{< /cards >}}}}
         """
