@@ -47,7 +47,7 @@ def test_case_data(pytest_case):
     )
 
 
-all_test_cases_data = [test_case_data(pytest_case) for pytest_case in collect_pytest_cases()]
+all_test_cases_data = [test_case_data(pytest_case) for pytest_case in pytest_cases_by_script_name.values()]
 
 save_data('test_cases', all_test_cases_data)
 

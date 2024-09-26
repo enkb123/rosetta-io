@@ -16,14 +16,14 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
 ## Languages covered
 {{< cards >}}
-  {{< _.inline >}}
+  {{< cl.inline >}}
     {{ range $.Site.Data.languages }}
       {{ partial "shortcodes/card" (dict
         "title"       .human_name
         "icon"        (printf "language-%s" .icon_id)
       ) }}
     {{ end}}
-  {{< /_.inline >}}
+  {{< /cl.inline >}}
 {{< /cards >}}
 
 ## Operations
@@ -31,11 +31,11 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 {{< cards >}}
   {{< _.inline >}}
     {{ range $.Site.Data.test_cases }}
-      {{ partial "shortcodes/card" (dict
+      {{- partial "shortcodes/card" (dict
         "title"       .script_name
         "link"        (printf "/IO_Operations/%s" .script_name)
         "subtitle"    .doc_str_first_line
-      ) }}
+      ) -}}
     {{ end}}
   {{< /_.inline >}}
 {{< /cards >}}
