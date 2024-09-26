@@ -28,14 +28,14 @@ def test_cases_data():
     for _, pytest_case in sorted(pytest_cases_by_script_name.items()):
         script_name = script_name_of_test_case(pytest_case)
         doc_str = dedent(pytest_case.function.__doc__)
-        doc_str_json = json.dumps(doc_str.strip().split('\n', maxsplit=1)[0])
+        doc_str_first_line = doc_str.strip().split('\n', maxsplit=1)[0]
 
         implementations = [*all_implementations_for(script_name)]
 
         yield dict(
             script_name=script_name,
             doc_str=doc_str,
-            doc_str_json=doc_str_json,
+            doc_str_first_line=doc_str_first_line,
             implementations=implementations,
         )
 

@@ -2,7 +2,7 @@
     {
         "script_name": "arguments",
         "doc_str": "Read command line arguments",
-        "doc_str_json": "\"Read command line arguments\"",
+        "doc_str_first_line": "Read command line arguments",
         "implementations": [
             {
                 "file_name": "arguments.py",
@@ -201,7 +201,7 @@
     {
         "script_name": "decode",
         "doc_str": "Decode a base64 string",
-        "doc_str_json": "\"Decode a base64 string\"",
+        "doc_str_first_line": "Decode a base64 string",
         "implementations": [
             {
                 "file_name": "decode.py",
@@ -400,7 +400,7 @@
     {
         "script_name": "encode",
         "doc_str": "Encode a string as base64",
-        "doc_str_json": "\"Encode a string as base64\"",
+        "doc_str_first_line": "Encode a string as base64",
         "implementations": [
             {
                 "file_name": "encode.py",
@@ -599,7 +599,7 @@
     {
         "script_name": "json_array",
         "doc_str": "Create and output a JSON array of strings",
-        "doc_str_json": "\"Create and output a JSON array of strings\"",
+        "doc_str_first_line": "Create and output a JSON array of strings",
         "implementations": [
             {
                 "file_name": "json_array.py",
@@ -798,7 +798,7 @@
     {
         "script_name": "json_control_chars",
         "doc_str": "Test that control characters and emojis are output in valid JSON.",
-        "doc_str_json": "\"Test that control characters and emojis are output in valid JSON.\"",
+        "doc_str_first_line": "Test that control characters and emojis are output in valid JSON.",
         "implementations": [
             {
                 "file_name": "json_control_chars.py",
@@ -997,7 +997,7 @@
     {
         "script_name": "json_numbers",
         "doc_str": "Create and output a JSON array of numbers",
-        "doc_str_json": "\"Create and output a JSON array of numbers\"",
+        "doc_str_first_line": "Create and output a JSON array of numbers",
         "implementations": [
             {
                 "file_name": "json_numbers.py",
@@ -1196,7 +1196,7 @@
     {
         "script_name": "json_object_array",
         "doc_str": "Create and output a JSON array of objects",
-        "doc_str_json": "\"Create and output a JSON array of objects\"",
+        "doc_str_first_line": "Create and output a JSON array of objects",
         "implementations": [
             {
                 "file_name": "json_object_array.py",
@@ -1395,7 +1395,7 @@
     {
         "script_name": "json_object_with_array_values",
         "doc_str": "Create and output a JSON object with arrays of strings as values",
-        "doc_str_json": "\"Create and output a JSON object with arrays of strings as values\"",
+        "doc_str_first_line": "Create and output a JSON object with arrays of strings as values",
         "implementations": [
             {
                 "file_name": "json_object_with_array_values.py",
@@ -1594,7 +1594,7 @@
     {
         "script_name": "json_outputting_data",
         "doc_str": "Create and output JSON",
-        "doc_str_json": "\"Create and output JSON\"",
+        "doc_str_first_line": "Create and output JSON",
         "implementations": [
             {
                 "file_name": "json_outputting_data.py",
@@ -1793,7 +1793,7 @@
     {
         "script_name": "json_stdout_object",
         "doc_str": "Create and output a JSON object",
-        "doc_str_json": "\"Create and output a JSON object\"",
+        "doc_str_first_line": "Create and output a JSON object",
         "implementations": [
             {
                 "file_name": "json_stdout_object.py",
@@ -1992,7 +1992,7 @@
     {
         "script_name": "null_char",
         "doc_str": "Output a null character\n\nSee https://en.wikipedia.org/wiki/Null_character\n",
-        "doc_str_json": "\"Output a null character\"",
+        "doc_str_first_line": "Output a null character",
         "implementations": [
             {
                 "file_name": "null_char.py",
@@ -2191,7 +2191,7 @@
     {
         "script_name": "read_file",
         "doc_str": "Read a file line by line",
-        "doc_str_json": "\"Read a file line by line\"",
+        "doc_str_first_line": "Read a file line by line",
         "implementations": [
             {
                 "file_name": "read_file.py",
@@ -2390,7 +2390,7 @@
     {
         "script_name": "read_json_file",
         "doc_str": "Read and parse a JSON file",
-        "doc_str_json": "\"Read and parse a JSON file\"",
+        "doc_str_first_line": "Read and parse a JSON file",
         "implementations": [
             {
                 "file_name": "read_json_file.py",
@@ -2589,7 +2589,7 @@
     {
         "script_name": "stdin",
         "doc_str": "Read from stdin line by line",
-        "doc_str_json": "\"Read from stdin line by line\"",
+        "doc_str_first_line": "Read from stdin line by line",
         "implementations": [
             {
                 "file_name": "stdin.py",
@@ -2788,7 +2788,7 @@
     {
         "script_name": "streaming_pipe_in",
         "doc_str": "Read from named pipe line by line",
-        "doc_str_json": "\"Read from named pipe line by line\"",
+        "doc_str_first_line": "Read from named pipe line by line",
         "implementations": [
             {
                 "file_name": "streaming_pipe_in.py",
@@ -2987,7 +2987,7 @@
     {
         "script_name": "streaming_pipe_in_and_out",
         "doc_str": "Read line by line from a named pipe and write to another named pipe",
-        "doc_str_json": "\"Read line by line from a named pipe and write to another named pipe\"",
+        "doc_str_first_line": "Read line by line from a named pipe and write to another named pipe",
         "implementations": [
             {
                 "file_name": "streaming_pipe_in_and_out.py",
@@ -3186,7 +3186,7 @@
     {
         "script_name": "streaming_stdin",
         "doc_str": "Read from stdin line by line",
-        "doc_str_json": "\"Read from stdin line by line\"",
+        "doc_str_first_line": "Read from stdin line by line",
         "implementations": [
             {
                 "file_name": "streaming_stdin.py",
@@ -3385,7 +3385,7 @@
     {
         "script_name": "write_to_named_pipe",
         "doc_str": "Write text to a named pipe",
-        "doc_str_json": "\"Write text to a named pipe\"",
+        "doc_str_first_line": "Write text to a named pipe",
         "implementations": [
             {
                 "file_name": "write_to_named_pipe.py",
@@ -3584,7 +3584,7 @@
     {
         "script_name": "write_to_text_file",
         "doc_str": "Write to a text file",
-        "doc_str_json": "\"Write to a text file\"",
+        "doc_str_first_line": "Write to a text file",
         "implementations": [
             {
                 "file_name": "write_to_text_file.py",
