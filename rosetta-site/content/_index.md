@@ -16,14 +16,14 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
 ## Languages covered
 {{< cards >}}
-  {{< cl.inline >}}
+  {{< _.inline >}}
     {{ range $.Site.Data.languages }}
       {{ partial "shortcodes/card" (dict
         "title"       .human_name
         "icon"        (printf "language-%s" .icon_id)
       ) }}
     {{ end}}
-  {{< /cl.inline >}}
+  {{< /_.inline >}}
 {{< /cards >}}
 
 ## Operations
