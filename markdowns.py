@@ -38,12 +38,22 @@ with open(index_path, "w", encoding = "utf-8") as index_page:
         Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
         ## Languages covered
-        ...
+        {{{{< cards >}}}}
+        {languages_cards}
+        {{{{< /cards >}}}}
 
         ## Operations
 
         {{{{< cards >}}}}
-        """
+        """,
+        languages_cards="\n".join(format_code(
+            """
+            {{{{< card icon="language-{language_icon_id}" title=\"{language_human_name}\" >}}}}
+            """,
+            language_human_name=language.human_name,
+            language_icon_id=language.icon_id,
+        ) for language in LANGUAGES
+        )
     ))
 
 

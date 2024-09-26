@@ -38,6 +38,7 @@ class Ruby(Language):
     script_ext = '.rb'
     syntax_highlighting = 'ruby'
 
+
 class Nodejs(Language):
     name = 'nodejs'
     human_name = 'Nodejs'
@@ -52,6 +53,7 @@ class Deno(Nodejs):
     interpreter = 'deno run --allow-read --allow-write'
     script_ext = '.mjs'
     syntax_highlighting = 'javascript'
+    icon_id = 'denojs'
 
 
 class Perl(Language):
@@ -95,11 +97,13 @@ class Bash3(Language):
     interpreter = 'bash'
     script_ext = '.sh'
     syntax_highlighting = 'bash'
+    icon_id = 'bash'
 
 
 class Bash5(Bash3):
     name = 'bash5'
     human_name = 'Bash 5'
+    icon_id = 'bash'
 
 
 class Lua(Language):
@@ -137,6 +141,7 @@ class Golang(Language):
     interpreter = 'go run'
     script_ext = '.go'
     syntax_highlighting = 'go'
+    icon_id = 'go'
 
 
 class Swift(Language):
@@ -153,6 +158,7 @@ class Raku(Language):
     interpreter = 'raku'
     script_ext = '.raku'
     syntax_highlighting = 'raku'
+
 
 class Rust(Language):
     name = 'rust'
