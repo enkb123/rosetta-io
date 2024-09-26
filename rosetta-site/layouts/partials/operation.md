@@ -1,3 +1,5 @@
+{{ .doc_str }}
+
 {{ range .implementations }}
   ## {{ .language.human_name }}
 
