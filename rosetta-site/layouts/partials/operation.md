@@ -1,10 +1,10 @@
 {{ .doc_str }}
 
 {{ range .implementations }}
-  ## {{ .language.human_name }}
+## {{ .language.human_name }}
 
-  ```{{ .language.syntax_highlighting }} {filename="{{.file_name}}"}
-  {{ .code }}
-  ```
+```{{ .language.syntax_highlighting }} {filename="{{.file_name}}"}
+{{ .code }}
+```
 
 {{ end }}
