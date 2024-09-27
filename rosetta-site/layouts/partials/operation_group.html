@@ -1,0 +1,9 @@
+<div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 2;">
+  {{ range .test_cases }}
+    {{- partial "our_card" (dict
+      "title"       .script_name
+      "link"        (printf "/operations/%s/%s" .group_slug .script_name)
+      "subtitle"    .doc_str_first_line
+    ) -}}
+  {{ end}}
+</div>

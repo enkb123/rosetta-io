@@ -19,7 +19,7 @@ from test_helpers import (
     camel_case,
     markers,
     once_per_test_suite_run, # noqa: F401
-    script_name_of_test_case,
+    script_test_case_mark,
 )
 
 
@@ -212,7 +212,7 @@ def docker_builder(once_per_test_suite_run: EarlyBirdLocker) -> DockerBuilder:  
 def script(request: pytest.FixtureRequest, docker_builder: DockerBuilder, language: Language, is_local: bool):
     """Fixture that provides a ScriptRunner instance"""
 
-    script_name = script_name_of_test_case(request.node)
+    script_name = script_test_case_mark(request.node)["script_name"]
 
     if is_local:
         runner = LocalRunner(script_name, language)
@@ -224,6 +224,7 @@ def script(request: pytest.FixtureRequest, docker_builder: DockerBuilder, langua
     runner.cleanup()
 
 
+@pytest.mark.script(group="Misc")
 def test_null_char(script: ScriptRunner):
     """Output a null character
 
@@ -233,6 +234,7 @@ def test_null_char(script: ScriptRunner):
     assert_string_match(script.output, "Hello World \x00")
 
 
+@pytest.mark.script(group="Standard I/O")
 def test_stdin(script: ScriptRunner):
     """Read from stdin line by line"""
 
@@ -250,6 +252,7 @@ def test_stdin(script: ScriptRunner):
     """))
 
 
+@pytest.mark.script(group="File I/O")
 def test_read_file(script: ScriptRunner):
     """Read a file line by line"""
 
@@ -268,7 +271,7 @@ def test_read_file(script: ScriptRunner):
     """))
 
 
-
+@pytest.mark.script(group="Misc")
 def test_arguments(script: ScriptRunner):
     """Read command line arguments"""
     script.run('"Argument Number 1" "Command line arg 2"')
@@ -278,6 +281,7 @@ def test_arguments(script: ScriptRunner):
     """))
 
 
+@pytest.mark.script(group="JSON")
 def test_read_json_file(script: ScriptRunner):
     """Read and parse a JSON file"""
 
@@ -298,6 +302,7 @@ def test_read_json_file(script: ScriptRunner):
     """))
 
 
+@pytest.mark.script(group="File I/O")
 def test_write_to_text_file(script: ScriptRunner):
     """Write to a text file"""
     script.files["output.txt"] = "THIS SHOULD BE OVERWRITTEN"
@@ -307,6 +312,7 @@ def test_write_to_text_file(script: ScriptRunner):
     assert_string_match(script.output, "Hello World!")
 
 
+@pytest.mark.script(group="JSON")
 def test_json_outputting_data(script: ScriptRunner):
     """Create and output JSON"""
 
@@ -344,7 +350,7 @@ def test_json_outputting_data(script: ScriptRunner):
         }
     ]
 
-
+@pytest.mark.script(group="JSON")
 def test_json_array(script: ScriptRunner):
     """Create and output a JSON array of strings"""
 
@@ -352,6 +358,7 @@ def test_json_array(script: ScriptRunner):
     assert json.loads(script.output) == ["a", "b", "c", "d"]
 
 
+@pytest.mark.script(group="JSON")
 def test_json_numbers(script: ScriptRunner):
     """Create and output a JSON array of numbers"""
 
@@ -360,6 +367,7 @@ def test_json_numbers(script: ScriptRunner):
     assert json.loads(script.output) == [1, 2, 3, 4]
 
 
+@pytest.mark.script(group="JSON")
 def test_json_stdout_object(script: ScriptRunner):
     """Create and output a JSON object"""
 
@@ -369,6 +377,7 @@ def test_json_stdout_object(script: ScriptRunner):
     assert json.loads(script.output) == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
 
 
+@pytest.mark.script(group="JSON")
 def test_json_object_with_array_values(script: ScriptRunner):
     """Create and output a JSON object with arrays of strings as values"""
 
@@ -382,6 +391,7 @@ def test_json_object_with_array_values(script: ScriptRunner):
     }
 
 
+@pytest.mark.script(group="JSON")
 def test_json_object_array(script: ScriptRunner):
     """Create and output a JSON array of objects"""
 
@@ -391,6 +401,7 @@ def test_json_object_array(script: ScriptRunner):
     assert json.loads(script.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
 
 
+@pytest.mark.script(group="JSON")
 def test_json_control_chars(script: ScriptRunner):
     """Test that control characters and emojis are output in valid JSON."""
 
@@ -403,7 +414,7 @@ def test_json_control_chars(script: ScriptRunner):
     assert json.loads(script.output) == "hello \n \u0001 world 🥸"
 
 
-@pytest.mark.script(script_name="decode")
+@pytest.mark.script(script_name="decode", group="Base64")
 def test_base64_decode(script: ScriptRunner):
     """Decode a base64 string"""
 
@@ -412,7 +423,7 @@ def test_base64_decode(script: ScriptRunner):
     assert_string_match(script.output, "Hello, world!")
 
 
-@pytest.mark.script(script_name="encode")
+@pytest.mark.script(script_name="encode", group="Base64")
 def test_base64_encode(script: ScriptRunner):
     """Encode a string as base64"""
 
@@ -421,6 +432,7 @@ def test_base64_encode(script: ScriptRunner):
     assert_string_match(script.output, "SGVsbG8sIHdvcmxkIQ==")
 
 
+@pytest.mark.script(group="Standard I/O")
 def test_streaming_stdin(script: ScriptRunner):
     """Read from stdin line by line"""
 
@@ -434,7 +446,7 @@ def test_streaming_stdin(script: ScriptRunner):
         assert_string_match(script.stdout.readline(), f"received line #{i}")
 
 
-@pytest.mark.script(script_name="streaming_pipe_in")
+@pytest.mark.script(script_name="streaming_pipe_in", group="Pipe I/O")
 def test_streaming_from_pipe_in(script: ScriptRunner):
     """Read from named pipe line by line"""
 
@@ -455,6 +467,7 @@ def test_streaming_from_pipe_in(script: ScriptRunner):
         assert_string_match(script.stdout.readline(), f"LINE #{i}")
 
 
+@pytest.mark.script(group="Pipe I/O")
 def test_write_to_named_pipe(script: ScriptRunner):
     """Write text to a named pipe"""
 
@@ -470,6 +483,7 @@ def test_write_to_named_pipe(script: ScriptRunner):
     assert_string_match(script.stdout.readline(), "Hello World!")
 
 
+@pytest.mark.script(group="Pipe I/O")
 def test_streaming_pipe_in_and_out(script: ScriptRunner):
     """Read line by line from a named pipe and write to another named pipe"""
 
