@@ -1,0 +1,3 @@
+div.hextra-cards {
+  grid-template-columns: repeat(auto-fill, minmax(calc((100% - 1rem * var(--hextra-cards-grid-cols)) / var(--hextra-cards-grid-cols)), 1fr));
+}

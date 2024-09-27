@@ -15,7 +15,7 @@ The name `rosetta-io` is an hommage to [Rosetta
 Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
 ## Languages covered
-{{< cards >}}
+{{< cards cols="3">}}
   {{< _.inline >}}
     {{ range $.Site.Data.languages }}
       {{ partial "shortcodes/card" (dict
