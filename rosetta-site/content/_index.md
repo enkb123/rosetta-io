@@ -33,7 +33,7 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
     {{ range $.Site.Data.test_cases }}
       {{- partial "shortcodes/card" (dict
         "title"       .script_name
-        "link"        (printf "/IO_Operations/%s" .script_name)
+        "link"        (printf "/%s" .script_name)
         "subtitle"    .doc_str_first_line
       ) -}}
     {{ end}}
