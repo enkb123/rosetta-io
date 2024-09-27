@@ -1,0 +1,26 @@
+{{range $.Site.Data.test_cases }}
+  {{ $.AddPage (dict
+      "kind" "section"
+      "path" .group_slug
+      "title" .group_name
+      "type" "docs"
+      "content" (dict
+        "value" (partial "operation_group.html" .)
+      )
+    )
+  }}
+
+  {{ $group_slug := .group_slug }}
+  {{ range .test_cases }}
+    {{ $.AddPage (dict
+        "kind" "page"
+        "path" (printf "%s/%s" $group_slug .script_name)
+        "title" .script_name
+        "type" "docs"
+        "content" (dict
+          "value" (partial "operation.md" .)
+        )
+      )
+    }}
+  {{ end}}
+{{ end}}

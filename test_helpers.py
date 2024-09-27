@@ -453,19 +453,18 @@ class DockerBuilder:
                 raise RuntimeError(f"Unexpected result from early bird lock: {result}")
 
 
-def script_name_of_test_case(node: pytest.Function):
-    """Extracts the script name from the given pytest node.
-
-    If the node has a marker specifying the script name, that is use, otherwise it's the function's name is used to determine the script name.
-    Otherwise, the node's originalname is returned.
-    """
-    if (script_marker := markers(node).get("script")):
-        if (script_name := script_marker.kwargs.get("script_name")):
-            return script_name
-
-    return re.sub(r"^test_", "", node.originalname)
-
-
 def markers(node: pytest.Function):
     """Returns a dict of markers for the given pytest node"""
     return { m.name: m for m in node.iter_markers() }
+
+
+def script_test_case_mark(node: pytest.Function):
+    marker = markers(node).get("script")
+    mark = (marker and marker.kwargs) or {}
+
+    default_mark ={
+        "script_name": re.sub(r"^test_", "", node.originalname),
+        "group": None,
+    }
+
+    return default_mark | mark

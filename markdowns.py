@@ -1,9 +1,17 @@
 # Creates markdown files for each test an lists the languages
 
 import json
+import re
+from collections import defaultdict
 
-from test_helpers import collect_pytest_cases, dedent, script_name_of_test_case
+from test_helpers import collect_pytest_cases, dedent, script_test_case_mark
 from test_suite import LANGUAGES
+
+def slugify(text: str) -> str:
+    text = text.lower()
+    text = text.replace(' ', '-')
+    text = re.sub(r'[^a-z0-9-]', '', text)
+    return text
 
 
 def save_data(name: str, data: dict):
@@ -18,18 +26,19 @@ def load_data(name: str):
 save_data('languages', [language.as_json() for language in LANGUAGES])
 
 
-pytest_cases_by_script_name = { script_name_of_test_case(pytest_case): pytest_case
+pytest_cases_by_script_name = { script_test_case_mark(pytest_case)['script_name']: pytest_case
                                 for pytest_case in collect_pytest_cases() }
 
 
 def test_case_data(pytest_case):
-    script_name = script_name_of_test_case(pytest_case)
+    mark = script_test_case_mark(pytest_case)
+
     doc_str = dedent(pytest_case.function.__doc__)
     doc_str_first_line = doc_str.strip().split('\n', maxsplit=1)[0]
 
     implementations = []
     for language in LANGUAGES:
-        script_path = language.script_path(script_name)
+        script_path = language.script_path(mark['script_name'])
 
         # checks that this case is implemented for the specific language
         if script_path.exists():
@@ -39,8 +48,7 @@ def test_case_data(pytest_case):
                 language=language.as_json(),
             ))
 
-    return dict(
-        script_name=script_name,
+    return mark | dict(
         doc_str=doc_str,
         doc_str_first_line=doc_str_first_line,
         implementations=implementations,
@@ -49,9 +57,20 @@ def test_case_data(pytest_case):
 
 all_test_cases_data = [test_case_data(pytest_case) for pytest_case in pytest_cases_by_script_name.values()]
 
-save_data('test_cases', all_test_cases_data)
+test_cases_by_group = defaultdict(list)
 
+for test_case in all_test_cases_data:
+    test_cases_by_group[test_case['group']].append(test_case)
 
+groups = []
+for group_name, test_cases in test_cases_by_group.items():
+    groups.append({
+        'group_name': group_name,
+        'group_slug': slugify(group_name),
+        'test_cases': test_cases,
+    })
+
+save_data('test_cases', groups)
 
 
 def default_icon(icon_id: str):

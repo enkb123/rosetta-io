@@ -4,4 +4,6 @@ set -e
 
 cd rosetta-site
 
+rm -rf public
+
 hugo server --buildDrafts --disableFastRender --verbose
