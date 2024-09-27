@@ -160,6 +160,17 @@ class Language(ABC):
         """
         return self.directory / self.script_file_name(script_name)
 
+    def as_json(self):
+        """Returns a JSON-serializable representation of the language"""
+        return dict(
+            name=self.name,
+            human_name=self.human_name,
+            script_ext=self.script_ext,
+            syntax_highlighting=self.syntax_highlighting,
+            icon_id=self.icon_id,
+            directory=str(self.directory),
+        )
+
 
 @dataclass
 class SetupPair:
