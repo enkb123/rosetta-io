@@ -14,7 +14,7 @@ class JsonOutputtingData
             ["float"] = 3.14,
             ["null"] = (object)null,
             ["empty string"] = "",
-            ["a string with non-ascii characters"] = "hello \n \0 \u0001 world 🥸"
+            ["a string with non-ascii characters"] = "hello \n \u0001 world 🥸"
         };
 
         var secondJsonObject = new Dictionary<string, object> {

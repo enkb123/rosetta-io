@@ -13,7 +13,7 @@ fn main() {
         "float" => 3.14,
         "null" => JsonValue::Null,
         "empty string" => "",
-        "a string with non-ascii characters" => "hello \n \0 \u{0001} world 🥸"
+        "a string with non-ascii characters" => "hello \n \u{0001} world 🥸"
     };
 
     let second_json_object = object! {

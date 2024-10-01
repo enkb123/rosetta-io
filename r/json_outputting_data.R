@@ -8,9 +8,7 @@ first_json_object <- list(
   float = 3.14,
   null = NA,
   "empty string" = "",
-  # b/c R can't handle the null character in strings, we use @NULL@ to represent
-  # it then replace it with the actual JSON-encoded null character later
-  "a string with non-ascii characters" = "hello \n @NULL@ \u0001 world 🥸"
+  "a string with non-ascii characters" = "hello \n \u0001 world 🥸"
 )
 
 second_json_object <- list(
@@ -38,10 +36,9 @@ third_json_object <- list(
   )
 )
 
-first_json_string <- gsub("@NULL@", "\\\\u0000", toJSON(first_json_object, auto_unbox = TRUE, pretty = FALSE))
-second_json_string <- toJSON(second_json_object, auto_unbox = TRUE, pretty = FALSE)
-third_json_string <- toJSON(third_json_object, auto_unbox = TRUE, pretty = FALSE)
-
-cat(first_json_string, "\n")
-cat(second_json_string, "\n")
-cat(third_json_string, "\n")
+cat(
+  toJSON(first_json_object,  auto_unbox = TRUE, pretty = FALSE),
+  toJSON(second_json_object, auto_unbox = TRUE, pretty = FALSE),
+  toJSON(third_json_object,  auto_unbox = TRUE, pretty = FALSE),
+  sep="\n"
+)

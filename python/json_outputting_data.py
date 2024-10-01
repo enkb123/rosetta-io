@@ -8,7 +8,7 @@ first_json_object = {
     "float": 3.14,
     "null": None,
     "empty string": "",
-    "a string with non-ascii characters": "hello \n \0 \x01 world 🥸"
+    "a string with non-ascii characters": "hello \n \x01 world 🥸"
 }
 
 second_json_object = {
