@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	str := "Hello World \x00"
-	jsonData, _ := json.Marshal(str)
+	jsonData, _ := json.Marshal("Hello World \x00")
 	fmt.Println(string(jsonData))
 }
