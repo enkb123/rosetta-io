@@ -17,7 +17,7 @@
     },
     {
         "name": "nodejs",
-        "human_name": "Nodejs",
+        "human_name": "Javascript (Nodejs)",
         "script_ext": ".mjs",
         "syntax_highlighting": "javascript",
         "icon_id": "nodejs",
@@ -25,7 +25,7 @@
     },
     {
         "name": "deno",
-        "human_name": "Deno",
+        "human_name": "Javascript (Deno)",
         "script_ext": ".mjs",
         "syntax_highlighting": "javascript",
         "icon_id": "denojs",

@@ -38,7 +38,7 @@
                         "code": "console.log(\"Hello World \\0\")",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -50,7 +50,7 @@
                         "code": "console.log(\"Hello World \\0\")",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -226,7 +226,7 @@
                         "code": "console.log(\"1st argument:\", process.argv[2])\nconsole.log(\"2nd argument:\", process.argv[3])",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -238,7 +238,7 @@
                         "code": "console.log(\"1st argument:\", Deno.args[0])\nconsole.log(\"2nd argument:\", Deno.args[1])",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -420,7 +420,7 @@
                         "code": "import * as readline from 'node:readline/promises'\n\nconst rl = readline.createInterface({ input: process.stdin })\n\nfor await (const line of rl) {\n  console.log(\"line:\", line)\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -432,7 +432,7 @@
                         "code": "import { readLines } from 'https://deno.land/std/io/mod.ts';\n\nconst rl = readLines(Deno.stdin);\n\nfor await (const line of rl) {\n  console.log(\"line:\", line);\n}",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -608,7 +608,7 @@
                         "code": "import * as readline from 'node:readline/promises'\n\nconst rl = readline.createInterface({ input: process.stdin })\n\nfor await (const line of rl) {\n  console.log(\"received\", line)\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -620,7 +620,7 @@
                         "code": "import { readLines } from 'https://deno.land/std/io/mod.ts';\n\nconst rl = readLines(Deno.stdin);\n\nfor await (const line of rl) {\n  console.log(\"received\", line);\n}",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -802,7 +802,7 @@
                         "code": "import { promises as fs } from 'fs'\n\nconst filePath = './my-text-file.txt'\n\nconst fileContent = await fs.readFile(filePath, 'utf8')\n\nfor (const line of fileContent.split(\"\\n\")) {\n  if (line !== \"\") {\n    console.log('line:', line)\n  }\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -814,7 +814,7 @@
                         "code": "const filePath = \"./my-text-file.txt\";\nconst fileContent = await Deno.readTextFile(filePath);\n\nfor (const line of fileContent.split(\"\\n\")) {\n  if (line !== \"\") {\n    console.log('line:', line);\n  }\n}",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -990,7 +990,7 @@
                         "code": "import fs from 'fs/promises'\n\nawait fs.writeFile(\"output.txt\", \"Hello World!\")",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1002,7 +1002,7 @@
                         "code": "await Deno.writeTextFile(\"output.txt\", \"Hello World!\");",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -1184,7 +1184,7 @@
                         "code": "import { promises as fs } from 'fs'\n\nconst filePath = './people.json'\n\nconst data = await fs.readFile(filePath, 'utf8')\n\nconst people = JSON.parse(data)\n\nfor (const person of people) {\n    console.log(`Hello, ${person.age} year old ${person.first_name}`)\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1196,7 +1196,7 @@
                         "code": "const filePath = \"./people.json\";\n\nconst data = await Deno.readTextFile(filePath);\n\nconst people = JSON.parse(data);\n\nfor (const person of people) {\n    console.log(`Hello, ${person.age} year old ${person.first_name}`);\n}",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -1372,7 +1372,7 @@
                         "code": "const json1 = JSON.stringify({\n    \"true\": true,\n    \"false\": false,\n    \"zero\": 0,\n    \"int\": 42,\n    \"float\": 3.14,\n    \"null\": null,\n    \"empty string\": \"\",\n    \"a string with non-ascii characters\": \"hello \\n \\0 \\u0001 world 🥸\"\n}, null);\n\nconst json2 = JSON.stringify({\n    \"array of strings\": [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\": [13, 42, 9000, -7],\n    \"array of nothing\": [],\n    \"array of mixed\": [13, \"def\", null, false, [\"a\"], { \"o\": 1 }],\n    \"array of objects\": [\n        { \"name\": \"Bob Barker\", \"age\": 84 },\n        { \"address1\": \"123 Main St\", \"address2\": \"Apt 1\" }\n    ],\n    \"array of arrays\": [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"]\n    ]\n}, null);\n\nconst json3 = JSON.stringify({\n    \"objects\": { \"nested\": { \"objects\": { \"are\": \"supported\" } } }\n}, null);\n\nconsole.log(json1);\nconsole.log(json2);\nconsole.log(json3);",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1384,7 +1384,7 @@
                         "code": "const json1 = JSON.stringify({\n    \"true\": true,\n    \"false\": false,\n    \"zero\": 0,\n    \"int\": 42,\n    \"float\": 3.14,\n    \"null\": null,\n    \"empty string\": \"\",\n    \"a string with non-ascii characters\": \"hello \\n \\0 \\u0001 world 🥸\"\n}, null);\n\nconst json2 = JSON.stringify({\n    \"array of strings\": [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\": [13, 42, 9000, -7],\n    \"array of nothing\": [],\n    \"array of mixed\": [13, \"def\", null, false, [\"a\"], { \"o\": 1 }],\n    \"array of objects\": [\n        { \"name\": \"Bob Barker\", \"age\": 84 },\n        { \"address1\": \"123 Main St\", \"address2\": \"Apt 1\" }\n    ],\n    \"array of arrays\": [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"]\n    ]\n}, null);\n\nconst json3 = JSON.stringify({\n    \"objects\": { \"nested\": { \"objects\": { \"are\": \"supported\" } } }\n}, null);\n\nconsole.log(json1);\nconsole.log(json2);\nconsole.log(json3);",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -1560,7 +1560,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconsole.log(JSON.stringify(myStrings))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1572,7 +1572,7 @@
                         "code": "const myStrings = Deno.args\n\nconsole.log(JSON.stringify(myStrings))",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -1748,7 +1748,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconst stringLengths = myStrings.map((string) => string.length)\n\nconst jsonString = JSON.stringify(stringLengths)\n\nconsole.log(jsonString)",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1760,7 +1760,7 @@
                         "code": "const myStrings = Deno.args\n\nconst stringLengths = myStrings.map((string) => string.length)\n\nconst jsonString = JSON.stringify(stringLengths)\n\nconsole.log(jsonString)",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -1936,7 +1936,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconst stringLengthDict = {}\n\nfor (const string of myStrings) {\n  stringLengthDict[string] = string.length\n}\n\nconsole.log(JSON.stringify(stringLengthDict))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1948,7 +1948,7 @@
                         "code": "const myStrings = Deno.args\n\nconst stringLengthDict = {}\n\nfor (const string of myStrings) {\n  stringLengthDict[string] = string.length\n}\n\nconsole.log(JSON.stringify(stringLengthDict))",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -2124,7 +2124,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconst stringLettersDict = {}\n\nfor (const string of myStrings) {\n    const uppercaseLetters = [...string].map((s) => s.toUpperCase())\n    stringLettersDict[string] = uppercaseLetters\n}\n\nconsole.log(JSON.stringify(stringLettersDict))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2136,7 +2136,7 @@
                         "code": "const myStrings = Deno.args\n\nconst stringLettersDict = {}\n\nfor (const string of myStrings) {\n    const uppercaseLetters = [...string].map((s) => s.toUpperCase())\n    stringLettersDict[string] = uppercaseLetters\n}\n\nconsole.log(JSON.stringify(stringLettersDict))",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -2312,7 +2312,7 @@
                         "code": "const args = process.argv.slice(2)\n\nconst myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))\n\nconsole.log(JSON.stringify(myArray))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2324,7 +2324,7 @@
                         "code": "const args = Deno.args\n\nconst myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))\n\nconsole.log(JSON.stringify(myArray))",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -2500,7 +2500,7 @@
                         "code": "const myString = process.argv[2]\n\nconsole.log(JSON.stringify(myString))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2512,7 +2512,7 @@
                         "code": "const myString = Deno.args[0]\n\nconsole.log(JSON.stringify(myString))",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -2694,7 +2694,7 @@
                         "code": "const encodedString = process.argv[2]\n\nconst decodedString = atob(encodedString)\n\nconsole.log(decodedString)",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2706,7 +2706,7 @@
                         "code": "const encodedString = Deno.args[0]\n\nconst decodedString = atob(encodedString)\n\nconsole.log(decodedString)",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -2882,7 +2882,7 @@
                         "code": "const testString = process.argv[2]\n\nconst encodedString = btoa(testString)\n\nconsole.log(encodedString)",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2894,7 +2894,7 @@
                         "code": "const testString = Deno.args[0]\n\nconst encodedString = btoa(testString)\n\nconsole.log(encodedString)",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -3076,7 +3076,7 @@
                         "code": "import * as fs from 'fs';\nimport * as readline from 'node:readline/promises';\n\nconst pipeIn = \"input.pipe\";\n\nconst input = fs.createReadStream(pipeIn);\nconst rl = readline.createInterface({ input })\n\nfor await (const line of rl) {\n  console.log(line.toUpperCase())\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -3088,7 +3088,7 @@
                         "code": "import { readLines } from 'https://deno.land/std/io/mod.ts';\n\nconst file = await Deno.open(\"input.pipe\", { read: true });\n\nfor await (const line of readLines(file)) {\n  console.log(line.toUpperCase());\n}\n\nfile.close();",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -3264,7 +3264,7 @@
                         "code": "import fs from 'fs/promises'\n\nawait fs.writeFile(\"output.pipe\", \"Hello World!\")",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -3276,7 +3276,7 @@
                         "code": "const encoder = new TextEncoder();\n\nawait Deno.writeFile(\"output.pipe\", encoder.encode(\"Hello World!\"));",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
@@ -3452,7 +3452,7 @@
                         "code": "import * as fs from 'fs';\nimport * as readline from 'node:readline/promises';\n\nconst inputStream = fs.createReadStream('streaming-in.pipe');\nconst outputStream = fs.createWriteStream('streaming-out.pipe');\n\nconst rl = readline.createInterface({ input: inputStream });\n\nfor await (const line of rl) {\n  outputStream.write(`received ${line}\\n`);\n}\n\noutputStream.end();",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Nodejs",
+                            "human_name": "Javascript (Nodejs)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -3464,7 +3464,7 @@
                         "code": "import { readLines } from 'https://deno.land/std/io/mod.ts';\n\nconst output = await Deno.open('streaming-out.pipe', { write: true });\nconst input = await Deno.open('streaming-in.pipe', { read: true });\n\nconst textEncoder = new TextEncoder();\n\nfor await (const line of readLines(input)) {\n  await output.write(textEncoder.encode(`received ${line}\\n`));\n}\n\ninput.close();\noutput.close();",
                         "language": {
                             "name": "deno",
-                            "human_name": "Deno",
+                            "human_name": "Javascript (Deno)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
