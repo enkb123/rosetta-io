@@ -64,20 +64,12 @@
         "directory": "java"
     },
     {
-        "name": "bash3",
-        "human_name": "Bash 3",
+        "name": "bash",
+        "human_name": "Bash",
         "script_ext": ".sh",
         "syntax_highlighting": "bash",
         "icon_id": "bash",
-        "directory": "bash3"
-    },
-    {
-        "name": "bash5",
-        "human_name": "Bash 5",
-        "script_ext": ".sh",
-        "syntax_highlighting": "bash",
-        "icon_id": "bash",
-        "directory": "bash5"
+        "directory": "bash"
     },
     {
         "name": "lua",
