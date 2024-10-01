@@ -344,6 +344,15 @@ def test_json_outputting_data(script: ScriptRunner):
     ]
 
 @pytest.mark.script(group="JSON")
+def test_json_null_char(script: ScriptRunner):
+    """Create and output JSON"""
+
+    script.run()
+
+    assert json.loads(script.output) == "Hello World \0"
+
+
+@pytest.mark.script(group="JSON")
 def test_json_array(script: ScriptRunner):
     """Create and output a JSON array of strings"""
 

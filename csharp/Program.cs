@@ -28,6 +28,7 @@ Action<string[]> script = scriptName switch
     "write_to_text_file" => WriteToTextFile.Main,
     "json_array" => JsonArray.Main,
     "json_numbers" => JsonNumbers.Main,
+    "json_null_char" => JsonNullChar.Main,
     "json_stdout_object" => JsonStdoutObject.Main,
     "json_outputting_data" => JsonOutputtingData.Main,
     "json_object_with_array_values" => JsonObjectWithArrayValues.Main,
