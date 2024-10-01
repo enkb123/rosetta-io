@@ -91,18 +91,12 @@ class Java(Language):
         return f'{camel_case(script_name)}{self.script_ext}'
 
 
-class Bash3(Language):
-    name = 'bash3'
-    human_name = 'Bash 3'
+class Bash(Language):
+    name = 'bash'
+    human_name = 'Bash'
     interpreter = 'bash'
     script_ext = '.sh'
     syntax_highlighting = 'bash'
-    icon_id = 'bash'
-
-
-class Bash5(Bash3):
-    name = 'bash5'
-    human_name = 'Bash 5'
     icon_id = 'bash'
 
 
@@ -177,8 +171,7 @@ LANGUAGES = [
     R(),
     Perl(),
     Java(),
-    Bash3(),
-    Bash5(),
+    Bash(),
     Lua(),
     CSharp(),
     Golang(),

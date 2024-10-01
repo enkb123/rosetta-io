@@ -109,24 +109,12 @@
                         "file_name": "null_char.sh",
                         "code": "printf \"Hello World \\0\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "null_char.sh",
-                        "code": "printf \"Hello World \\0\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -309,24 +297,12 @@
                         "file_name": "arguments.sh",
                         "code": "echo \"1st argument: $1\"\necho \"2nd argument: $2\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "arguments.sh",
-                        "code": "echo \"1st argument: $1\"\necho \"2nd argument: $2\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -515,24 +491,12 @@
                         "file_name": "stdin.sh",
                         "code": "while IFS= read -r user_input; do\n  echo \"line: $user_input\"\ndone",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "stdin.sh",
-                        "code": "while IFS= read -r user_input; do\n  echo \"line: $user_input\"\ndone",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -715,24 +679,12 @@
                         "file_name": "streaming_stdin.sh",
                         "code": "while IFS= read -r user_input; do\n  echo \"received $user_input\"\ndone",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "streaming_stdin.sh",
-                        "code": "while IFS= read -r user_input; do\n  echo \"received $user_input\"\ndone",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -921,24 +873,12 @@
                         "file_name": "read_file.sh",
                         "code": "file_path=\"./my-text-file.txt\"\n\nwhile IFS= read -r line; do\n  echo \"line: $line\"\n\ndone < \"$file_path\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "read_file.sh",
-                        "code": "file_path=\"./my-text-file.txt\"\n\nwhile IFS= read -r line; do\n  echo \"line: $line\"\n\ndone < \"$file_path\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -1121,24 +1061,12 @@
                         "file_name": "write_to_text_file.sh",
                         "code": "echo \"Hello World!\" > output.txt",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "write_to_text_file.sh",
-                        "code": "echo \"Hello World!\" > output.txt",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -1327,24 +1255,12 @@
                         "file_name": "read_json_file.sh",
                         "code": "file_path=\"people.json\"\n\njq -c '.[]' \"$file_path\" | while IFS= read -r person; do\n    age=$(echo \"$person\" | jq -r '.age')\n    first_name=$(echo \"$person\" | jq -r '.first_name')\n    echo \"Hello, $age year old $first_name\"\ndone",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "read_json_file.sh",
-                        "code": "file_path=\"people.json\"\n\njq -c '.[]' \"$file_path\" | while IFS= read -r person; do\n    age=$(echo \"$person\" | jq -r '.age')\n    first_name=$(echo \"$person\" | jq -r '.first_name')\n    echo \"Hello, $age year old $first_name\"\ndone",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -1527,24 +1443,12 @@
                         "file_name": "json_outputting_data.sh",
                         "code": "# jo can't handle the null character (\\0) so we use jq to add it as a workaraound\nobject_with_nonascii_string='{ \"a string with non-ascii characters\": \"hello \\n \\u0000 \\u0001 world 🥸\" }'\n\njo \\\n  true=true false=false zero=0 int=42 float=3.14 null=null  -s \"empty string\"=\"\" \\\n  | jq -c \". + $object_with_nonascii_string\"\n\njo \\\n  \"array of strings=$(\n    jo -a abc def ghi jkl\n  )\" \\\n  \"array of numbers=$(\n    jo -a 13 42 9000 -7\n  )\" \\\n  \"array of nothing=$(\n    jo -a </dev/null\n  )\" \\\n  \"array of mixed=$(\n    jo -a 13 def null false \"$(jo -a a)\" \"$(jo o=1)\"\n  )\" \\\n  \"array of objects=$(\n    jo -a \\\n      \"$(jo name=\"Bob Barker\" age=84)\" \\\n      \"$(jo address1=\"123 Main St\" address2=\"Apt 1\")\"\n  )\" \\\n  \"array of arrays=$(\n    jo -a \\\n      \"$(jo -a a b c)\" \\\n      \"$(jo -a d e f)\"\n  )\"\n\njo objects=\"$(\n  jo nested=\"$(\n    jo objects=\"$(\n      jo are=\"supported\"\n    )\"\n  )\"\n)\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "json_outputting_data.sh",
-                        "code": "# jo can't handle the null character (\\0) so we use jq to add it as a workaraound\nobject_with_nonascii_string='{ \"a string with non-ascii characters\": \"hello \\n \\u0000 \\u0001 world 🥸\" }'\n\njo \\\n  true=true false=false zero=0 int=42 float=3.14 null=null  -s \"empty string\"=\"\" \\\n  | jq -c \". + $object_with_nonascii_string\"\n\njo \\\n  \"array of strings=$(\n    jo -a abc def ghi jkl\n  )\" \\\n  \"array of numbers=$(\n    jo -a 13 42 9000 -7\n  )\" \\\n  \"array of nothing=$(\n    jo -a </dev/null\n  )\" \\\n  \"array of mixed=$(\n    jo -a 13 def null false \"$(jo -a a)\" \"$(jo o=1)\"\n  )\" \\\n  \"array of objects=$(\n    jo -a \\\n      \"$(jo name=\"Bob Barker\" age=84)\" \\\n      \"$(jo address1=\"123 Main St\" address2=\"Apt 1\")\"\n  )\" \\\n  \"array of arrays=$(\n    jo -a \\\n      \"$(jo -a a b c)\" \\\n      \"$(jo -a d e f)\"\n  )\"\n\njo objects=\"$(\n  jo nested=\"$(\n    jo objects=\"$(\n      jo are=\"supported\"\n    )\"\n  )\"\n)\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -1727,24 +1631,12 @@
                         "file_name": "json_array.sh",
                         "code": "jo -a \"$@\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "json_array.sh",
-                        "code": "jo -a \"$@\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -1927,24 +1819,12 @@
                         "file_name": "json_numbers.sh",
                         "code": "lengths=()\n\nfor arg in \"$@\"; do\n  lengths+=(\"${#arg}\")\ndone\n\njo -a \"${lengths[@]}\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "json_numbers.sh",
-                        "code": "lengths=()\n\nfor arg in \"$@\"; do\n  lengths+=(\"${#arg}\")\ndone\n\njo -a \"${lengths[@]}\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -2127,24 +2007,12 @@
                         "file_name": "json_stdout_object.sh",
                         "code": "json_object='{}'\n\nfor arg in \"$@\"; do\n    length=${#arg}\n    json_object=$(<<<\"$json_object\" jo -f - \"$arg=$length\")\ndone\n\necho \"$json_object\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "json_stdout_object.sh",
-                        "code": "json_object='{}'\n\nfor arg in \"$@\"; do\n    length=${#arg}\n    json_object=$(<<<\"$json_object\" jo -f - \"$arg=$length\")\ndone\n\necho \"$json_object\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -2327,24 +2195,12 @@
                         "file_name": "json_object_with_array_values.sh",
                         "code": "json_object='{}'\n\nfor arg in \"$@\"; do\n    upper_chars=$(<<<\"$arg\" tr '[:lower:]' '[:upper:]' | fold -w1)\n\n    json_array=$(jo -a ${upper_chars[@]})\n\n    # merge this object with the current object\n    json_object=\"$(<<<\"$json_object\" jo -f - \"$arg\"=\"$json_array\")\"\ndone\n\necho \"$json_object\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "json_object_with_array_values.sh",
-                        "code": "json_object='{}'\n\nfor arg in \"$@\"; do\n    upper_chars=$(fold -w1 <<<\"${arg^^}\")\n\n    json_array=$(jo -a ${upper_chars[@]})\n\n    # merge this object with the current object\n    json_object=\"$(<<<\"$json_object\" jo -f - \"$arg\"=\"$json_array\")\"\ndone\n\necho \"$json_object\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -2527,24 +2383,12 @@
                         "file_name": "json_object_array.sh",
                         "code": "json_objects=()\n\nfor arg in \"$@\"; do\n    upper_arg=$(tr '[:lower:]' '[:upper:]' <<< \"$arg\")\n    length=${#arg}\n    json_objects+=(\"$(jo \"$upper_arg\"=\"$length\")\")\ndone\n\njo -a \"${json_objects[@]}\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "json_object_array.sh",
-                        "code": "json_objects=()\n\nfor arg in \"$@\"; do\n    json_objects+=(\"$(jo \"${arg^^}\"=\"${#arg}\")\")\ndone\n\njo -a \"${json_objects[@]}\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -2727,24 +2571,12 @@
                         "file_name": "json_control_chars.sh",
                         "code": "echo -n \"$1\" | jq -R -s .",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "json_control_chars.sh",
-                        "code": "echo -n \"$1\" | jq -R -s .",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -2933,24 +2765,12 @@
                         "file_name": "decode.sh",
                         "code": "encoded_string=\"$1\"\n\nif [ -z \"$encoded_string\" ]; then\n  echo \"Usage: $0 <encoded_string>\"\n  exit 1\nfi\n\nbase64 -d <<< \"$encoded_string\"",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "decode.sh",
-                        "code": "encoded_string=\"$1\"\n\nbase64 -d <<< \"$encoded_string\"",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -3133,24 +2953,12 @@
                         "file_name": "encode.sh",
                         "code": "test_string=\"$1\"\n\nif [ -z \"$test_string\" ]; then\n  echo \"Usage: $0 <test_string>\"\n  exit 1\nfi\n\necho -n \"$test_string\" | base64",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "encode.sh",
-                        "code": "test_string=\"$1\"\n\necho -n \"$test_string\" | base64",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -3339,24 +3147,12 @@
                         "file_name": "streaming_pipe_in.sh",
                         "code": "tr '[:lower:]' '[:upper:]' < input.pipe",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "streaming_pipe_in.sh",
-                        "code": "tr '[:lower:]' '[:upper:]' < input.pipe",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -3539,24 +3335,12 @@
                         "file_name": "write_to_named_pipe.sh",
                         "code": "echo \"Hello World!\" > output.pipe",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "write_to_named_pipe.sh",
-                        "code": "echo \"Hello World!\" > output.pipe",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
@@ -3739,24 +3523,12 @@
                         "file_name": "streaming_pipe_in_and_out.sh",
                         "code": "while IFS= read -r line; do\n    echo \"received $line\"\ndone < streaming-in.pipe > streaming-out.pipe",
                         "language": {
-                            "name": "bash3",
-                            "human_name": "Bash 3",
+                            "name": "bash",
+                            "human_name": "Bash",
                             "script_ext": ".sh",
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
-                            "directory": "bash3"
-                        }
-                    },
-                    {
-                        "file_name": "streaming_pipe_in_and_out.sh",
-                        "code": "while IFS= read -r line; do\n    echo \"received $line\"\ndone < streaming-in.pipe > streaming-out.pipe",
-                        "language": {
-                            "name": "bash5",
-                            "human_name": "Bash 5",
-                            "script_ext": ".sh",
-                            "syntax_highlighting": "bash",
-                            "icon_id": "bash",
-                            "directory": "bash5"
+                            "directory": "bash"
                         }
                     },
                     {
