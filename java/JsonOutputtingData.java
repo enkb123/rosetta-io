@@ -14,7 +14,7 @@ public class JsonOutputtingData {
         firstJsonObject.put("float", 3.14);
         firstJsonObject.put("null", null);
         firstJsonObject.put("empty string", "");
-        firstJsonObject.put("a string with non-ascii characters", "hello \n \0 \u0001 world 🥸");
+        firstJsonObject.put("a string with non-ascii characters", "hello \n \u0001 world 🥸");
 
         var secondJsonObject = Map.of(
             "array of strings", List.of("abc", "def", "ghi", "jkl"),

@@ -12,7 +12,7 @@ my $data1 = {
     "float" => 3.14,
     "null" => undef,
     "empty string" => "",
-    "a string with non-ascii characters" => "hello \n \0 \x{0001} world \N{U+1F978}",
+    "a string with non-ascii characters" => "hello \n \x{0001} world \N{U+1F978}",
 };
 
 print $json->encode($data1) . "\n";

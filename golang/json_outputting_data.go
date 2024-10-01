@@ -14,7 +14,7 @@ func main() {
 		"float":                              3.14,
 		"null":                               nil,
 		"empty string":                       "",
-		"a string with non-ascii characters": "hello \n \x00 \u0001 world 🥸",
+		"a string with non-ascii characters": "hello \n \u0001 world 🥸",
 	}
 
 	secondJsonObject := map[string]interface{}{

@@ -8,7 +8,7 @@ local firstJsonObject = {
     ["float"] = 3.14,
     ["null"] = json.null,
     ["empty string"] = "",
-    ["a string with non-ascii characters"] = "hello \n \0 \u{0001} world 🥸"
+    ["a string with non-ascii characters"] = "hello \n \u{0001} world 🥸"
 }
 
 local secondJsonObject = {

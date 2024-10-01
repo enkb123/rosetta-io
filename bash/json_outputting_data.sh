@@ -1,9 +1,15 @@
 # jo can't handle the null character (\0) so we use jq to add it as a workaraound
-object_with_nonascii_string='{ "a string with non-ascii characters": "hello \n \u0000 \u0001 world 🥸" }'
+object_with_nonascii_string='{  }'
 
 jo \
-  true=true false=false zero=0 int=42 float=3.14 null=null  -s "empty string"="" \
-  | jq -c ". + $object_with_nonascii_string"
+  true=true \
+  false=false  \
+  zero=0 \
+  int=42 \
+  float=3.14 \
+  null=null \
+  -s "empty string"="" \
+  -s "a string with non-ascii characters"=$'hello \n \1 world 🥸'
 
 jo \
   "array of strings=$(
