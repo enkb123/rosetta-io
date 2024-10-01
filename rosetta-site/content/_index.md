@@ -35,7 +35,7 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
     <div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 2;">
       {{ range .test_cases }}
         {{- partial "shortcodes/card" (dict
-          "title"       .script_name
+          "title"       .title
           "link"        (printf "/operations/%s/%s" $group_slug .script_name)
           "subtitle"    .doc_str_first_line
         ) -}}

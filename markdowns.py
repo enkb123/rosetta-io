@@ -51,6 +51,7 @@ def test_case_data(pytest_case):
             ))
 
     return mark | dict(
+        title=mark.get('title', mark['script_name']),
         doc_str=doc_str,
         doc_str_first_line=doc_str_first_line,
         implementations=implementations,
