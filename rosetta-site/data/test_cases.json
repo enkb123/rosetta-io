@@ -2763,7 +2763,7 @@
                     },
                     {
                         "file_name": "decode.sh",
-                        "code": "encoded_string=\"$1\"\n\nif [ -z \"$encoded_string\" ]; then\n  echo \"Usage: $0 <encoded_string>\"\n  exit 1\nfi\n\nbase64 -d <<< \"$encoded_string\"",
+                        "code": "encoded_string=\"$1\"\n\nbase64 -d <<< \"$encoded_string\"",
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -2951,7 +2951,7 @@
                     },
                     {
                         "file_name": "encode.sh",
-                        "code": "test_string=\"$1\"\n\nif [ -z \"$test_string\" ]; then\n  echo \"Usage: $0 <test_string>\"\n  exit 1\nfi\n\necho -n \"$test_string\" | base64",
+                        "code": "test_string=\"$1\"\n\necho -n \"$test_string\" | base64",
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
