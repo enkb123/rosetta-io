@@ -7,6 +7,8 @@ from collections import defaultdict
 from test_helpers import collect_pytest_cases, dedent, script_test_case_mark
 from test_suite import LANGUAGES
 
+sorted_languages = sorted(LANGUAGES, key=lambda lang: lang.human_name)
+
 def slugify(text: str) -> str:
     text = text.lower()
     text = text.replace(' ', '-')
@@ -23,7 +25,7 @@ def load_data(name: str):
         return json.load(f)
 
 
-save_data('languages', [language.as_json() for language in LANGUAGES])
+save_data('languages', [language.as_json() for language in sorted_languages])
 
 
 pytest_cases_by_script_name = { script_test_case_mark(pytest_case)['script_name']: pytest_case
@@ -37,7 +39,7 @@ def test_case_data(pytest_case):
     doc_str_first_line = doc_str.strip().split('\n', maxsplit=1)[0]
 
     implementations = []
-    for language in LANGUAGES:
+    for language in sorted_languages:
         script_path = language.script_path(mark['script_name'])
 
         # checks that this case is implemented for the specific language

@@ -41,7 +41,7 @@ class Ruby(Language):
 
 class Nodejs(Language):
     name = 'nodejs'
-    human_name = 'Nodejs'
+    human_name = 'Javascript (Nodejs)'
     interpreter = 'node'
     script_ext = '.mjs'
     syntax_highlighting = 'javascript'
@@ -49,7 +49,7 @@ class Nodejs(Language):
 
 class Deno(Nodejs):
     name = 'deno'
-    human_name = 'Deno'
+    human_name = 'Javascript (Deno)'
     interpreter = 'deno run --allow-read --allow-write'
     script_ext = '.mjs'
     syntax_highlighting = 'javascript'

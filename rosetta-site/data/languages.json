@@ -1,83 +1,11 @@
 [
     {
-        "name": "python",
-        "human_name": "Python",
-        "script_ext": ".py",
-        "syntax_highlighting": "python",
-        "icon_id": "python",
-        "directory": "python"
-    },
-    {
-        "name": "ruby",
-        "human_name": "Ruby",
-        "script_ext": ".rb",
-        "syntax_highlighting": "ruby",
-        "icon_id": "ruby",
-        "directory": "ruby"
-    },
-    {
-        "name": "nodejs",
-        "human_name": "Javascript (Nodejs)",
-        "script_ext": ".mjs",
-        "syntax_highlighting": "javascript",
-        "icon_id": "nodejs",
-        "directory": "nodejs"
-    },
-    {
-        "name": "deno",
-        "human_name": "Javascript (Deno)",
-        "script_ext": ".mjs",
-        "syntax_highlighting": "javascript",
-        "icon_id": "denojs",
-        "directory": "deno"
-    },
-    {
-        "name": "php",
-        "human_name": "Php",
-        "script_ext": ".php",
-        "syntax_highlighting": "php",
-        "icon_id": "php",
-        "directory": "php"
-    },
-    {
-        "name": "r",
-        "human_name": "R",
-        "script_ext": ".R",
-        "syntax_highlighting": "r",
-        "icon_id": "r",
-        "directory": "r"
-    },
-    {
-        "name": "perl",
-        "human_name": "Perl",
-        "script_ext": ".pl",
-        "syntax_highlighting": "perl",
-        "icon_id": "perl",
-        "directory": "perl"
-    },
-    {
-        "name": "java",
-        "human_name": "Java",
-        "script_ext": ".java",
-        "syntax_highlighting": "java",
-        "icon_id": "java",
-        "directory": "java"
-    },
-    {
         "name": "bash",
         "human_name": "Bash",
         "script_ext": ".sh",
         "syntax_highlighting": "bash",
         "icon_id": "bash",
         "directory": "bash"
-    },
-    {
-        "name": "lua",
-        "human_name": "Lua",
-        "script_ext": ".lua",
-        "syntax_highlighting": "lua",
-        "icon_id": "lua",
-        "directory": "lua"
     },
     {
         "name": "csharp",
@@ -96,12 +24,68 @@
         "directory": "golang"
     },
     {
-        "name": "swift",
-        "human_name": "Swift",
-        "script_ext": ".swift",
-        "syntax_highlighting": "swift",
-        "icon_id": "swift",
-        "directory": "swift"
+        "name": "java",
+        "human_name": "Java",
+        "script_ext": ".java",
+        "syntax_highlighting": "java",
+        "icon_id": "java",
+        "directory": "java"
+    },
+    {
+        "name": "deno",
+        "human_name": "Javascript (Deno)",
+        "script_ext": ".mjs",
+        "syntax_highlighting": "javascript",
+        "icon_id": "denojs",
+        "directory": "deno"
+    },
+    {
+        "name": "nodejs",
+        "human_name": "Javascript (Nodejs)",
+        "script_ext": ".mjs",
+        "syntax_highlighting": "javascript",
+        "icon_id": "nodejs",
+        "directory": "nodejs"
+    },
+    {
+        "name": "lua",
+        "human_name": "Lua",
+        "script_ext": ".lua",
+        "syntax_highlighting": "lua",
+        "icon_id": "lua",
+        "directory": "lua"
+    },
+    {
+        "name": "perl",
+        "human_name": "Perl",
+        "script_ext": ".pl",
+        "syntax_highlighting": "perl",
+        "icon_id": "perl",
+        "directory": "perl"
+    },
+    {
+        "name": "php",
+        "human_name": "Php",
+        "script_ext": ".php",
+        "syntax_highlighting": "php",
+        "icon_id": "php",
+        "directory": "php"
+    },
+    {
+        "name": "python",
+        "human_name": "Python",
+        "script_ext": ".py",
+        "syntax_highlighting": "python",
+        "icon_id": "python",
+        "directory": "python"
+    },
+    {
+        "name": "r",
+        "human_name": "R",
+        "script_ext": ".R",
+        "syntax_highlighting": "r",
+        "icon_id": "r",
+        "directory": "r"
     },
     {
         "name": "raku",
@@ -112,11 +96,27 @@
         "directory": "raku"
     },
     {
+        "name": "ruby",
+        "human_name": "Ruby",
+        "script_ext": ".rb",
+        "syntax_highlighting": "ruby",
+        "icon_id": "ruby",
+        "directory": "ruby"
+    },
+    {
         "name": "rust",
         "human_name": "Rust",
         "script_ext": ".rs",
         "syntax_highlighting": "rust",
         "icon_id": "rust",
         "directory": "rust"
+    },
+    {
+        "name": "swift",
+        "human_name": "Swift",
+        "script_ext": ".swift",
+        "syntax_highlighting": "swift",
+        "icon_id": "swift",
+        "directory": "swift"
     }
 ]
