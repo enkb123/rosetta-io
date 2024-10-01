@@ -1441,7 +1441,7 @@
                     },
                     {
                         "file_name": "json_outputting_data.php",
-                        "code": "<?php\n\n$firstJsonObject = [\n    \"true\" => true,\n    \"false\" => false,\n    \"zero\" => 0,\n    \"int\" => 42,\n    \"float\" => 3.14,\n    \"null\" => null,\n    \"empty string\" => \"\",\n    \"a string with non-ascii characters\" => \"hello \\n \\0 \\x01 world 🥸\"\n];\n\n$secondJsonObject = [\n    \"array of strings\" => [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\" => [13, 42, 9000, -7],\n    \"array of nothing\" => [],\n    \"array of mixed\" => [13, \"def\", null, false, [\"a\"], [\"o\" => 1]],\n    \"array of objects\" => [\n        [\"name\" => \"Bob Barker\", \"age\" => 84],\n        [\"address1\" => \"123 Main St\", \"address2\" => \"Apt 1\"]\n    ],\n    \"array of arrays\" => [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"]\n    ]\n];\n\n$thirdJsonObject = [\n    \"objects\" => [\n        \"nested\" => [\n            \"objects\" => [\n                \"are\" => \"supported\"\n            ]\n        ]\n    ]\n];\n\necho json_encode($firstJsonObject, JSON_UNESCAPED_UNICODE) . \"\\n\";\necho json_encode($secondJsonObject, JSON_UNESCAPED_UNICODE) . \"\\n\";\necho json_encode($thirdJsonObject, JSON_UNESCAPED_UNICODE) . \"\\n\";",
+                        "code": "<?php\n\n$firstJsonObject = [\n    \"true\" => true,\n    \"false\" => false,\n    \"zero\" => 0,\n    \"int\" => 42,\n    \"float\" => 3.14,\n    \"null\" => null,\n    \"empty string\" => \"\",\n    \"a string with non-ascii characters\" => \"hello \\n \\0 \\x01 world 🥸\"\n];\n\n$secondJsonObject = [\n    \"array of strings\" => [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\" => [13, 42, 9000, -7],\n    \"array of nothing\" => [],\n    \"array of mixed\" => [13, \"def\", null, false, [\"a\"], [\"o\" => 1]],\n    \"array of objects\" => [\n        [\"name\" => \"Bob Barker\", \"age\" => 84],\n        [\"address1\" => \"123 Main St\", \"address2\" => \"Apt 1\"]\n    ],\n    \"array of arrays\" => [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"]\n    ]\n];\n\n$thirdJsonObject = [\n    \"objects\" => [\n        \"nested\" => [\n            \"objects\" => [\n                \"are\" => \"supported\"\n            ]\n        ]\n    ]\n];\n\necho json_encode($firstJsonObject) . \"\\n\";\necho json_encode($secondJsonObject) . \"\\n\";\necho json_encode($thirdJsonObject) . \"\\n\";",
                         "language": {
                             "name": "php",
                             "human_name": "Php",
@@ -1514,6 +1514,182 @@
                     {
                         "file_name": "json_outputting_data.swift",
                         "code": "import Foundation\n\nlet firstJsonObject: [String: Any] = [\n  \"true\": true,\n  \"false\": false,\n  \"zero\": 0,\n  \"int\": 42,\n  \"float\": 3.14,\n  \"null\": NSNull(),\n  \"empty string\": \"\",\n  \"a string with non-ascii characters\": \"hello \\n \\0 \\u{0001} world 🥸\",\n]\n\nlet secondJsonObject: [String: Any] = [\n  \"array of strings\": [\"abc\", \"def\", \"ghi\", \"jkl\"],\n  \"array of numbers\": [13, 42, 9000, -7],\n  \"array of nothing\": [],\n  \"array of mixed\": [13, \"def\", NSNull(), false, [\"a\"], [\"o\": 1]],\n  \"array of objects\": [\n    [\"name\": \"Bob Barker\", \"age\": 84],\n    [\"address1\": \"123 Main St\", \"address2\": \"Apt 1\"],\n  ],\n  \"array of arrays\": [\n    [\"a\", \"b\", \"c\"],\n    [\"d\", \"e\", \"f\"],\n  ],\n]\n\nlet thirdJsonObject: [String: Any] = [\n  \"objects\": [\n    \"nested\": [\n      \"objects\": [\n        \"are\": \"supported\"\n      ]\n    ]\n  ]\n]\n\nfunc jsonString(from dictionary: [String: Any]) -> String {\n  let jsonData = try! JSONSerialization.data(withJSONObject: dictionary, options: [])\n  return String(data: jsonData, encoding: .utf8)!\n}\n\nprint(jsonString(from: firstJsonObject))\nprint(jsonString(from: secondJsonObject))\nprint(jsonString(from: thirdJsonObject))",
+                        "language": {
+                            "name": "swift",
+                            "human_name": "Swift",
+                            "script_ext": ".swift",
+                            "syntax_highlighting": "swift",
+                            "icon_id": "swift",
+                            "directory": "swift"
+                        }
+                    }
+                ]
+            },
+            {
+                "script_name": "json_null_char",
+                "group": "JSON",
+                "doc_str": "Create and output JSON",
+                "doc_str_first_line": "Create and output JSON",
+                "implementations": [
+                    {
+                        "file_name": "json_null_char.sh",
+                        "code": "printf \"Hello World \\0\" | jq -R .",
+                        "language": {
+                            "name": "bash",
+                            "human_name": "Bash",
+                            "script_ext": ".sh",
+                            "syntax_highlighting": "bash",
+                            "icon_id": "bash",
+                            "directory": "bash"
+                        }
+                    },
+                    {
+                        "file_name": "JsonNullChar.cs",
+                        "code": "using System;\nusing System.Collections.Generic;\nusing System.Text.Json;\n\nclass JsonNullChar\n{\n    public static void Main(string[] args)\n    {\n        Console.WriteLine(JsonSerializer.Serialize(\"Hello World \\0\"));\n    }\n}",
+                        "language": {
+                            "name": "csharp",
+                            "human_name": "C#",
+                            "script_ext": ".cs",
+                            "syntax_highlighting": "csharp",
+                            "icon_id": "csharp",
+                            "directory": "csharp"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.go",
+                        "code": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tstr := \"Hello World \\x00\"\n\tjsonData, _ := json.Marshal(str)\n\tfmt.Println(string(jsonData))\n}",
+                        "language": {
+                            "name": "golang",
+                            "human_name": "Go",
+                            "script_ext": ".go",
+                            "syntax_highlighting": "go",
+                            "icon_id": "go",
+                            "directory": "golang"
+                        }
+                    },
+                    {
+                        "file_name": "JsonNullChar.java",
+                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\n\npublic class JsonNullChar {\n    public static void main(String[] args) throws Exception {\n        var str = \"Hello World \\0\";\n        var jsonData = new ObjectMapper().writeValueAsString(str);\n        System.out.println(jsonData);\n    }\n}",
+                        "language": {
+                            "name": "java",
+                            "human_name": "Java",
+                            "script_ext": ".java",
+                            "syntax_highlighting": "java",
+                            "icon_id": "java",
+                            "directory": "java"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.mjs",
+                        "code": "console.log(JSON.stringify(\"Hello World \\0\"))",
+                        "language": {
+                            "name": "deno",
+                            "human_name": "Javascript (Deno)",
+                            "script_ext": ".mjs",
+                            "syntax_highlighting": "javascript",
+                            "icon_id": "denojs",
+                            "directory": "deno"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.mjs",
+                        "code": "console.log(JSON.stringify(\"Hello World \\0\"))",
+                        "language": {
+                            "name": "nodejs",
+                            "human_name": "Javascript (Nodejs)",
+                            "script_ext": ".mjs",
+                            "syntax_highlighting": "javascript",
+                            "icon_id": "nodejs",
+                            "directory": "nodejs"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.lua",
+                        "code": "local json = require(\"dkjson\")\n\nprint(json.encode(\"Hello World \\0\"))",
+                        "language": {
+                            "name": "lua",
+                            "human_name": "Lua",
+                            "script_ext": ".lua",
+                            "syntax_highlighting": "lua",
+                            "icon_id": "lua",
+                            "directory": "lua"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.pl",
+                        "code": "use strict;\nuse warnings;\nuse JSON;\n\nmy $json = JSON->new->utf8;\n\nprint $json->encode(\"Hello World \\0\");",
+                        "language": {
+                            "name": "perl",
+                            "human_name": "Perl",
+                            "script_ext": ".pl",
+                            "syntax_highlighting": "perl",
+                            "icon_id": "perl",
+                            "directory": "perl"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.php",
+                        "code": "<?php\n\necho json_encode(\"Hello World \\0\");",
+                        "language": {
+                            "name": "php",
+                            "human_name": "Php",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.py",
+                        "code": "import json\n\nprint(json.dumps(\"Hello World \\0\"))",
+                        "language": {
+                            "name": "python",
+                            "human_name": "Python",
+                            "script_ext": ".py",
+                            "syntax_highlighting": "python",
+                            "icon_id": "python",
+                            "directory": "python"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.raku",
+                        "code": "use JSON::Fast;\n\nsay to-json(\"Hello World \\0\");",
+                        "language": {
+                            "name": "raku",
+                            "human_name": "Raku",
+                            "script_ext": ".raku",
+                            "syntax_highlighting": "raku",
+                            "icon_id": "raku",
+                            "directory": "raku"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.rb",
+                        "code": "require 'json'\n\nputs \"Hello World \\0\".to_json",
+                        "language": {
+                            "name": "ruby",
+                            "human_name": "Ruby",
+                            "script_ext": ".rb",
+                            "syntax_highlighting": "ruby",
+                            "icon_id": "ruby",
+                            "directory": "ruby"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.rs",
+                        "code": "// cargo-deps: json=\"0.12.4\"\n\nextern crate json;\n\nfn main() {\n    println!(\"{}\", json::stringify(\"Hello World \\0\"));\n}",
+                        "language": {
+                            "name": "rust",
+                            "human_name": "Rust",
+                            "script_ext": ".rs",
+                            "syntax_highlighting": "rust",
+                            "icon_id": "rust",
+                            "directory": "rust"
+                        }
+                    },
+                    {
+                        "file_name": "json_null_char.swift",
+                        "code": "import Foundation\n\nlet str = \"Hello World \\0\"\n\nlet data = try JSONEncoder().encode(str)\nprint(String(data: data, encoding: .utf8)!)",
                         "language": {
                             "name": "swift",
                             "human_name": "Swift",
