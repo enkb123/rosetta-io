@@ -249,9 +249,9 @@ def test_stdin(script: ScriptRunner):
     """))
 
 
-@pytest.mark.script(group="File I/O", title="Read file")
+@pytest.mark.script(group="File I/O", title="Read text file")
 def test_read_file(script: ScriptRunner):
-    """Read a file line by line
+    """Read a text file line by line
 
     Read one line at a time from a file called `my-text-file.txt` and print it.
     """
