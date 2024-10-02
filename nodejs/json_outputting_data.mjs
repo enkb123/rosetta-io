@@ -6,7 +6,7 @@ const json1 = JSON.stringify({
     "float": 3.14,
     "null": null,
     "empty string": "",
-    "a string with non-ascii characters": "hello \n \0 \u0001 world 🥸"
+    "a string with non-ascii characters": "hello \n \u0001 world 🥸"
 }, null);
 
 const json2 = JSON.stringify({

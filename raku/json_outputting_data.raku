@@ -8,7 +8,7 @@ my %first-json-object = {
     'float'                   => 3.14,
     'null'                    => Nil,
     'empty string'            => '',
-    'a string with non-ascii characters' => "hello \n \0 \x01 world 🥸"
+    'a string with non-ascii characters' => "hello \n \x01 world 🥸"
 };
 
 my %second-json-object = {

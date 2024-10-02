@@ -8,7 +8,7 @@ puts JSON.generate({
     "float" => 3.14,
     "null" => nil,
     "empty string" => "",
-    "a string with non-ascii characters" => "hello \n \0 \u0001 world 🥸",
+    "a string with non-ascii characters" => "hello \n \u0001 world 🥸",
 })
 
 puts JSON.generate({

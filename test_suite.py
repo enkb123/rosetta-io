@@ -322,7 +322,7 @@ def test_json_outputting_data(script: ScriptRunner):
             "float": 3.14,
             "null": None,
             "empty string": "",
-            "a string with non-ascii characters": "hello \n \0 \u0001 world 🥸",
+            "a string with non-ascii characters": "hello \n \u0001 world 🥸",
         },
         {
             "array of strings": ["abc", "def", "ghi", "jkl"],
@@ -342,6 +342,15 @@ def test_json_outputting_data(script: ScriptRunner):
             "objects": { "nested": { "objects": { "are": "supported" } } },
         }
     ]
+
+@pytest.mark.script(group="JSON", title="JSON with null character")
+def test_json_null_char(script: ScriptRunner):
+    """Create and output JSON"""
+
+    script.run()
+
+    assert json.loads(script.output) == "Hello World \0"
+
 
 @pytest.mark.script(group="JSON", title="Build JSON array of strings")
 def test_json_array(script: ScriptRunner):

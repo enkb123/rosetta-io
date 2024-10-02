@@ -1,10 +1,7 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.*;
 
 public class JsonOutputtingData {
-
     public static void main(String[] args) throws Exception {
         var firstJsonObject = new HashMap<>(); // Can't use Map.of() because it doesn't support null values
         firstJsonObject.put("true", true);
@@ -14,7 +11,7 @@ public class JsonOutputtingData {
         firstJsonObject.put("float", 3.14);
         firstJsonObject.put("null", null);
         firstJsonObject.put("empty string", "");
-        firstJsonObject.put("a string with non-ascii characters", "hello \n \0 \u0001 world 🥸");
+        firstJsonObject.put("a string with non-ascii characters", "hello \n \u0001 world 🥸");
 
         var secondJsonObject = Map.of(
             "array of strings", List.of("abc", "def", "ghi", "jkl"),
@@ -47,15 +44,16 @@ public class JsonOutputtingData {
             )
         );
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        var objectMapper = new ObjectMapper();
         objectMapper.disable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT);
+
         printJson(objectMapper, firstJsonObject);
         printJson(objectMapper, secondJsonObject);
         printJson(objectMapper, thirdJsonObject);
     }
 
-    private static void printJson(ObjectMapper objectMapper, Object data) throws JsonProcessingException {
-        String jsonData = objectMapper.writeValueAsString(data);
+    private static void printJson(ObjectMapper objectMapper, Object data) throws Exception {
+        var jsonData = objectMapper.writeValueAsString(data);
         System.out.println(jsonData);
     }
 }

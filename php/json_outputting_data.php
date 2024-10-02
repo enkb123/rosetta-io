@@ -8,7 +8,7 @@ $firstJsonObject = [
     "float" => 3.14,
     "null" => null,
     "empty string" => "",
-    "a string with non-ascii characters" => "hello \n \0 \x01 world 🥸"
+    "a string with non-ascii characters" => "hello \n \x01 world 🥸"
 ];
 
 $secondJsonObject = [
@@ -36,6 +36,6 @@ $thirdJsonObject = [
     ]
 ];
 
-echo json_encode($firstJsonObject, JSON_UNESCAPED_UNICODE) . "\n";
-echo json_encode($secondJsonObject, JSON_UNESCAPED_UNICODE) . "\n";
-echo json_encode($thirdJsonObject, JSON_UNESCAPED_UNICODE) . "\n";
+echo json_encode($firstJsonObject) . "\n";
+echo json_encode($secondJsonObject) . "\n";
+echo json_encode($thirdJsonObject) . "\n";
