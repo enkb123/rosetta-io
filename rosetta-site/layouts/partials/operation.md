@@ -1,4 +1,6 @@
-{{ .doc_str }}
+> {{ .summary }}
+
+{{ .description }}
 
 {{ range .implementations }}
 ## {{ .language.human_name }}

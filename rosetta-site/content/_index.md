@@ -37,7 +37,7 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
         {{- partial "shortcodes/card" (dict
           "title"       .title
           "link"        (printf "/operations/%s/%s" $group_slug .script_name)
-          "subtitle"    .doc_str_first_line
+          "subtitle"    .summary
         ) -}}
       {{ end}}
     </div>
