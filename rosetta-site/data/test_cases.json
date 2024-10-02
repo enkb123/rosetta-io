@@ -7,8 +7,13 @@
                 "script_name": "arguments",
                 "group": "Misc",
                 "title": "Command-line arguments",
+                "cli_args": "'Argument Number 1' 'Command line arg 2'",
+                "assertion": {
+                    "stdout_match": "1st argument: Argument Number 1\n2nd argument: Command line arg 2\n"
+                },
                 "summary": "Read command line arguments",
                 "description": "Read 2 command line arguments and print them out.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "arguments.sh",
@@ -20,7 +25,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash arguments.sh 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "Arguments.cs",
@@ -32,7 +38,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run arguments 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.go",
@@ -44,7 +51,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run arguments.go 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "Arguments.java",
@@ -56,7 +64,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java Arguments.java 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.mjs",
@@ -68,7 +77,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write arguments.mjs 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.mjs",
@@ -80,7 +90,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node arguments.mjs 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.lua",
@@ -92,7 +103,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua arguments.lua 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.php",
@@ -104,7 +116,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php arguments.php 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.pl",
@@ -116,7 +129,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl arguments.pl 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.py",
@@ -128,7 +142,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python arguments.py 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.R",
@@ -140,7 +155,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript arguments.R 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.raku",
@@ -152,7 +168,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku arguments.raku 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.rb",
@@ -164,7 +181,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby arguments.rb 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.rs",
@@ -176,7 +194,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script arguments.rs 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
                         "file_name": "arguments.swift",
@@ -188,7 +207,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift arguments.swift 'Argument Number 1' 'Command line arg 2'"
                     }
                 ]
             },
@@ -196,8 +216,13 @@
                 "script_name": "null_char",
                 "group": "Misc",
                 "title": "Null character",
+                "assertion": {
+                    "stdout_match": "Hello World \u0000"
+                },
                 "summary": "Output a null character to stdout",
                 "description": "See https://en.wikipedia.org/wiki/Null_character",
+                "cli_args": "",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "null_char.sh",
@@ -209,7 +234,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash null_char.sh "
                     },
                     {
                         "file_name": "NullChar.cs",
@@ -221,7 +247,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run null_char "
                     },
                     {
                         "file_name": "null_char.go",
@@ -233,7 +260,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run null_char.go "
                     },
                     {
                         "file_name": "NullChar.java",
@@ -245,7 +273,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java NullChar.java "
                     },
                     {
                         "file_name": "null_char.mjs",
@@ -257,7 +286,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write null_char.mjs "
                     },
                     {
                         "file_name": "null_char.mjs",
@@ -269,7 +299,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node null_char.mjs "
                     },
                     {
                         "file_name": "null_char.lua",
@@ -281,7 +312,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua null_char.lua "
                     },
                     {
                         "file_name": "null_char.php",
@@ -293,7 +325,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php null_char.php "
                     },
                     {
                         "file_name": "null_char.pl",
@@ -305,7 +338,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl null_char.pl "
                     },
                     {
                         "file_name": "null_char.py",
@@ -317,7 +351,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python null_char.py "
                     },
                     {
                         "file_name": "null_char.R",
@@ -329,7 +364,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript null_char.R "
                     },
                     {
                         "file_name": "null_char.raku",
@@ -341,7 +377,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku null_char.raku "
                     },
                     {
                         "file_name": "null_char.rb",
@@ -353,7 +390,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby null_char.rb "
                     },
                     {
                         "file_name": "null_char.rs",
@@ -365,7 +403,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script null_char.rs "
                     },
                     {
                         "file_name": "null_char.swift",
@@ -377,7 +416,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift null_char.swift "
                     }
                 ]
             }
@@ -391,8 +431,14 @@
                 "script_name": "stdin",
                 "group": "Standard I/O",
                 "title": "Standard input",
+                "stdin": "hi\nhello\nhow are you\n",
+                "assertion": {
+                    "stdout_match": "line: hi\nline: hello\nline: how are you\n"
+                },
                 "summary": "Read from stdin line by line",
                 "description": "Read one line at a time from stdin and print it.\nThis example assumes that all the input on stdin is available at once.",
+                "cli_args": "",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "stdin.sh",
@@ -404,7 +450,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash stdin.sh <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "Stdin.cs",
@@ -416,7 +463,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run stdin <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.go",
@@ -428,7 +476,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run stdin.go <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "Stdin.java",
@@ -440,7 +489,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java Stdin.java <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.mjs",
@@ -452,7 +502,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write stdin.mjs <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.mjs",
@@ -464,7 +515,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node stdin.mjs <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.lua",
@@ -476,7 +528,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua stdin.lua <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.php",
@@ -488,7 +541,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php stdin.php <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.pl",
@@ -500,7 +554,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl stdin.pl <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.py",
@@ -512,7 +567,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python stdin.py <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.R",
@@ -524,7 +580,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript stdin.R <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.raku",
@@ -536,7 +593,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku stdin.raku <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.rb",
@@ -548,7 +606,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby stdin.rb <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.rs",
@@ -560,7 +619,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script stdin.rs <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
                         "file_name": "stdin.swift",
@@ -572,7 +632,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift stdin.swift <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     }
                 ]
             },
@@ -582,6 +643,9 @@
                 "title": "Streaming standard input",
                 "summary": "Stream from stdin line by line",
                 "description": "Stream one line at a time from stdin and print it to stdout.\n\nThe test runner for this case will only provide the next line on stdin when the previous line has be printed to stdout.\nThis requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.\nSome languages do this automatically, other don't.",
+                "cli_args": "",
+                "files": [],
+                "assertion": null,
                 "implementations": [
                     {
                         "file_name": "streaming_stdin.sh",
@@ -593,7 +657,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash streaming_stdin.sh "
                     },
                     {
                         "file_name": "StreamingStdin.cs",
@@ -605,7 +670,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run streaming_stdin "
                     },
                     {
                         "file_name": "streaming_stdin.go",
@@ -617,7 +683,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run streaming_stdin.go "
                     },
                     {
                         "file_name": "StreamingStdin.java",
@@ -629,7 +696,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java StreamingStdin.java "
                     },
                     {
                         "file_name": "streaming_stdin.mjs",
@@ -641,7 +709,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write streaming_stdin.mjs "
                     },
                     {
                         "file_name": "streaming_stdin.mjs",
@@ -653,7 +722,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node streaming_stdin.mjs "
                     },
                     {
                         "file_name": "streaming_stdin.lua",
@@ -665,7 +735,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua streaming_stdin.lua "
                     },
                     {
                         "file_name": "streaming_stdin.php",
@@ -677,7 +748,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php streaming_stdin.php "
                     },
                     {
                         "file_name": "streaming_stdin.pl",
@@ -689,7 +761,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl streaming_stdin.pl "
                     },
                     {
                         "file_name": "streaming_stdin.py",
@@ -701,7 +774,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python streaming_stdin.py "
                     },
                     {
                         "file_name": "streaming_stdin.R",
@@ -713,7 +787,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript streaming_stdin.R "
                     },
                     {
                         "file_name": "streaming_stdin.raku",
@@ -725,7 +800,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku streaming_stdin.raku "
                     },
                     {
                         "file_name": "streaming_stdin.rb",
@@ -737,7 +813,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby streaming_stdin.rb "
                     },
                     {
                         "file_name": "streaming_stdin.rs",
@@ -749,7 +826,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script streaming_stdin.rs "
                     },
                     {
                         "file_name": "streaming_stdin.swift",
@@ -761,7 +839,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift streaming_stdin.swift "
                     }
                 ]
             }
@@ -774,9 +853,20 @@
             {
                 "script_name": "read_file",
                 "group": "File I/O",
-                "title": "Read file",
-                "summary": "Read a file line by line",
+                "title": "Read text file",
+                "files": [
+                    {
+                        "name": "my-text-file.txt",
+                        "ext": "txt",
+                        "content": "hi\nhello\nhow are you\n"
+                    }
+                ],
+                "assertion": {
+                    "stdout_match": "line: hi\nline: hello\nline: how are you\n"
+                },
+                "summary": "Read a text file line by line",
                 "description": "Read one line at a time from a file called `my-text-file.txt` and print it.",
+                "cli_args": "",
                 "implementations": [
                     {
                         "file_name": "read_file.sh",
@@ -788,7 +878,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash read_file.sh "
                     },
                     {
                         "file_name": "ReadFile.cs",
@@ -800,7 +891,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run read_file "
                     },
                     {
                         "file_name": "read_file.go",
@@ -812,7 +904,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run read_file.go "
                     },
                     {
                         "file_name": "ReadFile.java",
@@ -824,7 +917,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java ReadFile.java "
                     },
                     {
                         "file_name": "read_file.mjs",
@@ -836,7 +930,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write read_file.mjs "
                     },
                     {
                         "file_name": "read_file.mjs",
@@ -848,7 +943,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node read_file.mjs "
                     },
                     {
                         "file_name": "read_file.lua",
@@ -860,7 +956,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua read_file.lua "
                     },
                     {
                         "file_name": "read_file.php",
@@ -872,7 +969,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php read_file.php "
                     },
                     {
                         "file_name": "read_file.pl",
@@ -884,7 +982,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl read_file.pl "
                     },
                     {
                         "file_name": "read_file.py",
@@ -896,7 +995,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python read_file.py "
                     },
                     {
                         "file_name": "read_file.R",
@@ -908,7 +1008,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript read_file.R "
                     },
                     {
                         "file_name": "read_file.raku",
@@ -920,7 +1021,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku read_file.raku "
                     },
                     {
                         "file_name": "read_file.rb",
@@ -932,7 +1034,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby read_file.rb "
                     },
                     {
                         "file_name": "read_file.rs",
@@ -944,7 +1047,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script read_file.rs "
                     },
                     {
                         "file_name": "read_file.swift",
@@ -956,7 +1060,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift read_file.swift "
                     }
                 ]
             },
@@ -966,6 +1071,9 @@
                 "title": "Write text file",
                 "summary": "Write to a text file",
                 "description": "Write the string `Hello World!` to a file named `output.txt`.",
+                "cli_args": "",
+                "files": [],
+                "assertion": null,
                 "implementations": [
                     {
                         "file_name": "write_to_text_file.sh",
@@ -977,7 +1085,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash write_to_text_file.sh "
                     },
                     {
                         "file_name": "WriteToTextFile.cs",
@@ -989,7 +1098,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run write_to_text_file "
                     },
                     {
                         "file_name": "write_to_text_file.go",
@@ -1001,7 +1111,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run write_to_text_file.go "
                     },
                     {
                         "file_name": "WriteToTextFile.java",
@@ -1013,7 +1124,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java WriteToTextFile.java "
                     },
                     {
                         "file_name": "write_to_text_file.mjs",
@@ -1025,7 +1137,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write write_to_text_file.mjs "
                     },
                     {
                         "file_name": "write_to_text_file.mjs",
@@ -1037,7 +1150,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node write_to_text_file.mjs "
                     },
                     {
                         "file_name": "write_to_text_file.lua",
@@ -1049,7 +1163,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua write_to_text_file.lua "
                     },
                     {
                         "file_name": "write_to_text_file.php",
@@ -1061,7 +1176,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php write_to_text_file.php "
                     },
                     {
                         "file_name": "write_to_text_file.pl",
@@ -1073,7 +1189,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl write_to_text_file.pl "
                     },
                     {
                         "file_name": "write_to_text_file.py",
@@ -1085,7 +1202,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python write_to_text_file.py "
                     },
                     {
                         "file_name": "write_to_text_file.R",
@@ -1097,7 +1215,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript write_to_text_file.R "
                     },
                     {
                         "file_name": "write_to_text_file.raku",
@@ -1109,7 +1228,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku write_to_text_file.raku "
                     },
                     {
                         "file_name": "write_to_text_file.rb",
@@ -1121,7 +1241,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby write_to_text_file.rb "
                     },
                     {
                         "file_name": "write_to_text_file.rs",
@@ -1133,7 +1254,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script write_to_text_file.rs "
                     },
                     {
                         "file_name": "write_to_text_file.swift",
@@ -1145,7 +1267,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift write_to_text_file.swift "
                     }
                 ]
             }
@@ -1159,8 +1282,18 @@
                 "script_name": "json_numbers",
                 "group": "JSON",
                 "title": "Build JSON array of numbers",
+                "cli_args": "a bc def ghij",
+                "assertion": {
+                    "json": [
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                },
                 "summary": "Create and output a JSON array of numbers",
                 "description": "Accept a list of strings as command line arguments.\nCreate and output a JSON array of the *lengths* of the strings.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "json_numbers.sh",
@@ -1172,7 +1305,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_numbers.sh a bc def ghij"
                     },
                     {
                         "file_name": "JsonNumbers.cs",
@@ -1184,7 +1318,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_numbers a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.go",
@@ -1196,7 +1331,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_numbers.go a bc def ghij"
                     },
                     {
                         "file_name": "JsonNumbers.java",
@@ -1208,7 +1344,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonNumbers.java a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.mjs",
@@ -1220,7 +1357,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_numbers.mjs a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.mjs",
@@ -1232,7 +1370,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_numbers.mjs a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.lua",
@@ -1244,7 +1383,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_numbers.lua a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.php",
@@ -1256,7 +1396,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_numbers.php a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.pl",
@@ -1268,7 +1409,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_numbers.pl a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.py",
@@ -1280,7 +1422,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_numbers.py a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.R",
@@ -1292,7 +1435,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript json_numbers.R a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.raku",
@@ -1304,7 +1448,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_numbers.raku a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.rb",
@@ -1316,7 +1461,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_numbers.rb a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.rs",
@@ -1328,7 +1474,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_numbers.rs a bc def ghij"
                     },
                     {
                         "file_name": "json_numbers.swift",
@@ -1340,7 +1487,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_numbers.swift a bc def ghij"
                     }
                 ]
             },
@@ -1348,8 +1496,23 @@
                 "script_name": "json_object_array",
                 "group": "JSON",
                 "title": "Build JSON array of objects",
+                "cli_args": "a bc def",
+                "assertion": {
+                    "json": [
+                        {
+                            "A": 1
+                        },
+                        {
+                            "BC": 2
+                        },
+                        {
+                            "DEF": 3
+                        }
+                    ]
+                },
                 "summary": "Create and output a JSON array of objects",
                 "description": "Accept a list of strings as command line arguments.\nCreate and output a JSON array of objects, one for each strings, where each\nobject has a key-value pair where the key is the uppercased string and the\nvalue is the length of the string.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "json_object_array.sh",
@@ -1361,7 +1524,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_object_array.sh a bc def"
                     },
                     {
                         "file_name": "JsonObjectArray.cs",
@@ -1373,7 +1537,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_object_array a bc def"
                     },
                     {
                         "file_name": "json_object_array.go",
@@ -1385,7 +1550,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_object_array.go a bc def"
                     },
                     {
                         "file_name": "JsonObjectArray.java",
@@ -1397,7 +1563,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonObjectArray.java a bc def"
                     },
                     {
                         "file_name": "json_object_array.mjs",
@@ -1409,7 +1576,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_object_array.mjs a bc def"
                     },
                     {
                         "file_name": "json_object_array.mjs",
@@ -1421,7 +1589,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_object_array.mjs a bc def"
                     },
                     {
                         "file_name": "json_object_array.lua",
@@ -1433,7 +1602,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_object_array.lua a bc def"
                     },
                     {
                         "file_name": "json_object_array.php",
@@ -1445,7 +1615,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_object_array.php a bc def"
                     },
                     {
                         "file_name": "json_object_array.pl",
@@ -1457,7 +1628,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_object_array.pl a bc def"
                     },
                     {
                         "file_name": "json_object_array.py",
@@ -1469,7 +1641,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_object_array.py a bc def"
                     },
                     {
                         "file_name": "json_object_array.R",
@@ -1481,7 +1654,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript json_object_array.R a bc def"
                     },
                     {
                         "file_name": "json_object_array.raku",
@@ -1493,7 +1667,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_object_array.raku a bc def"
                     },
                     {
                         "file_name": "json_object_array.rb",
@@ -1505,7 +1680,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_object_array.rb a bc def"
                     },
                     {
                         "file_name": "json_object_array.rs",
@@ -1517,7 +1693,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_object_array.rs a bc def"
                     },
                     {
                         "file_name": "json_object_array.swift",
@@ -1529,7 +1706,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_object_array.swift a bc def"
                     }
                 ]
             },
@@ -1537,8 +1715,18 @@
                 "script_name": "json_array",
                 "group": "JSON",
                 "title": "Build JSON array of strings",
+                "cli_args": "a b c d",
+                "assertion": {
+                    "json": [
+                        "a",
+                        "b",
+                        "c",
+                        "d"
+                    ]
+                },
                 "summary": "Create and output a JSON array of strings",
                 "description": "Accept a list of strings as command line arguments.\nCreate and output a JSON array of those strings.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "json_array.sh",
@@ -1550,7 +1738,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_array.sh a b c d"
                     },
                     {
                         "file_name": "JsonArray.cs",
@@ -1562,7 +1751,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_array a b c d"
                     },
                     {
                         "file_name": "json_array.go",
@@ -1574,7 +1764,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_array.go a b c d"
                     },
                     {
                         "file_name": "JsonArray.java",
@@ -1586,7 +1777,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonArray.java a b c d"
                     },
                     {
                         "file_name": "json_array.mjs",
@@ -1598,7 +1790,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_array.mjs a b c d"
                     },
                     {
                         "file_name": "json_array.mjs",
@@ -1610,7 +1803,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_array.mjs a b c d"
                     },
                     {
                         "file_name": "json_array.lua",
@@ -1622,7 +1816,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_array.lua a b c d"
                     },
                     {
                         "file_name": "json_array.php",
@@ -1634,7 +1829,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_array.php a b c d"
                     },
                     {
                         "file_name": "json_array.pl",
@@ -1646,7 +1842,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_array.pl a b c d"
                     },
                     {
                         "file_name": "json_array.py",
@@ -1658,7 +1855,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_array.py a b c d"
                     },
                     {
                         "file_name": "json_array.R",
@@ -1670,7 +1868,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript json_array.R a b c d"
                     },
                     {
                         "file_name": "json_array.raku",
@@ -1682,7 +1881,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_array.raku a b c d"
                     },
                     {
                         "file_name": "json_array.rb",
@@ -1694,7 +1894,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_array.rb a b c d"
                     },
                     {
                         "file_name": "json_array.rs",
@@ -1706,7 +1907,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_array.rs a b c d"
                     },
                     {
                         "file_name": "json_array.swift",
@@ -1718,7 +1920,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_array.swift a b c d"
                     }
                 ]
             },
@@ -1726,8 +1929,18 @@
                 "script_name": "json_stdout_object",
                 "group": "JSON",
                 "title": "Build JSON object",
+                "cli_args": "a bc def ghij",
+                "assertion": {
+                    "json": {
+                        "a": 1,
+                        "bc": 2,
+                        "def": 3,
+                        "ghij": 4
+                    }
+                },
                 "summary": "Create and output a JSON object",
                 "description": "Accept a list of strings as command line arguments.\nCreate and output a JSON object with the strings as keys and their lengths as values.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "json_stdout_object.sh",
@@ -1739,7 +1952,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_stdout_object.sh a bc def ghij"
                     },
                     {
                         "file_name": "JsonStdoutObject.cs",
@@ -1751,7 +1965,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_stdout_object a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.go",
@@ -1763,7 +1978,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_stdout_object.go a bc def ghij"
                     },
                     {
                         "file_name": "JsonStdoutObject.java",
@@ -1775,7 +1991,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonStdoutObject.java a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.mjs",
@@ -1787,7 +2004,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_stdout_object.mjs a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.mjs",
@@ -1799,7 +2017,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_stdout_object.mjs a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.lua",
@@ -1811,7 +2030,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_stdout_object.lua a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.php",
@@ -1823,7 +2043,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_stdout_object.php a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.pl",
@@ -1835,7 +2056,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_stdout_object.pl a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.py",
@@ -1847,7 +2069,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_stdout_object.py a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.R",
@@ -1859,7 +2082,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript json_stdout_object.R a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.raku",
@@ -1871,7 +2095,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_stdout_object.raku a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.rb",
@@ -1883,7 +2108,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_stdout_object.rb a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.rs",
@@ -1895,7 +2121,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_stdout_object.rs a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.swift",
@@ -1907,7 +2134,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_stdout_object.swift a bc def ghij"
                     }
                 ]
             },
@@ -1915,8 +2143,26 @@
                 "script_name": "json_object_with_array_values",
                 "group": "JSON",
                 "title": "Build JSON object of arrays of strings",
+                "cli_args": "a bc def",
+                "assertion": {
+                    "json": {
+                        "a": [
+                            "A"
+                        ],
+                        "bc": [
+                            "B",
+                            "C"
+                        ],
+                        "def": [
+                            "D",
+                            "E",
+                            "F"
+                        ]
+                    }
+                },
                 "summary": "Create and output a JSON object with arrays of strings as values",
                 "description": "Accept a list of strings as command line arguments.\nCreate and output a JSON object with the strings as keys and arrays of their characters as values.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "json_object_with_array_values.sh",
@@ -1928,7 +2174,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_object_with_array_values.sh a bc def"
                     },
                     {
                         "file_name": "JsonObjectWithArrayValues.cs",
@@ -1940,7 +2187,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_object_with_array_values a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.go",
@@ -1952,7 +2200,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_object_with_array_values.go a bc def"
                     },
                     {
                         "file_name": "JsonObjectWithArrayValues.java",
@@ -1964,7 +2213,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonObjectWithArrayValues.java a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.mjs",
@@ -1976,7 +2226,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_object_with_array_values.mjs a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.mjs",
@@ -1988,7 +2239,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_object_with_array_values.mjs a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.lua",
@@ -2000,7 +2252,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_object_with_array_values.lua a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.php",
@@ -2012,7 +2265,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_object_with_array_values.php a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.pl",
@@ -2024,7 +2278,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_object_with_array_values.pl a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.py",
@@ -2036,7 +2291,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_object_with_array_values.py a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.R",
@@ -2048,7 +2304,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript json_object_with_array_values.R a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.raku",
@@ -2060,7 +2317,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_object_with_array_values.raku a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.rb",
@@ -2072,7 +2330,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_object_with_array_values.rb a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.rs",
@@ -2084,7 +2343,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_object_with_array_values.rs a bc def"
                     },
                     {
                         "file_name": "json_object_with_array_values.swift",
@@ -2096,7 +2356,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_object_with_array_values.swift a bc def"
                     }
                 ]
             },
@@ -2104,8 +2365,13 @@
                 "script_name": "json_control_chars",
                 "group": "JSON",
                 "title": "JSON with control characters & emoji",
+                "cli_args": "'hello \n \u0001 world 🥸'",
+                "assertion": {
+                    "json": "hello \n \u0001 world 🥸"
+                },
                 "summary": "Build and out output a JSON string containing control characters and emojis.",
                 "description": "Receive a string as a command line argument and print it as the JSON string. The string is\n`\"hello \\n \\u0001 world 🥸\"`.\n\nSee [JSON with null character](../json_null_char) for outputting the Null Character (`\\0`) in a JSON string.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "json_control_chars.sh",
@@ -2117,7 +2383,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_control_chars.sh 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "JsonControlChars.cs",
@@ -2129,7 +2396,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_control_chars 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.go",
@@ -2141,7 +2409,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_control_chars.go 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "JsonControlChars.java",
@@ -2153,7 +2422,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonControlChars.java 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.mjs",
@@ -2165,7 +2435,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_control_chars.mjs 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.mjs",
@@ -2177,7 +2448,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_control_chars.mjs 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.lua",
@@ -2189,7 +2461,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_control_chars.lua 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.php",
@@ -2201,7 +2474,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_control_chars.php 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.pl",
@@ -2213,7 +2487,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_control_chars.pl 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.py",
@@ -2225,7 +2500,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_control_chars.py 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.R",
@@ -2237,7 +2513,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript json_control_chars.R 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.raku",
@@ -2249,7 +2526,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_control_chars.raku 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.rb",
@@ -2261,7 +2539,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_control_chars.rb 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.rs",
@@ -2273,7 +2552,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_control_chars.rs 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.swift",
@@ -2285,7 +2565,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_control_chars.swift 'hello \n \u0001 world 🥸'"
                     }
                 ]
             },
@@ -2293,8 +2574,13 @@
                 "script_name": "json_null_char",
                 "group": "JSON",
                 "title": "JSON with null character",
+                "assertion": {
+                    "json": "Hello World \u0000"
+                },
                 "summary": "Create output JSON with a null character",
                 "description": "In a JSON string the null character is represented as `\\u0000`.\n\nJSON strings are UTF-8 encoded, so the null character is valid, but\nnevertheless, some JSON parsers cannot handle it.",
+                "cli_args": "",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "json_null_char.sh",
@@ -2306,7 +2592,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_null_char.sh "
                     },
                     {
                         "file_name": "JsonNullChar.cs",
@@ -2318,7 +2605,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_null_char "
                     },
                     {
                         "file_name": "json_null_char.go",
@@ -2330,7 +2618,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_null_char.go "
                     },
                     {
                         "file_name": "JsonNullChar.java",
@@ -2342,7 +2631,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonNullChar.java "
                     },
                     {
                         "file_name": "json_null_char.mjs",
@@ -2354,7 +2644,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_null_char.mjs "
                     },
                     {
                         "file_name": "json_null_char.mjs",
@@ -2366,7 +2657,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_null_char.mjs "
                     },
                     {
                         "file_name": "json_null_char.lua",
@@ -2378,7 +2670,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_null_char.lua "
                     },
                     {
                         "file_name": "json_null_char.php",
@@ -2390,7 +2683,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_null_char.php "
                     },
                     {
                         "file_name": "json_null_char.pl",
@@ -2402,7 +2696,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_null_char.pl "
                     },
                     {
                         "file_name": "json_null_char.py",
@@ -2414,7 +2709,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_null_char.py "
                     },
                     {
                         "file_name": "json_null_char.raku",
@@ -2426,7 +2722,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_null_char.raku "
                     },
                     {
                         "file_name": "json_null_char.rb",
@@ -2438,7 +2735,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_null_char.rb "
                     },
                     {
                         "file_name": "json_null_char.rs",
@@ -2450,7 +2748,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_null_char.rs "
                     },
                     {
                         "file_name": "json_null_char.swift",
@@ -2462,7 +2761,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_null_char.swift "
                     }
                 ]
             },
@@ -2472,6 +2772,9 @@
                 "title": "Output JSON",
                 "summary": "Create and output JSON",
                 "description": "Create and output JSON that contains a variety of data types.",
+                "cli_args": "",
+                "files": [],
+                "assertion": null,
                 "implementations": [
                     {
                         "file_name": "json_outputting_data.sh",
@@ -2483,7 +2786,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash json_outputting_data.sh "
                     },
                     {
                         "file_name": "JsonOutputtingData.cs",
@@ -2495,7 +2799,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run json_outputting_data "
                     },
                     {
                         "file_name": "json_outputting_data.go",
@@ -2507,7 +2812,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run json_outputting_data.go "
                     },
                     {
                         "file_name": "JsonOutputtingData.java",
@@ -2519,7 +2825,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java JsonOutputtingData.java "
                     },
                     {
                         "file_name": "json_outputting_data.mjs",
@@ -2531,7 +2838,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write json_outputting_data.mjs "
                     },
                     {
                         "file_name": "json_outputting_data.mjs",
@@ -2543,7 +2851,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node json_outputting_data.mjs "
                     },
                     {
                         "file_name": "json_outputting_data.lua",
@@ -2555,7 +2864,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua json_outputting_data.lua "
                     },
                     {
                         "file_name": "json_outputting_data.php",
@@ -2567,7 +2877,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php json_outputting_data.php "
                     },
                     {
                         "file_name": "json_outputting_data.pl",
@@ -2579,7 +2890,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl json_outputting_data.pl "
                     },
                     {
                         "file_name": "json_outputting_data.py",
@@ -2591,7 +2903,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python json_outputting_data.py "
                     },
                     {
                         "file_name": "json_outputting_data.R",
@@ -2603,7 +2916,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript json_outputting_data.R "
                     },
                     {
                         "file_name": "json_outputting_data.raku",
@@ -2615,7 +2929,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku json_outputting_data.raku "
                     },
                     {
                         "file_name": "json_outputting_data.rb",
@@ -2627,7 +2942,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby json_outputting_data.rb "
                     },
                     {
                         "file_name": "json_outputting_data.rs",
@@ -2639,7 +2955,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script json_outputting_data.rs "
                     },
                     {
                         "file_name": "json_outputting_data.swift",
@@ -2651,7 +2968,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift json_outputting_data.swift "
                     }
                 ]
             },
@@ -2659,8 +2977,19 @@
                 "script_name": "read_json_file",
                 "group": "JSON",
                 "title": "Parse JSON file",
+                "files": [
+                    {
+                        "name": "people.json",
+                        "ext": "json",
+                        "content": "[\n    {\n        \"first_name\": \"Bob\",\n        \"last_name\": \"Barker\",\n        \"age\": 84\n    },\n    {\n        \"first_name\": \"Tina\",\n        \"last_name\": \"Turner\",\n        \"age\": 67\n    },\n    {\n        \"first_name\": \"Steven\",\n        \"last_name\": \"Sagal\",\n        \"age\": 98\n    }\n]"
+                    }
+                ],
+                "assertion": {
+                    "stdout_match": "Hello, 84 year old Bob\nHello, 67 year old Tina\nHello, 98 year old Steven\n"
+                },
                 "summary": "Read and parse a JSON file",
                 "description": "Read a JSON file called `people.json` that contains an array of JSON objects.\nFor each JSON object, print a greeting.",
+                "cli_args": "",
                 "implementations": [
                     {
                         "file_name": "read_json_file.sh",
@@ -2672,7 +3001,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash read_json_file.sh "
                     },
                     {
                         "file_name": "ReadJsonFile.cs",
@@ -2684,7 +3014,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run read_json_file "
                     },
                     {
                         "file_name": "read_json_file.go",
@@ -2696,7 +3027,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run read_json_file.go "
                     },
                     {
                         "file_name": "ReadJsonFile.java",
@@ -2708,7 +3040,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java ReadJsonFile.java "
                     },
                     {
                         "file_name": "read_json_file.mjs",
@@ -2720,7 +3053,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write read_json_file.mjs "
                     },
                     {
                         "file_name": "read_json_file.mjs",
@@ -2732,7 +3066,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node read_json_file.mjs "
                     },
                     {
                         "file_name": "read_json_file.lua",
@@ -2744,7 +3079,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua read_json_file.lua "
                     },
                     {
                         "file_name": "read_json_file.php",
@@ -2756,7 +3092,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php read_json_file.php "
                     },
                     {
                         "file_name": "read_json_file.pl",
@@ -2768,7 +3105,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl read_json_file.pl "
                     },
                     {
                         "file_name": "read_json_file.py",
@@ -2780,7 +3118,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python read_json_file.py "
                     },
                     {
                         "file_name": "read_json_file.R",
@@ -2792,7 +3131,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript read_json_file.R "
                     },
                     {
                         "file_name": "read_json_file.raku",
@@ -2804,7 +3144,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku read_json_file.raku "
                     },
                     {
                         "file_name": "read_json_file.rb",
@@ -2816,7 +3157,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby read_json_file.rb "
                     },
                     {
                         "file_name": "read_json_file.rs",
@@ -2828,7 +3170,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script read_json_file.rs "
                     },
                     {
                         "file_name": "read_json_file.swift",
@@ -2840,7 +3183,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift read_json_file.swift "
                     }
                 ]
             }
@@ -2854,8 +3198,13 @@
                 "script_name": "decode",
                 "group": "Base64",
                 "title": "Decode Base64",
+                "cli_args": "SGVsbG8sIHdvcmxkIQ==",
+                "assertion": {
+                    "stdout_match": "Hello, world!"
+                },
                 "summary": "Decode a base64 string",
                 "description": "Accept a base64 encoded string as a command line argument, decode it, and print it out.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "decode.sh",
@@ -2867,7 +3216,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash decode.sh SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "Decode.cs",
@@ -2879,7 +3229,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run decode SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.go",
@@ -2891,7 +3242,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run decode.go SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "Decode.java",
@@ -2903,7 +3255,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java Decode.java SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.mjs",
@@ -2915,7 +3268,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write decode.mjs SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.mjs",
@@ -2927,7 +3281,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node decode.mjs SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.lua",
@@ -2939,7 +3294,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua decode.lua SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.php",
@@ -2951,7 +3307,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php decode.php SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.pl",
@@ -2963,7 +3320,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl decode.pl SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.py",
@@ -2975,7 +3333,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python decode.py SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.R",
@@ -2987,7 +3346,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript decode.R SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.raku",
@@ -2999,7 +3359,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku decode.raku SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.rb",
@@ -3011,7 +3372,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby decode.rb SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.rs",
@@ -3023,7 +3385,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script decode.rs SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
                         "file_name": "decode.swift",
@@ -3035,7 +3398,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift decode.swift SGVsbG8sIHdvcmxkIQ=="
                     }
                 ]
             },
@@ -3043,8 +3407,13 @@
                 "script_name": "encode",
                 "group": "Base64",
                 "title": "Encode Base64",
+                "cli_args": "'Hello, world!'",
+                "assertion": {
+                    "stdout_match": "SGVsbG8sIHdvcmxkIQ=="
+                },
                 "summary": "Encode a string as base64",
                 "description": "Accept a string as a command line argument, encode it as Base64, then print it out.",
+                "files": [],
                 "implementations": [
                     {
                         "file_name": "encode.sh",
@@ -3056,7 +3425,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash encode.sh 'Hello, world!'"
                     },
                     {
                         "file_name": "Encode.cs",
@@ -3068,7 +3438,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run encode 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.go",
@@ -3080,7 +3451,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run encode.go 'Hello, world!'"
                     },
                     {
                         "file_name": "Encode.java",
@@ -3092,7 +3464,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java Encode.java 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.mjs",
@@ -3104,7 +3477,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write encode.mjs 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.mjs",
@@ -3116,7 +3490,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node encode.mjs 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.lua",
@@ -3128,7 +3503,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua encode.lua 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.php",
@@ -3140,7 +3516,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php encode.php 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.pl",
@@ -3152,7 +3529,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl encode.pl 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.py",
@@ -3164,7 +3542,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python encode.py 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.R",
@@ -3176,7 +3555,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript encode.R 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.raku",
@@ -3188,7 +3568,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku encode.raku 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.rb",
@@ -3200,7 +3581,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby encode.rb 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.rs",
@@ -3212,7 +3594,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script encode.rs 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.swift",
@@ -3224,7 +3607,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift encode.swift 'Hello, world!'"
                     }
                 ]
             }
@@ -3240,6 +3624,9 @@
                 "title": "Streaming from named pipe",
                 "summary": "Stream from a named pipe line by line",
                 "description": "Stream one line at a time from a named pipe (named `input.pipe`) and print it to stdout.\nThe test runner for this case will only provide the next line on the `input.pipe` when the previous line has be printed to stdout.\n\nThis requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.\nSome languages do this automatically, other don't.",
+                "cli_args": "",
+                "files": [],
+                "assertion": null,
                 "implementations": [
                     {
                         "file_name": "streaming_pipe_in.sh",
@@ -3251,7 +3638,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash streaming_pipe_in.sh "
                     },
                     {
                         "file_name": "StreamingPipeIn.cs",
@@ -3263,7 +3651,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run streaming_pipe_in "
                     },
                     {
                         "file_name": "streaming_pipe_in.go",
@@ -3275,7 +3664,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run streaming_pipe_in.go "
                     },
                     {
                         "file_name": "StreamingPipeIn.java",
@@ -3287,7 +3677,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java StreamingPipeIn.java "
                     },
                     {
                         "file_name": "streaming_pipe_in.mjs",
@@ -3299,7 +3690,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write streaming_pipe_in.mjs "
                     },
                     {
                         "file_name": "streaming_pipe_in.mjs",
@@ -3311,7 +3703,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node streaming_pipe_in.mjs "
                     },
                     {
                         "file_name": "streaming_pipe_in.lua",
@@ -3323,7 +3716,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua streaming_pipe_in.lua "
                     },
                     {
                         "file_name": "streaming_pipe_in.php",
@@ -3335,7 +3729,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php streaming_pipe_in.php "
                     },
                     {
                         "file_name": "streaming_pipe_in.pl",
@@ -3347,7 +3742,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl streaming_pipe_in.pl "
                     },
                     {
                         "file_name": "streaming_pipe_in.py",
@@ -3359,7 +3755,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python streaming_pipe_in.py "
                     },
                     {
                         "file_name": "streaming_pipe_in.R",
@@ -3371,7 +3768,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript streaming_pipe_in.R "
                     },
                     {
                         "file_name": "streaming_pipe_in.raku",
@@ -3383,7 +3781,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku streaming_pipe_in.raku "
                     },
                     {
                         "file_name": "streaming_pipe_in.rb",
@@ -3395,7 +3794,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby streaming_pipe_in.rb "
                     },
                     {
                         "file_name": "streaming_pipe_in.rs",
@@ -3407,7 +3807,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script streaming_pipe_in.rs "
                     },
                     {
                         "file_name": "streaming_pipe_in.swift",
@@ -3419,7 +3820,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift streaming_pipe_in.swift "
                     }
                 ]
             },
@@ -3429,6 +3831,9 @@
                 "title": "Streaming to and from named pipes",
                 "summary": "Stream lines from a named pipe, write to another named pipe",
                 "description": "Stream one line at a time from a named pipe (named `streaming-in.pipe`) and\nprint it to another named pipe (named `streaming-out.pipe`).\n\nThe test runner for this case will only provide the next line on stdin when the previous line has be printed to stdout.\nThis requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.\nSome languages do this automatically, other don't.",
+                "cli_args": "",
+                "files": [],
+                "assertion": null,
                 "implementations": [
                     {
                         "file_name": "streaming_pipe_in_and_out.sh",
@@ -3440,7 +3845,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash streaming_pipe_in_and_out.sh "
                     },
                     {
                         "file_name": "StreamingPipeInAndOut.cs",
@@ -3452,7 +3858,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run streaming_pipe_in_and_out "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.go",
@@ -3464,7 +3871,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run streaming_pipe_in_and_out.go "
                     },
                     {
                         "file_name": "StreamingPipeInAndOut.java",
@@ -3476,7 +3884,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java StreamingPipeInAndOut.java "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.mjs",
@@ -3488,7 +3897,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write streaming_pipe_in_and_out.mjs "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.mjs",
@@ -3500,7 +3910,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node streaming_pipe_in_and_out.mjs "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.lua",
@@ -3512,7 +3923,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua streaming_pipe_in_and_out.lua "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.php",
@@ -3524,7 +3936,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php streaming_pipe_in_and_out.php "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.pl",
@@ -3536,7 +3949,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl streaming_pipe_in_and_out.pl "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.py",
@@ -3548,7 +3962,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python streaming_pipe_in_and_out.py "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.R",
@@ -3560,7 +3975,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript streaming_pipe_in_and_out.R "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.raku",
@@ -3572,7 +3988,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku streaming_pipe_in_and_out.raku "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.rb",
@@ -3584,7 +4001,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby streaming_pipe_in_and_out.rb "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.rs",
@@ -3596,7 +4014,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script streaming_pipe_in_and_out.rs "
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.swift",
@@ -3608,7 +4027,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift streaming_pipe_in_and_out.swift "
                     }
                 ]
             },
@@ -3618,6 +4038,9 @@
                 "title": "Write to named pipe",
                 "summary": "Write text to a named pipe",
                 "description": "Write `Hello World!` to a named pipe (named `output.pipe`).\n\nWhen writing to named pipes, the program does not need to know it's a pipe,\nbut can treat it as a regular file when writing to it.",
+                "cli_args": "",
+                "files": [],
+                "assertion": null,
                 "implementations": [
                     {
                         "file_name": "write_to_named_pipe.sh",
@@ -3629,7 +4052,8 @@
                             "syntax_highlighting": "bash",
                             "icon_id": "bash",
                             "directory": "bash"
-                        }
+                        },
+                        "command": "bash write_to_named_pipe.sh "
                     },
                     {
                         "file_name": "WriteToNamedPipe.cs",
@@ -3641,7 +4065,8 @@
                             "syntax_highlighting": "csharp",
                             "icon_id": "csharp",
                             "directory": "csharp"
-                        }
+                        },
+                        "command": "dotnet run write_to_named_pipe "
                     },
                     {
                         "file_name": "write_to_named_pipe.go",
@@ -3653,7 +4078,8 @@
                             "syntax_highlighting": "go",
                             "icon_id": "go",
                             "directory": "golang"
-                        }
+                        },
+                        "command": "go run write_to_named_pipe.go "
                     },
                     {
                         "file_name": "WriteToNamedPipe.java",
@@ -3665,7 +4091,8 @@
                             "syntax_highlighting": "java",
                             "icon_id": "java",
                             "directory": "java"
-                        }
+                        },
+                        "command": "java WriteToNamedPipe.java "
                     },
                     {
                         "file_name": "write_to_named_pipe.mjs",
@@ -3677,7 +4104,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "denojs",
                             "directory": "deno"
-                        }
+                        },
+                        "command": "deno run --allow-read --allow-write write_to_named_pipe.mjs "
                     },
                     {
                         "file_name": "write_to_named_pipe.mjs",
@@ -3689,7 +4117,8 @@
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
                             "directory": "nodejs"
-                        }
+                        },
+                        "command": "node write_to_named_pipe.mjs "
                     },
                     {
                         "file_name": "write_to_named_pipe.lua",
@@ -3701,7 +4130,8 @@
                             "syntax_highlighting": "lua",
                             "icon_id": "lua",
                             "directory": "lua"
-                        }
+                        },
+                        "command": "lua write_to_named_pipe.lua "
                     },
                     {
                         "file_name": "write_to_named_pipe.php",
@@ -3713,7 +4143,8 @@
                             "syntax_highlighting": "php",
                             "icon_id": "php",
                             "directory": "php"
-                        }
+                        },
+                        "command": "php write_to_named_pipe.php "
                     },
                     {
                         "file_name": "write_to_named_pipe.pl",
@@ -3725,7 +4156,8 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
+                        },
+                        "command": "perl write_to_named_pipe.pl "
                     },
                     {
                         "file_name": "write_to_named_pipe.py",
@@ -3737,7 +4169,8 @@
                             "syntax_highlighting": "python",
                             "icon_id": "python",
                             "directory": "python"
-                        }
+                        },
+                        "command": "python write_to_named_pipe.py "
                     },
                     {
                         "file_name": "write_to_named_pipe.R",
@@ -3749,7 +4182,8 @@
                             "syntax_highlighting": "r",
                             "icon_id": "r",
                             "directory": "r"
-                        }
+                        },
+                        "command": "Rscript write_to_named_pipe.R "
                     },
                     {
                         "file_name": "write_to_named_pipe.raku",
@@ -3761,7 +4195,8 @@
                             "syntax_highlighting": "raku",
                             "icon_id": "raku",
                             "directory": "raku"
-                        }
+                        },
+                        "command": "raku write_to_named_pipe.raku "
                     },
                     {
                         "file_name": "write_to_named_pipe.rb",
@@ -3773,7 +4208,8 @@
                             "syntax_highlighting": "ruby",
                             "icon_id": "ruby",
                             "directory": "ruby"
-                        }
+                        },
+                        "command": "ruby write_to_named_pipe.rb "
                     },
                     {
                         "file_name": "write_to_named_pipe.rs",
@@ -3785,7 +4221,8 @@
                             "syntax_highlighting": "rust",
                             "icon_id": "rust",
                             "directory": "rust"
-                        }
+                        },
+                        "command": "cargo script write_to_named_pipe.rs "
                     },
                     {
                         "file_name": "write_to_named_pipe.swift",
@@ -3797,7 +4234,8 @@
                             "syntax_highlighting": "swift",
                             "icon_id": "swift",
                             "directory": "swift"
-                        }
+                        },
+                        "command": "swift write_to_named_pipe.swift "
                     }
                 ]
             }

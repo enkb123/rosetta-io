@@ -205,29 +205,46 @@ def docker_builder(once_per_test_suite_run: EarlyBirdLocker) -> DockerBuilder:  
 def script(request: pytest.FixtureRequest, docker_builder: DockerBuilder, language: Language, is_local: bool):
     """Fixture that provides a ScriptRunner instance"""
 
-    script_name = script_test_case_mark(request.node)["script_name"]
+    mark = script_test_case_mark(request.node)
+    script_name = mark["script_name"]
 
     if is_local:
-        runner = LocalRunner(script_name, language)
+        runner = LocalRunner(script_name, language, mark)
     else:
-        runner = DockerRunner(script_name, language, docker_builder.docker_image(language))
+        runner = DockerRunner(script_name, language, mark, docker_builder.docker_image(language))
 
     yield runner
 
     runner.cleanup()
 
 
-@pytest.mark.script(group="Misc", title="Null character")
+@pytest.mark.script(
+    group="Misc",
+    title="Null character",
+    assertion=('stdout_match', "Hello World \x00")
+)
 def test_null_char(script: ScriptRunner):
     """Output a null character to stdout
 
     See https://en.wikipedia.org/wiki/Null_character
     """
     script.run()
-    assert_string_match(script.output, "Hello World \x00")
+    script.assert_output()
 
 
-@pytest.mark.script(group="Standard I/O", title="Standard input")
+@pytest.mark.script(
+    group="Standard I/O",
+    title="Standard input",
+    stdin=dedent("""
+        hi
+        hello
+        how are you
+    """),
+    assertion=('stdout_match', dedent("""
+        line: hi
+        line: hello
+        line: how are you
+    """)))
 def test_stdin(script: ScriptRunner):
     """Read from stdin line by line
 
@@ -235,56 +252,68 @@ def test_stdin(script: ScriptRunner):
     This example assumes that all the input on stdin is available at once.
     """
 
-    script.run(dedent("""<<EOF
+    script.run()
+    script.assert_output()
+
+@pytest.mark.script(
+    group="File I/O",
+    title="Read text file",
+    files={"my-text-file.txt": dedent("""
         hi
         hello
         how are you
-        EOF
-    """))
-
-    assert_string_match(script.output, dedent("""
+    """)},
+    assertion=('stdout_match', dedent("""
         line: hi
         line: hello
         line: how are you
     """))
-
-
-@pytest.mark.script(group="File I/O", title="Read text file")
+)
 def test_read_file(script: ScriptRunner):
     """Read a text file line by line
 
     Read one line at a time from a file called `my-text-file.txt` and print it.
     """
 
-    script.files["my-text-file.txt"] = dedent("""
-        hi
-        hello
-        how are you
-    """)
-
     script.run()
+    script.assert_output()
 
-    assert_string_match(script.output, dedent("""
-        line: hi
-        line: hello
-        line: how are you
+
+@pytest.mark.script(
+    group="Misc",
+    title="Command-line arguments",
+    cli_args=["Argument Number 1", "Command line arg 2"],
+    assertion=('stdout_match', dedent("""
+        1st argument: Argument Number 1
+        2nd argument: Command line arg 2
     """))
-
-
-@pytest.mark.script(group="Misc", title="Command-line arguments")
+)
 def test_arguments(script: ScriptRunner):
     """Read command line arguments
 
     Read 2 command line arguments and print them out.
     """
-    script.run('"Argument Number 1" "Command line arg 2"')
-    assert_string_match(script.output, dedent("""
-        1st argument: Argument Number 1
-        2nd argument: Command line arg 2
+    script.run()
+    script.assert_output()
+
+
+@pytest.mark.script(
+    group="JSON",
+    title="Parse JSON file",
+    files={"people.json": json.dumps(
+        [
+            {"first_name": "Bob", "last_name": "Barker", "age": 84},
+            {"first_name": "Tina", "last_name": "Turner", "age": 67},
+            {"first_name": "Steven", "last_name": "Sagal", "age": 98},
+        ],
+        indent=4
+    )},
+    assertion=('stdout_match', dedent("""
+        Hello, 84 year old Bob
+        Hello, 67 year old Tina
+        Hello, 98 year old Steven
     """))
-
-
-@pytest.mark.script(group="JSON", title="Parse JSON file")
+)
 def test_read_json_file(script: ScriptRunner):
     """Read and parse a JSON file
 
@@ -292,38 +321,32 @@ def test_read_json_file(script: ScriptRunner):
     For each JSON object, print a greeting.
     """
 
-    script.files["people.json"] = json.dumps(
-        [
-            {"first_name": "Bob", "last_name": "Barker", "age": 84},
-            {"first_name": "Tina", "last_name": "Turner", "age": 67},
-            {"first_name": "Steven", "last_name": "Sagal", "age": 98},
-        ]
-    )
-
     script.run()
-
-    assert_string_match(script.output, dedent("""
-        Hello, 84 year old Bob
-        Hello, 67 year old Tina
-        Hello, 98 year old Steven
-    """))
+    script.assert_output()
 
 
-@pytest.mark.script(group="File I/O", title="Write text file")
+@pytest.mark.script(
+    group="File I/O",
+    title="Write text file",
+)
 def test_write_to_text_file(script: ScriptRunner):
     """Write to a text file
 
     Write the string `Hello World!` to a file named `output.txt`.
     """
 
+    # do this here instead of in the mark so that that the website doesn't show this file
     script.files["output.txt"] = "THIS SHOULD BE OVERWRITTEN"
 
     script.run(after="cat output.txt && rm output.txt")
 
+    # do this here instead of in the mark so that that the website doesn't show this file
     assert_string_match(script.output, "Hello World!")
 
-
-@pytest.mark.script(group="JSON", title="Output JSON")
+@pytest.mark.script(
+    group="JSON",
+    title="Output JSON"
+)
 def test_json_outputting_data(script: ScriptRunner):
     """Create and output JSON
 
@@ -364,7 +387,11 @@ def test_json_outputting_data(script: ScriptRunner):
         }
     ]
 
-@pytest.mark.script(group="JSON", title="JSON with null character")
+@pytest.mark.script(
+    group="JSON",
+    title="JSON with null character",
+    assertion=('json', "Hello World \0")
+)
 def test_json_null_char(script: ScriptRunner):
     """Create output JSON with a null character
 
@@ -375,11 +402,15 @@ def test_json_null_char(script: ScriptRunner):
     """
 
     script.run()
+    script.assert_output()
 
-    assert json.loads(script.output) == "Hello World \0"
 
-
-@pytest.mark.script(group="JSON", title="Build JSON array of strings")
+@pytest.mark.script(
+    group="JSON",
+    title="Build JSON array of strings",
+    cli_args=["a", "b", "c", "d"],
+    assertion=('json', ["a", "b", "c", "d"])
+)
 def test_json_array(script: ScriptRunner):
     """Create and output a JSON array of strings
 
@@ -387,11 +418,16 @@ def test_json_array(script: ScriptRunner):
     Create and output a JSON array of those strings.
     """
 
-    script.run("a b c d")
-    assert json.loads(script.output) == ["a", "b", "c", "d"]
+    script.run()
+    script.assert_output()
 
 
-@pytest.mark.script(group="JSON", title="Build JSON array of numbers")
+@pytest.mark.script(
+    group="JSON",
+    title="Build JSON array of numbers",
+    cli_args=["a", "bc", "def", "ghij"],
+    assertion=('json', [1, 2, 3, 4]),
+)
 def test_json_numbers(script: ScriptRunner):
     """Create and output a JSON array of numbers
 
@@ -400,11 +436,16 @@ def test_json_numbers(script: ScriptRunner):
     """
 
     # Write to stdout the length of each string argument
-    script.run("a bc def ghij")
-    assert json.loads(script.output) == [1, 2, 3, 4]
+    script.run()
+    script.assert_output()
 
 
-@pytest.mark.script(group="JSON", title="Build JSON object")
+@pytest.mark.script(
+    group="JSON",
+    title="Build JSON object",
+    cli_args=["a", "bc", "def", "ghij"],
+    assertion=('json', {"a": 1, "bc": 2, "def": 3, "ghij": 4}),
+)
 def test_json_stdout_object(script: ScriptRunner):
     """Create and output a JSON object
 
@@ -412,12 +453,20 @@ def test_json_stdout_object(script: ScriptRunner):
     Create and output a JSON object with the strings as keys and their lengths as values.
     """
 
-    script.run("a bc def ghij")
+    script.run()
+    script.assert_output()
 
-    assert json.loads(script.output) == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
 
-
-@pytest.mark.script(group="JSON", title="Build JSON object of arrays of strings")
+@pytest.mark.script(
+    group="JSON",
+    title="Build JSON object of arrays of strings",
+    cli_args=["a", "bc", "def"],
+    assertion=('json', {
+        "a": ["A"],
+        "bc": ["B", "C"],
+        "def": ["D", "E", "F"]
+    })
+)
 def test_json_object_with_array_values(script: ScriptRunner):
     """Create and output a JSON object with arrays of strings as values
 
@@ -425,16 +474,15 @@ def test_json_object_with_array_values(script: ScriptRunner):
     Create and output a JSON object with the strings as keys and arrays of their characters as values.
     """
 
-    script.run("a bc def")
+    script.run()
+    script.assert_output()
 
-    assert json.loads(script.output) == {
-        "a": ["A"],
-        "bc": ["B", "C"],
-        "def": ["D", "E", "F"],
-    }
-
-
-@pytest.mark.script(group="JSON", title="Build JSON array of objects")
+@pytest.mark.script(
+    group="JSON",
+    title="Build JSON array of objects",
+    cli_args=["a", "bc", "def"],
+    assertion=('json', [{"A": 1}, {"BC": 2}, {"DEF": 3}])
+)
 def test_json_object_array(script: ScriptRunner):
     """Create and output a JSON array of objects
 
@@ -444,12 +492,16 @@ def test_json_object_array(script: ScriptRunner):
     value is the length of the string.
     """
 
-    script.run("a bc def")
+    script.run()
+    script.assert_output()
 
-    assert json.loads(script.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
 
-
-@pytest.mark.script(group="JSON", title="JSON with control characters & emoji")
+@pytest.mark.script(
+    group="JSON",
+    title="JSON with control characters & emoji",
+    cli_args=["hello \n \u0001 world 🥸"],
+    assertion=('json', "hello \n \u0001 world 🥸")
+)
 def test_json_control_chars(script: ScriptRunner):
     """Build and out output a JSON string containing control characters and emojis.
 
@@ -459,33 +511,42 @@ def test_json_control_chars(script: ScriptRunner):
     See [JSON with null character](../json_null_char) for outputting the Null Character (`\\0`) in a JSON string.
     """
 
-    script.run('"hello \n \1 world 🥸"')
+    script.run()
+    script.assert_output()
 
-    assert json.loads(script.output) == "hello \n \u0001 world 🥸"
 
-
-@pytest.mark.script(script_name="decode", group="Base64", title="Decode Base64")
+@pytest.mark.script(
+    script_name="decode",
+    group="Base64",
+    title="Decode Base64",
+    cli_args=["SGVsbG8sIHdvcmxkIQ=="],
+    assertion=('stdout_match', "Hello, world!")
+)
 def test_base64_decode(script: ScriptRunner):
     """Decode a base64 string
 
     Accept a base64 encoded string as a command line argument, decode it, and print it out.
     """
 
-    script.run("SGVsbG8sIHdvcmxkIQ==")
+    script.run()
+    script.assert_output()
 
-    assert_string_match(script.output, "Hello, world!")
 
-
-@pytest.mark.script(script_name="encode", group="Base64", title="Encode Base64")
+@pytest.mark.script(
+    script_name="encode",
+    group="Base64",
+    title="Encode Base64",
+    cli_args=["Hello, world!"],
+    assertion=('stdout_match', "SGVsbG8sIHdvcmxkIQ==")
+)
 def test_base64_encode(script: ScriptRunner):
     """Encode a string as base64
 
     Accept a string as a command line argument, encode it as Base64, then print it out.
     """
 
-    script.run('"Hello, world!"')
-
-    assert_string_match(script.output, "SGVsbG8sIHdvcmxkIQ==")
+    script.run()
+    script.assert_output()
 
 
 @pytest.mark.script(group="Standard I/O", title="Streaming standard input")

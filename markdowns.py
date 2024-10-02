@@ -3,8 +3,9 @@
 import json
 import re
 from collections import defaultdict
+import shlex
 
-from test_helpers import collect_pytest_cases, dedent, script_test_case_mark
+from test_helpers import LocalRunner, ScriptRunner, collect_pytest_cases, dedent, script_test_case_mark
 from test_suite import LANGUAGES
 
 sorted_languages = sorted(LANGUAGES, key=lambda lang: lang.human_name)
@@ -39,22 +40,41 @@ def test_case_data(pytest_case):
     summary, description = description.strip().split('\n', maxsplit=1)
     description = description.strip()
 
+    files = []
+    for file_name, content in mark.get('files', {}).items():
+        files.append(dict(
+            name=file_name,
+            ext=file_name.split('.')[-1],
+            content=content
+        ))
+
+    cli_args = " ".join(shlex.quote(arg) for arg in mark.get('cli_args', []))
+
+    assertion = None
+    if 'assertion' in mark:
+        assertion = dict([mark['assertion']])
+
     implementations = []
     for language in sorted_languages:
         script_path = language.script_path(mark['script_name'])
 
         # checks that this case is implemented for the specific language
         if script_path.exists():
+            runner = ScriptRunner(mark['script_name'], language, mark)
             implementations.append(dict(
                 file_name=script_path.name,
                 code=script_path.read_text(encoding="utf-8").strip(),
                 language=language.as_json(),
+                command=runner.basic_command(),
             ))
 
     return mark | dict(
         title=mark.get('title', mark['script_name']),
         summary=summary,
         description=description,
+        cli_args=cli_args,
+        files=files,
+        assertion=assertion,
         implementations=implementations,
     )
 
