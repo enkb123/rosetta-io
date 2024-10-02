@@ -41,7 +41,7 @@ class Ruby(Language):
 
 class Nodejs(Language):
     name = 'nodejs'
-    human_name = 'Javascript (Nodejs)'
+    human_name = 'Javascript (Node.js)'
     interpreter = 'node'
     script_ext = '.mjs'
     syntax_highlighting = 'javascript'
@@ -66,7 +66,7 @@ class Perl(Language):
 
 class Php(Language):
     name = 'php'
-    human_name = 'Php'
+    human_name = 'PHP'
     interpreter = 'php'
     script_ext = '.php'
     syntax_highlighting = 'php'

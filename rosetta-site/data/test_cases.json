@@ -75,7 +75,7 @@
                         "code": "console.log(\"1st argument:\", process.argv[2])\nconsole.log(\"2nd argument:\", process.argv[3])",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -95,6 +95,18 @@
                         }
                     },
                     {
+                        "file_name": "arguments.php",
+                        "code": "<?php\n\necho \"1st argument: \", $argv[1], \"\\n\";\necho \"2nd argument: \", $argv[2], \"\\n\";",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "arguments.pl",
                         "code": "use strict;\nuse warnings;\n\nprint \"1st argument: \", $ARGV[0], \"\\n\";\nprint \"2nd argument: \", $ARGV[1], \"\\n\";",
                         "language": {
@@ -104,18 +116,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "arguments.php",
-                        "code": "<?php\n\necho \"1st argument: \", $argv[1], \"\\n\";\necho \"2nd argument: \", $argv[2], \"\\n\";",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -264,7 +264,7 @@
                         "code": "console.log(\"Hello World \\0\")",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -284,6 +284,18 @@
                         }
                     },
                     {
+                        "file_name": "null_char.php",
+                        "code": "<?php\n\necho \"Hello World \\0\";",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "null_char.pl",
                         "code": "use strict;\nuse warnings;\n\nprint \"Hello World \\0\";",
                         "language": {
@@ -293,18 +305,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "null_char.php",
-                        "code": "<?php\n\necho \"Hello World \\0\";",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -459,7 +459,7 @@
                         "code": "import * as readline from 'node:readline/promises'\n\nconst rl = readline.createInterface({ input: process.stdin })\n\nfor await (const line of rl) {\n  console.log(\"line:\", line)\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -479,6 +479,18 @@
                         }
                     },
                     {
+                        "file_name": "stdin.php",
+                        "code": "<?php\n\nwhile ($user_input = fgets(STDIN)) {\n    echo \"line: \", $user_input;\n}",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "stdin.pl",
                         "code": "use strict;\nuse warnings;\n\nprint \"line: $_\" while <STDIN>;",
                         "language": {
@@ -488,18 +500,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "stdin.php",
-                        "code": "<?php\n\nwhile ($user_input = fgets(STDIN)) {\n    echo \"line: \", $user_input;\n}",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -648,7 +648,7 @@
                         "code": "import * as readline from 'node:readline/promises'\n\nconst rl = readline.createInterface({ input: process.stdin })\n\nfor await (const line of rl) {\n  console.log(\"received\", line)\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -668,6 +668,18 @@
                         }
                     },
                     {
+                        "file_name": "streaming_stdin.php",
+                        "code": "<?php\n\nwhile ($user_input = fgets(STDIN)) {\n    echo \"received \", $user_input;\n}",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "streaming_stdin.pl",
                         "code": "use strict;\nuse warnings;\n\n$| = 1;\nprint \"received $_\" while <STDIN>;",
                         "language": {
@@ -677,18 +689,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "streaming_stdin.php",
-                        "code": "<?php\n\nwhile ($user_input = fgets(STDIN)) {\n    echo \"received \", $user_input;\n}",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -843,7 +843,7 @@
                         "code": "import { promises as fs } from 'fs'\n\nconst filePath = './my-text-file.txt'\n\nconst fileContent = await fs.readFile(filePath, 'utf8')\n\nfor (const line of fileContent.split(\"\\n\")) {\n  if (line !== \"\") {\n    console.log('line:', line)\n  }\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -863,6 +863,18 @@
                         }
                     },
                     {
+                        "file_name": "read_file.php",
+                        "code": "<?php\n\n$file_path = './my-text-file.txt';\n\nforeach (file($file_path) as $index => $line) {\n    echo \"line: $line\";\n}",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "read_file.pl",
                         "code": "use strict;\nuse warnings;\n\nmy $file_path = './my-text-file.txt';\nopen my $fh, '<', $file_path;\n\nprint \"line: $_\" while <$fh>;",
                         "language": {
@@ -872,18 +884,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "read_file.php",
-                        "code": "<?php\n\n$file_path = './my-text-file.txt';\n\nforeach (file($file_path) as $index => $line) {\n    echo \"line: $line\";\n}",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -1032,7 +1032,7 @@
                         "code": "import fs from 'fs/promises'\n\nawait fs.writeFile(\"output.txt\", \"Hello World!\")",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1052,6 +1052,18 @@
                         }
                     },
                     {
+                        "file_name": "write_to_text_file.php",
+                        "code": "<?php\n\nfile_put_contents(\"output.txt\", \"Hello World!\");",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "write_to_text_file.pl",
                         "code": "use strict;\nuse warnings;\n\nopen my $fh, '>', \"output.txt\";\nprint $fh \"Hello World!\";\nclose $fh;",
                         "language": {
@@ -1061,18 +1073,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "write_to_text_file.php",
-                        "code": "<?php\n\nfile_put_contents(\"output.txt\", \"Hello World!\");",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -1227,7 +1227,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconst stringLengths = myStrings.map((string) => string.length)\n\nconst jsonString = JSON.stringify(stringLengths)\n\nconsole.log(jsonString)",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1247,6 +1247,18 @@
                         }
                     },
                     {
+                        "file_name": "json_numbers.php",
+                        "code": "<?php\n\n$myStrings = array_slice($argv, 1);\n\n$stringLengths = array_map('strlen', $myStrings);\n\necho json_encode($stringLengths);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_numbers.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nprint encode_json([map { length } @ARGV]);",
                         "language": {
@@ -1256,18 +1268,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_numbers.php",
-                        "code": "<?php\n\n$myStrings = array_slice($argv, 1);\n\n$stringLengths = array_map('strlen', $myStrings);\n\necho json_encode($stringLengths);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -1416,7 +1416,7 @@
                         "code": "const args = process.argv.slice(2)\n\nconst myArray = args.map((arg) => ({ [arg.toUpperCase()]: arg.length }))\n\nconsole.log(JSON.stringify(myArray))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1436,6 +1436,18 @@
                         }
                     },
                     {
+                        "file_name": "json_object_array.php",
+                        "code": "<?php\n$args = array_slice($argv, 1);\n\n$myArray = array_map(function($arg) {\n    return [strtoupper($arg) => strlen($arg)];\n}, $args);\n\necho json_encode($myArray);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_object_array.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nprint JSON->new\n    ->canonical(1)\n    ->encode([map { { uc($_) => length($_) } } @ARGV]);",
                         "language": {
@@ -1445,18 +1457,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_object_array.php",
-                        "code": "<?php\n$args = array_slice($argv, 1);\n\n$myArray = array_map(function($arg) {\n    return [strtoupper($arg) => strlen($arg)];\n}, $args);\n\necho json_encode($myArray);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -1605,7 +1605,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconsole.log(JSON.stringify(myStrings))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1625,6 +1625,18 @@
                         }
                     },
                     {
+                        "file_name": "json_array.php",
+                        "code": "<?php\n\n$myStrings = array_slice($argv, 1);\n\necho json_encode($myStrings);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_array.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nprint encode_json(\\@ARGV);",
                         "language": {
@@ -1634,18 +1646,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_array.php",
-                        "code": "<?php\n\n$myStrings = array_slice($argv, 1);\n\necho json_encode($myStrings);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -1794,7 +1794,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconst stringLengthDict = {}\n\nfor (const string of myStrings) {\n  stringLengthDict[string] = string.length\n}\n\nconsole.log(JSON.stringify(stringLengthDict))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -1814,6 +1814,18 @@
                         }
                     },
                     {
+                        "file_name": "json_stdout_object.php",
+                        "code": "<?php\n$myStrings = array_slice($argv, 1);\n\n$stringLengthDict = array_combine($myStrings, array_map('strlen', $myStrings));\n\necho json_encode($stringLengthDict);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_stdout_object.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nprint encode_json({ map { $_ => length } @ARGV });",
                         "language": {
@@ -1823,18 +1835,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_stdout_object.php",
-                        "code": "<?php\n$myStrings = array_slice($argv, 1);\n\n$stringLengthDict = array_combine($myStrings, array_map('strlen', $myStrings));\n\necho json_encode($stringLengthDict);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -1983,7 +1983,7 @@
                         "code": "const myStrings = process.argv.slice(2)\n\nconst stringLettersDict = {}\n\nfor (const string of myStrings) {\n    const uppercaseLetters = [...string].map((s) => s.toUpperCase())\n    stringLettersDict[string] = uppercaseLetters\n}\n\nconsole.log(JSON.stringify(stringLettersDict))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2003,6 +2003,18 @@
                         }
                     },
                     {
+                        "file_name": "json_object_with_array_values.php",
+                        "code": "<?php\n$myStrings = array_slice($argv, 1);\n\n$stringLettersDict = array_combine(\n    $myStrings, array_map(\n        fn($str) => str_split(strtoupper($str)), $myStrings\n    )\n);\n\necho json_encode($stringLettersDict);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_object_with_array_values.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nprint JSON->new\n    ->canonical(1)\n    ->encode({ map { $_ => [split //, uc($_)] } @ARGV });",
                         "language": {
@@ -2012,18 +2024,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_object_with_array_values.php",
-                        "code": "<?php\n$myStrings = array_slice($argv, 1);\n\n$stringLettersDict = array_combine(\n    $myStrings, array_map(\n        fn($str) => str_split(strtoupper($str)), $myStrings\n    )\n);\n\necho json_encode($stringLettersDict);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -2172,7 +2172,7 @@
                         "code": "const myString = process.argv[2]\n\nconsole.log(JSON.stringify(myString))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2192,6 +2192,18 @@
                         }
                     },
                     {
+                        "file_name": "json_control_chars.php",
+                        "code": "<?php\n\n$testString = $argv[1];\n\necho json_encode($testString);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_control_chars.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nprint JSON->new->encode($ARGV[0]);",
                         "language": {
@@ -2201,18 +2213,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_control_chars.php",
-                        "code": "<?php\n\n$testString = $argv[1];\n\necho json_encode($testString);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -2361,7 +2361,7 @@
                         "code": "console.log(JSON.stringify(\"Hello World \\0\"))",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2381,6 +2381,18 @@
                         }
                     },
                     {
+                        "file_name": "json_null_char.php",
+                        "code": "<?php\n\necho json_encode(\"Hello World \\0\");",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_null_char.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nmy $json = JSON->new->utf8;\n\nprint $json->encode(\"Hello World \\0\");",
                         "language": {
@@ -2390,18 +2402,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_null_char.php",
-                        "code": "<?php\n\necho json_encode(\"Hello World \\0\");",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -2538,7 +2538,7 @@
                         "code": "const json1 = JSON.stringify({\n    \"true\": true,\n    \"false\": false,\n    \"zero\": 0,\n    \"int\": 42,\n    \"float\": 3.14,\n    \"null\": null,\n    \"empty string\": \"\",\n    \"a string with non-ascii characters\": \"hello \\n \\u0001 world 🥸\"\n}, null);\n\nconst json2 = JSON.stringify({\n    \"array of strings\": [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\": [13, 42, 9000, -7],\n    \"array of nothing\": [],\n    \"array of mixed\": [13, \"def\", null, false, [\"a\"], { \"o\": 1 }],\n    \"array of objects\": [\n        { \"name\": \"Bob Barker\", \"age\": 84 },\n        { \"address1\": \"123 Main St\", \"address2\": \"Apt 1\" }\n    ],\n    \"array of arrays\": [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"]\n    ]\n}, null);\n\nconst json3 = JSON.stringify({\n    \"objects\": { \"nested\": { \"objects\": { \"are\": \"supported\" } } }\n}, null);\n\nconsole.log(json1);\nconsole.log(json2);\nconsole.log(json3);",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2558,6 +2558,18 @@
                         }
                     },
                     {
+                        "file_name": "json_outputting_data.php",
+                        "code": "<?php\n\n$firstJsonObject = [\n    \"true\" => true,\n    \"false\" => false,\n    \"zero\" => 0,\n    \"int\" => 42,\n    \"float\" => 3.14,\n    \"null\" => null,\n    \"empty string\" => \"\",\n    \"a string with non-ascii characters\" => \"hello \\n \\x01 world 🥸\"\n];\n\n$secondJsonObject = [\n    \"array of strings\" => [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\" => [13, 42, 9000, -7],\n    \"array of nothing\" => [],\n    \"array of mixed\" => [13, \"def\", null, false, [\"a\"], [\"o\" => 1]],\n    \"array of objects\" => [\n        [\"name\" => \"Bob Barker\", \"age\" => 84],\n        [\"address1\" => \"123 Main St\", \"address2\" => \"Apt 1\"]\n    ],\n    \"array of arrays\" => [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"]\n    ]\n];\n\n$thirdJsonObject = [\n    \"objects\" => [\n        \"nested\" => [\n            \"objects\" => [\n                \"are\" => \"supported\"\n            ]\n        ]\n    ]\n];\n\necho json_encode($firstJsonObject) . \"\\n\";\necho json_encode($secondJsonObject) . \"\\n\";\necho json_encode($thirdJsonObject) . \"\\n\";",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "json_outputting_data.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nmy $json = JSON->new->utf8;\n\nmy $data1 = {\n    \"true\" => JSON::true,\n    \"false\" => JSON::false,\n    \"zero\" => 0,\n    \"int\" => 42,\n    \"float\" => 3.14,\n    \"null\" => undef,\n    \"empty string\" => \"\",\n    \"a string with non-ascii characters\" => \"hello \\n \\x{0001} world \\N{U+1F978}\",\n};\n\nprint $json->encode($data1) . \"\\n\";\n\nmy $data2 = {\n    \"array of strings\" => [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\" => [13, 42, 9000, -7],\n    \"array of nothing\" => [],\n    \"array of mixed\" => [13, \"def\", undef, JSON::false, [\"a\"], { \"o\" => 1 }],\n    \"array of objects\" => [\n        { \"name\" => \"Bob Barker\", \"age\" => 84 },\n        { \"address1\" => \"123 Main St\", \"address2\" => \"Apt 1\" },\n    ],\n    \"array of arrays\" => [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"],\n    ],\n};\n\nprint $json->encode($data2) . \"\\n\";\n\nmy $data3 = {\n    \"objects\" => { \"nested\" => { \"objects\" => { \"are\" => \"supported\" } } },\n};\n\nprint $json->encode($data3) . \"\\n\";",
                         "language": {
@@ -2567,18 +2579,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "json_outputting_data.php",
-                        "code": "<?php\n\n$firstJsonObject = [\n    \"true\" => true,\n    \"false\" => false,\n    \"zero\" => 0,\n    \"int\" => 42,\n    \"float\" => 3.14,\n    \"null\" => null,\n    \"empty string\" => \"\",\n    \"a string with non-ascii characters\" => \"hello \\n \\x01 world 🥸\"\n];\n\n$secondJsonObject = [\n    \"array of strings\" => [\"abc\", \"def\", \"ghi\", \"jkl\"],\n    \"array of numbers\" => [13, 42, 9000, -7],\n    \"array of nothing\" => [],\n    \"array of mixed\" => [13, \"def\", null, false, [\"a\"], [\"o\" => 1]],\n    \"array of objects\" => [\n        [\"name\" => \"Bob Barker\", \"age\" => 84],\n        [\"address1\" => \"123 Main St\", \"address2\" => \"Apt 1\"]\n    ],\n    \"array of arrays\" => [\n        [\"a\", \"b\", \"c\"],\n        [\"d\", \"e\", \"f\"]\n    ]\n];\n\n$thirdJsonObject = [\n    \"objects\" => [\n        \"nested\" => [\n            \"objects\" => [\n                \"are\" => \"supported\"\n            ]\n        ]\n    ]\n];\n\necho json_encode($firstJsonObject) . \"\\n\";\necho json_encode($secondJsonObject) . \"\\n\";\necho json_encode($thirdJsonObject) . \"\\n\";",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -2727,7 +2727,7 @@
                         "code": "import { promises as fs } from 'fs'\n\nconst filePath = './people.json'\n\nconst data = await fs.readFile(filePath, 'utf8')\n\nconst people = JSON.parse(data)\n\nfor (const person of people) {\n    console.log(`Hello, ${person.age} year old ${person.first_name}`)\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2747,6 +2747,18 @@
                         }
                     },
                     {
+                        "file_name": "read_json_file.php",
+                        "code": "<?php\n\n$jsonData = file_get_contents('people.json');\n\n$people = json_decode($jsonData);\n\nforeach ($people as $person) {\n    echo \"Hello, {$person->age} year old {$person->first_name}\\n\";\n}",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "read_json_file.pl",
                         "code": "use strict;\nuse warnings;\nuse JSON;\n\nmy $file_path = './people.json';\nopen my $fh, '<', $file_path;\n\nmy $people = decode_json(do { local $/; <$fh> });\n\nprint \"Hello, $_->{'age'} year old $_->{'first_name'}\\n\" for @$people;",
                         "language": {
@@ -2756,18 +2768,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "read_json_file.php",
-                        "code": "<?php\n\n$jsonData = file_get_contents('people.json');\n\n$people = json_decode($jsonData);\n\nforeach ($people as $person) {\n    echo \"Hello, {$person->age} year old {$person->first_name}\\n\";\n}",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -2922,7 +2922,7 @@
                         "code": "const encodedString = process.argv[2]\n\nconst decodedString = atob(encodedString)\n\nconsole.log(decodedString)",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -2942,6 +2942,18 @@
                         }
                     },
                     {
+                        "file_name": "decode.php",
+                        "code": "<?php\n\n$encodedString = $argv[1];\n\necho base64_decode($encodedString);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "decode.pl",
                         "code": "use strict;\nuse warnings;\nuse MIME::Base64;\n\nprint decode_base64($ARGV[0]);",
                         "language": {
@@ -2951,18 +2963,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "decode.php",
-                        "code": "<?php\n\n$encodedString = $argv[1];\n\necho base64_decode($encodedString);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -3111,7 +3111,7 @@
                         "code": "const testString = process.argv[2]\n\nconst encodedString = btoa(testString)\n\nconsole.log(encodedString)",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -3131,6 +3131,18 @@
                         }
                     },
                     {
+                        "file_name": "encode.php",
+                        "code": "<?php\n\n$stringToEncode = $argv[1];\n\necho base64_encode($stringToEncode);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "encode.pl",
                         "code": "use strict;\nuse warnings;\nuse MIME::Base64;\n\nprint encode_base64($ARGV[0], '');",
                         "language": {
@@ -3140,18 +3152,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "encode.php",
-                        "code": "<?php\n\n$stringToEncode = $argv[1];\n\necho base64_encode($stringToEncode);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -3306,7 +3306,7 @@
                         "code": "import * as fs from 'fs';\nimport * as readline from 'node:readline/promises';\n\nconst pipeIn = \"input.pipe\";\n\nconst input = fs.createReadStream(pipeIn);\nconst rl = readline.createInterface({ input })\n\nfor await (const line of rl) {\n  console.log(line.toUpperCase())\n}",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -3326,6 +3326,18 @@
                         }
                     },
                     {
+                        "file_name": "streaming_pipe_in.php",
+                        "code": "<?php\n\n$input_pipe = fopen(\"input.pipe\", 'r');\n\nwhile (($line = fgets($input_pipe)) !== false) {\n    echo strtoupper($line);\n}\n\nfclose($input_pipe);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "streaming_pipe_in.pl",
                         "code": "use strict;\nuse warnings;\n\n$| = 1;\nopen my $input, '<', \"input.pipe\";\n\nprint uc($_) while <$input>;\n\nclose $input;",
                         "language": {
@@ -3335,18 +3347,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "streaming_pipe_in.php",
-                        "code": "<?php\n\n$input_pipe = fopen(\"input.pipe\", 'r');\n\nwhile (($line = fgets($input_pipe)) !== false) {\n    echo strtoupper($line);\n}\n\nfclose($input_pipe);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -3495,7 +3495,7 @@
                         "code": "import * as fs from 'fs';\nimport * as readline from 'node:readline/promises';\n\nconst inputStream = fs.createReadStream('streaming-in.pipe');\nconst outputStream = fs.createWriteStream('streaming-out.pipe');\n\nconst rl = readline.createInterface({ input: inputStream });\n\nfor await (const line of rl) {\n  outputStream.write(`received ${line}\\n`);\n}\n\noutputStream.end();",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -3515,6 +3515,18 @@
                         }
                     },
                     {
+                        "file_name": "streaming_pipe_in_and_out.php",
+                        "code": "<?php\n\n$output_pipe = fopen('streaming-out.pipe', 'w');\n$input_pipe = fopen('streaming-in.pipe', 'r');\n\nwhile (($line = fgets($input_pipe)) !== false) {\n    fwrite($output_pipe, \"received \" . $line);\n}\n\nfclose($input_pipe);\nfclose($output_pipe);",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "streaming_pipe_in_and_out.pl",
                         "code": "use strict;\nuse warnings;\n\nopen my $output, '>', 'streaming-out.pipe';\nopen my $input, '<', 'streaming-in.pipe';\n\n$output->autoflush(1);\n\nprint $output \"received $_\" while <$input>;\n\nclose $input;\nclose $output;",
                         "language": {
@@ -3524,18 +3536,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "streaming_pipe_in_and_out.php",
-                        "code": "<?php\n\n$output_pipe = fopen('streaming-out.pipe', 'w');\n$input_pipe = fopen('streaming-in.pipe', 'r');\n\nwhile (($line = fgets($input_pipe)) !== false) {\n    fwrite($output_pipe, \"received \" . $line);\n}\n\nfclose($input_pipe);\nfclose($output_pipe);",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {
@@ -3684,7 +3684,7 @@
                         "code": "import fs from 'fs/promises'\n\nawait fs.writeFile(\"output.pipe\", \"Hello World!\")",
                         "language": {
                             "name": "nodejs",
-                            "human_name": "Javascript (Nodejs)",
+                            "human_name": "Javascript (Node.js)",
                             "script_ext": ".mjs",
                             "syntax_highlighting": "javascript",
                             "icon_id": "nodejs",
@@ -3704,6 +3704,18 @@
                         }
                     },
                     {
+                        "file_name": "write_to_named_pipe.php",
+                        "code": "<?php\n\nfile_put_contents(\"output.pipe\", \"Hello World!\");",
+                        "language": {
+                            "name": "php",
+                            "human_name": "PHP",
+                            "script_ext": ".php",
+                            "syntax_highlighting": "php",
+                            "icon_id": "php",
+                            "directory": "php"
+                        }
+                    },
+                    {
                         "file_name": "write_to_named_pipe.pl",
                         "code": "use strict;\nuse warnings;\n\nopen my $fh, '>', \"output.pipe\";\nprint $fh \"Hello World!\";\nclose $fh;",
                         "language": {
@@ -3713,18 +3725,6 @@
                             "syntax_highlighting": "perl",
                             "icon_id": "perl",
                             "directory": "perl"
-                        }
-                    },
-                    {
-                        "file_name": "write_to_named_pipe.php",
-                        "code": "<?php\n\nfile_put_contents(\"output.pipe\", \"Hello World!\");",
-                        "language": {
-                            "name": "php",
-                            "human_name": "Php",
-                            "script_ext": ".php",
-                            "syntax_highlighting": "php",
-                            "icon_id": "php",
-                            "directory": "php"
                         }
                     },
                     {

@@ -41,7 +41,7 @@
     },
     {
         "name": "nodejs",
-        "human_name": "Javascript (Nodejs)",
+        "human_name": "Javascript (Node.js)",
         "script_ext": ".mjs",
         "syntax_highlighting": "javascript",
         "icon_id": "nodejs",
@@ -56,20 +56,20 @@
         "directory": "lua"
     },
     {
+        "name": "php",
+        "human_name": "PHP",
+        "script_ext": ".php",
+        "syntax_highlighting": "php",
+        "icon_id": "php",
+        "directory": "php"
+    },
+    {
         "name": "perl",
         "human_name": "Perl",
         "script_ext": ".pl",
         "syntax_highlighting": "perl",
         "icon_id": "perl",
         "directory": "perl"
-    },
-    {
-        "name": "php",
-        "human_name": "Php",
-        "script_ext": ".php",
-        "syntax_highlighting": "php",
-        "icon_id": "php",
-        "directory": "php"
     },
     {
         "name": "python",
