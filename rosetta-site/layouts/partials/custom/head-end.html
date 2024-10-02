@@ -1,5 +1,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+
+    // disable sidebar group links from taking you to another page
     document.querySelectorAll('.sidebar-container > div > ul > li > a').forEach(a =>
       a.addEventListener('click', e => {
         if (e.target === a) { // clicking the > symbol is ok
