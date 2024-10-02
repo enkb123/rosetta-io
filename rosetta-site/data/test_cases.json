@@ -2103,9 +2103,9 @@
             {
                 "script_name": "json_control_chars",
                 "group": "JSON",
-                "title": "JSON with control characters",
-                "summary": "Test that control characters and emojis are output in valid JSON.",
-                "description": "Print the JSON string `\"hello \\n \\u0001 world 🥸\"`.",
+                "title": "JSON with control characters & emoji",
+                "summary": "Build and out output a JSON string containing control characters and emojis.",
+                "description": "Receive a string as a command line argument and print it as the JSON string. The string is\n`\"hello \\n \\u0001 world 🥸\"`.\n\nSee [JSON with null character](../json_null_char) for outputting the Null Character (`\\0`) in a JSON string.",
                 "implementations": [
                     {
                         "file_name": "json_control_chars.sh",

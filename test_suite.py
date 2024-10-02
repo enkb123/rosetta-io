@@ -449,13 +449,15 @@ def test_json_object_array(script: ScriptRunner):
     assert json.loads(script.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
 
 
-@pytest.mark.script(group="JSON", title="JSON with control characters")
+@pytest.mark.script(group="JSON", title="JSON with control characters & emoji")
 def test_json_control_chars(script: ScriptRunner):
-    """Test that control characters and emojis are output in valid JSON.
+    """Build and out output a JSON string containing control characters and emojis.
 
-    Print the JSON string `"hello \\n \\u0001 world 🥸"`.
+    Receive a string as a command line argument and print it as the JSON string. The string is
+    `"hello \\n \\u0001 world 🥸"`.
+
+    See [JSON with null character](../json_null_char) for outputting the Null Character (`\\0`) in a JSON string.
     """
-
 
     script.run('"hello \n \1 world 🥸"')
 
