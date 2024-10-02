@@ -7,7 +7,7 @@
                 "script_name": "arguments",
                 "group": "Misc",
                 "title": "Command-line arguments",
-                "doc_str": "Read command line arguments",
+                "doc_str": "Read command line arguments\n\nRead 2 command line arguments and print them out.\n",
                 "doc_str_first_line": "Read command line arguments",
                 "implementations": [
                     {
@@ -196,8 +196,8 @@
                 "script_name": "null_char",
                 "group": "Misc",
                 "title": "Null character",
-                "doc_str": "Output a null character\n\nSee https://en.wikipedia.org/wiki/Null_character\n",
-                "doc_str_first_line": "Output a null character",
+                "doc_str": "Output a null character to stdout\n\nSee https://en.wikipedia.org/wiki/Null_character\n",
+                "doc_str_first_line": "Output a null character to stdout",
                 "implementations": [
                     {
                         "file_name": "null_char.sh",
@@ -391,7 +391,7 @@
                 "script_name": "stdin",
                 "group": "Standard I/O",
                 "title": "Standard input",
-                "doc_str": "Read from stdin line by line",
+                "doc_str": "Read from stdin line by line\n\nRead one line at a time from stdin and print it.\nThis example assumes that all the input on stdin is available at once.\n",
                 "doc_str_first_line": "Read from stdin line by line",
                 "implementations": [
                     {
@@ -580,8 +580,8 @@
                 "script_name": "streaming_stdin",
                 "group": "Standard I/O",
                 "title": "Streaming standard input",
-                "doc_str": "Read from stdin line by line",
-                "doc_str_first_line": "Read from stdin line by line",
+                "doc_str": "Stream from stdin line by line\n\nStream one line at a time from stdin and print it to stdout.\n\nThe test runner for this case will only provide the next line on stdin when the previous line has be printed to stdout.\nThis requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.\nSome languages do this automatically, other don't.\n",
+                "doc_str_first_line": "Stream from stdin line by line",
                 "implementations": [
                     {
                         "file_name": "streaming_stdin.sh",
@@ -775,7 +775,7 @@
                 "script_name": "read_file",
                 "group": "File I/O",
                 "title": "Read file",
-                "doc_str": "Read a file line by line",
+                "doc_str": "Read a file line by line\n\nRead one line at a time from a file called `my-text-file.txt` and print it.\n",
                 "doc_str_first_line": "Read a file line by line",
                 "implementations": [
                     {
@@ -964,7 +964,7 @@
                 "script_name": "write_to_text_file",
                 "group": "File I/O",
                 "title": "Write text file",
-                "doc_str": "Write to a text file",
+                "doc_str": "Write to a text file\n\nWrite the string `Hello World!` to a file named `output.txt`.\n",
                 "doc_str_first_line": "Write to a text file",
                 "implementations": [
                     {
@@ -1159,7 +1159,7 @@
                 "script_name": "json_numbers",
                 "group": "JSON",
                 "title": "Build JSON array of numbers",
-                "doc_str": "Create and output a JSON array of numbers",
+                "doc_str": "Create and output a JSON array of numbers\n\nAccept a list of strings as command line arguments.\nCreate and output a JSON array of the *lengths* of the strings.\n",
                 "doc_str_first_line": "Create and output a JSON array of numbers",
                 "implementations": [
                     {
@@ -1348,7 +1348,7 @@
                 "script_name": "json_object_array",
                 "group": "JSON",
                 "title": "Build JSON array of objects",
-                "doc_str": "Create and output a JSON array of objects",
+                "doc_str": "Create and output a JSON array of objects\n\nAccept a list of strings as command line arguments.\nCreate and output a JSON array of objects, one for each strings, where each\nobject has a key-value pair where the key is the uppercased string and the\nvalue is the length of the string.\n",
                 "doc_str_first_line": "Create and output a JSON array of objects",
                 "implementations": [
                     {
@@ -1537,7 +1537,7 @@
                 "script_name": "json_array",
                 "group": "JSON",
                 "title": "Build JSON array of strings",
-                "doc_str": "Create and output a JSON array of strings",
+                "doc_str": "Create and output a JSON array of strings\n\nAccept a list of strings as command line arguments.\nCreate and output a JSON array of those strings.\n",
                 "doc_str_first_line": "Create and output a JSON array of strings",
                 "implementations": [
                     {
@@ -1726,7 +1726,7 @@
                 "script_name": "json_stdout_object",
                 "group": "JSON",
                 "title": "Build JSON object",
-                "doc_str": "Create and output a JSON object",
+                "doc_str": "Create and output a JSON object\n\nAccept a list of strings as command line arguments.\nCreate and output a JSON object with the strings as keys and their lengths as values.\n",
                 "doc_str_first_line": "Create and output a JSON object",
                 "implementations": [
                     {
@@ -1915,7 +1915,7 @@
                 "script_name": "json_object_with_array_values",
                 "group": "JSON",
                 "title": "Build JSON object of arrays of strings",
-                "doc_str": "Create and output a JSON object with arrays of strings as values",
+                "doc_str": "Create and output a JSON object with arrays of strings as values\n\nAccept a list of strings as command line arguments.\nCreate and output a JSON object with the strings as keys and arrays of their characters as values.\n",
                 "doc_str_first_line": "Create and output a JSON object with arrays of strings as values",
                 "implementations": [
                     {
@@ -2104,7 +2104,7 @@
                 "script_name": "json_control_chars",
                 "group": "JSON",
                 "title": "JSON with control characters",
-                "doc_str": "Test that control characters and emojis are output in valid JSON.",
+                "doc_str": "Test that control characters and emojis are output in valid JSON.\n\nPrint the JSON string `\"hello \\n \\u0001 world 🥸\"`.\n",
                 "doc_str_first_line": "Test that control characters and emojis are output in valid JSON.",
                 "implementations": [
                     {
@@ -2293,8 +2293,8 @@
                 "script_name": "json_null_char",
                 "group": "JSON",
                 "title": "JSON with null character",
-                "doc_str": "Create and output JSON",
-                "doc_str_first_line": "Create and output JSON",
+                "doc_str": "Create output JSON with a null character\n\nIn a JSON string the null character is represented as `\\u0000`.\n\nJSON strings are UTF-8 encoded, so the null character is valid, but\nnevertheless, some JSON parsers cannot handle it.\n",
+                "doc_str_first_line": "Create output JSON with a null character",
                 "implementations": [
                     {
                         "file_name": "json_null_char.sh",
@@ -2470,7 +2470,7 @@
                 "script_name": "json_outputting_data",
                 "group": "JSON",
                 "title": "Output JSON",
-                "doc_str": "Create and output JSON",
+                "doc_str": "Create and output JSON\n\nCreate and output JSON that contains a variety of data types.\n",
                 "doc_str_first_line": "Create and output JSON",
                 "implementations": [
                     {
@@ -2659,7 +2659,7 @@
                 "script_name": "read_json_file",
                 "group": "JSON",
                 "title": "Parse JSON file",
-                "doc_str": "Read and parse a JSON file",
+                "doc_str": "Read and parse a JSON file\n\nRead a JSON file called `people.json` that contains an array of JSON objects.\nFor each JSON object, print a greeting.\n",
                 "doc_str_first_line": "Read and parse a JSON file",
                 "implementations": [
                     {
@@ -2854,7 +2854,7 @@
                 "script_name": "decode",
                 "group": "Base64",
                 "title": "Decode Base64",
-                "doc_str": "Decode a base64 string",
+                "doc_str": "Decode a base64 string\n\nAccept a base64 encoded string as a command line argument, decode it, and print it out.\n",
                 "doc_str_first_line": "Decode a base64 string",
                 "implementations": [
                     {
@@ -3043,7 +3043,7 @@
                 "script_name": "encode",
                 "group": "Base64",
                 "title": "Encode Base64",
-                "doc_str": "Encode a string as base64",
+                "doc_str": "Encode a string as base64\n\nAccept a string as a command line argument, encode it as Base64, then print it out.\n",
                 "doc_str_first_line": "Encode a string as base64",
                 "implementations": [
                     {
@@ -3238,8 +3238,8 @@
                 "script_name": "streaming_pipe_in",
                 "group": "Pipe I/O",
                 "title": "Streaming from named pipe",
-                "doc_str": "Read from named pipe line by line",
-                "doc_str_first_line": "Read from named pipe line by line",
+                "doc_str": "Stream from a named pipe line by line\n\nStream one line at a time from a named pipe (named `input.pipe`) and print it to stdout.\nThe test runner for this case will only provide the next line on the `input.pipe` when the previous line has be printed to stdout.\n\nThis requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.\nSome languages do this automatically, other don't.\n",
+                "doc_str_first_line": "Stream from a named pipe line by line",
                 "implementations": [
                     {
                         "file_name": "streaming_pipe_in.sh",
@@ -3427,8 +3427,8 @@
                 "script_name": "streaming_pipe_in_and_out",
                 "group": "Pipe I/O",
                 "title": "Streaming to and from named pipes",
-                "doc_str": "Read line by line from a named pipe and write to another named pipe",
-                "doc_str_first_line": "Read line by line from a named pipe and write to another named pipe",
+                "doc_str": "Stream lines from a named pipe, write to another named pipe\n\nStream one line at a time from a named pipe (named `streaming-in.pipe`) and\nprint it to another named pipe (named `streaming-out.pipe`).\n\nThe test runner for this case will only provide the next line on stdin when the previous line has be printed to stdout.\nThis requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.\nSome languages do this automatically, other don't.\n",
+                "doc_str_first_line": "Stream lines from a named pipe, write to another named pipe",
                 "implementations": [
                     {
                         "file_name": "streaming_pipe_in_and_out.sh",
@@ -3616,7 +3616,7 @@
                 "script_name": "write_to_named_pipe",
                 "group": "Pipe I/O",
                 "title": "Write to named pipe",
-                "doc_str": "Write text to a named pipe",
+                "doc_str": "Write text to a named pipe\n\nWrite `Hello World!` to a named pipe (named `output.pipe`).\n\nWhen writing to named pipes, the program does not need to know it's a pipe,\nbut can treat it as a regular file when writing to it.\n",
                 "doc_str_first_line": "Write text to a named pipe",
                 "implementations": [
                     {
