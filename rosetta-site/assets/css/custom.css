@@ -8,11 +8,21 @@ div.hextra-cards {
     margin-top: 4rem;
     padding-left: 45px;
   }
+  h2 + & h3 {
+    margin-top: 2rem;
+  }
   div.language-icon {
     width: 30px;
     display: inline-block;
+
     position: absolute;
     top: 2px;
+
     filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.1));
   }
+}
+
+a[href="/operations/"] {
+  cursor: default;
+  pointer-events: none;
 }
