@@ -22,7 +22,7 @@ div.hextra-cards {
   }
 }
 
-a[href="/operations/"] {
+main > div:has(a[href="/operations/"]) {
   cursor: default;
   pointer-events: none;
 }

@@ -1,0 +1,12 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.sidebar-container > div > ul > li > a').forEach(a =>
+      a.addEventListener('click', e => {
+        if (e.target === a) { // clicking the > symbol is ok
+          e.preventDefault()
+          a.closest('li').classList.toggle('open')
+        }
+      })
+    )
+  }, false);
+</script>
