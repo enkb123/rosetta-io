@@ -67,10 +67,12 @@ for test_case in all_test_cases_data:
 
 groups = []
 for group_name, test_cases in test_cases_by_group.items():
+    sorted_test_cases = sorted(test_cases, key=lambda test_case: test_case['title'])
+
     groups.append({
         'group_name': group_name,
         'group_slug': slugify(group_name),
-        'test_cases': test_cases,
+        'test_cases': sorted_test_cases,
     })
 
 save_data('test_cases', groups)
