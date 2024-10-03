@@ -25,7 +25,10 @@
 {{ .code }}
 ```
 
-```console {filename="running the program"}
+<div class="running-the-program">
+  <h4>Running the program</h4>
+
+```console
 $ {{ .command }}
 {{ with $assertion -}}
 {{ if .stdout_match -}}
@@ -36,4 +39,33 @@ $ {{ .command }}
 {{ end -}}
 ```
 
+</div>
+
+---
+
 {{ end }}
+
+<style>
+.running-the-program {
+  padding: 0 1rem;
+}
+
+.language-console {
+  .gp {
+    font-weight: bold;
+  }
+}
+
+h4 {
+  font-size: 1rem !important;
+  margin-bottom: -1rem !important;
+}
+
+hr {
+  margin-top: 2rem;
+  margin-bottom: .5rem;
+  &:last-of-type {
+    display: none;
+  }
+}
+</style>
