@@ -1,14 +1,28 @@
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
+<link rel="disable-link" href="/operations/">
+{{ range $.Site.Data.test_cases }}
+  <link rel="disable-link" href="/operations/{{ .group_slug }}/">
+{{ end }}
 
-    // disable sidebar group links from taking you to another page
-    document.querySelectorAll('.sidebar-container > div > ul > li > a').forEach(a =>
-      a.addEventListener('click', e => {
-        if (e.target === a) { // clicking the > symbol is ok
-          e.preventDefault()
-          a.closest('li').classList.toggle('open')
-        }
-      })
-    )
+<script>
+  const group_urls =
+    [...document.querySelectorAll('link[rel="disable-link"]')]
+      .map(link => link.attributes['href'].value)
+
+  // disable sidebar group links from taking you to another page
+  document.addEventListener('DOMContentLoaded', function() {
+    [...document.querySelectorAll('a[href]')] // only get `a` tags that have an `href` attribute
+      .filter(a => group_urls.includes(a.attributes['href'].value)) // only get `a` tags that are in the disabled list
+      .forEach(a => {
+        a.classList.add('disable-link') // add a class so we can style it
+
+        a.addEventListener('click', e => {
+          if (e.target !== a) return // clicking the > symbol is ok
+
+          e.preventDefault() // don't follow the link
+
+          const liParent = a.closest('li') // the parent `li` element
+          if (liParent) liParent.classList.toggle('open') // this causes the sidebar to collapse/expand
+        })
+    })
   }, false);
 </script>

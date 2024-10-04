@@ -26,7 +26,6 @@ div.hextra-cards {
   }
 }
 
-main > div:has(a[href="/operations/"]) {
+a.disable-link {
   cursor: default;
-  pointer-events: none;
 }
