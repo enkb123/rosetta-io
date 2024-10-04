@@ -29,3 +29,14 @@ div.hextra-cards {
 a.disable-link {
   cursor: default;
 }
+
+a.disable-expand-collapse {
+  cursor: default;
+  span {
+    cursor: default;
+    pointer-events: none;
+  }
+  &:hover {
+    background: none !important;
+  }
+}
