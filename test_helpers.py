@@ -1,3 +1,4 @@
+import json
 import re
 import shlex
 import subprocess
@@ -186,14 +187,23 @@ class ScriptRunner(ABC):
 
     language: Language
 
-    files: dict[str, str] = field(default_factory=dict)
+    mark: dict[str, any]
 
-    setup_pairs: list[SetupPair] = field(default_factory=list)
+    files: dict[str, str]
+
+    setup_pairs: list[SetupPair]
 
     output: str = None
     stdin: IO[str] = None
     stdout: IO[str] = None
     stderr: IO[str] = None
+
+    def __init__(self, script_name, language, mark):
+        self.script_name = script_name
+        self.language = language
+        self.mark = mark
+        self.files = self.mark.get('files', {})
+        self.setup_pairs = []
 
     def setup(self, prepare: str = None, cleanup: str = None):
         """Adds a setup step to the script runner"""
@@ -244,8 +254,32 @@ class ScriptRunner(ABC):
             trap cleanup_named_pipes EXIT
         """)
 
+    def basic_command(self, rest_of_script: str = None, after_script: str = None) -> list[str]:
+        """Constructs the shell command to execute the script with the given arguments.
+
+        Args:
+            rest_of_script (str): Additional arguments or script contents to pass to the script.
+
+            interactive (bool): Whether to run the script interactively or wait until it completes.
+        """
+        rest_of_script_parts = []
+
+        if rest_of_script:
+            rest_of_script_parts.append(rest_of_script)
+
+        if (cli_args := self.mark.get('cli_args')) is not None:
+            rest_of_script_parts.append(' '.join(map(shlex.quote, cli_args)))
+
+        if (stdin_text := self.mark.get('stdin')) is not None:
+            rest_of_script_parts.append(f"<<EOF\n{stdin_text}EOF\n")
+
+        return f"{self.language.command(self.script_name)} {" ".join(rest_of_script_parts)}"
+
+
     def build_command(
-        self, script_name: str, rest_of_script: str | None, after_script: str | None
+        self,
+        rest_of_script: str | None,
+        after_script: str | None,
     ) -> list[str]:
         """
         Constructs the shell command to execute the script with the given arguments.
@@ -258,9 +292,7 @@ class ScriptRunner(ABC):
             list: The constructed shell command as a list of strings.
         """
 
-        command_to_run_script = (
-            f"{self.language.command(script_name)} {rest_of_script}".strip()
-        )
+        command_to_run_script = self.basic_command(rest_of_script, after_script)
 
         if len(self.all_setup_pairs) == 0 and after_script is None:
             command = command_to_run_script
@@ -279,6 +311,9 @@ class ScriptRunner(ABC):
                 )
                 + "\n"
             )
+
+        return command
+
 
         print_command("run in local shell", command)
 
@@ -318,7 +353,7 @@ class ScriptRunner(ABC):
         self.stdin = running_process.stdin
         return running_process
 
-    def run(self, rest_of_script="", *, after=None, interactive=False):
+    def run(self, rest_of_script: str=None, *, after: str=None, interactive=False):
         """
         Execute the given script.
 
@@ -334,7 +369,7 @@ class ScriptRunner(ABC):
                 f" for language {repr(self.language.name)}"
             )
 
-        command = self.build_command(self.script_name, rest_of_script, after)
+        command = self.build_command(rest_of_script, after)
 
         print_command("run in docker", " ".join(map(shlex.quote, command)))
 
@@ -350,6 +385,15 @@ class ScriptRunner(ABC):
     def cleanup(self):
         """Cleanup any files created by the script"""
 
+    def assert_output(self):
+        match self.mark['assertion']:
+            case ('stdout_match', expected):
+                assert_string_match(expected, self.output)
+            case ('json', expected):
+                assert json.loads(self.output) == expected
+            case _:
+                raise NotImplementedError(f"Unknown assertion: {self.mark['assertion']}")
+
     @property
     def cwd(self) -> str | None:
         """Docker doesn't need this"""
@@ -361,8 +405,8 @@ class DockerRunner(ScriptRunner):
 
     image: str
 
-    def __init__(self, script_name, language, image):
-        super().__init__(script_name, language)
+    def __init__(self, script_name, language, mark, image):
+        super().__init__(script_name, language, mark)
         self.image = image
 
     def build_command(self, *command_args):
