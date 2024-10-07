@@ -44,28 +44,3 @@ $ {{ .command }}
 ---
 
 {{ end }}
-
-<style>
-.running-the-program {
-  padding: 0 1rem;
-}
-
-.language-console {
-  .gp {
-    font-weight: bold;
-  }
-}
-
-h4 {
-  font-size: 1rem !important;
-  margin-bottom: -1rem !important;
-}
-
-hr {
-  margin-top: 2rem;
-  margin-bottom: .5rem;
-  &:last-of-type {
-    display: none;
-  }
-}
-</style>
