@@ -1,3 +1,5 @@
+{{ $myGlobals := (dict "siteData" $.Site.Data) }}
+
 {{range $.Site.Data.test_cases }}
   {{ $.AddPage (dict
       "kind" "section"
@@ -18,7 +20,7 @@
         "title" .title
         "type" "docs"
         "content" (dict
-          "value" (partial "operation.md" .)
+          "value" (partial "operation.md" (merge . $myGlobals))
         )
       )
     }}

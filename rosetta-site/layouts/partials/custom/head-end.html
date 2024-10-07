@@ -1,0 +1,65 @@
+<!--
+
+What:
+- Disable all links to /operations/ and /operations/*/.
+  Clicking on these should never take you to their page
+
+- Disable expand/collapse for links to /operations/ in sidebar.
+  These should be expanded by default and clicking should not collapse them
+
+How:
+- add some <link> tags to the head of the page that reference the URLs of links
+  to disable.
+  this is cleaner than outputting it to JSON
+- for each <a> on the page, if it's href is in the list of URLs:
+    - add a class so we can style it with CSS
+    - disable clicking appropriately
+
+-->
+
+<link rel="disable-expand-collapse" href="/operations/">
+<link rel="disable-link" href="/operations/">
+{{ range $.Site.Data.test_cases }}
+  <link rel="disable-link" href="/operations/{{ .group_slug }}/">
+{{ end }}
+
+<script>
+  const href = (el) => el.attributes['href'].value
+
+  function openLiParent(a) {
+    const liParent = a.closest('li') // the parent `li` element
+    if (liParent) liParent.classList.add('open') // this causes the sidebar to collapse/expand
+  }
+
+  function toggleLiParent(a) {
+    const liParent = a.closest('li') // the parent `li` element
+    if (liParent) liParent.classList.toggle('open') // this causes the sidebar to collapse/expand
+  }
+
+  const hrefsForLinksWithRel = (rel) => new Set(
+    [...document.querySelectorAll(`link[rel="${rel}"]`)].map(link => href(link))
+  )
+
+  const groupUrls = hrefsForLinksWithRel('disable-link')
+  const disableExpandCollapseUrls = hrefsForLinksWithRel('disable-expand-collapse')
+
+  document.addEventListener('DOMContentLoaded', function() {
+    [...document.querySelectorAll('a[href]')] // only get `a` tags that have an `href` attribute
+      .forEach(a => {
+        if (disableExpandCollapseUrls.has(href(a))) {
+          a.classList.add('disable-expand-collapse') // add a class so we can style it
+          openLiParent(a)
+
+          a.addEventListener('click', e => { e.preventDefault() }) // disabled clicking
+        } else if (groupUrls.has(href(a))) {
+          a.classList.add('disable-link') // add a class so we can style it
+
+          a.addEventListener('click', e => {
+            if (e.target !== a) return // clicking the > symbol is ok
+            e.preventDefault() // don't follow the link
+            toggleLiParent(a)
+          })
+        }
+    })
+  }, false)
+</script>

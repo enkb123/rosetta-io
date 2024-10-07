@@ -1,3 +1,5 @@
+{{ $siteData := .siteData }}
+
 > {{ .summary }}
 
 {{ .description }}
@@ -9,17 +11,24 @@
 <h4>Input file</h4>
 
 {{ range .files }}
-```{{ .ext }} {filename="{{.name}}"}
-{{ .content }}
-```
+  ```{{ .ext }} {filename="{{.name}}"}
+  {{ .content }}
+  ```
 {{ end }}
 
 {{ end }}
+
 
 ## Implementations
 
 {{ range .implementations }}
+<div class="implementation">
+
 ### {{ .language.human_name }}
+
+<div class="language-icon">
+  {{index $siteData.icons (printf "language-%s" .language.icon_id)}}
+</div>
 
 
 {{ default "" .additional_md }}
@@ -35,14 +44,14 @@
 ```console
 $ {{ .command }}
 {{ with $assertion -}}
-{{ if .stdout_match -}}
-{{ .stdout_match }}
-{{ else if .json -}}
-{{ .json | jsonify }}
-{{ end -}}
+  {{ if .stdout_match -}}
+    {{ .stdout_match }}
+  {{ else if .json -}}
+    {{ .json | jsonify }}
+  {{ end -}}
 {{ end -}}
 ```
-
+</div>
 </div>
 
 ---

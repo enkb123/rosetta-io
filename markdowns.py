@@ -111,8 +111,10 @@ def default_icon(icon_id: str):
     # The the 2nd <image> tag acts as a fallback in case the plain icon doesn't exist
     return f"""
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-            <image href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{icon_id}/{icon_id}-plain.svg"    x="0" y="0" width="24" height="24"/>
+            <switch>
             <image href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{icon_id}/{icon_id}-original.svg" x="0" y="0" width="24" height="24"/>
+            <image href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{icon_id}/{icon_id}-plain.svg"    x="0" y="0" width="24" height="24"/>
+            </switch>
         </svg>
     """.strip()
 
