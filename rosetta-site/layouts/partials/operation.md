@@ -21,6 +21,10 @@
 {{ range .implementations }}
 ### {{ .language.human_name }}
 
+
+{{ default "" .additional_md }}
+
+
 ```{{ .language.syntax_highlighting }} {filename="{{.file_name}}"}
 {{ .code }}
 ```
@@ -42,5 +46,4 @@ $ {{ .command }}
 </div>
 
 ---
-
 {{ end }}
