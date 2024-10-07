@@ -774,8 +774,8 @@
             {
                 "script_name": "read_file",
                 "group": "File I/O",
-                "title": "Read file",
-                "summary": "Read a file line by line",
+                "title": "Read text file",
+                "summary": "Read a text file line by line",
                 "description": "Read one line at a time from a file called `my-text-file.txt` and print it.",
                 "implementations": [
                     {
