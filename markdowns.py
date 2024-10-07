@@ -3,6 +3,7 @@
 import json
 import re
 from collections import defaultdict
+from pathlib import Path
 import shlex
 
 from test_helpers import LocalRunner, ScriptRunner, collect_pytest_cases, dedent, script_test_case_mark
@@ -57,13 +58,20 @@ def test_case_data(pytest_case):
     implementations = []
     for language in sorted_languages:
         script_path = language.script_path(mark['script_name'])
+        additional_path = Path(str(script_path) + ".md")
 
         # checks that this case is implemented for the specific language
         if script_path.exists():
+            additional_md_path = None
+            if additional_path.exists():
+                additional_md_path = additional_path.read_text(encoding="utf-8").strip()
+
             runner = ScriptRunner(mark['script_name'], language, mark)
+
             implementations.append(dict(
                 file_name=script_path.name,
                 code=script_path.read_text(encoding="utf-8").strip(),
+                additional_md=additional_md_path,
                 language=language.as_json(),
                 command=runner.basic_command(),
             ))

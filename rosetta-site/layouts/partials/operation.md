@@ -7,9 +7,9 @@
 {{ $assertion := .assertion }}
 
 {{ if .files }}
-## Setup
 
-### Inputs
+<h4>Input file</h4>
+
 {{ range .files }}
   ```{{ .ext }} {filename="{{.name}}"}
   {{ .content }}
@@ -30,11 +30,18 @@
   {{index $siteData.icons (printf "language-%s" .language.icon_id)}}
 </div>
 
+
+{{ default "" .additional_md }}
+
+
 ```{{ .language.syntax_highlighting }} {filename="{{.file_name}}"}
 {{ .code }}
 ```
 
-```console {filename="running the program"}
+<div class="running-the-program">
+  <h4>Running the program</h4>
+
+```console
 $ {{ .command }}
 {{ with $assertion -}}
   {{ if .stdout_match -}}
@@ -45,4 +52,7 @@ $ {{ .command }}
 {{ end -}}
 ```
 </div>
+</div>
+
+---
 {{ end }}
