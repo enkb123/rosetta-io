@@ -219,7 +219,7 @@ def script(request: pytest.FixtureRequest, docker_builder: DockerBuilder, langua
 
 @pytest.mark.script(group="Misc", title="Null character")
 def test_null_char(script: ScriptRunner):
-    """Output a null character
+    """Output a null character to stdout
 
     See https://en.wikipedia.org/wiki/Null_character
     """
@@ -229,7 +229,11 @@ def test_null_char(script: ScriptRunner):
 
 @pytest.mark.script(group="Standard I/O", title="Standard input")
 def test_stdin(script: ScriptRunner):
-    """Read from stdin line by line"""
+    """Read from stdin line by line
+
+    Read one line at a time from stdin and print it.
+    This example assumes that all the input on stdin is available at once.
+    """
 
     script.run(dedent("""<<EOF
         hi
@@ -245,9 +249,12 @@ def test_stdin(script: ScriptRunner):
     """))
 
 
-@pytest.mark.script(group="File I/O", title="Read file")
+@pytest.mark.script(group="File I/O", title="Read text file")
 def test_read_file(script: ScriptRunner):
-    """Read a file line by line"""
+    """Read a text file line by line
+
+    Read one line at a time from a file called `my-text-file.txt` and print it.
+    """
 
     script.files["my-text-file.txt"] = dedent("""
         hi
@@ -266,7 +273,10 @@ def test_read_file(script: ScriptRunner):
 
 @pytest.mark.script(group="Misc", title="Command-line arguments")
 def test_arguments(script: ScriptRunner):
-    """Read command line arguments"""
+    """Read command line arguments
+
+    Read 2 command line arguments and print them out.
+    """
     script.run('"Argument Number 1" "Command line arg 2"')
     assert_string_match(script.output, dedent("""
         1st argument: Argument Number 1
@@ -276,7 +286,11 @@ def test_arguments(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="Parse JSON file")
 def test_read_json_file(script: ScriptRunner):
-    """Read and parse a JSON file"""
+    """Read and parse a JSON file
+
+    Read a JSON file called `people.json` that contains an array of JSON objects.
+    For each JSON object, print a greeting.
+    """
 
     script.files["people.json"] = json.dumps(
         [
@@ -297,7 +311,11 @@ def test_read_json_file(script: ScriptRunner):
 
 @pytest.mark.script(group="File I/O", title="Write text file")
 def test_write_to_text_file(script: ScriptRunner):
-    """Write to a text file"""
+    """Write to a text file
+
+    Write the string `Hello World!` to a file named `output.txt`.
+    """
+
     script.files["output.txt"] = "THIS SHOULD BE OVERWRITTEN"
 
     script.run(after="cat output.txt && rm output.txt")
@@ -307,7 +325,10 @@ def test_write_to_text_file(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="Output JSON")
 def test_json_outputting_data(script: ScriptRunner):
-    """Create and output JSON"""
+    """Create and output JSON
+
+    Create and output JSON that contains a variety of data types.
+    """
 
     script.run()
 
@@ -345,7 +366,13 @@ def test_json_outputting_data(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="JSON with null character")
 def test_json_null_char(script: ScriptRunner):
-    """Create and output JSON"""
+    """Create output JSON with a null character
+
+    In a JSON string the null character is represented as `\\u0000`.
+
+    JSON strings are UTF-8 encoded, so the null character is valid, but
+    nevertheless, some JSON parsers cannot handle it.
+    """
 
     script.run()
 
@@ -354,7 +381,11 @@ def test_json_null_char(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="Build JSON array of strings")
 def test_json_array(script: ScriptRunner):
-    """Create and output a JSON array of strings"""
+    """Create and output a JSON array of strings
+
+    Accept a list of strings as command line arguments.
+    Create and output a JSON array of those strings.
+    """
 
     script.run("a b c d")
     assert json.loads(script.output) == ["a", "b", "c", "d"]
@@ -362,7 +393,11 @@ def test_json_array(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="Build JSON array of numbers")
 def test_json_numbers(script: ScriptRunner):
-    """Create and output a JSON array of numbers"""
+    """Create and output a JSON array of numbers
+
+    Accept a list of strings as command line arguments.
+    Create and output a JSON array of the *lengths* of the strings.
+    """
 
     # Write to stdout the length of each string argument
     script.run("a bc def ghij")
@@ -371,9 +406,12 @@ def test_json_numbers(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="Build JSON object")
 def test_json_stdout_object(script: ScriptRunner):
-    """Create and output a JSON object"""
+    """Create and output a JSON object
 
-    # Write a dict of {arg:length} to stdout
+    Accept a list of strings as command line arguments.
+    Create and output a JSON object with the strings as keys and their lengths as values.
+    """
+
     script.run("a bc def ghij")
 
     assert json.loads(script.output) == {"a": 1, "bc": 2, "def": 3, "ghij": 4}
@@ -381,9 +419,12 @@ def test_json_stdout_object(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="Build JSON object of arrays of strings")
 def test_json_object_with_array_values(script: ScriptRunner):
-    """Create and output a JSON object with arrays of strings as values"""
+    """Create and output a JSON object with arrays of strings as values
 
-    # Write a dict of {arg:[list of arg chars]} to stdout
+    Accept a list of strings as command line arguments.
+    Create and output a JSON object with the strings as keys and arrays of their characters as values.
+    """
+
     script.run("a bc def")
 
     assert json.loads(script.output) == {
@@ -395,22 +436,29 @@ def test_json_object_with_array_values(script: ScriptRunner):
 
 @pytest.mark.script(group="JSON", title="Build JSON array of objects")
 def test_json_object_array(script: ScriptRunner):
-    """Create and output a JSON array of objects"""
+    """Create and output a JSON array of objects
 
-    # Write an array of [{arg: length of chars},...] to stdout
+    Accept a list of strings as command line arguments.
+    Create and output a JSON array of objects, one for each strings, where each
+    object has a key-value pair where the key is the uppercased string and the
+    value is the length of the string.
+    """
+
     script.run("a bc def")
 
     assert json.loads(script.output) == [{"A": 1}, {"BC": 2}, {"DEF": 3}]
 
 
-@pytest.mark.script(group="JSON", title="JSON with control characters")
+@pytest.mark.script(group="JSON", title="JSON with control characters & emoji")
 def test_json_control_chars(script: ScriptRunner):
-    """Test that control characters and emojis are output in valid JSON."""
+    """Build and out output a JSON string containing control characters and emojis.
 
-    # Note: control character "\\0" is used by C (and Python) to end strings and so we can't
-    # pass it as argument in the test string because it will raise "invalid argument" error
+    Receive a string as a command line argument and print it as the JSON string. The string is
+    `"hello \\n \\u0001 world 🥸"`.
 
-    # Pass a single string to the script that includes a control character and emoji
+    See [JSON with null character](../json_null_char) for outputting the Null Character (`\\0`) in a JSON string.
+    """
+
     script.run('"hello \n \1 world 🥸"')
 
     assert json.loads(script.output) == "hello \n \u0001 world 🥸"
@@ -418,7 +466,10 @@ def test_json_control_chars(script: ScriptRunner):
 
 @pytest.mark.script(script_name="decode", group="Base64", title="Decode Base64")
 def test_base64_decode(script: ScriptRunner):
-    """Decode a base64 string"""
+    """Decode a base64 string
+
+    Accept a base64 encoded string as a command line argument, decode it, and print it out.
+    """
 
     script.run("SGVsbG8sIHdvcmxkIQ==")
 
@@ -427,7 +478,10 @@ def test_base64_decode(script: ScriptRunner):
 
 @pytest.mark.script(script_name="encode", group="Base64", title="Encode Base64")
 def test_base64_encode(script: ScriptRunner):
-    """Encode a string as base64"""
+    """Encode a string as base64
+
+    Accept a string as a command line argument, encode it as Base64, then print it out.
+    """
 
     script.run('"Hello, world!"')
 
@@ -436,7 +490,14 @@ def test_base64_encode(script: ScriptRunner):
 
 @pytest.mark.script(group="Standard I/O", title="Streaming standard input")
 def test_streaming_stdin(script: ScriptRunner):
-    """Read from stdin line by line"""
+    """Stream from stdin line by line
+
+    Stream one line at a time from stdin and print it to stdout.
+
+    The test runner for this case will only provide the next line on stdin when the previous line has be printed to stdout.
+    This requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.
+    Some languages do this automatically, other don't.
+    """
 
     # Tests that streaming stdin can be read line by line and can write to
     # stdout without waiting for all lines to arrive
@@ -450,7 +511,14 @@ def test_streaming_stdin(script: ScriptRunner):
 
 @pytest.mark.script(script_name="streaming_pipe_in", group="Pipe I/O", title="Streaming from named pipe")
 def test_streaming_from_pipe_in(script: ScriptRunner):
-    """Read from named pipe line by line"""
+    """Stream from a named pipe line by line
+
+    Stream one line at a time from a named pipe (named `input.pipe`) and print it to stdout.
+    The test runner for this case will only provide the next line on the `input.pipe` when the previous line has be printed to stdout.
+
+    This requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.
+    Some languages do this automatically, other don't.
+    """
 
     script.add_named_pipe("input.pipe")
 
@@ -471,7 +539,13 @@ def test_streaming_from_pipe_in(script: ScriptRunner):
 
 @pytest.mark.script(group="Pipe I/O", title="Write to named pipe")
 def test_write_to_named_pipe(script: ScriptRunner):
-    """Write text to a named pipe"""
+    """Write text to a named pipe
+
+    Write `Hello World!` to a named pipe (named `output.pipe`).
+
+    When writing to named pipes, the program does not need to know it's a pipe,
+    but can treat it as a regular file when writing to it.
+    """
 
     script.add_named_pipe("output.pipe")
 
@@ -487,7 +561,15 @@ def test_write_to_named_pipe(script: ScriptRunner):
 
 @pytest.mark.script(group="Pipe I/O", title="Streaming to and from named pipes")
 def test_streaming_pipe_in_and_out(script: ScriptRunner):
-    """Read line by line from a named pipe and write to another named pipe"""
+    """Stream lines from a named pipe, write to another named pipe
+
+    Stream one line at a time from a named pipe (named `streaming-in.pipe`) and
+    print it to another named pipe (named `streaming-out.pipe`).
+
+    The test runner for this case will only provide the next line on stdin when the previous line has be printed to stdout.
+    This requires either that stdout is unbuffered or that stdout is flushed after each line is written to it.
+    Some languages do this automatically, other don't.
+    """
 
     # Tests that it can process named pipe input and send output one line at a
     # time without waiting for all lines to arrive

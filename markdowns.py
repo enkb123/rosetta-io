@@ -35,8 +35,9 @@ pytest_cases_by_script_name = { script_test_case_mark(pytest_case)['script_name'
 def test_case_data(pytest_case):
     mark = script_test_case_mark(pytest_case)
 
-    doc_str = dedent(pytest_case.function.__doc__)
-    doc_str_first_line = doc_str.strip().split('\n', maxsplit=1)[0]
+    description = dedent(pytest_case.function.__doc__)
+    summary, description = description.strip().split('\n', maxsplit=1)
+    description = description.strip()
 
     implementations = []
     for language in sorted_languages:
@@ -52,8 +53,8 @@ def test_case_data(pytest_case):
 
     return mark | dict(
         title=mark.get('title', mark['script_name']),
-        doc_str=doc_str,
-        doc_str_first_line=doc_str_first_line,
+        summary=summary,
+        description=description,
         implementations=implementations,
     )
 
