@@ -43,8 +43,7 @@ def test_case_data(pytest_case):
     implementations = [] #in test_cases.json
     for language in sorted_languages:
         script_path = language.script_path(mark['script_name'])
-        additional_path = str(script_path) + ".md"
-        additional_path = Path(additional_path)
+        additional_path = Path(str(script_path) + ".md")
 
         # checks that this case is implemented for the specific language
         if script_path.exists():
@@ -55,7 +54,7 @@ def test_case_data(pytest_case):
             implementations.append(dict(
                 file_name=script_path.name,
                 code=script_path.read_text(encoding="utf-8").strip(),
-                additional_md = additional_md_path,
+                additional_md=additional_md_path,
                 language=language.as_json(),
             ))
 
