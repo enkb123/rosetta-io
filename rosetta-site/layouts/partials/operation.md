@@ -5,9 +5,9 @@
 {{ $assertion := .assertion }}
 
 {{ if .files }}
-## Setup
 
-### Inputs
+<h4>Input file</h4>
+
 {{ range .files }}
 ```{{ .ext }} {filename="{{.name}}"}
 {{ .content }}
