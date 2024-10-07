@@ -15,7 +15,7 @@ The name `rosetta-io` is an hommage to [Rosetta
 Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 
 ## Languages covered
-{{< cards cols="3">}}
+{{< cards cols="2">}}
   {{< _.inline >}}
     {{ range $.Site.Data.languages }}
       {{ partial "shortcodes/card" (dict
@@ -35,9 +35,9 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
     <div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 2;">
       {{ range .test_cases }}
         {{- partial "shortcodes/card" (dict
-          "title"       .script_name
+          "title"       .title
           "link"        (printf "/operations/%s/%s" $group_slug .script_name)
-          "subtitle"    .doc_str_first_line
+          "subtitle"    .summary
         ) -}}
       {{ end}}
     </div>

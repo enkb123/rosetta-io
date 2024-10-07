@@ -36,8 +36,9 @@ pytest_cases_by_script_name = { script_test_case_mark(pytest_case)['script_name'
 def test_case_data(pytest_case):
     mark = script_test_case_mark(pytest_case)
 
-    doc_str = dedent(pytest_case.function.__doc__)
-    doc_str_first_line = doc_str.strip().split('\n', maxsplit=1)[0]
+    description = dedent(pytest_case.function.__doc__)
+    summary, description = description.strip().split('\n', maxsplit=1)
+    description = description.strip()
 
     implementations = [] #in test_cases.json
     for language in sorted_languages:
@@ -59,8 +60,9 @@ def test_case_data(pytest_case):
             ))
 
     return mark | dict(
-        doc_str=doc_str,
-        doc_str_first_line=doc_str_first_line,
+        title=mark.get('title', mark['script_name']),
+        summary=summary,
+        description=description,
         implementations=implementations,
     )
 
@@ -74,10 +76,12 @@ for test_case in all_test_cases_data:
 
 groups = []
 for group_name, test_cases in test_cases_by_group.items():
+    sorted_test_cases = sorted(test_cases, key=lambda test_case: test_case['title'])
+
     groups.append({
         'group_name': group_name,
         'group_slug': slugify(group_name),
-        'test_cases': test_cases,
+        'test_cases': sorted_test_cases,
     })
 
 save_data('test_cases', groups)
