@@ -3,6 +3,7 @@
 import json
 import re
 from collections import defaultdict
+from pathlib import Path
 
 from test_helpers import collect_pytest_cases, dedent, script_test_case_mark
 from test_suite import LANGUAGES
@@ -38,15 +39,22 @@ def test_case_data(pytest_case):
     doc_str = dedent(pytest_case.function.__doc__)
     doc_str_first_line = doc_str.strip().split('\n', maxsplit=1)[0]
 
-    implementations = []
+    implementations = [] #in test_cases.json
     for language in sorted_languages:
         script_path = language.script_path(mark['script_name'])
+        additional_path = str(script_path) + ".md"
+        additional_path = Path(additional_path)
 
         # checks that this case is implemented for the specific language
         if script_path.exists():
+            additional_md_path = None
+            if additional_path.exists():
+                additional_md_path = additional_path.read_text(encoding="utf-8").strip()
+
             implementations.append(dict(
                 file_name=script_path.name,
                 code=script_path.read_text(encoding="utf-8").strip(),
+                additional_md = additional_md_path,
                 language=language.as_json(),
             ))
 
