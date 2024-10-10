@@ -1,15 +1,9 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonControlChars {
-    public static void main(String[] args) throws JsonProcessingException{
-        if (args.length == 0) {
-            System.out.println("Usage: java JsonControlChars <test_string>");
-            System.exit(1);
-        }
-
+    public static void main(String[] args) throws Exception {
         String testString = args[0];
-        ObjectMapper objectMapper = new ObjectMapper();
+        var objectMapper = new ObjectMapper();
 
         String jsonString = objectMapper.writeValueAsString(testString);
         System.out.println(jsonString);

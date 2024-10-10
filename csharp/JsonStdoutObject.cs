@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 
-class JsonStdoutObject{
-    public static void Main(string[] args){
-        Dictionary<string, int> stringLengthDict = new Dictionary<string, int>();
+class JsonStdoutObject
+{
+    public static void Main(string[] args)
+    {
+        var stringLengthDict = new Dictionary<string, int>();
 
-        foreach (string str in args){
+        foreach (string str in args)
+        {
             stringLengthDict[str] = str.Length;
         }
 

@@ -1,8 +1,10 @@
 using System;
 using System.Text.Json;
 
-class JsonArray{
-    public static void Main(string[] args){
+class JsonArray
+{
+    public static void Main(string[] args)
+    {
         string[] inputArray = args;
 
         string jsonString = JsonSerializer.Serialize(inputArray);

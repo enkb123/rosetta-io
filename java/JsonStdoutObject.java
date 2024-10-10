@@ -2,7 +2,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonStdoutObject {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         var objectMapper = new ObjectMapper();
 
         var jsonObject = objectMapper.createObjectNode();
