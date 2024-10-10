@@ -254,7 +254,7 @@ class ScriptRunner(ABC):
             trap cleanup_named_pipes EXIT
         """)
 
-    def basic_command(self, rest_of_script: str = None, after_script: str = None) -> list[str]:
+    def basic_command(self, rest_of_script: str = None) -> list[str]:
         """Constructs the shell command to execute the script with the given arguments.
 
         Args:
@@ -292,28 +292,21 @@ class ScriptRunner(ABC):
             list: The constructed shell command as a list of strings.
         """
 
-        command_to_run_script = self.basic_command(rest_of_script, after_script)
+        command_to_run_script = self.basic_command(rest_of_script)
 
-        if len(self.all_setup_pairs) == 0 and after_script is None:
-            command = command_to_run_script
-        else:
-            after_commands = [dedent(after_script)] if after_script else []
+        after_commands = [dedent(after_script)] if after_script else []
 
-            command = (
-                "\n\n".join(
-                    [
-                        "",
-                        *self.prepare_commands,
-                        command_to_run_script,
-                        *after_commands,
-                        *self.cleanup_commands,
-                    ]
-                )
-                + "\n"
+        command = (
+            "\n\n".join(
+                [
+                    *self.prepare_commands,
+                    command_to_run_script,
+                    *after_commands,
+                    *self.cleanup_commands,
+                ]
             )
-
-        return command
-
+            + "\n"
+        )
 
         print_command("run in local shell", command)
 
