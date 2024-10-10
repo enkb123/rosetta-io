@@ -1,5 +1,8 @@
 import Foundation
 
+/*
+  Turn off output buffering for stdout
+*/
 #if os(macOS) || os(iOS)
   import Darwin
 #elseif os(Linux)

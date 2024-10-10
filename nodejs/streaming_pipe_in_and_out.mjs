@@ -10,4 +10,5 @@ for await (const line of rl) {
   outputStream.write(`received ${line}\n`);
 }
 
+inputStream.close();
 outputStream.end();

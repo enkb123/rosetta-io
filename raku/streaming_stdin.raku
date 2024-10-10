@@ -1,4 +1,5 @@
 for lines() {
     say "received $_";
-    $*OUT.flush;
+
+    $*OUT.flush; # flush stdout
 }

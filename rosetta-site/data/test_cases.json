@@ -803,7 +803,7 @@
                     },
                     {
                         "file_name": "streaming_stdin.pl",
-                        "code": "use strict;\nuse warnings;\n\n$| = 1;\nprint \"received $_\" while <STDIN>;",
+                        "code": "use strict;\nuse warnings;\n\n$| = 1; # turn off buffering for stdout\n\nprint \"received $_\" while <STDIN>;",
                         "additional_md": null,
                         "language": {
                             "name": "perl",
@@ -845,7 +845,7 @@
                     },
                     {
                         "file_name": "streaming_stdin.raku",
-                        "code": "for lines() {\n    say \"received $_\";\n    $*OUT.flush;\n}",
+                        "code": "for lines() {\n    say \"received $_\";\n\n    $*OUT.flush; # flush stdout\n}",
                         "additional_md": null,
                         "language": {
                             "name": "raku",
@@ -859,7 +859,7 @@
                     },
                     {
                         "file_name": "streaming_stdin.rb",
-                        "code": "STDOUT.sync = true\n\nwhile input = gets\n  puts \"received #{input}\"\nend",
+                        "code": "STDOUT.sync = true # turn off buffering for stdout\n\nwhile input = gets\n  puts \"received #{input}\"\nend",
                         "additional_md": null,
                         "language": {
                             "name": "ruby",
@@ -887,7 +887,7 @@
                     },
                     {
                         "file_name": "streaming_stdin.swift",
-                        "code": "import Foundation\n\n#if os(macOS) || os(iOS)\n  import Darwin\n#elseif os(Linux)\n  import Glibc\n#endif\nsetvbuf(stdout, nil, _IONBF, 0)\n\nwhile let line = readLine() {\n  print(\"received \\(line)\")\n}",
+                        "code": "import Foundation\n\n/*\n  Turn off output buffering for stdout\n*/\n#if os(macOS) || os(iOS)\n  import Darwin\n#elseif os(Linux)\n  import Glibc\n#endif\nsetvbuf(stdout, nil, _IONBF, 0)\n\nwhile let line = readLine() {\n  print(\"received \\(line)\")\n}",
                         "additional_md": "This beginning code is included to select the correct operating system and set the program to no buffering so the output appears immediately.",
                         "language": {
                             "name": "swift",
@@ -1163,7 +1163,7 @@
                     },
                     {
                         "file_name": "WriteToTextFile.cs",
-                        "code": "using System;\nusing System.IO;\n\nclass WriteToTextFile\n{\n    public static void Main(string[] args)\n    {\n\n        File.WriteAllText(\"output.txt\", \"Hello World!\");\n    }\n}",
+                        "code": "using System;\nusing System.IO;\n\nclass WriteToTextFile\n{\n    public static void Main(string[] args)\n    {\n        File.WriteAllText(\"output.txt\", \"Hello World!\");\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -4022,7 +4022,7 @@
                     },
                     {
                         "file_name": "streaming_pipe_in.rb",
-                        "code": "STDOUT.sync = true\n\nFile.foreach 'input.pipe' do |line|\n  puts line.upcase\nend",
+                        "code": "STDOUT.sync = true # turn off buffering on stdout\n\nFile.foreach 'input.pipe' do |line|\n  puts line.upcase\nend",
                         "additional_md": null,
                         "language": {
                             "name": "ruby",
@@ -4050,8 +4050,8 @@
                     },
                     {
                         "file_name": "streaming_pipe_in.swift",
-                        "code": "import Foundation\n\n#if os(macOS) || os(iOS)\n  import Darwin\n#elseif os(Linux)\n  import Glibc\n#endif\nsetvbuf(stdout, nil, _IONBF, 0)\n\nlet pipe_in = \"input.pipe\"\n\npublic class FileLines: Sequence, IteratorProtocol {\n  private let file: UnsafeMutablePointer<FILE>\n\n  init?(path: String) {\n    guard let file = fopen(path, \"r\") else { return nil }\n    self.file = file\n  }\n\n  public func next() -> String? {\n    var line: UnsafeMutablePointer<CChar>? = nil\n    var linecap: Int = 0\n    defer { free(line) }\n    return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil\n  }\n\n  deinit {\n    fclose(file)\n  }\n\n  public func makeIterator() -> FileLines {\n    return self\n  }\n}\n\n// in new versions of Swift, this can be replaced with `if let lines = FileHandle(forReadingAtPath: pipe_in).bytes.lines`\nif let lines = FileLines(path: pipe_in) {\n  for line in lines {\n    print(line.uppercased(), terminator: \"\")\n  }\n}",
-                        "additional_md": null,
+                        "code": "import Foundation\n\n/*\n  Turn off output buffering for stdout\n*/\n#if os(macOS) || os(iOS)\n  import Darwin\n#elseif os(Linux)\n  import Glibc\n#endif\nsetvbuf(stdout, nil, _IONBF, 0)\n\n/*\n  Like readLine(), but for reading from a file/pipe\n*/\nfunc readFileLine(file: UnsafeMutablePointer<FILE>) -> String? {\n  var line: UnsafeMutablePointer<CChar>? = nil\n  var n = 0\n  defer { free(line) }\n  return getline(&line, &n, file) > 0 ? String(cString: line!) : nil\n}\n\nlet pipeIn = fopen(\"input.pipe\", \"r\")!\n\nwhile let line = readFileLine(file: pipeIn) {\n  print(line.uppercased(), terminator: \"\")\n}\n\nfclose(pipeIn)",
+                        "additional_md": "> Note: In newer versions of Swift, one can read line-by-line from a file/pipe with:\n>\n> ```swift\n> if let lines = FileHandle(forReadingAtPath: \"input.pipe\").bytes.lines {\n>   for line in lines {\n>     // ...\n>   }\n> }\n> ```",
                         "language": {
                             "name": "swift",
                             "human_name": "Swift",
@@ -4104,7 +4104,7 @@
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.go",
-                        "code": "package main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\tinput, _ := os.Open(\"streaming-in.pipe\")\n\tdefer input.Close()\n\n\toutput, _ := os.OpenFile(\"streaming-out.pipe\", os.O_WRONLY, 0)\n\tdefer output.Close()\n\n\toutput.Sync()\n\n\tscanner := bufio.NewScanner(input)\n\n\tfor scanner.Scan() {\n\t\tline := scanner.Text()\n\t\tfmt.Fprintf(output, \"received %s\\n\", line)\n\n\t}\n}",
+                        "code": "package main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\tinput, _ := os.Open(\"streaming-in.pipe\")\n\tdefer input.Close()\n\n\toutput, _ := os.OpenFile(\"streaming-out.pipe\", os.O_WRONLY, 0)\n\tdefer output.Close()\n\n\toutput.Sync() // turn off buffering on the ouput pipe\n\n\tscanner := bufio.NewScanner(input)\n\n\tfor scanner.Scan() {\n\t\tline := scanner.Text()\n\t\tfmt.Fprintf(output, \"received %s\\n\", line)\n\n\t}\n}",
                         "additional_md": null,
                         "language": {
                             "name": "golang",
@@ -4118,7 +4118,7 @@
                     },
                     {
                         "file_name": "StreamingPipeInAndOut.java",
-                        "code": "import java.io.*;\n\npublic class StreamingPipeInAndOut {\n    public static void main (String[] args) throws IOException{\n        var inputPath = \"streaming-in.pipe\";\n        var outputPath = \"streaming-out.pipe\";\n\n        var input = new BufferedReader(new FileReader(inputPath));\n        var output = new BufferedWriter(new FileWriter(outputPath));\n\n        String line;\n        while ((line = input.readLine()) != null) {\n            output.write(\"received \" + line);\n            output.newLine();\n            output.flush();\n        }\n\n        input.close();\n        output.close();\n    }\n}",
+                        "code": "import java.io.*;\n\npublic class StreamingPipeInAndOut {\n    public static void main (String[] args) throws IOException {\n        var inputPath = \"streaming-in.pipe\";\n        var outputPath = \"streaming-out.pipe\";\n\n        var input = new BufferedReader(new FileReader(inputPath));\n        var output = new BufferedWriter(new FileWriter(outputPath));\n\n        String line;\n        while ((line = input.readLine()) != null) {\n            output.write(\"received \" + line + \"\\n\");\n            output.flush();\n        }\n\n        input.close();\n        output.close();\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -4146,7 +4146,7 @@
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.mjs",
-                        "code": "import * as fs from 'fs';\nimport * as readline from 'node:readline/promises';\n\nconst inputStream = fs.createReadStream('streaming-in.pipe');\nconst outputStream = fs.createWriteStream('streaming-out.pipe');\n\nconst rl = readline.createInterface({ input: inputStream });\n\nfor await (const line of rl) {\n  outputStream.write(`received ${line}\\n`);\n}\n\noutputStream.end();",
+                        "code": "import * as fs from 'fs';\nimport * as readline from 'node:readline/promises';\n\nconst inputStream = fs.createReadStream('streaming-in.pipe');\nconst outputStream = fs.createWriteStream('streaming-out.pipe');\n\nconst rl = readline.createInterface({ input: inputStream });\n\nfor await (const line of rl) {\n  outputStream.write(`received ${line}\\n`);\n}\n\ninputStream.close();\noutputStream.end();",
                         "additional_md": null,
                         "language": {
                             "name": "nodejs",
@@ -4188,7 +4188,7 @@
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.pl",
-                        "code": "use strict;\nuse warnings;\n\nopen my $output, '>', 'streaming-out.pipe';\nopen my $input, '<', 'streaming-in.pipe';\n\n$output->autoflush(1);\n\nprint $output \"received $_\" while <$input>;\n\nclose $input;\nclose $output;",
+                        "code": "use strict;\nuse warnings;\n\nopen my $output, '>', 'streaming-out.pipe';\nopen my $input, '<', 'streaming-in.pipe';\n\n$output->autoflush(1); # turn off buffering on output pipe\n\nprint $output \"received $_\" while <$input>;\n\nclose $input;\nclose $output;",
                         "additional_md": null,
                         "language": {
                             "name": "perl",
@@ -4244,7 +4244,7 @@
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.rb",
-                        "code": "File.open 'streaming-out.pipe', 'w' do |output|\n  output.sync = true\n\n  File.foreach \"streaming-in.pipe\" do |line|\n    output.puts \"received #{line}\"\n  end\nend",
+                        "code": "File.open 'streaming-out.pipe', 'w' do |output|\n  output.sync = true # turn off buffering on the ouput pipe\n\n  File.foreach \"streaming-in.pipe\" do |line|\n    output.puts \"received #{line}\"\n  end\nend",
                         "additional_md": null,
                         "language": {
                             "name": "ruby",
@@ -4272,8 +4272,8 @@
                     },
                     {
                         "file_name": "streaming_pipe_in_and_out.swift",
-                        "code": "import Foundation\n\n#if os(macOS) || os(iOS)\n  import Darwin\n#elseif os(Linux)\n  import Glibc\n#endif\nsetvbuf(stdout, nil, _IONBF, 0)\n\nlet pipe_in = \"streaming-in.pipe\"\nlet pipe_out = \"streaming-out.pipe\"\n\nlet fileDescriptor = open(pipe_out, O_WRONLY)\n\npublic class FileLines: Sequence, IteratorProtocol {\n  private let file: UnsafeMutablePointer<FILE>\n\n  init?(path: String) {\n    guard let file = fopen(path, \"r\") else { return nil }\n    self.file = file\n  }\n\n  public func next() -> String? {\n    var line: UnsafeMutablePointer<CChar>? = nil\n    var linecap: Int = 0\n    defer { free(line) }\n    return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil\n  }\n\n  deinit {\n    fclose(file)\n  }\n\n  public func makeIterator() -> FileLines {\n    return self\n  }\n}\n\nif let lines = FileLines(path: pipe_in) {\n  for line in lines {\n    let outputLine = \"received \\(line)\"\n    write(fileDescriptor, outputLine, outputLine.utf8.count)\n  }\n}",
-                        "additional_md": null,
+                        "code": "import Foundation\n\n/*\n  Like readLine(), but for reading from a file/pipe\n*/\nfunc readFileLine(file: UnsafeMutablePointer<FILE>) -> String? {\n  var line: UnsafeMutablePointer<CChar>? = nil\n  var n = 0\n  defer { free(line) }\n  return getline(&line, &n, file) > 0 ? String(cString: line!) : nil\n}\n\nlet pipeIn = fopen(\"streaming-in.pipe\", \"r\")!\nlet pipeOutHandle = open(\"streaming-out.pipe\", O_WRONLY)\n\nwhile let line = readFileLine(file: pipeIn) {\n  let outputLine = \"received \\(line)\"\n  write(pipeOutHandle, outputLine, outputLine.utf8.count)\n}\n\nfclose(pipeIn)",
+                        "additional_md": "> Note: in new versions of Swift, one can read line-by-line from a file/pipe with:\n>\n> ```swift\n> if let lines = FileHandle(forReadingAtPath: \"input.pipe\").bytes.lines {\n>   for line in lines {\n>     // ...\n>   }\n> }\n> ```",
                         "language": {
                             "name": "swift",
                             "human_name": "Swift",
@@ -4312,7 +4312,7 @@
                     },
                     {
                         "file_name": "WriteToNamedPipe.cs",
-                        "code": "using System;\nusing System.IO;\nusing System.Diagnostics;\n\nclass WriteToNamedPipe\n{\n    public static void Main(string[] args)\n    {\n        using var writer = new StreamWriter(\"output.pipe\") { AutoFlush = true };\n        writer.WriteLine(\"Hello World!\");\n    }\n}",
+                        "code": "using System;\nusing System.IO;\n\nclass WriteToNamedPipe\n{\n    public static void Main(string[] args)\n    {\n        File.WriteAllText(\"output.pipe\", \"Hello World!\");\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -4354,7 +4354,7 @@
                     },
                     {
                         "file_name": "write_to_named_pipe.mjs",
-                        "code": "const encoder = new TextEncoder();\n\nawait Deno.writeFile(\"output.pipe\", encoder.encode(\"Hello World!\"));",
+                        "code": "await Deno.writeTextFile(\"output.pipe\", \"Hello World!\");",
                         "additional_md": null,
                         "language": {
                             "name": "deno",

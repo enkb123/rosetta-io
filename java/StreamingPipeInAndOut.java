@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class StreamingPipeInAndOut {
-    public static void main (String[] args) throws IOException{
+    public static void main (String[] args) throws IOException {
         var inputPath = "streaming-in.pipe";
         var outputPath = "streaming-out.pipe";
 
@@ -10,8 +10,7 @@ public class StreamingPipeInAndOut {
 
         String line;
         while ((line = input.readLine()) != null) {
-            output.write("received " + line);
-            output.newLine();
+            output.write("received " + line + "\n");
             output.flush();
         }
 

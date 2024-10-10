@@ -1,5 +1,8 @@
 import Foundation
 
+/*
+  Turn off output buffering for stdout
+*/
 #if os(macOS) || os(iOS)
   import Darwin
 #elseif os(Linux)
@@ -7,35 +10,20 @@ import Foundation
 #endif
 setvbuf(stdout, nil, _IONBF, 0)
 
-let pipe_in = "input.pipe"
-
-public class FileLines: Sequence, IteratorProtocol {
-  private let file: UnsafeMutablePointer<FILE>
-
-  init?(path: String) {
-    guard let file = fopen(path, "r") else { return nil }
-    self.file = file
-  }
-
-  public func next() -> String? {
-    var line: UnsafeMutablePointer<CChar>? = nil
-    var linecap: Int = 0
-    defer { free(line) }
-    return getline(&line, &linecap, file) > 0 ? String(cString: line!) : nil
-  }
-
-  deinit {
-    fclose(file)
-  }
-
-  public func makeIterator() -> FileLines {
-    return self
-  }
+/*
+  Like readLine(), but for reading from a file/pipe
+*/
+func readFileLine(file: UnsafeMutablePointer<FILE>) -> String? {
+  var line: UnsafeMutablePointer<CChar>? = nil
+  var n = 0
+  defer { free(line) }
+  return getline(&line, &n, file) > 0 ? String(cString: line!) : nil
 }
 
-// in new versions of Swift, this can be replaced with `if let lines = FileHandle(forReadingAtPath: pipe_in).bytes.lines`
-if let lines = FileLines(path: pipe_in) {
-  for line in lines {
-    print(line.uppercased(), terminator: "")
-  }
+let pipeIn = fopen("input.pipe", "r")!
+
+while let line = readFileLine(file: pipeIn) {
+  print(line.uppercased(), terminator: "")
 }
+
+fclose(pipeIn)

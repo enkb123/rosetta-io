@@ -13,7 +13,7 @@ func main() {
 	output, _ := os.OpenFile("streaming-out.pipe", os.O_WRONLY, 0)
 	defer output.Close()
 
-	output.Sync()
+	output.Sync() // turn off buffering on the ouput pipe
 
 	scanner := bufio.NewScanner(input)
 
