@@ -6,10 +6,7 @@ type = 'default'
 
 ## About
 
-The purpose of this project is to provide working examples of how
-popular languages handle basic I/O and common serialization formats. The
-covered languages are listed below. For each example under IO
-operations, the language's handling of the operation is shown.
+Rosetta I/O provides working, tested examples of how popular languages/runtimes handle basic I/O and common serialization formats.
 
 The name `rosetta-io` is an hommage to [Rosetta
 Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
