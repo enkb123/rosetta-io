@@ -930,7 +930,7 @@
                 "implementations": [
                     {
                         "file_name": "read_file.sh",
-                        "code": "file_path=\"./my-text-file.txt\"\n\nwhile IFS= read -r line; do\n  echo \"line: $line\"\n\ndone < \"$file_path\"",
+                        "code": "file_path=\"./my-text-file.txt\"\n\nwhile IFS= read -r line; do\n  echo \"line: $line\"\ndone < \"$file_path\"",
                         "additional_md": null,
                         "language": {
                             "name": "bash",
@@ -1386,9 +1386,6 @@
                 "files": [],
                 "implementations": [
                     {
-                        "file_name": "json_numbers.sh",
-                        "code": "lengths=()\n\nfor arg in \"$@\"; do\n  lengths+=(\"${#arg}\")\ndone\n\njo -a \"${lengths[@]}\"",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -1397,7 +1394,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_numbers.sh a bc def ghij"
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonNumbers.cs",
@@ -1620,9 +1617,6 @@
                 "files": [],
                 "implementations": [
                     {
-                        "file_name": "json_object_array.sh",
-                        "code": "json_objects=()\n\nfor arg in \"$@\"; do\n    upper_arg=$(tr '[:lower:]' '[:upper:]' <<< \"$arg\")\n    length=${#arg}\n    json_objects+=(\"$(jo \"$upper_arg\"=\"$length\")\")\ndone\n\njo -a \"${json_objects[@]}\"",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -1631,7 +1625,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_object_array.sh a bc def"
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonObjectArray.cs",
@@ -1849,9 +1843,6 @@
                 "files": [],
                 "implementations": [
                     {
-                        "file_name": "json_array.sh",
-                        "code": "jo -a \"$@\"",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -1860,7 +1851,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_array.sh a b c d"
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonArray.cs",
@@ -2078,9 +2069,6 @@
                 "files": [],
                 "implementations": [
                     {
-                        "file_name": "json_stdout_object.sh",
-                        "code": "json_object='{}'\n\nfor arg in \"$@\"; do\n    length=${#arg}\n    json_object=$(<<<\"$json_object\" jo -f - \"$arg=$length\")\ndone\n\necho \"$json_object\"",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -2089,7 +2077,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_stdout_object.sh a bc def ghij"
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonStdoutObject.cs",
@@ -2315,9 +2303,6 @@
                 "files": [],
                 "implementations": [
                     {
-                        "file_name": "json_object_with_array_values.sh",
-                        "code": "json_object='{}'\n\nfor arg in \"$@\"; do\n    upper_chars=$(<<<\"$arg\" tr '[:lower:]' '[:upper:]' | fold -w1)\n\n    json_array=$(jo -a ${upper_chars[@]})\n\n    # merge this object with the current object\n    json_object=\"$(<<<\"$json_object\" jo -f - \"$arg\"=\"$json_array\")\"\ndone\n\necho \"$json_object\"",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -2326,7 +2311,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_object_with_array_values.sh a bc def"
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonObjectWithArrayValues.cs",
@@ -2539,9 +2524,6 @@
                 "files": [],
                 "implementations": [
                     {
-                        "file_name": "json_control_chars.sh",
-                        "code": "echo -n \"$1\" | jq -R -s .",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -2550,7 +2532,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_control_chars.sh 'hello \n \u0001 world 🥸'"
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonControlChars.cs",
@@ -2763,9 +2745,6 @@
                 "files": [],
                 "implementations": [
                     {
-                        "file_name": "json_null_char.sh",
-                        "code": "printf \"Hello World \\0\" | jq -R .",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -2774,7 +2753,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_null_char.sh "
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonNullChar.cs",
@@ -2971,9 +2950,6 @@
                 "assertion": null,
                 "implementations": [
                     {
-                        "file_name": "json_outputting_data.sh",
-                        "code": "# jo can't handle the null character (\\0) so we use jq to add it as a workaraound\nobject_with_nonascii_string='{  }'\n\njo \\\n  true=true \\\n  false=false  \\\n  zero=0 \\\n  int=42 \\\n  float=3.14 \\\n  null=null \\\n  -s \"empty string\"=\"\" \\\n  -s \"a string with non-ascii characters\"=$'hello \\n \\1 world 🥸'\n\njo \\\n  \"array of strings=$(\n    jo -a abc def ghi jkl\n  )\" \\\n  \"array of numbers=$(\n    jo -a 13 42 9000 -7\n  )\" \\\n  \"array of nothing=$(\n    jo -a </dev/null\n  )\" \\\n  \"array of mixed=$(\n    jo -a 13 def null false \"$(jo -a a)\" \"$(jo o=1)\"\n  )\" \\\n  \"array of objects=$(\n    jo -a \\\n      \"$(jo name=\"Bob Barker\" age=84)\" \\\n      \"$(jo address1=\"123 Main St\" address2=\"Apt 1\")\"\n  )\" \\\n  \"array of arrays=$(\n    jo -a \\\n      \"$(jo -a a b c)\" \\\n      \"$(jo -a d e f)\"\n  )\"\n\njo objects=\"$(\n  jo nested=\"$(\n    jo objects=\"$(\n      jo are=\"supported\"\n    )\"\n  )\"\n)\"",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -2982,7 +2958,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash json_outputting_data.sh "
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "JsonOutputtingData.cs",
@@ -3201,9 +3177,6 @@
                 "cli_args": "",
                 "implementations": [
                     {
-                        "file_name": "read_json_file.sh",
-                        "code": "file_path=\"people.json\"\n\njq -c '.[]' \"$file_path\" | while IFS= read -r person; do\n    age=$(echo \"$person\" | jq -r '.age')\n    first_name=$(echo \"$person\" | jq -r '.first_name')\n    echo \"Hello, $age year old $first_name\"\ndone",
-                        "additional_md": null,
                         "language": {
                             "name": "bash",
                             "human_name": "Bash",
@@ -3212,7 +3185,7 @@
                             "icon_id": "bash",
                             "directory": "bash"
                         },
-                        "command": "bash read_json_file.sh "
+                        "additional_md": "We don't recommend trying to use Bash, Zsh, or any shell that doesn't support JSON natively for this task."
                     },
                     {
                         "file_name": "ReadJsonFile.cs",

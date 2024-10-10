@@ -60,6 +60,10 @@ def test_case_data(pytest_case):
         script_path = language.script_path(mark['script_name'])
         additional_path = Path(str(script_path) + ".md")
 
+        additional_md_path = None
+        if additional_path.exists():
+            additional_md_path = additional_path.read_text(encoding="utf-8").strip()
+
         # checks that this case is implemented for the specific language
         if script_path.exists():
             additional_md_path = None
@@ -75,6 +79,12 @@ def test_case_data(pytest_case):
                 language=language.as_json(),
                 command=runner.basic_command(),
             ))
+        elif additional_md_path:
+            implementations.append(dict(
+                language=language.as_json(),
+                additional_md=additional_md_path,
+            ))
+
 
     return mark | dict(
         title=mark.get('title', mark['script_name']),

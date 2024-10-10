@@ -34,6 +34,7 @@
 {{ default "" .additional_md }}
 
 
+{{ if .code }}
 ```{{ .language.syntax_highlighting }} {filename="{{.file_name}}"}
 {{ .code }}
 ```
@@ -53,6 +54,7 @@ $ {{ .command }}
 ```
 </div>
 </div>
+{{ end }}
 
 ---
 {{ end }}
