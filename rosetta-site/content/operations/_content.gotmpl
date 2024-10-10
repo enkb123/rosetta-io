@@ -1,6 +1,4 @@
-{{ $myGlobals := (dict "siteData" $.Site.Data) }}
-
-{{range $.Site.Data.test_cases }}
+{{range site.Data.test_cases }}
   {{ $.AddPage (dict
       "kind" "section"
       "path" .group_slug
@@ -18,11 +16,12 @@
         "kind" "page"
         "path" (printf "%s/%s" $group_slug .script_name)
         "title" .title
+        "description" .summary
         "type" "docs"
         "content" (dict
-          "value" (partial "operation.md" (merge . $myGlobals))
+          "value" (partial "operation.md" .)
         )
       )
     }}
-  {{ end}}
-{{ end}}
+  {{ end }}
+{{ end }}

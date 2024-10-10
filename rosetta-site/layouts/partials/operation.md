@@ -1,5 +1,3 @@
-{{ $siteData := .siteData }}
-
 > {{ .summary }}
 
 {{ .description }}
@@ -27,7 +25,7 @@
 ### {{ .language.human_name }}
 
 <div class="language-icon">
-  {{index $siteData.icons (printf "language-%s" .language.icon_id)}}
+  {{index site.Data.icons (printf "language-%s" .language.icon_id)}}
 </div>
 
 

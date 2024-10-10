@@ -26,17 +26,16 @@ Code](https://rosettacode.org/wiki/Rosetta_Code) but is not affiliated.
 ## Operations
 
 {{< _.inline >}}
-  {{range $.Site.Data.test_cases }}
-    <h3>{{ .group_name }}</h3>
-    {{ $group_slug := .group_slug }}
+  {{ range (site.GetPage "operations").Pages }}
+    <h3>{{ .Title }}</h3>
     <div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 2;">
-      {{ range .test_cases }}
+      {{ range .Pages }}
         {{- partial "shortcodes/card" (dict
-          "title"       .title
-          "link"        (printf "/operations/%s/%s" $group_slug .script_name)
-          "subtitle"    .summary
+          "title"       .Title
+          "link"        .RelPermalink
+          "subtitle"    .Description
         ) -}}
-      {{ end}}
+      {{ end }}
     </div>
-  {{ end}}
+  {{ end }}
 {{< /_.inline >}}
