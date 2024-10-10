@@ -59,7 +59,7 @@
                     },
                     {
                         "file_name": "Arguments.java",
-                        "code": "class Main{\n    public static void main(String[] args){\n        System.out.println(\"1st argument: \" + args[0]);\n        System.out.println(\"2nd argument: \" + args[1]);\n    }\n}",
+                        "code": "class Main {\n    public static void main(String[] args) {\n        System.out.println(\"1st argument: \" + args[0]);\n        System.out.println(\"2nd argument: \" + args[1]);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -255,7 +255,7 @@
                     },
                     {
                         "file_name": "NullChar.cs",
-                        "code": "class NullChar {\n  public static void Main(string[] args) {\n    Console.WriteLine(\"Hello World \\0\");\n  }\n}",
+                        "code": "class NullChar\n{\n  public static void Main(string[] args)\n  {\n    Console.WriteLine(\"Hello World \\0\");\n  }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -705,7 +705,7 @@
                     },
                     {
                         "file_name": "StreamingStdin.cs",
-                        "code": "using System;\n\nclass StreamingStdin{\n    public static void Main(string[] args){\n        string line;\n\n        while (!string.IsNullOrEmpty(line = Console.ReadLine())){\n            Console.WriteLine($\"received {line}\");\n        }\n    }\n}",
+                        "code": "using System;\n\nclass StreamingStdin\n{\n    public static void Main(string[] args)\n    {\n        string line;\n\n        while (!string.IsNullOrEmpty(line = Console.ReadLine()))\n        {\n            Console.WriteLine($\"received {line}\");\n        }\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -1423,7 +1423,7 @@
                     },
                     {
                         "file_name": "JsonNumbers.java",
-                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ArrayNode;\n\npublic class JsonNumbers {\n    public static void main(String[] args) throws Exception{\n        if (args.length == 0) {\n            System.out.println(\"Usage: java JsonNumbers <string1> <string2> ...\");\n            System.exit(1);\n        }\n        ObjectMapper objectMapper = new ObjectMapper();\n        ArrayNode arrayNode = objectMapper.createArrayNode();\n\n        for (String str : args) {\n            arrayNode.add(str.length());\n        }\n\n        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);\n        System.out.println(jsonArrayString);\n    }\n}",
+                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ArrayNode;\n\npublic class JsonNumbers {\n    public static void main(String[] args) throws Exception {\n        var objectMapper = new ObjectMapper();\n        var arrayNode = objectMapper.createArrayNode();\n\n        for (String str : args) {\n            arrayNode.add(str.length());\n        }\n\n        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);\n        System.out.println(jsonArrayString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -1626,7 +1626,7 @@
                     },
                     {
                         "file_name": "JsonObjectArray.cs",
-                        "code": "using System;\nusing System.Collections.Generic;\nusing System.Text;\nusing System.Text.Json;\n\nclass JsonObjectArray\n{\n    public static void Main(string[] args){\n        var jsonObjects = args.Select(str => new Dictionary<string, object> {\n            { str.ToUpper(), str.Length }\n        }).ToList();\n        string jsonArrayString = JsonSerializer.Serialize(jsonObjects);\n        Console.WriteLine(jsonArrayString);\n    }\n}",
+                        "code": "using System;\nusing System.Collections.Generic;\nusing System.Text;\nusing System.Text.Json;\n\nclass JsonObjectArray\n{\n    public static void Main(string[] args)\n    {\n        var jsonObjects = args.Select(str => new Dictionary<string, object> {\n            { str.ToUpper(), str.Length }\n        }).ToList();\n        string jsonArrayString = JsonSerializer.Serialize(jsonObjects);\n        Console.WriteLine(jsonArrayString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -1654,7 +1654,7 @@
                     },
                     {
                         "file_name": "JsonObjectArray.java",
-                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ArrayNode;\nimport com.fasterxml.jackson.databind.node.ObjectNode;\n\npublic class JsonObjectArray {\n    public static void main(String[] args) throws Exception{\n        if (args.length == 0) {\n            System.out.println(\"Usage: java JsonObjectArray <string1> <string2> ...\");\n            System.exit(1);\n        }\n\n        ObjectMapper objectMapper = new ObjectMapper();\n        ArrayNode arrayNode = objectMapper.createArrayNode();\n\n        for (String string : args) {\n            ObjectNode obj = objectMapper.createObjectNode();\n            obj.put(string.toUpperCase(), string.length());\n            arrayNode.add(obj);\n        }\n\n        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);\n        System.out.println(jsonArrayString);\n    }\n}",
+                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ArrayNode;\n\npublic class JsonObjectArray {\n    public static void main(String[] args) throws Exception {\n        var objectMapper = new ObjectMapper();\n        var arrayNode = objectMapper.createArrayNode();\n\n        for (String string : args) {\n            var obj = objectMapper.createObjectNode();\n            obj.put(string.toUpperCase(), string.length());\n            arrayNode.add(obj);\n        }\n\n        String jsonArrayString = objectMapper.writeValueAsString(arrayNode);\n        System.out.println(jsonArrayString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -1852,7 +1852,7 @@
                     },
                     {
                         "file_name": "JsonArray.cs",
-                        "code": "using System;\nusing System.Text.Json;\n\nclass JsonArray{\n    public static void Main(string[] args){\n        string[] inputArray = args;\n\n        string jsonString = JsonSerializer.Serialize(inputArray);\n\n        Console.WriteLine(jsonString);\n    }\n}",
+                        "code": "using System;\nusing System.Text.Json;\n\nclass JsonArray\n{\n    public static void Main(string[] args)\n    {\n        string[] inputArray = args;\n\n        string jsonString = JsonSerializer.Serialize(inputArray);\n\n        Console.WriteLine(jsonString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -1880,7 +1880,7 @@
                     },
                     {
                         "file_name": "JsonArray.java",
-                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ArrayNode;\n\npublic class JsonArray {\n    public static void main(String[] args) {\n        if (args.length == 0) {\n            System.out.println(\"Usage: java JsonArray <string1> <string2> ...\");\n            System.exit(1);\n        }\n\n        ObjectMapper objectMapper = new ObjectMapper();\n        ArrayNode arrayNode = objectMapper.createArrayNode();\n\n        for (String arg : args) {\n            arrayNode.add(arg);\n        }\n\n        String jsonArrayString = arrayNode.toString();\n\n        System.out.println(jsonArrayString);\n    }\n}",
+                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ArrayNode;\n\npublic class JsonArray {\n    public static void main(String[] args) {\n        var objectMapper = new ObjectMapper();\n        var arrayNode = objectMapper.createArrayNode();\n\n        for (String arg : args) {\n            arrayNode.add(arg);\n        }\n\n        String jsonArrayString = arrayNode.toString();\n\n        System.out.println(jsonArrayString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -2078,7 +2078,7 @@
                     },
                     {
                         "file_name": "JsonStdoutObject.cs",
-                        "code": "using System;\nusing System.Collections.Generic;\nusing System.Text;\nusing System.Text.Json;\n\nclass JsonStdoutObject{\n    public static void Main(string[] args){\n        Dictionary<string, int> stringLengthDict = new Dictionary<string, int>();\n\n        foreach (string str in args){\n            stringLengthDict[str] = str.Length;\n        }\n\n        string jsonString = JsonSerializer.Serialize(stringLengthDict);\n        Console.WriteLine(jsonString);\n    }\n}",
+                        "code": "using System;\nusing System.Collections.Generic;\nusing System.Text;\nusing System.Text.Json;\n\nclass JsonStdoutObject\n{\n    public static void Main(string[] args)\n    {\n        var stringLengthDict = new Dictionary<string, int>();\n\n        foreach (string str in args)\n        {\n            stringLengthDict[str] = str.Length;\n        }\n\n        string jsonString = JsonSerializer.Serialize(stringLengthDict);\n        Console.WriteLine(jsonString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -2106,7 +2106,7 @@
                     },
                     {
                         "file_name": "JsonStdoutObject.java",
-                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ObjectNode;\n\npublic class JsonStdoutObject {\n    public static void main(String[] args) throws Exception{\n        var objectMapper = new ObjectMapper();\n\n        var jsonObject = objectMapper.createObjectNode();\n\n        for (String string : args) {\n            jsonObject.put(string, string.length());\n        }\n\n        var jsonString = objectMapper.writeValueAsString(jsonObject);\n        System.out.println(jsonString);\n    }\n}",
+                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ObjectNode;\n\npublic class JsonStdoutObject {\n    public static void main(String[] args) throws Exception {\n        var objectMapper = new ObjectMapper();\n\n        var jsonObject = objectMapper.createObjectNode();\n\n        for (String string : args) {\n            jsonObject.put(string, string.length());\n        }\n\n        var jsonString = objectMapper.writeValueAsString(jsonObject);\n        System.out.println(jsonString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -2312,7 +2312,7 @@
                     },
                     {
                         "file_name": "JsonObjectWithArrayValues.cs",
-                        "code": "using System;\nusing System.Collections.Generic;\nusing System.Text;\nusing System.Text.Json;\n\nclass JsonObjectWithArrayValues{\n    public static void Main(string[] args){\n        var jsonObject = args.ToDictionary(\n            str => str,\n            str => str.ToUpper().Select(c => c.ToString()).ToList()\n        );\n\n        string jsonString = JsonSerializer.Serialize(jsonObject);\n        Console.WriteLine(jsonString);\n    }\n}",
+                        "code": "using System;\nusing System.Collections.Generic;\nusing System.Text;\nusing System.Text.Json;\n\nclass JsonObjectWithArrayValues\n{\n    public static void Main(string[] args)\n    {\n        var jsonObject = args.ToDictionary(\n            str => str,\n            str => str.ToUpper().Select(c => c.ToString()).ToList()\n        );\n\n        string jsonString = JsonSerializer.Serialize(jsonObject);\n        Console.WriteLine(jsonString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -2340,7 +2340,7 @@
                     },
                     {
                         "file_name": "JsonObjectWithArrayValues.java",
-                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\nimport com.fasterxml.jackson.databind.node.ArrayNode;\nimport com.fasterxml.jackson.databind.node.ObjectNode;\n\npublic class JsonObjectWithArrayValues {\n    public static void main(String[] args) throws Exception {\n        var objectMapper = new ObjectMapper();\n\n        var jsonObject = objectMapper.createObjectNode();\n\n        for (String str : args) {\n            var lettersArray = objectMapper.createArrayNode();\n            str.toUpperCase().chars().forEach(c -> lettersArray.add(String.valueOf((char) c)));\n            jsonObject.set(str, lettersArray);\n        }\n\n        String jsonString = objectMapper.writeValueAsString(jsonObject);\n        System.out.println(jsonString);\n    }\n}",
+                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\n\npublic class JsonObjectWithArrayValues {\n    public static void main(String[] args) throws Exception {\n        var objectMapper = new ObjectMapper();\n\n        var jsonObject = objectMapper.createObjectNode();\n\n        for (String str : args) {\n            var lettersArray = objectMapper.createArrayNode();\n            str.toUpperCase().chars().forEach(c -> lettersArray.add(String.valueOf((char) c)));\n            jsonObject.set(str, lettersArray);\n        }\n\n        String jsonString = objectMapper.writeValueAsString(jsonObject);\n        System.out.println(jsonString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -2533,7 +2533,7 @@
                     },
                     {
                         "file_name": "JsonControlChars.cs",
-                        "code": "using System;\nusing System.Text.Json;\n\nclass JsonControlChars{\n    public static void Main(string[] args){\n        string testString = args[0];\n        string jsonString = JsonSerializer.Serialize(testString);\n\n        Console.WriteLine(jsonString);\n    }\n}",
+                        "code": "using System;\nusing System.Text.Json;\n\nclass JsonControlChars\n{\n    public static void Main(string[] args)\n    {\n        string testString = args[0];\n        string jsonString = JsonSerializer.Serialize(testString);\n\n        Console.WriteLine(jsonString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -2561,7 +2561,7 @@
                     },
                     {
                         "file_name": "JsonControlChars.java",
-                        "code": "import com.fasterxml.jackson.core.JsonProcessingException;\nimport com.fasterxml.jackson.databind.ObjectMapper;\n\npublic class JsonControlChars {\n    public static void main(String[] args) throws JsonProcessingException{\n        if (args.length == 0) {\n            System.out.println(\"Usage: java JsonControlChars <test_string>\");\n            System.exit(1);\n        }\n\n        String testString = args[0];\n        ObjectMapper objectMapper = new ObjectMapper();\n\n        String jsonString = objectMapper.writeValueAsString(testString);\n        System.out.println(jsonString);\n\n    }\n}",
+                        "code": "import com.fasterxml.jackson.databind.ObjectMapper;\n\npublic class JsonControlChars {\n    public static void main(String[] args) throws Exception {\n        String testString = args[0];\n        var objectMapper = new ObjectMapper();\n\n        String jsonString = objectMapper.writeValueAsString(testString);\n        System.out.println(jsonString);\n\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -3416,7 +3416,7 @@
                     },
                     {
                         "file_name": "Decode.cs",
-                        "code": "using System;\n\nclass Decode{\n    public static void Main(string[] args){\n        string encodedString = args[0];\n\n        byte[] decodedBytes = Convert.FromBase64String(encodedString);\n        string decodedString = System.Text.Encoding.UTF8.GetString(decodedBytes);\n\n        Console.WriteLine(decodedString);\n    }\n}",
+                        "code": "using System;\n\nclass Decode\n{\n    public static void Main(string[] args)\n    {\n        string encodedString = args[0];\n\n        byte[] decodedBytes = Convert.FromBase64String(encodedString);\n        string decodedString = System.Text.Encoding.UTF8.GetString(decodedBytes);\n\n        Console.WriteLine(decodedString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -3444,7 +3444,7 @@
                     },
                     {
                         "file_name": "Decode.java",
-                        "code": "import java.util.Base64;\n\npublic class Decode {\n    public static void main(String[] args) {\n        if (args.length == 0) {\n            System.out.println(\"Usage: java Decode.java <encoded_string>\");\n            System.exit(1);\n        }\n\n        String encodedString = args[0];\n        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);\n        String decodedString = new String(decodedBytes);\n\n        System.out.println(decodedString);\n    }\n}",
+                        "code": "import java.util.Base64;\n\npublic class Decode {\n    public static void main(String[] args) {\n        String encodedString = args[0];\n        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);\n        String decodedString = new String(decodedBytes);\n\n        System.out.println(decodedString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
@@ -3640,7 +3640,7 @@
                     },
                     {
                         "file_name": "Encode.cs",
-                        "code": "using System;\n\nclass Encode{\n    public static void Main(string[] args){\n        string testString = args[0];\n        string encodedString = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(testString));\n        Console.WriteLine(encodedString);\n    }\n}",
+                        "code": "using System;\n\nclass Encode {\n    public static void Main(string[] args)\n    {\n        string testString = args[0];\n        string encodedString = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(testString));\n        Console.WriteLine(encodedString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "csharp",
@@ -3668,7 +3668,7 @@
                     },
                     {
                         "file_name": "Encode.java",
-                        "code": "import java.util.Base64;\n\npublic class Encode {\n    public static void main(String[] args) {\n        if (args.length == 0) {\n            System.out.println(\"Usage: java Encode.java <test_string>\");\n            System.exit(1);\n        }\n\n        String testString = args[0];\n        String encodedString = Base64.getEncoder().encodeToString(testString.getBytes());\n\n        System.out.println(encodedString);\n    }\n}",
+                        "code": "import java.util.Base64;\n\npublic class Encode {\n    public static void main(String[] args) {\n        String testString = args[0];\n        String encodedString = Base64.getEncoder().encodeToString(testString.getBytes());\n\n        System.out.println(encodedString);\n    }\n}",
                         "additional_md": null,
                         "language": {
                             "name": "java",
