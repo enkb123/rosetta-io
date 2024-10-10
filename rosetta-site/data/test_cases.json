@@ -380,9 +380,6 @@
                         "command": "python null_char.py "
                     },
                     {
-                        "file_name": "null_char.R",
-                        "code": "temp_file <- tempfile()\n\nwriteBin(c(charToRaw(\"Hello World \"), as.raw(0), charToRaw(\"\\n\")), temp_file)\n\nsystem(paste(\"cat\", temp_file))\n\nunlink(temp_file)",
-                        "additional_md": null,
                         "language": {
                             "name": "r",
                             "human_name": "R",
@@ -391,7 +388,7 @@
                             "icon_id": "r",
                             "directory": "r"
                         },
-                        "command": "Rscript null_char.R "
+                        "additional_md": "Strings in R cannot contain null characters (even though null characters are valid in UTF-8)."
                     },
                     {
                         "file_name": "null_char.raku",
