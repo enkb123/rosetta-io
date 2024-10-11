@@ -1,0 +1,18 @@
+{{/*
+  Renders an icon. Copied from hextra/layouts/partials/icon.html
+
+  Usage:
+    {{ partial "icon.html" (dict "name" "language-python") }}
+*/}}
+{{- $icon := index site.Data.icons .name -}}
+{{- $attributes := .attributes | default "height=1em"}}
+
+{{- if not $icon -}}
+  {{ errorf "icon %q not found" .name }}
+{{- end -}}
+
+{{- $icon = replaceRE "<svg" (printf "<svg %s" $attributes) $icon -}}
+
+<span class="hx-inline-block hx-align-text-bottom icon">
+  {{- $icon | safeHTML -}}
+</span>

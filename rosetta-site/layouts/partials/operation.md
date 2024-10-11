@@ -38,7 +38,10 @@
 ```
 
 <div class="running-the-program">
-  <h4>Running the program</h4>
+  <h4>
+    {{ partial "icon.html" (dict "name" "terminal") -}}
+    Running the program
+  </h4>
 
 ```console
 $ {{ .command }}
