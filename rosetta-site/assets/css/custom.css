@@ -64,9 +64,8 @@ a.disable-expand-collapse {
   }
 }
 
-.running-the-program .icon {
+h4 .icon {
   vertical-align: middle;
-  padding-right: 0.2rem;
   padding-bottom: 0.2rem;
 
   svg {
@@ -74,4 +73,8 @@ a.disable-expand-collapse {
     height: 1.4rem;
     stroke-width: 1.8;
   }
+}
+
+.running-the-program .icon {
+  padding-right: 0.2rem;
 }

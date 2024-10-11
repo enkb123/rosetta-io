@@ -6,7 +6,10 @@
 
 {{ if .files }}
 
-<h4>Input file</h4>
+<h4>
+  {{ partial "icon.html" (dict "name" "document-text") -}}
+  Input file
+</h4>
 
 {{ range .files }}
   ```{{ .ext }} {filename="{{.name}}"}
