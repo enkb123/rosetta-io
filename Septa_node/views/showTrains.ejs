@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/output.css">
+    <title>Upcoming Trains</title>
+</head>
+<div class=" flex justify-center items-center mt-20 mb-20">
+<div class="bg-white p-5 rounded shadow-md ">
+<body style = "background-color: rgb(18, 44, 128) ; text-align: left">
+        <% if (upcomingTrains.length != 0){ %>
+            <h1 class="font-bold text-3xl "><%= departStation %> to <%= destStation %> : </h1> <hr> <br>
+            <% upcomingTrains.forEach((trip, counter) => { %>
+                <strong>Itinerary <%= counter + 1 %> :</strong>
+                <hr style="width:90px">
+                <div class="wrapper mt-5 mb-10" >  
+                    <%trip.legs.forEach(leg => { %>
+                    <div class="h-12 times" style="font-weight: bold;"> 
+                        <%if (leg == trip.legs[1]){%>
+                            <%= trip.legs[0].arriveTime.str %>
+                            <br>
+                        <%}%>
+                        <%= leg.departTime.str %>
+                    </div>
+                    <div class="text-center stationdot">◉︎</div>
+                    <div><%=leg.startStation.name%></div>
+                    <div></div>
+                    <div class="bar"><div></div></div>
+                    <div style="color: gray"><%= leg.trainNumber %> <%= leg.lineName %> 
+                        <% if (leg.isOnTime) { %>
+                        <span class="px-1 py-1 text-sm font-medium rounded-full bg-green-200 text-black-800" id="status-pill" style="color:black">On Time</span>
+                        <% }else{ %>
+                            <span class="px-1 py-.5 text-sm font-medium rounded-full bg-red-200 text-black-800"  id="status-pill" style="color: black">Delayed</span>
+                        <% } %>
+                    </div>
+                <% }) %>
+                <div class="h-12 times" style="font-weight: bold;"><div><%=trip.arriveTime.str%></div></div>
+                <div class="text-center stationdot">◉︎</div>
+                <div><%=destStation%></div>
+                </div>
+            <% }) %>
+        <% } else{ %>
+            <strong><h1>There are currently no trains from <%= departStation %> to <%= destStation %>.</h1></strong>
+        <% }%>
+    <br>
+    <br>
+    <h1 class="font-bold text-3xl">More Trips: </h1> <hr>
+    <br>
+    <p align="left">      
+        <a href="/views/index" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">New Route</a>
+        <br> <br>
+        <% var link = "/views/showTrains?dropdown1=" + encodeURIComponent(destStation) + "&dropdown2=" + encodeURIComponent(departStation); %>
+        <a href= <%= link %> class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded "> Reverse Route </a> <br>
+    </p>  
+    <br>
+    <br>
+    <h1 class="font-bold text-2xl">Recent Routes:</h1> <hr style="width:170px">
+    <br>  
+    <p align="left">
+    <% if (recStations.length > 0) { %>
+        <% recStations.forEach(trip => { %>
+            <% var link = "/views/showTrains?dropdown1=" + encodeURIComponent(trip.recDepart) + "&dropdown2=" + encodeURIComponent(trip.recDest); %>
+            <a href= <%= link %> class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"><%= trip.recDepart %> to <%= trip.recDest %> </a> <br>
+            <option value="<%= trip.recDepart %>,<%= trip.recDest %>"><%= trip.recDepart %> to <%= trip.recDest %></option>
+            <br>
+        <% }) %>
+        </option>
+    <% } %>
+    </p>
+</body>
+</div>
+</div>
+</html>

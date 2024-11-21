@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 100px 20px 300px;
+    grid-gap: 10px;
+    background-color: #fff;
+    color: #444;
+    align-items: center;
+}
+
+.wrapper > div {
+    color: #000000;
+}
+
+.bar {
+    display: flex;
+    justify-content: center;
+    margin-top: -31px;
+    margin-bottom: -31px;
+}
+
+.bar > div{
+    height: 75px;
+    width: 5px;
+    background-color: rgb(18, 44, 128);
+    border-radius: 2px;
+}
+
+.times{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.wrapper > .stationdot{
+    color: rgb(18, 44, 128);
+    font-size: 18px;
+}

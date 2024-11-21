@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/output.css">
+    <title>Upcoming Trains</title>
+</head>
+<div class="flex h-screen justify-center items-center">
+<div class="bg-white p-4 rounded shadow-md w-1/2">
+<body style="text-align: center; background-color: rgb(18, 44, 128)">
+    <h1 class="font-bold text-5xl text-center">Welcome to SEPTA!</h1> <br>
+    <hr> <br>
+    
+    <form action="/views/index">
+        <input type="submit" value="New Route" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-3 px-6 rounded " style="font-size: 20px;"/>
+    </form>
+    <br>
+    <h1 align="left" class="font-bold text-2xl" >Recent Routes:</h1> <hr style="width: 170px"> <br>
+    <p align = "left">
+    <% if (recStations.length > 0) { %>
+        <% recStations.forEach(trip => { %>
+            <% var link = "/views/showTrains?dropdown1=" + encodeURIComponent(trip.recDepart) + "&dropdown2=" + encodeURIComponent(trip.recDest); %>
+            <a href= <%= link %> class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"><%= trip.recDepart %> to <%= trip.recDest %></a> <br><br>
+        <% }) %>
+    <% } %>
+    </p>
+</body>
+</div>
+</div>
+</html>
