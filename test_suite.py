@@ -171,6 +171,13 @@ class Crystal(Language):
     def command(self, test_name):
         return super().command(test_name) + " --"
 
+class Cplusplus(Language):
+    name = 'cplusplus'
+    human_name = 'C++'
+    interpreter = './_runcpp'
+    script_ext = '.cpp'
+    syntax_highlighting = 'cpp'
+
 LANGUAGES = [
     Python(),
     Ruby(),
@@ -188,6 +195,7 @@ LANGUAGES = [
     Raku(),
     Rust(),
     Crystal(),
+    Cplusplus(),
 ]
 
 

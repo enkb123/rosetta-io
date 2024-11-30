@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+mkdir -p .tmp
+
+script="$1"
+shift
+
+executable=".tmp/$(basename "$script").out"
+
+g++ "$script" -o "$executable" --std='c++11'
+
+"$executable" "$@"
