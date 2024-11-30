@@ -44,6 +44,20 @@
                         "command": "dotnet run arguments 'Argument Number 1' 'Command line arg 2'"
                     },
                     {
+                        "file_name": "arguments.cr",
+                        "code": "puts \"1st argument: #{ARGV[0]}\"\nputs \"2nd argument: #{ARGV[1]}\"",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run arguments.cr -- 'Argument Number 1' 'Command line arg 2'"
+                    },
+                    {
                         "file_name": "arguments.go",
                         "code": "package main\n\nimport (\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\tfmt.Println(\"1st argument: \" + os.Args[1])\n\tfmt.Println(\"2nd argument: \" + os.Args[2])\n}",
                         "additional_md": null,
@@ -266,6 +280,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run null_char "
+                    },
+                    {
+                        "file_name": "null_char.cr",
+                        "code": "puts \"Hello World \\0\"",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run null_char.cr -- "
                     },
                     {
                         "file_name": "null_char.go",
@@ -496,6 +524,20 @@
                         "command": "dotnet run stdin <<EOF\nhi\nhello\nhow are you\nEOF\n"
                     },
                     {
+                        "file_name": "stdin.cr",
+                        "code": "while user_input = gets\n  puts \"line: #{user_input}\"\nend",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run stdin.cr -- <<EOF\nhi\nhello\nhow are you\nEOF\n"
+                    },
+                    {
                         "file_name": "stdin.go",
                         "code": "package main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\tscanner := bufio.NewScanner(os.Stdin)\n\tfor scanner.Scan() {\n\t\tfmt.Println(\"line: \" + scanner.Text())\n\t}\n}",
                         "additional_md": null,
@@ -716,6 +758,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run streaming_stdin "
+                    },
+                    {
+                        "file_name": "streaming_stdin.cr",
+                        "code": "STDOUT.sync = true # turn off buffering for stdout\n\nwhile input = gets\n  puts \"received #{input}\"\nend",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run streaming_stdin.cr -- "
                     },
                     {
                         "file_name": "streaming_stdin.go",
@@ -954,6 +1010,20 @@
                         "command": "dotnet run read_file "
                     },
                     {
+                        "file_name": "read_file.cr",
+                        "code": "File.each_line(\"./my-text-file.txt\") do |line|\n  puts \"line: #{line}\"\nend",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run read_file.cr -- "
+                    },
+                    {
                         "file_name": "read_file.go",
                         "code": "package main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\tfilePath := \"./my-text-file.txt\"\n\n\tfile, _ := os.Open(filePath)\n\tdefer file.Close()\n\n\tscanner := bufio.NewScanner(file)\n\tfor scanner.Scan() {\n\t\tline := scanner.Text()\n\t\tif line != \"\" {\n\t\t\tfmt.Println(\"line:\", line)\n\t\t}\n\t}\n}",
                         "additional_md": null,
@@ -1174,6 +1244,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run write_to_text_file "
+                    },
+                    {
+                        "file_name": "write_to_text_file.cr",
+                        "code": "File.write \"output.txt\", \"Hello World!\"",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run write_to_text_file.cr -- "
                     },
                     {
                         "file_name": "write_to_text_file.go",
@@ -1408,6 +1492,20 @@
                         "command": "dotnet run json_numbers a bc def ghij"
                     },
                     {
+                        "file_name": "json_numbers.cr",
+                        "code": "require \"json\"\n\nmy_strings = ARGV\n\nstring_lengths = my_strings.map(&.size)\n\nputs string_lengths.to_json",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_numbers.cr -- a bc def ghij"
+                    },
+                    {
                         "file_name": "json_numbers.go",
                         "code": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\targs := os.Args[1:]\n\n\tvar lengths []int\n\n\tfor _, arg := range args {\n\t\tlengths = append(lengths, len(arg))\n\t}\n\n\tjsonArrayBytes, _ := json.Marshal(lengths)\n\n\tfmt.Println(string(jsonArrayBytes))\n}",
                         "additional_md": null,
@@ -1639,6 +1737,20 @@
                         "command": "dotnet run json_object_array a bc def"
                     },
                     {
+                        "file_name": "json_object_array.cr",
+                        "code": "require \"json\"\n\nmy_strings = ARGV\n\nmy_array = my_strings.map { |string| { string.upcase => string.size } }\n\nputs my_array.to_json",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_object_array.cr -- a bc def"
+                    },
+                    {
                         "file_name": "json_object_array.go",
                         "code": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"os\"\n\t\"strings\"\n)\n\nfunc main() {\n\targs := os.Args[1:]\n\n\tvar arrayNode []map[string]interface{}\n\n\tfor _, str := range args {\n\t\tobj := make(map[string]interface{})\n\t\tobj[strings.ToUpper(str)] = len(str)\n\t\tarrayNode = append(arrayNode, obj)\n\t}\n\n\tjsonArrayBytes, _ := json.Marshal(arrayNode)\n\n\tfmt.Println(string(jsonArrayBytes))\n}",
                         "additional_md": null,
@@ -1865,6 +1977,20 @@
                         "command": "dotnet run json_array a b c d"
                     },
                     {
+                        "file_name": "json_array.cr",
+                        "code": "require \"json\"\n\nmy_strings = ARGV\n\nputs my_strings.to_json",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_array.cr -- a b c d"
+                    },
+                    {
                         "file_name": "json_array.go",
                         "code": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\targs := os.Args[1:]\n\n\tvar jsonArray []string\n\n\tfor _, arg := range args {\n\t\tjsonArray = append(jsonArray, arg)\n\t}\n\n\tjsonArrayBytes, _ := json.Marshal(jsonArray)\n\n\tfmt.Println(string(jsonArrayBytes))\n}",
                         "additional_md": null,
@@ -2089,6 +2215,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run json_stdout_object a bc def ghij"
+                    },
+                    {
+                        "file_name": "json_stdout_object.cr",
+                        "code": "require \"json\"\n\nmy_strings = ARGV\n\nstring_length_dict = my_strings.to_h do |string|\n  {string, string.size}\nend\n\nputs string_length_dict.to_json",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_stdout_object.cr -- a bc def ghij"
                     },
                     {
                         "file_name": "json_stdout_object.go",
@@ -2325,6 +2465,20 @@
                         "command": "dotnet run json_object_with_array_values a bc def"
                     },
                     {
+                        "file_name": "json_object_with_array_values.cr",
+                        "code": "require \"json\"\n\nmy_strings = ARGV\n\nstring_letters_dict = my_strings.to_h do |string|\n  {string, string.upcase.split(\"\")}\nend\n\nputs string_letters_dict.to_json",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_object_with_array_values.cr -- a bc def"
+                    },
+                    {
                         "file_name": "json_object_with_array_values.go",
                         "code": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"os\"\n\t\"strings\"\n)\n\nfunc main() {\n\targs := os.Args[1:]\n\n\tjsonObject := make(map[string][]string)\n\n\tfor _, str := range args {\n\t\tvar lettersArray []string\n\t\tfor _, char := range strings.ToUpper(str) {\n\t\t\tlettersArray = append(lettersArray, string(char))\n\t\t}\n\t\tjsonObject[str] = lettersArray\n\t}\n\n\tjsonObjectBytes, _ := json.Marshal(jsonObject)\n\n\tfmt.Println(string(jsonObjectBytes))\n}",
                         "additional_md": null,
@@ -2544,6 +2698,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run json_control_chars 'hello \n \u0001 world 🥸'"
+                    },
+                    {
+                        "file_name": "json_control_chars.cr",
+                        "code": "require \"json\"\n\ntest_string = ARGV[0]\n\nputs test_string.to_json",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_control_chars.cr -- 'hello \n \u0001 world 🥸'"
                     },
                     {
                         "file_name": "json_control_chars.go",
@@ -2767,6 +2935,20 @@
                         "command": "dotnet run json_null_char "
                     },
                     {
+                        "file_name": "json_null_char.cr",
+                        "code": "require \"json\"\n\nputs \"Hello World \\0\".to_json",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_null_char.cr -- "
+                    },
+                    {
                         "file_name": "json_null_char.go",
                         "code": "package main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tjsonData, _ := json.Marshal(\"Hello World \\x00\")\n\tfmt.Println(string(jsonData))\n}",
                         "additional_md": null,
@@ -2970,6 +3152,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run json_outputting_data "
+                    },
+                    {
+                        "file_name": "json_outputting_data.cr",
+                        "code": "require \"json\"\n\nputs ({\n  \"true\" => true,\n  \"false\" => false,\n  \"zero\" => 0,\n  \"int\" => 42,\n  \"float\" => 3.14,\n  \"null\" => nil,\n  \"empty string\" => \"\",\n  \"a string with non-ascii characters\" => \"hello \\n \\u0001 world 🥸\",\n}).to_json\n\n\nputs ({\n  \"array of strings\" => [\"abc\", \"def\", \"ghi\", \"jkl\"],\n  \"array of numbers\" => [13, 42, 9000, -7],\n  \"array of nothing\" => [] of JSON::Any,\n  \"array of mixed\" => [13, \"def\", nil, false, [\"a\"], { \"o\" => 1 }],\n  \"array of objects\" => [\n    { \"name\" => \"Bob Barker\", \"age\" => 84 },\n    { \"address1\" => \"123 Main St\", \"address2\" => \"Apt 1\" },\n  ],\n  \"array of arrays\" => [\n    [\"a\", \"b\", \"c\"],\n    [\"d\", \"e\", \"f\"],\n  ],\n}).to_json\n\n\nputs({\n    \"objects\" => { \"nested\" => { \"objects\" => { \"are\" => \"supported\" } } },\n}.to_json)",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run json_outputting_data.cr -- "
                     },
                     {
                         "file_name": "json_outputting_data.go",
@@ -3197,6 +3393,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run read_json_file "
+                    },
+                    {
+                        "file_name": "read_json_file.cr",
+                        "code": "require \"json\"\n\npeople = JSON.parse(File.read(\"people.json\")).as_a || [] of Hash(String, JSON::Any)\n\npeople.each do |person|\n  age = person[\"age\"].as_i\n  first_name = person[\"first_name\"].as_s\n  puts \"Hello, #{age} year old #{first_name}\"\nend",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run read_json_file.cr -- "
                     },
                     {
                         "file_name": "read_json_file.go",
@@ -3429,6 +3639,20 @@
                         "command": "dotnet run decode SGVsbG8sIHdvcmxkIQ=="
                     },
                     {
+                        "file_name": "decode.cr",
+                        "code": "require \"base64\"\n\nencoded_string = ARGV[0]\n\nputs Base64.decode_string(encoded_string)",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run decode.cr -- SGVsbG8sIHdvcmxkIQ=="
+                    },
+                    {
                         "file_name": "decode.go",
                         "code": "package main\n\nimport (\n\t\"encoding/base64\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\tdecodedBytes, _ := base64.StdEncoding.DecodeString(os.Args[1])\n\n\tfmt.Println(string(decodedBytes))\n}",
                         "additional_md": null,
@@ -3651,6 +3875,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run encode 'Hello, world!'"
+                    },
+                    {
+                        "file_name": "encode.cr",
+                        "code": "require \"base64\"\n\ntest_string = ARGV[0]\n\nputs Base64.encode(test_string)",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run encode.cr -- 'Hello, world!'"
                     },
                     {
                         "file_name": "encode.go",
@@ -3881,6 +4119,20 @@
                         "command": "dotnet run streaming_pipe_in "
                     },
                     {
+                        "file_name": "streaming_pipe_in.cr",
+                        "code": "STDOUT.sync = true # turn off buffering on stdout\n\nFile.each_line \"input.pipe\" do |line|\n  puts line.upcase\nend",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run streaming_pipe_in.cr -- "
+                    },
+                    {
                         "file_name": "streaming_pipe_in.go",
                         "code": "package main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"os\"\n\t\"strings\"\n)\n\nfunc main() {\n\tpipeIn := \"input.pipe\"\n\n\tfile, _ := os.Open(pipeIn)\n\tdefer file.Close()\n\n\tscanner := bufio.NewScanner(file)\n\tfor scanner.Scan() {\n\t\tline := scanner.Text()\n\t\tfmt.Println(strings.ToUpper(line))\n\t}\n}",
                         "additional_md": null,
@@ -4103,6 +4355,20 @@
                         "command": "dotnet run streaming_pipe_in_and_out "
                     },
                     {
+                        "file_name": "streaming_pipe_in_and_out.cr",
+                        "code": "File.open \"streaming-out.pipe\", \"w\" do |output|\n  output.sync = true # turn off buffering on the ouput pipe\n\n  File.each_line \"streaming-in.pipe\" do |line|\n    output.puts \"received #{line}\"\n  end\nend",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run streaming_pipe_in_and_out.cr -- "
+                    },
+                    {
                         "file_name": "streaming_pipe_in_and_out.go",
                         "code": "package main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"os\"\n)\n\nfunc main() {\n\tinput, _ := os.Open(\"streaming-in.pipe\")\n\tdefer input.Close()\n\n\toutput, _ := os.OpenFile(\"streaming-out.pipe\", os.O_WRONLY, 0)\n\tdefer output.Close()\n\n\toutput.Sync() // turn off buffering on the ouput pipe\n\n\tscanner := bufio.NewScanner(input)\n\n\tfor scanner.Scan() {\n\t\tline := scanner.Text()\n\t\tfmt.Fprintf(output, \"received %s\\n\", line)\n\n\t}\n}",
                         "additional_md": null,
@@ -4323,6 +4589,20 @@
                             "directory": "csharp"
                         },
                         "command": "dotnet run write_to_named_pipe "
+                    },
+                    {
+                        "file_name": "write_to_named_pipe.cr",
+                        "code": "File.write \"output.pipe\", \"Hello World!\"",
+                        "additional_md": null,
+                        "language": {
+                            "name": "crystal",
+                            "human_name": "Crystal",
+                            "script_ext": ".cr",
+                            "syntax_highlighting": "crystal",
+                            "icon_id": "crystal",
+                            "directory": "crystal"
+                        },
+                        "command": "crystal run write_to_named_pipe.cr -- "
                     },
                     {
                         "file_name": "write_to_named_pipe.go",

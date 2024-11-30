@@ -16,6 +16,14 @@
         "directory": "csharp"
     },
     {
+        "name": "crystal",
+        "human_name": "Crystal",
+        "script_ext": ".cr",
+        "syntax_highlighting": "crystal",
+        "icon_id": "crystal",
+        "directory": "crystal"
+    },
+    {
         "name": "golang",
         "human_name": "Go",
         "script_ext": ".go",

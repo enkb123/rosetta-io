@@ -161,6 +161,15 @@ class Rust(Language):
     script_ext = '.rs'
     syntax_highlighting = 'rust'
 
+class Crystal(Language):
+    name = 'crystal'
+    human_name = 'Crystal'
+    interpreter = 'crystal run'
+    script_ext = '.cr'
+    syntax_highlighting = 'crystal'
+
+    def command(self, test_name):
+        return super().command(test_name) + " --"
 
 LANGUAGES = [
     Python(),
@@ -178,6 +187,7 @@ LANGUAGES = [
     Swift(),
     Raku(),
     Rust(),
+    Crystal(),
 ]
 
 
